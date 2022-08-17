@@ -153,6 +153,13 @@
               <i class="bi bi-circle"></i><span>Manage Roles</span>
             </a>
           </li>
+
+
+          <li>
+            <a href="{{ url('/manage-company-locations') }}">
+              <i class="bi bi-circle"></i><span>Manage Locations</span>
+            </a>
+          </li>
           
         </ul>
       </li><!-- End Tables Nav -->
