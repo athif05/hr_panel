@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Update Role | {{ env('MY_SITE_NAME') }}</title>
+    <title>Update Job Opening Type | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
@@ -35,21 +35,17 @@
           <div class="card">
             <div class="card-body">
               
-              	<h5 class="card-title">Update Role</h5>
-
-            	<!-- <div class="col-lg-6" style="float: right; text-align: right; padding-top: 12px;">
-            		<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("manage-roles")}}';">Show All Roles</button>		
-            	</div> -->
+              	<h5 class="card-title">Update Job Opening Type</h5>
               
                <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('update-role')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('update-job-opening-type')}}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
-                <input type="hidden" name="role_id" id="role_id" value="{{ $role_details['id']}}">
+                <input type="hidden" name="edit_id" id="edit_id" value="{{ $job_opening_details['id']}}">
 
                 <div class="col-md-6 position-relative">
-                  <label for="name" class="form-label">Role Name</label>
-                  <input type="text" class="form-control" name="name" id="name" value="{{ $role_details['name'] }}" required>
+                  <label for="name" class="form-label">Company Name</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{ $job_opening_details['name'] }}" required>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -59,11 +55,11 @@
                 </div>
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Update" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Update" class="btn btn-primary">
 
-	              	<input type="button" name="button" value="Cancel" class="btn btn-info" onclick="location.href = '{{ url("manage-roles")}}';">
-
-                  
+	              	
+					<input type="button" name="button" value="Cancel" class="btn btn-info" onclick="location.href = '{{ url("manage-job-opening-types")}}';">
+					
                 </div>
 
               </form><!-- End Custom Styled Validation with Tooltips -->

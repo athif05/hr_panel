@@ -11,30 +11,31 @@
 
 
   <script type="text/javascript">
-  	function role_status_fun(role_id){
+  	function status_update_funtion(id, table_name){
 			
-			console.log(role_id);
+			//console.log(id);
 			
-			var checkBox = document.getElementById('role_'+role_id);
+			var checkBox = document.getElementById('id_'+id);
 			
 			if (checkBox.checked == true){
-				var role_status=1;
+				var status=1;
 			} else {
-				var role_status=0;
+				var status=0;
 			}
   
-			console.log(role_status);
+			//console.log(status+' / '+table_name);
 			
 			$.ajax({
-				url: "{{url('update-role-status')}}", 
+				url: "{{url('update-status')}}", 
 				type: "POST",  
 				data:{
-					role_id:role_id,
-					role_status:role_status,
+					id:id,
+					status:status,
+					table_name:table_name,
 					_token: '{{csrf_token()}}'
 				},
 				success:function(result){
-					
+					console.log(result);
 					swal("Poof! Status has been updated!", {
 						icon: "success",
 					});				
@@ -45,29 +46,30 @@
 		}
 
 
-		function role_delete_fun(role_id){
+		function delete_function(id, table_name){
 			
-			var checkBox = document.getElementById('role_del_'+role_id);
+			var checkBox = document.getElementById('del_'+id);
 			
 			if (checkBox.checked == true){
-				var role_del_status=1;
+				var del_status=1;
 			} else {
-				var role_del_status=0;
+				var del_status=0;
 			}
   
-			console.log(role_del_status);
+			console.log(del_status);
 			
 			$.ajax({
-				url: "{{url('delete-role')}}", 
+				url: "{{url('delete-row-value')}}", 
 				type: "POST",  
 				data:{
-					role_id:role_id,
-					role_del_status:role_del_status,
+					id:id,
+					del_status:del_status,
+					table_name:table_name,
 					_token: '{{csrf_token()}}'
 				},
 				success:function(result){
 					
-					swal("Poof! Role has been deleted!", {
+					swal("Poof! Successfully deleted!", {
 						  icon: "success",
 					});		
 			   }  

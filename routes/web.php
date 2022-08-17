@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth']], function() {
 	})->middleware('isManager');
 
 
+	/* manage roles, start here */
 	Route::get('/manage-roles',  [App\Http\Controllers\RoleController::class, 'index']);
 
 	Route::get('/add-new-role',  [App\Http\Controllers\RoleController::class, 'create']);
@@ -88,10 +89,56 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/edit-role/{id}', [App\Http\Controllers\RoleController::class, 'edit']);
 
 	Route::post('/update-role', [App\Http\Controllers\RoleController::class, 'update'])->name('update-role');
+	/* manage roles, end here */
 
-	Route::post('/update-role-status', [App\Http\Controllers\RoleController::class, 'updateStatus']);
 
-	Route::post('/delete-role', [App\Http\Controllers\RoleController::class, 'deleteRole']);
+	/* manage company name, start here */
+	Route::get('/manage-company-names',  [App\Http\Controllers\CompanyNameController::class, 'index']);
+
+	Route::get('/add-new-company',  [App\Http\Controllers\CompanyNameController::class, 'create']);
+
+	Route::post('/save-new-company', [App\Http\Controllers\CompanyNameController::class, 'store'])->name('save-new-company');
+
+	Route::get('/edit-company-name/{id}', [App\Http\Controllers\CompanyNameController::class, 'edit']);
+
+	Route::post('/update-company-name', [App\Http\Controllers\CompanyNameController::class, 'update'])->name('update-company-name');
+	/* manage company name, end here */
+
+
+	/* manage company location, start here */
+	Route::get('/manage-company-locations',  [App\Http\Controllers\CompanyLocationController::class, 'index']);
+
+	Route::get('/add-new-location',  [App\Http\Controllers\CompanyLocationController::class, 'create']);
+
+	Route::post('/save-new-location', [App\Http\Controllers\CompanyLocationController::class, 'store'])->name('save-new-location');
+
+	Route::get('/edit-company-location/{id}', [App\Http\Controllers\CompanyLocationController::class, 'edit']);
+
+	Route::post('/update-company-location', [App\Http\Controllers\CompanyLocationController::class, 'update'])->name('update-company-location');
+	/* manage company location, end here */
+
+
+	/* manage job opening types, start here */
+	Route::get('/manage-job-opening-types',  [App\Http\Controllers\JobOpeningTypesController::class, 'index']);
+
+	Route::get('/add-new-job-opening-type',  [App\Http\Controllers\JobOpeningTypesController::class, 'create']);
+
+	Route::post('/save-new-job-opening-type', [App\Http\Controllers\JobOpeningTypesController::class, 'store'])->name('save-new-job-opening-type');
+
+	Route::get('/edit-job-opening-type/{id}', [App\Http\Controllers\JobOpeningTypesController::class, 'edit']);
+
+	Route::post('/update-job-opening-type', [App\Http\Controllers\JobOpeningTypesController::class, 'update'])->name('update-job-opening-type');
+	/* manage job opening types, end here */
+
+
+
+	/* common route for manage staus and delete, start here */
+	Route::post('/update-status', [App\Http\Controllers\StatusUpdateDeleteController::class, 'updateStatus']);
+
+	Route::post('/delete-row-value', [App\Http\Controllers\StatusUpdateDeleteController::class, 'deleteRow']);
+	/* common route for manage staus and delete, end here */
+
+
 
 });
 /*pages are access only when user is loggedin first option, end here*/

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\JobOpeningTypes;
 
 class JobOpeningTypesController extends Controller
 {
@@ -13,7 +16,9 @@ class JobOpeningTypesController extends Controller
      */
     public function index()
     {
-        //
+        $job_opening_types_details = JobOpeningTypes::orderBy('name','asc')->get();
+
+        return view('manage-job-opening-types', compact('job_opening_types_details'));
     }
 
     /**
@@ -23,7 +28,7 @@ class JobOpeningTypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('add-new-job-opening-type');
     }
 
     /**
@@ -34,7 +39,23 @@ class JobOpeningTypesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        $input = JobOpeningTypes::insert([
+            'name' => $request->name,
+            'status' => '1',
+        ]);
+
+
+        if($input){
+            return back()->with('success_msg', 'Job Opening Type is added.');
+        } else {
+            return back()->with('error_msg', 'Something is wrong.');
+        }
     }
 
     /**
@@ -56,7 +77,9 @@ class JobOpeningTypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job_opening_details = JobOpeningTypes::where('id', $id)->first();
+        
+        return view('update-job-opening-type', compact('job_opening_details'));
     }
 
     /**
@@ -66,9 +89,20 @@ class JobOpeningTypesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        JobOpeningTypes::where('id', $request->edit_id)
+            ->update([
+                'name' => $request->name,
+            ]);
+
+        return redirect('/manage-job-opening-types')->with('success_msg', 'Job Opening Type name is updated.');
     }
 
     /**

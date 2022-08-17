@@ -118,26 +118,5 @@ class RoleController extends Controller
     }
 
 
-    public function updateStatus(Request $request) {
-
-        $input = Role::where('id', $request->role_id)
-            ->update([
-                'status' => $request->role_status,
-            ]);
-
-        return $request->role_status;
-
-    }
-
-
-    public function deleteRole(Request $request) {
-
-        $input = Role::where('id', $request->role_id)
-            ->update([
-                'is_deleted' => $request->role_del_status,
-            ]);
-
-        return $request->role_del_status;
-
-    }
+    
 }

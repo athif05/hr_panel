@@ -156,10 +156,25 @@
 
 
           <li>
-            <a href="{{ url('/manage-company-locations') }}">
-              <i class="bi bi-circle"></i><span>Manage Locations</span>
+            <a href="{{ url('/manage-company-names') }}">
+              <i class="bi bi-circle"></i><span>Manage Company Name</span>
             </a>
           </li>
+
+
+          <li>
+            <a href="{{ url('/manage-company-locations') }}">
+              <i class="bi bi-circle"></i><span>Manage Company Locations</span>
+            </a>
+          </li>
+
+
+          <li>
+            <a href="{{ url('/manage-job-opening-types') }}">
+              <i class="bi bi-circle"></i><span>Manage Job Opening Types</span>
+            </a>
+          </li>
+
           
         </ul>
       </li><!-- End Tables Nav -->

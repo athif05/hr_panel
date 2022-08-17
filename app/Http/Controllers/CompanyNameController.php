@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\CompanyName;
 
 class CompanyNameController extends Controller
 {
@@ -13,7 +16,9 @@ class CompanyNameController extends Controller
      */
     public function index()
     {
-        //
+        $all_names = CompanyName::orderBy('name','asc')->get();
+
+        return view('manage-company-names', compact('all_names'));
     }
 
     /**
@@ -23,7 +28,7 @@ class CompanyNameController extends Controller
      */
     public function create()
     {
-        //
+        return view('add-new-company');
     }
 
     /**
@@ -34,7 +39,23 @@ class CompanyNameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        $input = CompanyName::insert([
+            'name' => $request->name,
+            'status' => '1',
+        ]);
+
+
+        if($input){
+            return back()->with('success_msg', 'Company is added.');
+        } else {
+            return back()->with('error_msg', 'Something is wrong.');
+        }
     }
 
     /**
@@ -56,7 +77,9 @@ class CompanyNameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company_details = CompanyName::where('id', $id)->first();
+        
+        return view('update-company-name', compact('company_details'));
     }
 
     /**
@@ -66,9 +89,20 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        CompanyName::where('id', $request->edit_id)
+            ->update([
+                'name' => $request->name,
+            ]);
+
+        return redirect('/manage-company-names')->with('success_msg', 'Company name updated.');
     }
 
     /**

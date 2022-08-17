@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Add Role | {{ env('MY_SITE_NAME') }}</title>
+    <title>Add Location | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
@@ -35,11 +35,7 @@
           <div class="card">
             <div class="card-body">
               
-              	<h5 class="card-title">Add New Role</h5>
-
-            	<!-- <div class="col-lg-6" style="float: right; text-align: right; padding-top: 12px;">
-            		<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("manage-roles")}}';">Show All Roles</button>		
-            	</div> -->
+              	<h5 class="card-title">Add New Location</h5>
               
               @if(session()->has('success_msg'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -57,11 +53,11 @@
 
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('save-new-role')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('save-new-location')}}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
                 <div class="col-md-6 position-relative">
-                  <label for="name" class="form-label">Role Name</label>
+                  <label for="name" class="form-label">Location Name</label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" required>
                   <div class="valid-tooltip">
                     Looks good!
@@ -73,8 +69,9 @@
 
                 <div class="col-12">
                   <input type="submit" name="submit" value="Add" class="btn btn-primary">
-                  
-                  <input type="button" name="button" value="Cancel" class="btn btn-info" onclick="location.href = '{{ url("manage-roles")}}';">
+
+
+                  <input type="button" name="button" value="Cancel" class="btn btn-info" onclick="location.href = '{{ url("manage-company-locations")}}';">
                   
                 </div>
 
