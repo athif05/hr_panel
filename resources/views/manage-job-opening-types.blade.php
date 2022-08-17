@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Manager Job Opening Types | {{ env('MY_SITE_NAME') }}</title>
+    <title>Manage Job Opening Types | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
