@@ -125,6 +125,7 @@ class UserController extends Controller
         ]);
 
 
+        echo $request->image;
 
         $ppt_details = User::where('id', $user_id)->first();
 
