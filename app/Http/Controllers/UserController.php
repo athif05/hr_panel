@@ -113,43 +113,41 @@ class UserController extends Controller
 
     public function savePpt(Request $request) {
 
+        $base_url=url('');
+
+        $user_id=$request->user_id;
+        
         $request->validate([
             'image' => 'required',
         ], [
             'image.required' => 'Please choose PPT.',
         ]);
 
-        //dd($request->image);
+        $ppt_details = User::where('id', $user_id)->first();
 
-        /*$aboutus_details = Aboutus::first();
+        //dd();
 
-        if($aboutus_details['image']){
+        if($ppt_details['confirmation_ppt']){
             
-            unlink("C:/xampp/htdocs/myjob_laravel/".$aboutus_details['image']);
+            unlink($base_url.$ppt_details['confirmation_ppt']);
 
-        }*/
+        }
 
-        //$profile_filePath = $request->file('image')->store('all-ppt');
+        $profile_filePath = $request->file('image')->store('all-ppt');
 
+        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
 
+        if(User::where('id', $user_id)->update(['confirmation_ppt' => $profile_pic_file_path])){
 
-        /*$imagePath = request('image')
-        ->store('profile', 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))
-            ->fit(1000, 1000);
-        $image->save();
+            return back()->with('success_msg', 'Your PPT saved.');
+
+        } else {
+
+            return back()->with('error_msg', 'Something is wrong.');
+
+        }
+
         
-        dd($data);*/
-
-
-        //$path=$request->file('image')->store('/','public');
-
-
-
-
-        //$profile_pic_file_path = '/storage/app/' . $profile_filePath;
-
-        //Aboutus::where('id', $request->edit_id)->update(['image' => $profile_pic_file_path]);
         
     }
 

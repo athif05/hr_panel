@@ -39,7 +39,7 @@
 
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('upload-ppt')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('upload-ppt')}}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                 @csrf
 
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
