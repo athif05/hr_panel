@@ -125,12 +125,12 @@ class UserController extends Controller
         ]);
 
 
-        echo $request->image;
+        //echo $request->image;
 
         $ppt_details = User::where('id', $user_id)->first();
 
         $unlink_url=$base_url.''.$ppt_details['confirmation_ppt'];
-        echo $unlink_url;
+        //echo $unlink_url;
 
 
         if($ppt_details['confirmation_ppt']){
@@ -139,7 +139,7 @@ class UserController extends Controller
 
         }
 
-        
+        echo $request->file('image');
 
         $profile_filePath = $request->file('image')->store('all-ppt');
 
