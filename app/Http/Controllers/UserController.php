@@ -113,7 +113,8 @@ class UserController extends Controller
 
     public function savePpt(Request $request) {
 
-        $base_url=url('');
+        //$base_url=url('');
+        $base_url=$_SERVER['DOCUMENT_ROOT'];
 
         $user_id=$request->user_id;
         
@@ -125,7 +126,7 @@ class UserController extends Controller
 
         $ppt_details = User::where('id', $user_id)->first();
 
-        //dd();
+        //dd($_SERVER['DOCUMENT_ROOT']);
 
         if($ppt_details['confirmation_ppt']){
             
