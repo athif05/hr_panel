@@ -142,6 +142,24 @@
         </ul>
       </li><!-- End Forms Nav -->
 
+
+      @if((Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('confirmation-process-mom-email') }}">
+          <i class="bi bi-hand-thumbs-up-fill"></i>
+          <span>Confirmation Process & MOM Email</span>
+        </a>
+      </li>
+      @endif
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ url('/ppt-upload') }}">
+          <i class="bi bi-upload"></i>
+          <span>PPT Upload</span>
+        </a>
+      </li>
+
+
       @if(Auth::user()->role_id=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">

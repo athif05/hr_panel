@@ -28,6 +28,10 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('public/assests/assets/css/style.css') }}" rel="stylesheet">
 
+
+  <!-- Custom CSS File -->
+  <link href="{{ asset('public/assests/assets/css/custom.css') }}" rel="stylesheet">
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -62,9 +66,7 @@
   <script src="{{ asset('public/assests/assets/js/main.js') }}"></script>
 
   <!--=== Sweet Alert Js ===-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="{{ asset('public/assests/assets/js/sweetalert.min.js') }}"></script>
 
 </body>
 

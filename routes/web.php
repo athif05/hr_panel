@@ -139,6 +139,31 @@ Route::group(['middleware' => ['auth']], function() {
 	/* common route for manage staus and delete, end here */
 
 
+	/*Confirmation Process & MOM Email, start here*/
+	Route::get('/confirmation-process-mom-email',  [App\Http\Controllers\UserController::class, 'index'])->middleware('isHRManagement');
+
+	Route::get('/start-confirmation-process/{id}',  [App\Http\Controllers\UserController::class, 'startConfirmationEmployeeDetails'])->middleware('isHRManagement');
+
+	Route::get('/score-card/{id}',  [App\Http\Controllers\UserController::class, 'scoreCard'])->middleware('isHRManagement');
+
+	Route::get('/survey/{id}',  [App\Http\Controllers\UserController::class, 'survey'])->middleware('isHRManagement');
+
+	Route::get('/ppt/{id}',  [App\Http\Controllers\UserController::class, 'ppt'])->middleware('isHRManagement');
+
+	Route::get('/evaluation/{id}',  [App\Http\Controllers\UserController::class, 'evaluation'])->middleware('isHRManagement');
+
+	Route::get('/feedback/{id}',  [App\Http\Controllers\UserController::class, 'feedback'])->middleware('isHRManagement');
+
+	Route::get('/thankyou/{id}',  [App\Http\Controllers\UserController::class, 'thankyou'])->middleware('isHRManagement');
+	/*Confirmation Process & MOM Email, end here*/
+
+
+	/* ppt upload, start here*/
+	Route::get('/ppt-upload', [App\Http\Controllers\UserController::class, 'pptUpload']);
+
+	Route::post('/upload-ppt', [App\Http\Controllers\UserController::class, 'savePpt'])->name('upload-ppt');
+	/* ppt upload, end here*/
+
 
 });
 /*pages are access only when user is loggedin first option, end here*/

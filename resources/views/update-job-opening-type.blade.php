@@ -6,21 +6,7 @@
     <meta content="" name="keywords">
 
     <title>Update Job Opening Type | {{ env('MY_SITE_NAME') }}</title>
-
-    <style type="text/css">
-    	.form-check-input[type=radio] {
-		  margin-left: 30px;
-		  border-radius: 50%;
-		}
-
-    .text-danger{
-      font-size: 13px!important;
-    }
-
-    .disable-text{
-      background-color: #ddd!important;
-    }
-    </style>
+    
 @endsection
 
 
