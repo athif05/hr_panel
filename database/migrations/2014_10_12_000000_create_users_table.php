@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('manager_email');
             $table->enum('status', ['0', '1'])->default('0');
             $table->enum('is_deleted', ['0', '1'])->default('0');
-            $table->bigIncrements('member_id')->nullable();
+            $table->string('member_id')->nullable();
             $table->string('designation')->nullable();
             $table->string('department')->nullable();
             $table->unsignedBigInteger('role_id');
