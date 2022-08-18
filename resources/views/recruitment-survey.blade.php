@@ -66,7 +66,7 @@
                 
                 <div class="col-md-6 position-relative">
                   <label for="your_name" class="form-label">Your Name</label>
-                  <input type="text" class="form-control disable-text" name="your_name" id="your_name" value="{{ Auth::user()->name }}" readonly>
+                  <input type="text" class="form-control disable-text" name="your_name" id="your_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" readonly>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
