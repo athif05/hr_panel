@@ -124,19 +124,27 @@ class UserController extends Controller
             'image.required' => 'Please choose PPT.',
         ]);
 
+
+
         $ppt_details = User::where('id', $user_id)->first();
 
-        //dd($_SERVER['DOCUMENT_ROOT']);
+        $unlink_url=$base_url.''.$ppt_details['confirmation_ppt'];
+        echo $unlink_url;
+
 
         if($ppt_details['confirmation_ppt']){
             
-            unlink($base_url.$ppt_details['confirmation_ppt']);
+            //unlink($unlink_url);
 
         }
+
+        
 
         $profile_filePath = $request->file('image')->store('all-ppt');
 
         $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+
+        dd($profile_pic_file_path);
 
         if(User::where('id', $user_id)->update(['confirmation_ppt' => $profile_pic_file_path])){
 
