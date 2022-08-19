@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\UploadedFile; //for image upload
+
 
 use App\Models\User;
 use App\Models\UserInterviewForm;
@@ -113,6 +115,7 @@ class UserController extends Controller
 
     public function savePpt(Request $request) {
 
+        //$base_url=url()->full();
         //$base_url=url('');
         $base_url=$_SERVER['DOCUMENT_ROOT'];
 
@@ -125,27 +128,22 @@ class UserController extends Controller
         ]);
 
 
-        //echo $request->image;
-
         $ppt_details = User::where('id', $user_id)->first();
 
         $unlink_url=$base_url.''.$ppt_details['confirmation_ppt'];
-        //echo $unlink_url;
 
 
         if($ppt_details['confirmation_ppt']){
             
-            //unlink($unlink_url);
+            unlink($unlink_url);
 
         }
 
-        echo $request->file('image');
 
         $profile_filePath = $request->file('image')->store('all-ppt');
 
         $profile_pic_file_path = '/storage/app/' . $profile_filePath;
 
-        dd($profile_pic_file_path);
 
         if(User::where('id', $user_id)->update(['confirmation_ppt' => $profile_pic_file_path])){
 
