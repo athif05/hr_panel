@@ -33,7 +33,7 @@
 
 
         <div class="btn-group">
-          <a href="{{ url('/feedback/'.$employee_id) }}" class="btn btn-default">previous</a>
+          <a href="{{ url('/ppt/'.$employee_id) }}" class="btn btn-default">previous</a>
           <a href="{{ url('/start-confirmation-process/'.$employee_id) }}" class="btn btn-default btn-active">FINISH</a>
         </div>
 

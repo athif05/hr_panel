@@ -34,7 +34,11 @@ class UserController extends Controller
     {
         
 
-        $employee_details = User::where('id',$id)->first();
+        $employee_details = User::where('users.id',$id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->first();
 
         /*tenure calculte, start here*/
         $total_tenure='';
@@ -67,39 +71,12 @@ class UserController extends Controller
     }
 
 
-    public function scoreCard($id) {
-
-        $employee_id=$id;
-        return view('confirmation-process.score-card', compact('employee_id'));
-    }
-
-
-    public function survey($id) {
-
-        $employee_id=$id;
-        return view('confirmation-process.survey', compact('employee_id'));
-    }
-
-
     public function ppt($id) {
 
         $employee_details = User::where('id',$id)->first();
         $employee_id=$id;
 
         return view('confirmation-process.ppt', compact('employee_details','employee_id'));
-    }
-
-
-    public function evaluation($id) {
-
-        $employee_id=$id;
-        return view('confirmation-process.evaluation', compact('employee_id'));
-    }
-
-    public function feedback($id) {
-
-        $employee_id=$id;
-        return view('confirmation-process.feedback', compact('employee_id'));
     }
 
     public function thankyou($id) {

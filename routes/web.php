@@ -144,15 +144,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/start-confirmation-process/{id}',  [App\Http\Controllers\UserController::class, 'startConfirmationEmployeeDetails'])->middleware('isHRManagement');
 
-	Route::get('/score-card/{id}',  [App\Http\Controllers\UserController::class, 'scoreCard'])->middleware('isHRManagement');
+	Route::get('/interview-survey/{id}',  [App\Http\Controllers\UserInterviewFormController::class, 'interviewSurvey'])->middleware('isHRManagement');
 
-	Route::get('/survey/{id}',  [App\Http\Controllers\UserController::class, 'survey'])->middleware('isHRManagement');
+	Route::get('/recruitment-survey/{id}',  [App\Http\Controllers\UserRecruitmentFormController::class, 'recruitmentSurvey'])->middleware('isHRManagement');
 
 	Route::get('/ppt/{id}',  [App\Http\Controllers\UserController::class, 'ppt'])->middleware('isHRManagement');
-
-	Route::get('/evaluation/{id}',  [App\Http\Controllers\UserController::class, 'evaluation'])->middleware('isHRManagement');
-
-	Route::get('/feedback/{id}',  [App\Http\Controllers\UserController::class, 'feedback'])->middleware('isHRManagement');
 
 	Route::get('/thankyou/{id}',  [App\Http\Controllers\UserController::class, 'thankyou'])->middleware('isHRManagement');
 	/*Confirmation Process & MOM Email, end here*/

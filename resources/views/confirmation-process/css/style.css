@@ -556,3 +556,16 @@ header .container .row:before, header .container .row:after {
     max-width: 1220px;
   }
 }
+
+
+.rating_star{
+  float: right;
+  text-align: right; 
+  color: #f7cd13;
+  line-height: 26px!important;
+}
+
+.float_right_div{
+  float: right!important;
+  font-weight: 600;
+}

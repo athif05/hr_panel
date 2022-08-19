@@ -14,6 +14,23 @@ use Auth;
 
 class UserRecruitmentFormController extends Controller
 {
+    
+    /*this function is used for show recruitment survey details in confirmation process and mom email steps*/
+    public function recruitmentSurvey($id) {
+
+        $employee_id=$id;
+
+        $recruitment_details = UserRecruitmentForm::where('user_recruitment_forms.user_id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'user_recruitment_forms.company_name')
+        ->leftJoin('job_opening_types', 'job_opening_types.id', '=', 'user_recruitment_forms.how_come_for_job_opening')
+        ->select('user_recruitment_forms.*', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name')
+        ->first();
+
+        return view('confirmation-process.recruitment-survey', compact('employee_id', 'recruitment_details'));
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
