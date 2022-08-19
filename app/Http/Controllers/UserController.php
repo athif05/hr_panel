@@ -83,8 +83,10 @@ class UserController extends Controller
 
     public function ppt($id) {
 
+        $employee_details = User::where('id',$id)->first();
         $employee_id=$id;
-        return view('confirmation-process.ppt', compact('employee_id'));
+
+        return view('confirmation-process.ppt', compact('employee_details','employee_id'));
     }
 
 

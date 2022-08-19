@@ -23,7 +23,11 @@
             </div>
       <div class="imployee_detail">
         <div class="download_ppt_col">
-          <a href="#"><img src="{{ asset('resources/views/confirmation-process/img/ppt-btn.jpg') }}" alt="img" /></a>
+
+          <a href="{{ asset('').$employee_details['confirmation_ppt'] }}" download>
+            <img src="{{ asset('resources/views/confirmation-process/img/ppt-btn.jpg') }}" alt="img" />
+          </a>
+
           </div>
       </div>
             
