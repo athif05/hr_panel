@@ -33,11 +33,11 @@
           </li>
           <li>
             <div class="col-left">Date Of Joining</div>
-            <div class="col-right">{{ date('d-M-Y', strtotime($employee_details['joining_date'])) }}</div>
+            <div class="col-right">{{ $employee_details['joining_date'] ? date('d-M-Y', strtotime($employee_details['joining_date'])) : '' }}</div>
           </li>
           <li>
             <div class="col-left">Date of Confirmation</div>
-            <div class="col-right">{{ date('d-M-Y', strtotime($employee_details['date_of_confirmation'])) }}</div>
+            <div class="col-right">{{ $employee_details['date_of_confirmation'] ? date('d-M-Y', strtotime($employee_details['date_of_confirmation'])) : ''}}</div>
           </li>
           <li>
             <div class="col-left">Total Tenure</div>
@@ -57,7 +57,7 @@
           </li>
           <li>
             <div class="col-left">Appraisal Cycle</div>
-            <div class="col-right">{{ date('d-M-Y', strtotime($employee_details['appraisal_cycle'])) }}</div>
+            <div class="col-right">{{ $employee_details['appraisal_cycle'] ? date('d-M-Y', strtotime($employee_details['appraisal_cycle'])) : ''}}</div>
           </li>
           <li>
             <div class="col-left">Curr. Salary Details</div>
