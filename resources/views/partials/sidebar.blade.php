@@ -3,12 +3,14 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+      @if(Auth::user()->role_id!='1')
       <li class="nav-item">
         <a class="nav-link " href="{{ url('/home') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      @endif
 
       <!--<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -88,11 +90,14 @@
         </ul>
       </li>--><!-- End Components Nav -->
 
+      @if((Auth::user()->role_id!='5') && (Auth::user()->role_id!='6') && (Auth::user()->role_id!='7'))
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          
+          @if(Auth::user()->role_id=='1')
           <li>
             <a href="{{ url('/interview-survey') }}">
               <i class="bi bi-circle"></i><span>Interview Survey</span>
@@ -105,11 +110,14 @@
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="{{ url('/member-check-in-form') }}">
               <i class="bi bi-circle"></i><span>Member Check-In Form</span>
             </a>
-          </li>
+          </li> -->
+          @endif
+
+          
           
           @if(Auth::user()->role_id=='3')
           <li>
@@ -117,8 +125,16 @@
               <i class="bi bi-circle"></i><span>Manager Check-In Form</span>
             </a>
           </li>
+
+          <li>
+            <a href="{{ url('/confirmation-feedback-form/dsf7sd6f') }}">
+              <i class="bi bi-circle"></i><span>Confirmation Feedback Form</span>
+            </a>
+          </li>
           @endif
 
+
+          @if(Auth::user()->role_id=='5')
           <li>
             <a href="{{ url('/confirmation-process-initation-form') }}">
               <i class="bi bi-circle"></i><span>Confirmation Process Initation Form</span>
@@ -130,20 +146,13 @@
               <i class="bi bi-circle"></i><span>Fresh Eye Journal Form</span>
             </a>
           </li>
-
-          @if(Auth::user()->role_id=='3')
-          <li>
-            <a href="{{ url('/confirmation-feedback-form/dsf7sd6f') }}">
-              <i class="bi bi-circle"></i><span>Confirmation Feedback Form</span>
-            </a>
-          </li>
           @endif
 
         </ul>
       </li><!-- End Forms Nav -->
+      @endif
 
-
-      @if((Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
+      @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('confirmation-process-mom-email') }}">
           <i class="bi bi-hand-thumbs-up-fill"></i>
@@ -152,15 +161,27 @@
       </li>
       @endif
 
+      @if(Auth::user()->role_id=='1')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/ppt-upload') }}">
           <i class="bi bi-upload"></i>
           <span>PPT Upload</span>
         </a>
       </li>
+      @endif
 
 
       @if(Auth::user()->role_id=='3')
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
+          <i class="bi bi-journal-text"></i>
+          <span>MOM</span>
+        </a>
+      </li>
+      @endif
+
+
+      @if(Auth::user()->role_id=='7')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gear-fill"></i><span>Manage Setting</span><i class="bi bi-chevron-down ms-auto"></i>
