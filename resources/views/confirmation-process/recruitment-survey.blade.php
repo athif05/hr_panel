@@ -24,6 +24,8 @@
             <div class="imployee_detail mCustomScrollbar">
             <ul>
   
+              @if($recruitment_details)
+
               <h2>Q. 1 - Your Name</h2>
               <li>
               <div class="col-left">{{ $recruitment_details['your_name'] }}</div>
@@ -172,6 +174,12 @@
               <li>
               <div class="col-left">{{ $recruitment_details['additional_feedback_hr_induction'] }}</div>
               </li>
+
+              @else 
+
+              <h2>No record found...</h2>
+
+              @endif
 
             </ul>
           </div>

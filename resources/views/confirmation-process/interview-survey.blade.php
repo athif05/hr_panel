@@ -16,26 +16,6 @@
 
         @include('confirmation-process.partials.sidebar')
 
-        <!-- <div class="right_sec">
-            
-            <div class="imployee_detail mCustomScrollbar">
-              <ul>
-                <li>
-                  <div class="col-left">Member's Name</div>
-                  <div class="col-right">{{ $inteview_details['member_name'] }}</div>
-                </li>
-                <li>
-                  <div class="col-left">Official Email</div>
-                  <div class="col-right">{{ $inteview_details['official_email'] }}</div>
-                </li>
-                
-              </ul>
-            </div>
-            
-        </div>
-
-        <div style="clear: both; height: 10px;"></div> -->
-
         <div class="right_sec survey_tab">
           <div class="top_heading">
             <h2>let’s talk about you! 
@@ -45,12 +25,8 @@
           <div class="imployee_detail mCustomScrollbar">
             <ul>
 
-              <!-- <li>
-                <div class="col-left">Employee Name</div>
-                <div class="col-right">{{ $inteview_details['member_name'] }}</div>
-              </li> -->
-              
-
+                    
+              @if($inteview_details)
 
               <h2>Q. 1 - Member's Name</h2>
               <li>
@@ -241,6 +217,13 @@
               <li>
               <div class="col-left">{{ $inteview_details['comments_suggestions_feedback'] }}</div>
               </li>
+
+              @else 
+
+              <h2>No record found...</h2>
+
+              @endif
+             
 
             </ul>
           </div>

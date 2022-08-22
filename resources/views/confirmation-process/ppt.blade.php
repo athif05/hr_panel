@@ -24,9 +24,11 @@
       <div class="imployee_detail">
         <div class="download_ppt_col">
 
+          @if($employee_details['confirmation_ppt'])
           <a href="{{ asset('').$employee_details['confirmation_ppt'] }}" download>
             <img src="{{ asset('resources/views/confirmation-process/img/ppt-btn.jpg') }}" alt="img" />
           </a>
+          @endif
 
           </div>
       </div>
