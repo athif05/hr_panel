@@ -46,12 +46,12 @@
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
 
-              
+              @if(session()->has('success_msg'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session()->get('success_msg') }}asdasd
+                {{ session()->get('success_msg') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-              
+              @endif
 
               @if(session()->has('error_msg'))
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
