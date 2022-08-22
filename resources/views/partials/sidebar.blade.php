@@ -165,7 +165,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/ppt-upload') }}">
           <i class="bi bi-upload"></i>
-          <span>PPT Upload</span>
+          <span>Upload PPT</span>
         </a>
       </li>
       @endif

@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function() {
     
 
     /*show interview survey from*/
-	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index']);
+	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index'])->middleware('isMember');
 
 
 	/*save interview survey form into database*/
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* edit interview form */
-	Route::get('/interview-survey-edit/{id}', [App\Http\Controllers\UserInterviewFormController::class, 'edit']);
+	Route::get('/interview-survey-edit/{id}', [App\Http\Controllers\UserInterviewFormController::class, 'edit'])->middleware('isMember');
 
 
 	/*update interview survey form into database*/
@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* edit interview form */
-	Route::get('/recruitment-survey-edit/{id}', [App\Http\Controllers\UserRecruitmentFormController::class, 'edit']);
+	Route::get('/recruitment-survey-edit/{id}', [App\Http\Controllers\UserRecruitmentFormController::class, 'edit'])->middleware('isMember');
 
 
 	/*update interview survey form into database*/
@@ -80,52 +80,52 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* manage roles, start here */
-	Route::get('/manage-roles',  [App\Http\Controllers\RoleController::class, 'index']);
+	Route::get('/manage-roles',  [App\Http\Controllers\RoleController::class, 'index'])->middleware('isManagement');
 
-	Route::get('/add-new-role',  [App\Http\Controllers\RoleController::class, 'create']);
+	Route::get('/add-new-role',  [App\Http\Controllers\RoleController::class, 'create'])->middleware('isManagement');
 
 	Route::post('/save-new-role', [App\Http\Controllers\RoleController::class, 'store'])->name('save-new-role');
 
-	Route::get('/edit-role/{id}', [App\Http\Controllers\RoleController::class, 'edit']);
+	Route::get('/edit-role/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->middleware('isManagement');
 
 	Route::post('/update-role', [App\Http\Controllers\RoleController::class, 'update'])->name('update-role');
 	/* manage roles, end here */
 
 
 	/* manage company name, start here */
-	Route::get('/manage-company-names',  [App\Http\Controllers\CompanyNameController::class, 'index']);
+	Route::get('/manage-company-names',  [App\Http\Controllers\CompanyNameController::class, 'index'])->middleware('isManagement');
 
-	Route::get('/add-new-company',  [App\Http\Controllers\CompanyNameController::class, 'create']);
+	Route::get('/add-new-company',  [App\Http\Controllers\CompanyNameController::class, 'create'])->middleware('isManagement');
 
 	Route::post('/save-new-company', [App\Http\Controllers\CompanyNameController::class, 'store'])->name('save-new-company');
 
-	Route::get('/edit-company-name/{id}', [App\Http\Controllers\CompanyNameController::class, 'edit']);
+	Route::get('/edit-company-name/{id}', [App\Http\Controllers\CompanyNameController::class, 'edit'])->middleware('isManagement');
 
 	Route::post('/update-company-name', [App\Http\Controllers\CompanyNameController::class, 'update'])->name('update-company-name');
 	/* manage company name, end here */
 
 
 	/* manage company location, start here */
-	Route::get('/manage-company-locations',  [App\Http\Controllers\CompanyLocationController::class, 'index']);
+	Route::get('/manage-company-locations',  [App\Http\Controllers\CompanyLocationController::class, 'index'])->middleware('isManagement');
 
-	Route::get('/add-new-location',  [App\Http\Controllers\CompanyLocationController::class, 'create']);
+	Route::get('/add-new-location',  [App\Http\Controllers\CompanyLocationController::class, 'create'])->middleware('isManagement');
 
 	Route::post('/save-new-location', [App\Http\Controllers\CompanyLocationController::class, 'store'])->name('save-new-location');
 
-	Route::get('/edit-company-location/{id}', [App\Http\Controllers\CompanyLocationController::class, 'edit']);
+	Route::get('/edit-company-location/{id}', [App\Http\Controllers\CompanyLocationController::class, 'edit'])->middleware('isManagement');
 
 	Route::post('/update-company-location', [App\Http\Controllers\CompanyLocationController::class, 'update'])->name('update-company-location');
 	/* manage company location, end here */
 
 
 	/* manage job opening types, start here */
-	Route::get('/manage-job-opening-types',  [App\Http\Controllers\JobOpeningTypesController::class, 'index']);
+	Route::get('/manage-job-opening-types',  [App\Http\Controllers\JobOpeningTypesController::class, 'index'])->middleware('isManagement');
 
-	Route::get('/add-new-job-opening-type',  [App\Http\Controllers\JobOpeningTypesController::class, 'create']);
+	Route::get('/add-new-job-opening-type',  [App\Http\Controllers\JobOpeningTypesController::class, 'create'])->middleware('isManagement');
 
 	Route::post('/save-new-job-opening-type', [App\Http\Controllers\JobOpeningTypesController::class, 'store'])->name('save-new-job-opening-type');
 
-	Route::get('/edit-job-opening-type/{id}', [App\Http\Controllers\JobOpeningTypesController::class, 'edit']);
+	Route::get('/edit-job-opening-type/{id}', [App\Http\Controllers\JobOpeningTypesController::class, 'edit'])->middleware('isManagement');
 
 	Route::post('/update-job-opening-type', [App\Http\Controllers\JobOpeningTypesController::class, 'update'])->name('update-job-opening-type');
 	/* manage job opening types, end here */
@@ -179,7 +179,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 /*pages are access only when user is loggedin second option, start here*/
-Route::get('/recruitment-survey', [App\Http\Controllers\UserRecruitmentFormController::class, 'index'])->middleware('auth');
+Route::get('/recruitment-survey', [App\Http\Controllers\UserRecruitmentFormController::class, 'index'])->middleware('auth', 'isMember');
 /*pages are access only when user is loggedin second option, end here*/
 
 
