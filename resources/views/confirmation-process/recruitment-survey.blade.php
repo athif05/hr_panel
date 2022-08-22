@@ -63,17 +63,17 @@
 
               @if($recruitment_details['how_come_for_job_opening']=='1')
               <li>
-              <div class="col-left"><strong>Internal Employee Name</strong>
+              <div class="col-left"><strong>Internal Member Name</strong>
                 <span class="float_right_div">{{ $recruitment_details['internal_employee_name'] }}</span>  
               </div>
               </li>
               <li>
-              <div class="col-left"><strong>Internal Employee Designation</strong>
+              <div class="col-left"><strong>Internal Member Designation</strong>
                 <span class="float_right_div">{{ $recruitment_details['internal_employee_designation'] }}</span>  
               </div>
               </li>
               <li>
-              <div class="col-left"><strong>Internal Employee Department</strong>
+              <div class="col-left"><strong>Internal Member Department</strong>
                 <span class="float_right_div">{{ $recruitment_details['internal_employee_department'] }}</span>  
               </div>
               </li>

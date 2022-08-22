@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Employee Details | {{ env('MY_SITE_NAME') }}</title>
+    <title>Member Details | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -19,20 +19,20 @@
 
         <div class="right_sec">
             <div class="top_heading">
-                <h2>EMPLOYEE DETAILS <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
+                <h2>Member DETAILS <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
         <ul>
           <li>
-            <div class="col-left">Employee Name</div>
+            <div class="col-left">Member Name</div>
             <div class="col-right">{{ $employee_details['first_name'] }} {{ $employee_details['last_name'] }}</div>
           </li>
           <li>
-            <div class="col-left">Employee ID</div>
+            <div class="col-left">Member ID</div>
             <div class="col-right">{{ $employee_details['member_id'] }}</div>
           </li>
           <li>
-            <div class="col-left">Employee Email</div>
+            <div class="col-left">Member Email</div>
             <div class="col-right">{{ $employee_details['email'] }}</div>
           </li>
           <li>
@@ -72,7 +72,7 @@
             <div class="col-right">{{ $employee_details['due_date_of_confirmation'] ? date('d-M-Y', strtotime($employee_details['due_date_of_confirmation'])) : ''}}</div>
           </li>
           <li>
-            <div class="col-left">Employee Status</div>
+            <div class="col-left">Member Status</div>
             <div class="col-right">{{ $employee_details['employee_type'] }}</div>
           </li>
           <li>

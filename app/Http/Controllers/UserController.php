@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\UploadedFile; //for image upload
-
+use Illuminate\Support\Facades\Hash; //for password hashing
 
 use App\Models\User;
 use App\Models\UserInterviewForm;
+
+use Auth;
 
 class UserController extends Controller
 {
@@ -134,7 +136,115 @@ class UserController extends Controller
 
         }
 
+    }
+
+    /*my profile view*/
+    public function myProfile() {
+
+        $user_id=Auth::user()->id;
+
+        $user_details = User::where('users.id',$user_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->first();
+
+        return view('my-profile', compact('user_details'));
+    }
+
+
+    /*upload profile image, start here*/
+    public function uploadProfileImage(Request $request) {
+
+
+        $base_url=$_SERVER['DOCUMENT_ROOT'];
+
+        $user_id=$request->user_id;
         
+        $request->validate([
+            'image' => 'required',
+        ], [
+            'image.required' => 'Please choose image.',
+        ]);
+
+
+        $image_details = User::where('id', $user_id)->first();
+
+        $unlink_url=$base_url.''.$image_details['profile_image'];
+
+
+        if($image_details['profile_image']){
+            
+            unlink($unlink_url);
+
+        }
+
+
+        $profile_filePath = $request->file('image')->store('all-profile-images');
+
+        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+
+
+        if(User::where('id', $user_id)->update(['profile_image' => $profile_pic_file_path])){
+
+            return back()->with('success_msg', 'Your profile image saved.');
+
+        } else {
+
+            return back()->with('error_msg', 'Something is wrong.');
+
+        }
+
+    }
+    /*upload profile image, end here*/
+
+
+
+    /*change password view*/
+    public function changePassword() {
+        
+        return view('change-password');
+    }
+
+
+    /*update password*/
+    public function updatePassword(Request $request) {
+        
+        $request->validate([
+            'currentPassword' => 'required',
+            'newPassword' => 'required|min:5',
+            'confirmPassword' => 'required|same:newPassword',
+        ], [
+            'currentPassword.required' => 'Current password is required.',
+            'newPassword.required' => 'New password is required.',
+            'confirmPassword.required' => 'Confirm password not match',
+        ]);
+
+        $newPassword=Hash::make($request->newPassword);
+
+        $user_details = User::where('id', $request->user_id)->first();
+
+        if($user_details['id']){
+            
+            if(Hash::check($request->currentPassword,$user_details['password'])) {
+                
+                $usres = User::where('id',$request->user_id)
+                ->update([
+                    'password' => $newPassword,
+                ]);
+
+
+                if($usres=='0') {
+                    return back()->with('error_msg', 'Something is wrong, please try again...');
+                } else {
+                    return back()->with('success_msg', 'Password successfully updated.');
+                }
+
+            } else {
+                return back()->with('error_msg', 'Something is wrong, please try again...');
+            }
+
+        }  //end if
         
     }
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('appraisal_cycle')->nullable();
             $table->string('gender')->nullable();
             $table->string('confirmation_ppt')->nullable();
+            $table->string('profile_image')->nullable();
             $table->foreign('company_id')->references('id')->on('company_names');
             $table->foreign('company_location_id')->references('id')->on('company_locations');
         });

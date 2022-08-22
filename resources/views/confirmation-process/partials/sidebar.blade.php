@@ -7,7 +7,7 @@
 
       <ul>
           <li class="{{ request()->is('start-confirmation-process/*') ? 'active' : '' }}" >
-            <a href="{{ url('/start-confirmation-process/'.$employee_id) }}">EMPLOYEE DETAILS</a>
+            <a href="{{ url('/start-confirmation-process/'.$employee_id) }}">Member DETAILS</a>
           </li>
 
           <li class="{{ request()->is('interview-survey/*') ? 'active' : '' }}">

@@ -161,6 +161,19 @@ Route::group(['middleware' => ['auth']], function() {
 	/* ppt upload, end here*/
 
 
+	/*change password, start here*/
+	Route::get('/change-password',[App\Http\Controllers\UserController::class, 'changePassword']);
+
+	Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update-password');
+	/*change password, end here*/
+
+
+	/*my profile, start here*/
+	Route::get('/my-profile',[App\Http\Controllers\UserController::class, 'myProfile']);
+
+	Route::post('/upload-profile-image', [App\Http\Controllers\UserController::class, 'uploadProfileImage'])->name('upload-profile-image');
+	/*my profile, end here*/
+
 });
 /*pages are access only when user is loggedin first option, end here*/
 
