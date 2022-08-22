@@ -151,7 +151,7 @@
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
 
-                        <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg, image/jpg" >
+                        <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg, image/jpg" required>
 
                         <!-- <div class="pt-2">
                           <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
