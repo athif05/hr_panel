@@ -187,7 +187,7 @@ class UserController extends Controller
 
         if(User::where('id', $user_id)->update(['profile_image' => $profile_pic_file_path])){
 
-            return back()->with('success_msg', 'Your profile image saved.');
+            return back()->with('success_msg', 'Your profile image is updated.');
 
         } else {
 
