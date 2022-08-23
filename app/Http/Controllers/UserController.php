@@ -15,6 +15,90 @@ use Auth;
 
 class UserController extends Controller
 {
+    
+    /*show all probation member list to hr mom, start here*/
+    public function hrMom() {
+
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('hr-mom', compact('all_members'));
+    }
+    /*show all probation member list to hr mom, end here*/
+
+
+
+    /*show all probation member list to hr generate email, start here*/
+    public function hrGenerateEmails() {
+
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('hr-generate-emails', compact('all_members'));
+    }
+    /*show all probation member list to hr generate email, end here*/
+
+
+
+    /*show all probation member list which is report to manager Confirmation Feedback Form, start here*/
+    public function showProbationMemberForManagerConfirmationFeedback() {
+
+        $member_id=Auth::user()->member_id;
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->where('users.reporting_to_id',$member_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->select('users.*', 'company_locations.name as location_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members'));
+    }
+    /*show all probation member list which is report to manager Confirmation Feedback Form, end here*/
+
+
+
+    /*show all probation member list which is report to manager Check In Form, start here*/
+    public function showProbationMemberForManagerCheckIn() {
+
+        $member_id=Auth::user()->member_id;
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->where('users.reporting_to_id',$member_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->select('users.*', 'company_locations.name as location_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('probation-member-list-to-manager-check-in', compact('all_members'));
+    }
+    /*show all probation member list which is report to manager Check In Form, end here*/
+
+
+
+    /*show all probation member list which is report to manager, start here*/
+    public function showProbationMemberForManagerMOM() {
+
+        $member_id=Auth::user()->member_id;
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->where('users.reporting_to_id',$member_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->select('users.*', 'company_locations.name as location_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('probation-member-list-to-manager-mom', compact('all_members'));
+    }
+    /*show all member list which is report to manager, end here*/
+
+
+
     /**
      * Display a listing of the resource.
      *

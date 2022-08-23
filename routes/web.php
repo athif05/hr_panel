@@ -62,9 +62,7 @@ Route::group(['middleware' => ['auth']], function() {
 	    return view('member-check-in-form');
 	});
 
-	Route::get('/manager-check-in-form/{id}', function () {
-	    return view('manager-check-in-form');
-	})->middleware('isManager');
+	
 
 	Route::get('/confirmation-process-initation-form', function () {
 	    return view('confirmation-process-initation-form');
@@ -74,9 +72,7 @@ Route::group(['middleware' => ['auth']], function() {
 	    return view('fresh-eye-journal-form');
 	});
 
-	Route::get('/confirmation-feedback-form/{id}', function () {
-	    return view('confirmation-feedback-form');
-	})->middleware('isManager');
+	
 
 
 	/* manage roles, start here */
@@ -154,6 +150,16 @@ Route::group(['middleware' => ['auth']], function() {
 	/*Confirmation Process & MOM Email, end here*/
 
 
+	/*hr generate email, start here*/
+	Route::get('/hr-generate-emails',  [App\Http\Controllers\UserController::class, 'hrGenerateEmails'])->middleware('isHrandHrHead');
+	/*hr generate email, end here*/
+
+
+	/*hr mom, start here*/
+	Route::get('/hr-mom',  [App\Http\Controllers\UserController::class, 'hrMom'])->middleware('isHrandHrHead');
+	/*hr mom, end here*/
+
+
 	/* ppt upload, start here*/
 	Route::get('/ppt-upload', [App\Http\Controllers\UserController::class, 'pptUpload']);
 
@@ -173,6 +179,25 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('/upload-profile-image', [App\Http\Controllers\UserController::class, 'uploadProfileImage'])->name('upload-profile-image');
 	/*my profile, end here*/
+
+
+	/*manager check-in form, manager confirmation feedback and mom, start here*/
+	Route::get('/manager-check-in-form/{id}', function () {
+	    return view('manager-check-in-form');
+	})->middleware('isManager');
+
+	Route::get('/confirmation-feedback-form/{id}', function () {
+	    return view('confirmation-feedback-form');
+	})->middleware('isManager');
+
+
+	Route::get('/manager-check-in-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerCheckIn'])->middleware('isManager');
+
+	Route::get('/confirmation-feedback-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerConfirmationFeedback'])->middleware('isManager');
+
+	Route::get('/manager-mom', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerMOM'])->middleware('isManager');
+	/*manager check-in form, manager confirmation feedback and mom, end here*/
+
 
 });
 /*pages are access only when user is loggedin first option, end here*/

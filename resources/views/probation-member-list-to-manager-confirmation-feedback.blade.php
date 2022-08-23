@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Confirmation Process & MOM Email | {{ env('MY_SITE_NAME') }}</title>
+    <title>Confirmation Feedback | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -24,13 +24,9 @@
           <div class="card">
             <div class="card-body">
 
-            	<div class="col-lg-6" style="float: left;">
-            		<h5 class="card-title">Confirmation Process & MOM Email</h5>
+            	<div class="col-lg-12">
+            		<h5 class="card-title">Probation Member List For Confirmation Feedback</h5>
             	</div>
-
-            	<!-- <div class="col-lg-6" style="float: right; text-align: right; padding-top: 12px;">
-            		<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("add-new-location")}}';">Add New Location</button>		
-            	</div> -->
 
             	<div style="clear: both;"></div>
 
@@ -42,31 +38,35 @@
               
 
               <!-- Custom Styled Validation with Tooltips -->
-              <table class="table datatable table-striped">
+              <table class="table datatable table-striped display nowrap" id="datatable-id" style="width:100%">
                 <thead>
                   <tr>
                     <th scope="col">Member ID</th>
                     <th scope="col">Member Name</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">MOM Email</th>
-                    <th scope="col">Start Confirmation</th>
+                    <th scope="col">Member Email</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Joining Date</th>
+                    <th scope="col">Company Location</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php $j=1;?>	
-                @foreach($all_candidates as $all_candidate)
+                @foreach($all_members as $all_member)
 					<tr>
-						<td>{{$all_candidate['member_id']}}</td>
+						<td>{{$all_member['member_id']}}</td>
 						<td>
-							{{$all_candidate['first_name']}} {{$all_candidate['last_name']}}
+							{{$all_member['first_name']}} {{$all_member['last_name']}}
 						</td>
-						<td>{{$all_candidate['department']}}</td>
+						<td>{{$all_member['email']}}</td>
+						<td>{{$all_member['designation']}}</td>
+						<td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
+						<td>{{$all_member['location_name']}}</td>
+						<td>{{$all_member['gender']}}</td>
 						<td>
-							<button type="button" class="btn btn-primary btn-sm">View</button>
-						</td>
-						<td>
-							<a href="{{ url('start-confirmation-process/'.$all_candidate['id'])}}">
-								<button type="button" class="btn btn-primary btn-sm">Start Confirmation</button>
+							<a href="#">
+								<button type="button" class="btn btn-primary btn-sm">Start Confirmation Feedback</button>
 							</a>
 						</td>
 					</tr>

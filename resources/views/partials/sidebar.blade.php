@@ -90,10 +90,10 @@
         </ul>
       </li>--><!-- End Components Nav -->
 
-      @if((Auth::user()->role_id!='5') && (Auth::user()->role_id!='6') && (Auth::user()->role_id!='7'))
+      
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Confirmation Panel</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
@@ -110,6 +110,13 @@
             </a>
           </li>
 
+          <li>
+            <a href="{{ url('/ppt-upload') }}">
+              <i class="bi bi-upload"></i>
+              <span>Upload PPT</span>
+            </a>
+          </li>
+
           <!-- <li>
             <a href="{{ url('/member-check-in-form') }}">
               <i class="bi bi-circle"></i><span>Member Check-In Form</span>
@@ -121,16 +128,25 @@
           
           @if(Auth::user()->role_id=='3')
           <li>
-            <a href="{{ url('/manager-check-in-form/gfgdfg546456') }}">
+            <a href="{{ url('/manager-check-in-form') }}">
               <i class="bi bi-circle"></i><span>Manager Check-In Form</span>
             </a>
           </li>
 
           <li>
-            <a href="{{ url('/confirmation-feedback-form/dsf7sd6f') }}">
+            <a href="{{ url('/confirmation-feedback-form') }}">
               <i class="bi bi-circle"></i><span>Confirmation Feedback Form</span>
             </a>
           </li>
+
+          
+          <li>
+            <a href="{{ url('/manager-mom') }}">
+              <i class="bi bi-journal-text"></i>
+              <span>MOM</span>
+            </a>
+          </li>
+
           @endif
 
 
@@ -148,38 +164,47 @@
           </li>
           @endif
 
+          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
+          <li>
+            <a href="{{ url('confirmation-process-mom-email') }}">
+              <i class="bi bi-hand-thumbs-up-fill"></i>
+              <span>Confirmation Process</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/hr-generate-emails') }}">
+              <i class="bi bi-journal-text"></i>
+              <span>Generate Emails</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/hr-mom') }}">
+              <i class="bi bi-journal-text"></i>
+              <span>MOM</span>
+            </a>
+          </li>
+
+          @endif
+
         </ul>
       </li><!-- End Forms Nav -->
-      @endif
 
-      @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('confirmation-process-mom-email') }}">
-          <i class="bi bi-hand-thumbs-up-fill"></i>
-          <span>Confirmation Process & MOM Email</span>
-        </a>
-      </li>
-      @endif
 
-      @if(Auth::user()->role_id=='1')
+      
+
+      <!-- @if(Auth::user()->role_id=='1')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('/ppt-upload') }}">
           <i class="bi bi-upload"></i>
           <span>Upload PPT</span>
         </a>
       </li>
-      @endif
+      @endif -->
 
 
-      @if(Auth::user()->role_id=='3')
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-journal-text"></i>
-          <span>MOM</span>
-        </a>
-      </li>
-      @endif
-
+      
 
       @if(Auth::user()->role_id=='7')
       <li class="nav-item">

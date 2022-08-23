@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('company_id')->nullable();
             $table->string('last_name')->nullable();
             $table->unsignedBigInteger('company_location_id')->nullable();
-            $table->unsignedBigInteger('reporting_to_id')->nullable();
+            $table->string('reporting_to_id')->nullable();
             $table->enum('employee_type', ['Probation', 'Confirmed'])->default('Probation');
             $table->date('date_of_confirmation')->nullable();
             $table->date('due_date_of_confirmation')->nullable();
