@@ -7,6 +7,15 @@
 
     <title>MOM | {{ env('MY_SITE_NAME') }}</title>
 
+    <style type="text/css">
+      .dataTable-table {
+          max-width: 1400px!important;
+          width: 1400px!important;
+          border-spacing: 0;
+          border-collapse: separate;
+      }
+    </style>
+
 @endsection
 
 
@@ -37,44 +46,44 @@
 	            @endif
               
 
-              <!-- Custom Styled Validation with Tooltips -->
-              <table class="table datatable table-striped display nowrap" id="datatable-id" style="width:100%">
-                <thead>
-                  <tr>
-                    <th scope="col">Member ID</th>
-                    <th scope="col">Member Name</th>
-                    <th scope="col">Member Email</th>
-                    <th scope="col">Designation</th>
-                    <th scope="col">Joining Date</th>
-                    <th scope="col">Company Location</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php $j=1;?>	
-                @foreach($all_members as $all_member)
-					<tr>
-						<td>{{$all_member['member_id']}}</td>
-						<td>
-							{{$all_member['first_name']}} {{$all_member['last_name']}}
-						</td>
-						<td>{{$all_member['email']}}</td>
-						<td>{{$all_member['designation']}}</td>
-						<td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
-						<td>{{$all_member['location_name']}}</td>
-						<td>{{$all_member['gender']}}</td>
-						<td>
-							<a href="#">
-								<button type="button" class="btn btn-primary btn-sm">Start MOM</button>
-							</a>
-						</td>
-					</tr>
-				<?php $j++;?>
-                @endforeach
-                </tbody>
-              </table>
-              <!-- End Custom Styled Validation with Tooltips -->
+              <div style="float: left; width: 860px; overflow-x: scroll;">
+                <table class="table datatable table-striped display nowrap" id="datatable-id" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col">Member ID</th>
+                      <th scope="col">Member Name</th>
+                      <th scope="col">Member Email</th>
+                      <th scope="col">Designation</th>
+                      <th scope="col">Joining Date</th>
+                      <th scope="col">Company Location</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php $j=1;?>	
+                  @foreach($all_members as $all_member)
+          					<tr>
+          						<td>{{$all_member['member_id']}}</td>
+          						<td>
+          							{{$all_member['first_name']}} {{$all_member['last_name']}}
+          						</td>
+          						<td>{{$all_member['email']}}</td>
+          						<td>{{$all_member['designation']}}</td>
+          						<td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
+          						<td>{{$all_member['location_name']}}</td>
+          						<td>{{$all_member['gender']}}</td>
+          						<td>
+          							<a href="#">
+          								<button type="button" class="btn btn-primary btn-sm">Start MOM</button>
+          							</a>
+          						</td>
+          					</tr>
+          				<?php $j++;?>
+                  @endforeach
+                  </tbody>
+                </table>
+              </div>
              
 
             </div>
