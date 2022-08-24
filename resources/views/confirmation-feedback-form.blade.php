@@ -442,7 +442,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="recommend_pip_detailed_plan" class="form-label">14. If you want to recommend PIP, Pls share a detailed plan. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea @if(old('are_you_sure_to_confirm')=='No, Put under PIP') class="form-control" @else class="form-control disable-text" @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" readonly>{{ old('recommend_pip_detailed_plan')}}</textarea>
+                  <textarea @if(old('are_you_sure_to_confirm')=='No, Put under PIP') class="form-control" @else class="form-control disable-text" readonly @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" >{{ old('recommend_pip_detailed_plan')}}</textarea>
 
                   @if ($errors->has('recommend_pip_detailed_plan'))
                     <span class="text-danger">{{ $errors->first('recommend_pip_detailed_plan') }}</span>

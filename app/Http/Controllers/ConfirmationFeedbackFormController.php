@@ -80,8 +80,48 @@ class ConfirmationFeedbackFormController extends Controller
         }
         
 
-        
-        $input = ConfirmationFeedbackForm::insert([
+        $member_details = ConfirmationFeedbackForm::where('user_id',$request->user_id)
+        ->where('manager_id',$request->manager_id)
+        ->first();
+
+        //dd($member_details['id']);
+        if($member_details['id']) {
+
+        	$id=$member_details['id'];
+        	ConfirmationFeedbackForm::where('id', $id)
+	        ->update([
+	            'user_id' => $request->user_id,
+	            'manager_id' => $request->manager_id,
+	            'discipline' => $request->discipline,
+	            'punctuality' => $request->punctuality,
+	            'work_ethics' => $request->work_ethics,
+	            'team_work' => $request->team_work,
+	            'response_towards_feedback' => $request->response_towards_feedback,
+	            'elaborate_performance' => $request->elaborate_performance,
+	            'top_3_highlights_1' => $request->top_3_highlights_1,
+	            'top_3_highlights_2' => $request->top_3_highlights_2,
+	            'top_3_highlights_3' => $request->top_3_highlights_3,
+	            'major_task_1' => $request->major_task_1,
+	            'major_task_2' => $request->major_task_2,
+	            'major_task_3' => $request->major_task_3,
+	            'add_value_in_team' => $request->add_value_in_team,
+	            'add_value_in_team_share_instance' => $request->add_value_in_team_share_instance,
+	            'areas_of_improvement_1' => $request->areas_of_improvement_1,
+	            'areas_of_improvement_2' => $request->areas_of_improvement_2,
+	            'areas_of_improvement_3' => $request->areas_of_improvement_3,
+	            'met_your_expectations' => $request->met_your_expectations,
+	            'met_your_expectations_other_specify' => $request->met_your_expectations_other_specify,
+	            'are_you_sure_to_confirm' => $request->are_you_sure_to_confirm,
+	            'recommend_pip_detailed_plan' => $request->recommend_pip_detailed_plan,
+	            'increment_on_confirmation' => $request->increment_on_confirmation,
+	            'mention_the_amount' => $request->mention_the_amount,
+	        ]);
+
+        return back()->with('thank_you', 'Feedback form successfully updated.');
+
+        } else {
+
+        	$input = ConfirmationFeedbackForm::insert([
             'user_id' => $request->user_id,
             'manager_id' => $request->manager_id,
             'discipline' => $request->discipline,
@@ -110,6 +150,8 @@ class ConfirmationFeedbackFormController extends Controller
         ]);
 
         return back()->with('thank_you', 'Feedback form successfully submitted.');
+        }
+        
 
 
 	}
