@@ -1258,3 +1258,20 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+.div3{
+  float: left; width: 3%; text-align: center; line-height: 38px;
+}
+
+.div97{
+  float: left; width: 97%;
+}
+
+.div100{
+  float: left; width: 100%;
+}
+
+.margin_bottom10{
+  margin-bottom: 10px;
+}

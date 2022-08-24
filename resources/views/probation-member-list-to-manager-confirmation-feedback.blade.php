@@ -74,9 +74,7 @@
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<a href="#">
-          								<button type="button" class="btn btn-primary btn-sm">Start Confirmation Feedback</button>
-          							</a>
+          							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Confirmation Feedback</button>
           						</td>
           					</tr>
           				<?php $j++;?>

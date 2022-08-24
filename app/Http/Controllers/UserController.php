@@ -16,6 +16,37 @@ use Auth;
 class UserController extends Controller
 {
     
+    /*confirmation-feedback-form, start here*/
+    public function managerMOMForm($id) {
+
+        $member_details = User::where('users.id',$id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->first();
+
+        return view('manager-mom-form', compact('member_details'));
+    }
+    /*confirmation-feedback-form, end here*/
+
+
+
+    /*confirmation-feedback-form, start here*/
+    public function confirmationFeedbackForm($id) {
+
+
+        $member_details = User::where('users.id',$id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->first();
+
+        return view('confirmation-feedback-form', compact('member_details'));
+    }
+    /*confirmation-feedback-form, end here*/
+
+
+
     /*show all probation member list to hr mom, start here*/
     public function hrMom() {
 

@@ -74,9 +74,7 @@
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<a href="#">
-          								<button type="button" class="btn btn-primary btn-sm">Start MOM</button>
-          							</a>
+          							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
           						</td>
           					</tr>
           				<?php $j++;?>

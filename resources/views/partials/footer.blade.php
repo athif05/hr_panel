@@ -11,6 +11,24 @@
 
 
   <script type="text/javascript">
+
+  	/*disable and unable PIP textarea in Confirmation Feedback Form, start here*/
+  	function open_close_pip(val){
+  		
+  		if(val=='No, Put under PIP'){
+  			document.getElementById('recommend_pip_detailed_plan').setAttribute("class", "form-control");
+  			document.getElementById('recommend_pip_detailed_plan').removeAttribute("readonly");
+  		} else {
+  			document.getElementById('recommend_pip_detailed_plan').setAttribute("class", "form-control  disable-text");
+  			document.getElementById('recommend_pip_detailed_plan').value='';
+  			document.getElementById('recommend_pip_detailed_plan').readOnly
+                        = true;
+  		}
+  	}
+  	/*disable and unable PIP textarea in Confirmation Feedback Form, end here*/
+
+
+  	/*update generic status in table, start here*/
   	function status_update_funtion(id, table_name){
 			
 			//console.log(id);
@@ -44,8 +62,9 @@
 			});
 				
 		}
+		/*update generic status in table, end here*/
 
-
+		/*soft delete generic status in table, start here*/
 		function delete_function(id, table_name){
 			
 			var checkBox = document.getElementById('del_'+id);
@@ -77,5 +96,6 @@
 			});
 				
 		}
+		/*soft delete generic status in table, end here*/
 
   </script>

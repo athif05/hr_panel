@@ -57,10 +57,11 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/update-recruitment-survey-form', [App\Http\Controllers\UserRecruitmentFormController::class, 'update'])->name('update-recruitment-survey-form');
 
 
-	/*mail notification routes*/
+	/*member check-in form, start here*/
 	Route::get('/member-check-in-form', function () {
 	    return view('member-check-in-form');
 	});
+	/*member check-in form, end here*/
 
 	
 
@@ -182,21 +183,28 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/*manager check-in form, manager confirmation feedback and mom, start here*/
+	Route::get('/manager-check-in-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerCheckIn'])->middleware('isManager');
+
 	Route::get('/manager-check-in-form/{id}', function () {
 	    return view('manager-check-in-form');
 	})->middleware('isManager');
-
-	Route::get('/confirmation-feedback-form/{id}', function () {
-	    return view('confirmation-feedback-form');
-	})->middleware('isManager');
+	/*manager check-in form, manager confirmation feedback and mom, end here*/
 
 
-	Route::get('/manager-check-in-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerCheckIn'])->middleware('isManager');
-
+	/*manager confirmation feedback form, start here*/
 	Route::get('/confirmation-feedback-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerConfirmationFeedback'])->middleware('isManager');
 
+	Route::get('/confirmation-feedback-form/{id}', [App\Http\Controllers\UserController::class, 'confirmationFeedbackForm'])->middleware('isManager');
+
+	Route::post('/save-confirmation-feedback-form', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'store'])->name('save-confirmation-feedback-form');
+	/*manager confirmation feedback form, end here*/
+
+
+	/*manager mom form, start here*/
 	Route::get('/manager-mom', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerMOM'])->middleware('isManager');
-	/*manager check-in form, manager confirmation feedback and mom, end here*/
+
+	Route::get('/manager-mom/{id}', [App\Http\Controllers\UserController::class, 'managerMOMForm'])->middleware('isManager');
+	/*manager mom form, end here*/
 
 
 });
