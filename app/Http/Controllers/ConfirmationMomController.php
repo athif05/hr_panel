@@ -61,7 +61,7 @@ class ConfirmationMomController extends Controller
         $last_id = DB::getPdo()->lastInsertId();
 
         //return back()->with('thank_you', 'Feedback form successfully submitted.');
-        return redirect("/manager-mom-edit/$request->user_id/$last_id")->with('thank_you', 'Feedback form successfully submitted.');
+        return redirect("/manager-mom-form-edit/$request->user_id/$last_id")->with('thank_you', 'Feedback form successfully submitted.');
         
 
 
