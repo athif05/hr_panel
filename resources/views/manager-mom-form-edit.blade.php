@@ -58,7 +58,7 @@
           <div class="card">
             <div class="card-body">
 
-              @if($member_details)
+              @if($member_details && $mom_form_details)
 
               <h5 class="card-title">MOM Form</h5>
 
