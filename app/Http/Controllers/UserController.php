@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash; //for password hashing
 
 use App\Models\User;
 use App\Models\UserInterviewForm;
+use App\Models\ConfirmationFeedbackForm;
+use App\Models\ConfirmationMom;
 
 use Auth;
 
@@ -25,7 +27,27 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
         ->first();
 
-        return view('manager-mom-form', compact('member_details'));
+        $manager_id=Auth::user()->id;
+
+
+        $manager_details = ConfirmationFeedbackForm::where('confirmation_feedback_forms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_feedback_forms.manager_id')
+        ->select('confirmation_feedback_forms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+        
+        $mom_form_details = ConfirmationMom::where('user_id',$id)
+        ->where('manager_id',$manager_id)
+        ->first();
+        //dd($mom_form_details);
+        if($mom_form_details){
+            
+            $edit_id=$mom_form_details['id'];
+            return redirect("/manager-mom-form-edit/$id/$edit_id");
+        } else {
+            return view('manager-mom-form', compact('member_details','manager_details'));
+        }
+
     }
     /*confirmation-feedback-form, end here*/
 
@@ -41,7 +63,22 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
         ->first();
 
-        return view('confirmation-feedback-form', compact('member_details'));
+
+        $manager_id=Auth::user()->id;
+        
+        $feedback_form_details = ConfirmationFeedbackForm::where('user_id',$id)
+        ->where('manager_id',$manager_id)
+        ->first();
+
+        if($feedback_form_details){
+            
+            $edit_id=$feedback_form_details['id'];
+            return redirect("/confirmation-feedback-form-edit/$id/$edit_id");
+        } else {
+            return view('confirmation-feedback-form', compact('member_details'));
+        }
+
+        
     }
     /*confirmation-feedback-form, end here*/
 
@@ -83,17 +120,35 @@ class UserController extends Controller
     public function showProbationMemberForManagerConfirmationFeedback() {
 
         $member_id=Auth::user()->member_id;
+        //$manager_id=Auth::user()->id;
 
         $all_members = User::where('users.employee_type','Probation')
         ->where('users.reporting_to_id',$member_id)
+        ->leftJoin('confirmation_feedback_forms', 'confirmation_feedback_forms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name')
+        ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id')
         ->orderBy('users.first_name','asc')->get();
 
         return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members'));
     }
     /*show all probation member list which is report to manager Confirmation Feedback Form, end here*/
 
+
+    /*show all probation member list which is report to manager, start here*/
+    public function showProbationMemberForManagerMOM() {
+
+        $member_id=Auth::user()->member_id;
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->where('users.reporting_to_id',$member_id)
+        ->leftJoin('confirmation_moms', 'confirmation_moms.user_id', '=', 'users.id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->select('users.*', 'company_locations.name as location_name', 'confirmation_moms.id as mom_id')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('probation-member-list-to-manager-mom', compact('all_members'));
+    }
+    /*show all member list which is report to manager, end here*/
 
 
     /*show all probation member list which is report to manager Check In Form, start here*/
@@ -110,23 +165,6 @@ class UserController extends Controller
         return view('probation-member-list-to-manager-check-in', compact('all_members'));
     }
     /*show all probation member list which is report to manager Check In Form, end here*/
-
-
-
-    /*show all probation member list which is report to manager, start here*/
-    public function showProbationMemberForManagerMOM() {
-
-        $member_id=Auth::user()->member_id;
-
-        $all_members = User::where('users.employee_type','Probation')
-        ->where('users.reporting_to_id',$member_id)
-        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name')
-        ->orderBy('users.first_name','asc')->get();
-
-        return view('probation-member-list-to-manager-mom', compact('all_members'));
-    }
-    /*show all member list which is report to manager, end here*/
 
 
 

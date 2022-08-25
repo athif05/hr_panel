@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Confirmation Feedback Form | {{ env('MY_SITE_NAME') }}</title>
+    <title>Update Confirmation Feedback Form | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
@@ -43,9 +43,9 @@
           <div class="card">
             <div class="card-body">
               
-              @if($member_details)
+              @if($member_details && $feedback_form_details)
 
-              <h5 class="card-title">Confirmation Feedback Form</h5>
+              <h5 class="card-title">Update Confirmation Feedback Form</h5>
               
               @if(session()->has('thank_you'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -57,9 +57,10 @@
               
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('save-confirmation-feedback-form')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('update-confirmation-feedback-form')}}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
+                <input type="hidden" name="edit_id" id="edit_id" value="{{ $feedback_form_details->id }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="user_id" id="user_id" value="{{ $member_details['id'] }}">
                 
@@ -98,19 +99,19 @@
                   <label for="discipline" class="form-label">Discipline:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="discipline" id="discipline" value="1" @if(old('discipline')=='1') checked @endif>
+                      <input class="form-check-input" type="radio" name="discipline" id="discipline" value="1" @if(($feedback_form_details->discipline)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="2" @if(old('discipline')=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="2" @if(($feedback_form_details->discipline)=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="3" @if(old('discipline')=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="3" @if(($feedback_form_details->discipline)=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="4" @if(old('discipline')=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="4" @if(($feedback_form_details->discipline)=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="5" @if(old('discipline')=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="5" @if(($feedback_form_details->discipline)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
 
@@ -124,19 +125,19 @@
                   <label for="punctuality" class="form-label">Punctuality <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="1" @if(old('punctuality')=='1') checked @endif>
+                      <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="1" @if(($feedback_form_details->punctuality)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="2" @if(old('punctuality')=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="2" @if(($feedback_form_details->punctuality)=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="3" @if(old('punctuality')=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="3" @if(($feedback_form_details->punctuality)=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="4" @if(old('punctuality')=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="4" @if(($feedback_form_details->punctuality)=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="5" @if(old('punctuality')=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="5" @if(($feedback_form_details->punctuality)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('punctuality'))
@@ -149,19 +150,19 @@
                   <label for="work_ethics" class="form-label">Work-Ethics <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="1" @if(old('work_ethics')=='1') checked @endif>
+                      <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="1" @if(($feedback_form_details->work_ethics)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="2" @if(old('work_ethics')=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="2" @if(($feedback_form_details->work_ethics)=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="3" @if(old('work_ethics')=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="3" @if(($feedback_form_details->work_ethics)=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="4" @if(old('work_ethics')=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="4" @if(($feedback_form_details->work_ethics)=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="5" @if(old('work_ethics')=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="5" @if(($feedback_form_details->work_ethics)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('work_ethics'))
@@ -174,19 +175,19 @@
                   <label for="team_work" class="form-label">Team-Work <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="team_work" id="team_work" value="1" @if(old('team_work')=='1') checked @endif>
+                      <input class="form-check-input" type="radio" name="team_work" id="team_work" value="1" @if(($feedback_form_details->team_work)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="2" @if(old('team_work')=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="2" @if(($feedback_form_details->team_work)=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="3" @if(old('team_work')=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="3" @if(($feedback_form_details->team_work)=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="4" @if(old('team_work')=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="4" @if(($feedback_form_details->team_work)=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="5" @if(old('team_work')=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="5" @if(($feedback_form_details->team_work)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('team_work'))
@@ -199,19 +200,19 @@
                   <label for="response_towards_feedback" class="form-label">Response towards Feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="1" @if(old('response_towards_feedback')=='1') checked @endif>
+                      <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="1" @if(($feedback_form_details->response_towards_feedback)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="2" @if(old('response_towards_feedback')=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="2" @if(($feedback_form_details->response_towards_feedback)=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="3" @if(old('response_towards_feedback')=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="3" @if(($feedback_form_details->response_towards_feedback)=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="4" @if(old('response_towards_feedback')=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="4" @if(($feedback_form_details->response_towards_feedback)=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="5" @if(old('response_towards_feedback')=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="5" @if(($feedback_form_details->response_towards_feedback)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('response_towards_feedback'))
@@ -223,7 +224,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="elaborate_performance" class="form-label">7. Kindly elaborate on his/her performance of the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="elaborate_performance" id="elaborate_performance" style="height: 100px">{{ old('elaborate_performance')}}</textarea>
+                  <textarea class="form-control" name="elaborate_performance" id="elaborate_performance" style="height: 100px">{{ $feedback_form_details->elaborate_performance}}</textarea>
 
                   @if ($errors->has('elaborate_performance'))
                     <span class="text-danger">{{ $errors->first('elaborate_performance') }}</span>
@@ -237,7 +238,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_1" id="top_3_highlights_1" value="{{ old('top_3_highlights_1') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_1" id="top_3_highlights_1" value="{{ $feedback_form_details->top_3_highlights_1}}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -250,7 +251,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_2" id="top_3_highlights_2" value="{{ old('top_3_highlights_2') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_2" id="top_3_highlights_2" value="{{ $feedback_form_details->top_3_highlights_2}}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -263,7 +264,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_3" id="top_3_highlights_3" value="{{ old('top_3_highlights_3') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_3" id="top_3_highlights_3" value="{{ $feedback_form_details->top_3_highlights_3}}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -283,7 +284,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_1" id="major_task_1" value="{{ old('major_task_1') }}" required>
+                      <input type="text" class="form-control" name="major_task_1" id="major_task_1" value="{{$feedback_form_details->major_task_1 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -296,7 +297,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_2" id="major_task_2" value="{{ old('major_task_2') }}" required>
+                      <input type="text" class="form-control" name="major_task_2" id="major_task_2" value="{{$feedback_form_details->major_task_2 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -309,7 +310,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_3" id="major_task_3" value="{{ old('major_task_3') }}" required>
+                      <input type="text" class="form-control" name="major_task_3" id="major_task_3" value="{{$feedback_form_details->major_task_3 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -326,10 +327,10 @@
                   <label for="add_value_in_team" class="form-label">10. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} been able to add value in your team?</label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="Yes" @if(old('add_value_in_team')!='No') checked @endif>
+                      <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="Yes" @if(($feedback_form_details->add_value_in_team)=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
-                    <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="No" @if(old('add_value_in_team')=='No') checked @endif>
+                    <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="No" @if(($feedback_form_details->add_value_in_team)=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
 
                   </span>
@@ -338,7 +339,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="" class="form-label">If Yes, Please share an instance in details.</label>
-                  <input type="text" class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" value="{{ old('add_value_in_team_share_instance') }}">
+                  <input type="text" class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" value="{{$feedback_form_details->add_value_in_team_share_instance }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -354,7 +355,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_1" id="areas_of_improvement_1" value="{{ old('areas_of_improvement_1') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_1" id="areas_of_improvement_1" value="{{$feedback_form_details->areas_of_improvement_1 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -367,7 +368,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_2" id="areas_of_improvement_2" value="{{ old('areas_of_improvement_2') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_2" id="areas_of_improvement_2" value="{{$feedback_form_details->areas_of_improvement_2 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -380,7 +381,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_3" id="areas_of_improvement_3" value="{{ old('areas_of_improvement_3') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_3" id="areas_of_improvement_3" value="{{$feedback_form_details->areas_of_improvement_3 }}" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -397,10 +398,10 @@
                   <label for="met_your_expectations" class="form-label">12. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} met your expectations in the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="met_your_expectations" id="met_your_expectations" value="Yes" @if(old('met_your_expectations')!='No') checked @endif>
+                      <input class="form-check-input" type="radio" name="met_your_expectations" id="met_your_expectations" value="Yes" @if(($feedback_form_details->met_your_expectations)=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
-                    <input class="form-check-input" type="radio" name="met_your_expectations" id="met_your_expectations" value="No" @if(old('met_your_expectations')=='No') checked @endif>
+                    <input class="form-check-input" type="radio" name="met_your_expectations" id="met_your_expectations" value="No" @if(($feedback_form_details->met_your_expectations)=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
 
                   </span>
@@ -409,7 +410,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="met_your_expectations_other_specify" class="form-label">Other (please specify)</label>
-                  <input type="text" class="form-control" name="met_your_expectations_other_specify" id="met_your_expectations_other_specify" value="{{ old('met_your_expectations_other_specify') }}">
+                  <input type="text" class="form-control" name="met_your_expectations_other_specify" id="met_your_expectations_other_specify" value="{{$feedback_form_details->met_your_expectations_other_specify }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -421,15 +422,15 @@
                   <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" required onchange="open_close_pip(this.value)">
                     <option value="">Choose...</option>
 
-                    <option value="Yes, early confirmation" @if(old('are_you_sure_to_confirm')=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
+                    <option value="Yes, early confirmation" @if(($feedback_form_details->are_you_sure_to_confirm)=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
 
-                    <option value="Yes, on time confirmation" @if(old('are_you_sure_to_confirm')=='Yes, on time confirmation') selected @endif>Yes, on time confirmation</option>
+                    <option value="Yes, on time confirmation" @if(($feedback_form_details->are_you_sure_to_confirm)=='Yes, on time confirmation') selected @endif>Yes, on time confirmation</option>
 
-                    <option value="No, Put under PIP" @if(old('are_you_sure_to_confirm')=='No, Put under PIP') selected @endif>No, Put under PIP</option>
+                    <option value="No, Put under PIP" @if(($feedback_form_details->are_you_sure_to_confirm)=='No, Put under PIP') selected @endif>No, Put under PIP</option>
 
-                    <option value="Defer Confirmation without PIP for 30 Days" @if(old('are_you_sure_to_confirm')=='Defer Confirmation without PIP for 30 Days') selected @endif>Defer Confirmation without PIP for 30 Days</option>
+                    <option value="Defer Confirmation without PIP for 30 Days" @if(($feedback_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 30 Days') selected @endif>Defer Confirmation without PIP for 30 Days</option>
 
-                    <option value="Defer Confirmation without PIP for 60 Days" @if(old('are_you_sure_to_confirm')=='Defer Confirmation without PIP for 60 Days') selected @endif>Defer Confirmation without PIP for 60 Days</option>
+                    <option value="Defer Confirmation without PIP for 60 Days" @if(($feedback_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 60 Days') selected @endif>Defer Confirmation without PIP for 60 Days</option>
 
                   </select>
                   <div class="invalid-tooltip">
@@ -442,7 +443,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="recommend_pip_detailed_plan" class="form-label">14. If you want to recommend PIP, Pls share a detailed plan. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea @if(old('are_you_sure_to_confirm')=='No, Put under PIP') class="form-control" @else class="form-control disable-text" readonly @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" >{{ old('recommend_pip_detailed_plan')}}</textarea>
+                  <textarea @if(($feedback_form_details->are_you_sure_to_confirm)=='No, Put under PIP') class="form-control" @else class="form-control disable-text" readonly @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" >{{$feedback_form_details->recommend_pip_detailed_plan }}</textarea>
 
                   @if ($errors->has('recommend_pip_detailed_plan'))
                     <span class="text-danger">{{ $errors->first('recommend_pip_detailed_plan') }}</span>
@@ -453,15 +454,15 @@
                 <div class="col-md-12 position-relative">
                   <label for="increment_on_confirmation" class="form-label">15. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} been committed an increment on confirmation, at the time of joining? </label>
                   <select class="form-select" name="increment_on_confirmation" id="increment_on_confirmation">
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
+                    <option value="Yes" @if(($feedback_form_details->increment_on_confirmation)=='Yes') selected @endif>Yes</option>
+                    <option value="No" @if(($feedback_form_details->increment_on_confirmation)=='No') selected @endif>No</option>
                   </select>
                 </div>
 
 
                 <div class="col-md-12 position-relative">
                   <label for="mention_the_amount" class="form-label">16. If yes, then mention the amount.</label>
-                  <input type="text" class="form-control" name="mention_the_amount" id="mention_the_amount" value="{{ old('mention_the_amount') }}">
+                  <input type="text" class="form-control" name="mention_the_amount" id="mention_the_amount" value="{{$feedback_form_details->mention_the_amount }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -471,25 +472,29 @@
                 </div>
 
                 <div class="col-12">
+
                   <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+
                 </div>
 
               </form>
               <!-- End Custom Styled Validation with Tooltips -->
               <br>
-              <div style="float: left; width: 100%;">
-                <div style="float: left; width: 70%;">
-                  <p>
-                    <strong>Note:</strong> <span class="text-danger"><strong>*</strong></span> mandatory fields.
-                  </p>
-                </div>
-                <div style="float: left; width: 30%;">
-                  <a href="{{ url('/confirmation-feedback-form') }}">
-                    <button name="cancel" class="btn btn-info" style="float: right; text-align: right;">Cancel/Back</button>
-                  </a>
-                </div>
-              </div>
 
+              <div style="float: left; width: 100%;">
+              	<div style="float: left; width: 70%;">
+              		<p>
+              			<strong>Note:</strong> <span class="text-danger"><strong>*</strong></span> mandatory fields.
+              		</p>
+              	</div>
+              	<div style="float: left; width: 30%;">
+              		<a href="{{ url('/confirmation-feedback-form') }}">
+	                  <button name="cancel" class="btn btn-info" style="float: right; text-align: right;">Cancel/Back</button>
+	              	</a>
+              	</div>
+              </div>
+              
+					
               @else
               <h4 class="card-title">Member does not exist...</h4>
               @endif

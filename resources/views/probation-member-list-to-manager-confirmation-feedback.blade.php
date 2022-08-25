@@ -9,7 +9,7 @@
 
     <style type="text/css">
       .dataTable-table {
-          max-width: 1500px!important;
+          max-width: 1300px!important;
           width: 1000px!important;
           border-spacing: 0;
           border-collapse: separate;
@@ -63,6 +63,8 @@
                   <tbody>
                   <?php $j=1;?>	
                   @foreach($all_members as $all_member)
+
+                  
           					<tr>
           						<td>{{$all_member['member_id']}}</td>
           						<td>
@@ -74,9 +76,16 @@
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Confirmation Feedback</button>
+                        @if($all_member['feedback_id'])
+                          <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Edit Feedback</button>
+                        @else
+                          <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Feedback</button>
+                        @endif
+          							
           						</td>
           					</tr>
+                    
+
           				<?php $j++;?>
                   @endforeach
                   </tbody>

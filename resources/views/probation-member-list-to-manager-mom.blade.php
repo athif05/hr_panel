@@ -9,8 +9,8 @@
 
     <style type="text/css">
       .dataTable-table {
-          max-width: 1400px!important;
-          width: 1000px!important;
+          max-width: 1300px!important;
+          width: 950px!important;
           border-spacing: 0;
           border-collapse: separate;
       }
@@ -74,7 +74,11 @@
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
+                        @if($all_member['mom_id'])
+                          <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Edit MOM</button>
+                        @else
+                          <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
+                        @endif
           						</td>
           					</tr>
           				<?php $j++;?>

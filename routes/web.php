@@ -197,6 +197,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/confirmation-feedback-form/{id}', [App\Http\Controllers\UserController::class, 'confirmationFeedbackForm'])->middleware('isManager');
 
 	Route::post('/save-confirmation-feedback-form', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'store'])->name('save-confirmation-feedback-form');
+
+	Route::get('/confirmation-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-confirmation-feedback-form', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'update'])->name('update-confirmation-feedback-form');
 	/*manager confirmation feedback form, end here*/
 
 
@@ -204,6 +208,12 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/manager-mom', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerMOM'])->middleware('isManager');
 
 	Route::get('/manager-mom/{id}', [App\Http\Controllers\UserController::class, 'managerMOMForm'])->middleware('isManager');
+
+	Route::post('/save-manager-mom', [App\Http\Controllers\ConfirmationMomController::class, 'store'])->name('save-manager-mom');
+
+	Route::get('/manager-mom-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-manager-mom', [App\Http\Controllers\ConfirmationMomController::class, 'update'])->name('update-manager-mom');
 	/*manager mom form, end here*/
 
 

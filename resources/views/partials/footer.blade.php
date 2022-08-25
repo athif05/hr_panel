@@ -12,6 +12,88 @@
 
   <script type="text/javascript">
 
+  	/* Manager MOM form Average Rating of the entire presentation, start here*/
+  	function agv_rat_fun(){
+
+  		var rate_content=0;
+  		var rate_confidence=0;
+  		var rate_communication=0;
+  		var rate_data_relevance=0;
+  		var rate_overall_growth_individual=0;
+  		var avg_rate=0;
+
+  		var val_content = document.getElementsByName('content');
+		for(var i = 0; i < val_content.length; i++){
+		    if(val_content[i].checked){
+		        rate_content = val_content[i].value;
+		    }
+		}
+		//console.log('content '+rate_content);
+
+		var val_confidence = document.getElementsByName('confidence');
+		for(var j = 0; j < val_confidence.length; j++){
+		    if(val_confidence[j].checked){
+		        rate_confidence = val_confidence[j].value;
+		    }
+		}
+		//console.log('confidence '+rate_confidence);
+
+
+		var val_communication = document.getElementsByName('communication');
+		for(var k = 0; k < val_communication.length; k++){
+		    if(val_communication[k].checked){
+		        rate_communication = val_communication[k].value;
+		    }
+		}
+		//console.log('communication '+rate_communication);
+
+		var val_data_relevance = document.getElementsByName('data_relevance');
+		for(var l = 0; l < val_data_relevance.length; l++){
+		    if(val_data_relevance[l].checked){
+		        rate_data_relevance = val_data_relevance[l].value;
+		    }
+		}
+		//console.log('data_relevance '+rate_data_relevance);
+
+
+		var val_overall_growth_individual = document.getElementsByName('overall_growth_individual');
+		for(var m = 0; m < val_overall_growth_individual.length; m++){
+		    if(val_overall_growth_individual[m].checked){
+		        rate_overall_growth_individual = val_overall_growth_individual[m].value;
+		    }
+		}
+		//console.log('overall_growth_individual '+rate_overall_growth_individual);
+
+
+		avg_rate=(parseInt(rate_content)+parseInt(rate_confidence)+parseInt(rate_communication)+parseInt(rate_data_relevance)+parseInt(rate_overall_growth_individual));
+		
+		avg_rate=avg_rate/5;
+		//avg_rate=Math.round(avg_rate);
+
+  		document.getElementById('average_rating_entire_presentation').value=avg_rate;
+  		document.getElementById('avg_rating_span').innerHTML=avg_rate;
+  		
+  	}
+  	/* Manager MOM form Average Rating of the entire presentation, end here*/
+
+
+  	/* Manager MOM form recommend increment, start here*/
+  	function recommend_increment_fun(value){
+
+  		if(value=='No'){
+  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control  disable-text");
+  			document.getElementById('how_much_increment_amount').value='0';
+  			document.getElementById('how_much_increment_amount').readOnly
+                        = true;
+  		} else {
+  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control");
+  			document.getElementById('how_much_increment_amount').removeAttribute("readonly");
+  			document.getElementById('how_much_increment_amount').value='';
+  		}
+  	}
+  	/* Manager MOM form recommend increment, end here*/
+
+
   	/*disable and unable PIP textarea in Confirmation Feedback Form, start here*/
   	function open_close_pip(val){
   		

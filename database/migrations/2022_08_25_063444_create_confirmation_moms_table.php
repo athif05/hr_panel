@@ -24,7 +24,8 @@ return new class extends Migration
             $table->enum('communication', ['0','1','2','3','4','5'])->default('0');
             $table->enum('data_relevance', ['0','1','2','3','4','5'])->default('0');
             $table->enum('overall_growth_individual', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('recommend_increment', ['Yes','No'])->default('Yes');
+            $table->string('average_rating_entire_presentation')->nullable();
+            $table->string('recommend_increment')->nullable();
             $table->string('how_much_increment')->nullable();
             $table->string('how_much_increment_amount')->nullable();
             $table->string('are_you_sure_to_confirm')->nullable();
