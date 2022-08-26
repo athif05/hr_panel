@@ -57,12 +57,21 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/update-recruitment-survey-form', [App\Http\Controllers\UserRecruitmentFormController::class, 'update'])->name('update-recruitment-survey-form');
 
 
+	/*hiring-survey form, start here*/
+	Route::get('/hiring-survey', [App\Http\Controllers\HiringSurveyController::class, 'index']);
+	/*hiring-survey form, end here*/
+
+
+	/*hiring-survey form, start here*/
+	Route::get('/training-survey', [App\Http\Controllers\TrainingSurveyController::class, 'index']);
+	/*hiring-survey form, end here*/
+
+
 	/*member check-in form, start here*/
 	Route::get('/member-check-in-form', function () {
 	    return view('member-check-in-form');
 	});
 	/*member check-in form, end here*/
-
 	
 
 	Route::get('/confirmation-process-initation-form', function () {

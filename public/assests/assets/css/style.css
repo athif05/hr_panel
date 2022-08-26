@@ -1275,3 +1275,13 @@ h6 {
 .margin_bottom10{
   margin-bottom: 10px;
 }
+
+
+.hiring_survey_heading {
+  float: left;
+  width: 100%;
+  background: #c8c8c8;
+  text-align: center;
+  border: 1px solid #ddd;
+  line-height: 29px;
+}
