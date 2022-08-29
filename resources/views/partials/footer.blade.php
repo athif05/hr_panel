@@ -8,9 +8,68 @@
     </div>
   </footer><!-- End Footer -->
 
-
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+      </script>
 
   <script type="text/javascript">
+
+		jQuery(document).ready(function(){
+	
+			/* call trainer name list ajax function, start here */
+			$('#trainer_1_name').on('change', function(){
+				
+				var selected = [];
+				var count=0;
+				for (var option of document.getElementById('trainer_1_name').options) {
+			       if (option.selected) {
+			           selected.push(option.value);
+						count++;
+			       }
+				}
+		
+				console.log(selected);
+
+				if(count>0) {
+				
+					$.ajax({
+						url: "{{url('get-all-trainers-name-ajax')}}", 
+						type: "POST",  
+						data:{
+							all_ids:selected,
+							_token: '{{csrf_token()}}'
+						},  
+						dataType : 'json',
+						success:function(result){
+							console.log(result);
+							/*$('#city_id').html('<option value="">-- Select City --</option>');  
+							
+							$.each(result.cities,function(key,value){
+								$("#city_id").append('<option value="'+value.id+'">'+value.name+'</option>');
+							});*/
+					   }  
+
+				   });
+				}
+			   
+			});
+			/* call trainer name list ajax function, end here */
+
+		});
+
+
+  	/*function trainer_list(){
+		var selected = [];
+		var count=0;
+		for (var option of document.getElementById('trainer_1_name').options) {
+	       if (option.selected) {
+	           selected.push(option.value);
+				count++;
+	       }
+		}
+  	}*/
+
 
   	/* Manager MOM form Average Rating of the entire presentation, start here*/
   	function agv_rat_fun(){
