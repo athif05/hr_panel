@@ -443,13 +443,23 @@ class TrainingSurveyController extends Controller
         ->select('users.*', 'company_locations.name as location_name')
         ->first();
 
+        $trainer_role_id=array('1','2','3','4','5','6');
+        /*fetch all user as trainer*/
+        $trainer_details = User::where('status', '1')
+        ->where('is_deleted', '0')
+        ->where('employee_type', '=', 'Confirmed')
+        ->whereIn('role_id', $trainer_role_id)
+        ->orderBy('first_name','asc')
+        ->get();
+
+
 
         /*check record is exist or not*/
         $training_survey_details = TrainingSurvey::where('user_id', $user_id)->first();
         
         if($training_survey_details->status==1){
             
-            return view('training-survey-edit', compact('company_names','company_locations','job_opening_types','recruiter_details','training_survey_details','department_details','designation_details'));
+            return view('training-survey-edit', compact('company_names','company_locations','job_opening_types','recruiter_details','training_survey_details','department_details','designation_details','trainer_details'));
 
         } else if($training_survey_details->status==2){
 
