@@ -38,15 +38,15 @@
               
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('save-member-check-in-form') }}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                 
                 <div class="col-md-6 position-relative">
-                  <label for="member_name" class="form-label">Member's Name</label>
-                  <input type="text" class="form-control disable-text" name="member_name" id="member_name" value="{{ Auth::user()->name }}" readonly>
-                  <div class="valid-tooltip">
+                  <label for="member_name" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" name="member_name" id="member_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('member_name'))
@@ -55,9 +55,42 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="official_email" class="form-label">Official Email</label>
+                  <label for="member_id" class="form-label">Member Code</label>
+                  <input type="text" class="form-control" name="member_id" id="member_id" value="{{ Auth::user()->member_id }}">
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  @if ($errors->has('member_id'))
+                    <span class="text-danger">{{ $errors->first('member_id') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-6 position-relative">
+                  <label for="designation" class="form-label">Designation</label>
+                  <input type="text" class="form-control" name="designation" id="designation" value="{{ Auth::user()->designation }}">
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  @if ($errors->has('designation'))
+                    <span class="text-danger">{{ $errors->first('designation') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-6 position-relative">
+                  <label for="department" class="form-label">Department</label>
+                  <input type="text" class="form-control" name="department" id="department" value="{{ Auth::user()->department }}">
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  @if ($errors->has('department'))
+                    <span class="text-danger">{{ $errors->first('department') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-6 position-relative">
+                  <label for="official_email" class="form-label">Email</label>
                   <input type="email" class="form-control disable-text" name="official_email" id="official_email" value="{{ Auth::user()->email }}" readonly>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('official_email'))
@@ -66,13 +99,14 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="company_name" class="form-label">Which company did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="company_name" class="form-label">Company<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="company_name" id="company_name" required>
                     <option value="">Choose...</option>
-                    <option value="">BVC</option>
-                    <option value="">VCommission</option>
+                    @foreach($company_names as $company_name)
+                      <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                    @endforeach
                   </select>
-                  <div class="invalid-tooltip">
+                  <div class="invalid-feedback">
                     Please select a valid company.
                   </div>
                   @if ($errors->has('company_name'))
@@ -81,24 +115,14 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="job_position_name" class="form-label">What position were you interviewed for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="job_position_name" id="job_position_name" value="{{ old('job_position_name') }}" required>
-                  <div class="valid-tooltip">
-                    Looks good!
-                  </div>
-                  @if ($errors->has('job_position_name'))
-                    <span class="text-danger">{{ $errors->first('job_position_name') }}</span>
-                  @endif
-                </div>
-
-                <div class="col-md-6 position-relative">
-                  <label for="location_name" class="form-label">Which location did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="location_name" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="location_name" id="location_name" required>
                     <option value="">Choose...</option>
-                    <option value="">Gurugram</option>
-                    <option value="">Mohali</option>
+                    @foreach($company_locations as $company_location)
+                      <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                    @endforeach
                   </select>
-                  <div class="invalid-tooltip">
+                  <div class="invalid-feedback">
                     Please select a valid location.
                   </div>
                   @if ($errors->has('location_name'))
@@ -106,652 +130,1340 @@
                   @endif
                 </div>
 
+
                 <div class="col-md-6 position-relative">
-                  <label for="learn_about_job_opening" class="form-label">How did you learn about the job opening with us? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="learn_about_job_opening" id="learn_about_job_opening" required>
+                  <label for="reporting_manager" class="form-label">Your Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" name="reporting_manager" id="reporting_manager" required>
                     <option value="">Choose...</option>
+                    @foreach($manager_details as $manager_detail)
+                      <option value="{{$manager_detail['id']}}" @if(old('reporting_manager')==$manager_detail['id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                    @endforeach
                   </select>
-                  <div class="invalid-tooltip">
-                    Please select a valid job opening.
+                  <div class="invalid-feedback">
+                    Please select reporting manager.
                   </div>
-                  @if ($errors->has('learn_about_job_opening'))
-                    <span class="text-danger">{{ $errors->first('learn_about_job_opening') }}</span>
+                  @if ($errors->has('reporting_manager'))
+                    <span class="text-danger">{{ $errors->first('reporting_manager') }}</span>
                   @endif
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="referral_source_name" class="form-label">Name the Referral Source <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="referral_source_name" id="referral_source_name" value="{{ old('referral_source_name') }}" required>
-                  <div class="valid-tooltip">
+                  <label for="head_of_department" class="form-label">Head of Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" name="head_of_department" id="head_of_department" required>
+                    <option value="">Choose...</option>
+                    @foreach($hod_details as $hod_detail)
+                      <option value="{{$hod_detail['id']}}" @if(old('head_of_department')==$hod_detail['id']) selected @endif>{{$hod_detail['first_name']}} {{$hod_detail['last_name']}}</option>
+                    @endforeach
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select head of department.
+                  </div>
+                  @if ($errors->has('head_of_department'))
+                    <span class="text-danger">{{ $errors->first('head_of_department') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-6 position-relative">
+                  <label for="joining_date" class="form-label">Your Date of Joining <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <input type="date" class="form-control" name="joining_date" id="joining_date" value="{{ Auth::user()->joining_date }}" required>
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
-                  @if ($errors->has('referral_source_name'))
-                    <span class="text-danger">{{ $errors->first('referral_source_name') }}</span>
+                  @if ($errors->has('joining_date'))
+                    <span class="text-danger">{{ $errors->first('joining_date') }}</span>
                   @endif
                 </div>
 
+
+                <div class="col-md-6 position-relative">
+                  <label for="hr_name_taking_session" class="form-label">Name of the HR taking this session <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" name="hr_name_taking_session" id="hr_name_taking_session" required>
+                    <option value="">Choose...</option>
+                    @foreach($hr_details as $hr_detail)
+                      <option value="{{$hr_detail['id']}}" @if(old('hr_name_taking_session')==$hr_detail['id']) selected @endif>{{$hr_detail['first_name']}} {{$hr_detail['last_name']}}</option>
+                    @endforeach
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select name of the HR.
+                  </div>
+                  @if ($errors->has('hr_name_taking_session'))
+                    <span class="text-danger">{{ $errors->first('hr_name_taking_session') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-6 position-relative">
+                  <label for="place_yourself_category" class="form-label">Which category would you like to place yourself in ? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" name="place_yourself_category" id="place_yourself_category" required>
+                    <option value="">Choose...</option>
+                    @foreach($yoursel_category_details as $yoursel_category_detail)
+                      <option value="{{$yoursel_category_detail['id']}}" @if(old('place_yourself_category')==$yoursel_category_detail['id']) selected @endif>{{$yoursel_category_detail['name']}}</option>
+                    @endforeach
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a category.
+                  </div>
+                  @if ($errors->has('place_yourself_category'))
+                    <span class="text-danger">{{ $errors->first('place_yourself_category') }}</span>
+                  @endif
+                </div>
+
+
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Name the HR from the company, who coordinated with you for the interview? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="company_hr_name" id="company_hr_name" value="{{ old('company_hr_name') }}" required>
-                  <div class="valid-tooltip">
+                  <label class="form-label"><strong>Please rate yourself on the following parameters.</strong></label>
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="target" class="form-label">Target:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="target" id="target" value="1" @if(old('target')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="target" id="target" value="2" @if(old('target')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="target" id="target" value="3" @if(old('target')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="target" id="target" value="4" @if(old('target')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="target" id="target" value="5" @if(old('target')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="target" id="target" value="NA" @if(old('target')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                  </span>
+
+                  @if ($errors->has('target'))
+                    <span class="text-danger">{{ $errors->first('target') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="response" class="form-label">Response <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    
+                    <input class="form-check-input" type="radio" name="response" id="response" value="1" @if(old('response')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="response" id="response" value="2" @if(old('response')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="response" id="response" value="3" @if(old('response')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="response" id="response" value="4" @if(old('response')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="response" id="response" value="5" @if(old('response')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="response" id="response" value="NA" @if(old('response')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('response'))
+                    <span class="text-danger">{{ $errors->first('response') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="jd" class="form-label">JD <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="1" @if(old('jd')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="2" @if(old('jd')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="3" @if(old('jd')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="4" @if(old('jd')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="5" @if(old('jd')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="NA" @if(old('jd')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('jd'))
+                    <span class="text-danger">{{ $errors->first('jd') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="reliability" class="form-label">Reliability <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="1" @if(old('reliability')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="2" @if(old('reliability')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="3" @if(old('reliability')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="4" @if(old('reliability')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="5" @if(old('reliability')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="NA" @if(old('reliability')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('reliability'))
+                    <span class="text-danger">{{ $errors->first('reliability') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="team_spirit" class="form-label">Team Spirit <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="1" @if(old('team_spirit')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="2" @if(old('team_spirit')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="3" @if(old('team_spirit')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="4" @if(old('team_spirit')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="5" @if(old('team_spirit')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="NA" @if(old('team_spirit')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('team_spirit'))
+                    <span class="text-danger">{{ $errors->first('team_spirit') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="attendance" class="form-label">Attendance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="1" @if(old('attendance')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="2" @if(old('attendance')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="3" @if(old('attendance')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="4" @if(old('attendance')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="5" @if(old('attendance')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="NA" @if(old('attendance')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('attendance'))
+                    <span class="text-danger">{{ $errors->first('attendance') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="attitude" class="form-label">Attitude <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="1" @if(old('attitude')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="2" @if(old('attitude')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="3" @if(old('attitude')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="4" @if(old('attitude')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="5" @if(old('attitude')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="NA" @if(old('attitude')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('attitude'))
+                    <span class="text-danger">{{ $errors->first('attitude') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="rules" class="form-label">Rules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="1" @if(old('rules')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="2" @if(old('rules')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="3" @if(old('rules')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="4" @if(old('rules')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="5" @if(old('rules')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="NA" @if(old('rules')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('rules'))
+                    <span class="text-danger">{{ $errors->first('rules') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="peers" class="form-label">Peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="1" @if(old('peers')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="2" @if(old('peers')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="3" @if(old('peers')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="4" @if(old('peers')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="5" @if(old('peers')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="NA" @if(old('peers')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('peers'))
+                    <span class="text-danger">{{ $errors->first('peers') }}</span>
+                  @endif
+
+                </div>
+
+
+
+                <div class="col-md-12 position-relative">
+                  <label class="form-label"><strong>How well do you see yourself aligned with the company's core values? Please rate yourself, basis on your everyday conduct at work.</strong></label>
+                  <span style="color: red; font-size: 13px;">"HINT: +/+ (follow always) , +/- (follow sometimes) , -/- (never follow)"</span>
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="integrity" class="form-label">Integrity: Honesty & respect (ईमानंदारी)  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="integrity" id="integrity" value="1" @if(old('integrity')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="integrity" id="integrity" value="1" @if(old('integrity')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="integrity" id="integrity" value="2" @if(old('integrity')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+
+                  @if ($errors->has('integrity'))
+                    <span class="text-danger">{{ $errors->first('integrity') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="win_win" class="form-label">Win-Win : You win-I win (सब की जीत) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="win_win" id="win_win" value="1" @if(old('win_win')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="win_win" id="win_win" value="1" @if(old('win_win')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="win_win" id="win_win" value="2" @if(old('win_win')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+                  @if ($errors->has('win_win'))
+                    <span class="text-danger">{{ $errors->first('win_win') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="synergize" class="form-label">Synergize: Together is better (ताल-मेल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="synergize" id="synergize" value="1" @if(old('synergize')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="synergize" id="synergize" value="1" @if(old('synergize')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="synergize" id="synergize" value="2" @if(old('synergize')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+                  @if ($errors->has('synergize'))
+                    <span class="text-danger">{{ $errors->first('synergize') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="closure" class="form-label">Closure : Do it to close it (समापन) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="closure" id="closure" value="1" @if(old('closure')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="closure" id="closure" value="1" @if(old('closure')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="closure" id="closure" value="2" @if(old('closure')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+                  @if ($errors->has('closure'))
+                    <span class="text-danger">{{ $errors->first('closure') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="knowledge" class="form-label">Knowledge: Ace of trade (ज्ञान) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="knowledge" id="knowledge" value="1" @if(old('knowledge')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="knowledge" id="knowledge" value="1" @if(old('knowledge')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="knowledge" id="knowledge" value="2" @if(old('knowledge')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+                  @if ($errors->has('knowledge'))
+                    <span class="text-danger">{{ $errors->first('knowledge') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="kiss" class="form-label">KISS: Keep it simple, stupid (सरल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="kiss" id="kiss" value="1" @if(old('kiss')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="kiss" id="kiss" value="1" @if(old('kiss')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="kiss" id="kiss" value="2" @if(old('kiss')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+
+                  @if ($errors->has('kiss'))
+                    <span class="text-danger">{{ $errors->first('kiss') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="innovation" class="form-label">Innovation: New method or idea (नवीनता) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="innovation" id="innovation" value="1" @if(old('innovation')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="innovation" id="innovation" value="1" @if(old('innovation')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="innovation" id="innovation" value="2" @if(old('innovation')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+
+                  @if ($errors->has('innovation'))
+                    <span class="text-danger">{{ $errors->first('innovation') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="celebration" class="form-label">Celebration: Work hard, party harder (उत्सव) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="celebration" id="celebration" value="1" @if(old('celebration')=="+/+") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/+</label>
+
+                    <input class="form-check-input" type="radio" name="celebration" id="celebration" value="1" @if(old('celebration')=="+/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">+/-</label>
+
+                    <input class="form-check-input" type="radio" name="celebration" id="celebration" value="2" @if(old('celebration')=="-/-") checked @endif>
+                    <label class="form-check-label" for="gridRadios1">-/-</label>
+                  </span>
+
+                  @if ($errors->has('celebration'))
+                    <span class="text-danger">{{ $errors->first('celebration') }}</span>
+                  @endif
+
+                </div>
+
+
+
+                <div class="col-md-12 position-relative">
+                  <label class="form-label"><strong>Let's talk about your work-related experience</strong></label>
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="company_work_culture" class="form-label">The work culture in the company is encouraging:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="1" @if(old('company_work_culture')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="2" @if(old('company_work_culture')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="3" @if(old('company_work_culture')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="4" @if(old('company_work_culture')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="5" @if(old('company_work_culture')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="NA" @if(old('company_work_culture')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('company_work_culture'))
+                    <span class="text-danger">{{ $errors->first('company_work_culture') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="processes_policies_well_defined" class="form-label">The processes & policies are well defined & well explained. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="1" @if(old('processes_policies_well_defined')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="2" @if(old('processes_policies_well_defined')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="3" @if(old('processes_policies_well_defined')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="4" @if(old('processes_policies_well_defined')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="5" @if(old('processes_policies_well_defined')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="NA" @if(old('processes_policies_well_defined')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('processes_policies_well_defined'))
+                    <span class="text-danger">{{ $errors->first('processes_policies_well_defined') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="enjoy_work_life_balance" class="form-label">I enjoy the work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="1" @if(old('enjoy_work_life_balance')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="2" @if(old('enjoy_work_life_balance')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="3" @if(old('enjoy_work_life_balance')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="4" @if(old('enjoy_work_life_balance')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="5" @if(old('enjoy_work_life_balance')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="NA" @if(old('enjoy_work_life_balance')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('enjoy_work_life_balance'))
+                    <span class="text-danger">{{ $errors->first('enjoy_work_life_balance') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="happy_with_treated_in_company" class="form-label">I am happy with how I am treated in the company by managers & peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="1" @if(old('happy_with_treated_in_company')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="2" @if(old('happy_with_treated_in_company')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="3" @if(old('happy_with_treated_in_company')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="4" @if(old('happy_with_treated_in_company')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="5" @if(old('happy_with_treated_in_company')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="NA" @if(old('happy_with_treated_in_company')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('happy_with_treated_in_company'))
+                    <span class="text-danger">{{ $errors->first('happy_with_treated_in_company') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="job_title_kras" class="form-label">My job title & KRAs are apt for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="1" @if(old('job_title_kras')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="2" @if(old('job_title_kras')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="3" @if(old('job_title_kras')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="4" @if(old('job_title_kras')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="5" @if(old('job_title_kras')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="NA" @if(old('job_title_kras')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('job_title_kras'))
+                    <span class="text-danger">{{ $errors->first('job_title_kras') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="necessary_resources_available" class="form-label">I have necessary resources available, to perform my job <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="1" @if(old('necessary_resources_available')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="2" @if(old('necessary_resources_available')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="3" @if(old('necessary_resources_available')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="4" @if(old('necessary_resources_available')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="5" @if(old('necessary_resources_available')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="NA" @if(old('necessary_resources_available')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('necessary_resources_available'))
+                    <span class="text-danger">{{ $errors->first('necessary_resources_available') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="feel_grow_in_organization" class="form-label">I feel I will grow in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="1" @if(old('feel_grow_in_organization')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="2" @if(old('feel_grow_in_organization')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="3" @if(old('feel_grow_in_organization')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="4" @if(old('feel_grow_in_organization')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="5" @if(old('feel_grow_in_organization')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="NA" @if(old('feel_grow_in_organization')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('feel_grow_in_organization'))
+                    <span class="text-danger">{{ $errors->first('feel_grow_in_organization') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="complete_clarity_my_role" class="form-label">I have complete clarity of my role & what's expected out of me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="1" @if(old('complete_clarity_my_role')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="2" @if(old('complete_clarity_my_role')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="3" @if(old('complete_clarity_my_role')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="4" @if(old('complete_clarity_my_role')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="5" @if(old('complete_clarity_my_role')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="NA" @if(old('complete_clarity_my_role')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('complete_clarity_my_role'))
+                    <span class="text-danger">{{ $errors->first('complete_clarity_my_role') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="overall_happy_with_job_role" class="form-label">Overall I am happy with my job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="1" @if(old('overall_happy_with_job_role')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="2" @if(old('overall_happy_with_job_role')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="3" @if(old('overall_happy_with_job_role')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="4" @if(old('overall_happy_with_job_role')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="5" @if(old('overall_happy_with_job_role')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="NA" @if(old('overall_happy_with_job_role')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('overall_happy_with_job_role'))
+                    <span class="text-danger">{{ $errors->first('overall_happy_with_job_role') }}</span>
+                  @endif
+
+                </div>
+
+
+
+                <div class="col-md-12 position-relative">
+                  <label class="form-label"><strong>Let's talk about your training experience</strong></label>
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="training_elaborative_well_explained" class="form-label">Training was elaborative & well explained.  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="1" @if(old('training_elaborative_well_explained')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="2" @if(old('training_elaborative_well_explained')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="3" @if(old('training_elaborative_well_explained')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="4" @if(old('training_elaborative_well_explained')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="5" @if(old('training_elaborative_well_explained')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="NA" @if(old('training_elaborative_well_explained')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('training_elaborative_well_explained'))
+                    <span class="text-danger">{{ $errors->first('training_elaborative_well_explained') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="training_duration_apt" class="form-label">Duration of training was apt. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="1" @if(old('training_duration_apt')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="2" @if(old('training_duration_apt')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="3" @if(old('training_duration_apt')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="4" @if(old('training_duration_apt')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="5" @if(old('training_duration_apt')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="NA" @if(old('training_duration_apt')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('training_duration_apt'))
+                    <span class="text-danger">{{ $errors->first('training_duration_apt') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="proper_modules_defined_topic" class="form-label">Proper modules are defined for each topic <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="1" @if(old('proper_modules_defined_topic')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="2" @if(old('proper_modules_defined_topic')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="3" @if(old('proper_modules_defined_topic')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="4" @if(old('proper_modules_defined_topic')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="5" @if(old('proper_modules_defined_topic')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="NA" @if(old('proper_modules_defined_topic')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('proper_modules_defined_topic'))
+                    <span class="text-danger">{{ $errors->first('proper_modules_defined_topic') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="adequate_supporting_material" class="form-label">Adequate supporting material is provided to help learn faster & better <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="1" @if(old('adequate_supporting_material')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="2" @if(old('adequate_supporting_material')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="3" @if(old('adequate_supporting_material')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="4" @if(old('adequate_supporting_material')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="5" @if(old('adequate_supporting_material')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="NA" @if(old('adequate_supporting_material')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('adequate_supporting_material'))
+                    <span class="text-danger">{{ $errors->first('adequate_supporting_material') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="clarity_on_topics_during_training" class="form-label">The clarity given on topics during training was apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="1" @if(old('clarity_on_topics_during_training')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="2" @if(old('clarity_on_topics_during_training')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="3" @if(old('clarity_on_topics_during_training')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="4" @if(old('clarity_on_topics_during_training')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="5" @if(old('clarity_on_topics_during_training')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="NA" @if(old('clarity_on_topics_during_training')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('clarity_on_topics_during_training'))
+                    <span class="text-danger">{{ $errors->first('clarity_on_topics_during_training') }}</span>
+                  @endif
+
+                </div>
+
+
+
+                <div class="col-md-12 position-relative">
+                  <label class="form-label"><strong>Let's talk about your experience with your reporting manager</strong></label>
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="great_relationship_with_manager" class="form-label">I have great relationship with Reporting_Manager_name  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="1" @if(old('great_relationship_with_manager')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="2" @if(old('great_relationship_with_manager')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="3" @if(old('great_relationship_with_manager')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="4" @if(old('great_relationship_with_manager')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="5" @if(old('great_relationship_with_manager')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="NA" @if(old('great_relationship_with_manager')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+
+                  @if ($errors->has('great_relationship_with_manager'))
+                    <span class="text-danger">{{ $errors->first('great_relationship_with_manager') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="reviewed_properly_feedback_shared_timely" class="form-label">My work is reviewed properly & feedback is shared timely <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="1" @if(old('reviewed_properly_feedback_shared_timely')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="2" @if(old('reviewed_properly_feedback_shared_timely')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="3" @if(old('reviewed_properly_feedback_shared_timely')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="4" @if(old('reviewed_properly_feedback_shared_timely')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="5" @if(old('reviewed_properly_feedback_shared_timely')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="NA" @if(old('reviewed_properly_feedback_shared_timely')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('reviewed_properly_feedback_shared_timely'))
+                    <span class="text-danger">{{ $errors->first('reviewed_properly_feedback_shared_timely') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="openly_share_opinions" class="form-label">I can openly share opinions & feedback with Reporting_Manager_name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="1" @if(old('openly_share_opinions')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="2" @if(old('openly_share_opinions')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="3" @if(old('openly_share_opinions')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="4" @if(old('openly_share_opinions')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="5" @if(old('openly_share_opinions')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="NA" @if(old('openly_share_opinions')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('openly_share_opinions'))
+                    <span class="text-danger">{{ $errors->first('openly_share_opinions') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="receive_adequate_guidance" class="form-label">I receive adequate guidance from Reporting_Manager_name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="1" @if(old('receive_adequate_guidance')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="2" @if(old('receive_adequate_guidance')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="3" @if(old('receive_adequate_guidance')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="4" @if(old('receive_adequate_guidance')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="5" @if(old('receive_adequate_guidance')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="NA" @if(old('receive_adequate_guidance')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('receive_adequate_guidance'))
+                    <span class="text-danger">{{ $errors->first('receive_adequate_guidance') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="receive_adequate_timely_feedback" class="form-label">I receive adequate & timely feedback from Reporting_Manager_name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="1" @if(old('receive_adequate_timely_feedback')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="2" @if(old('receive_adequate_timely_feedback')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="3" @if(old('receive_adequate_timely_feedback')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="4" @if(old('receive_adequate_timely_feedback')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="5" @if(old('receive_adequate_timely_feedback')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="NA" @if(old('receive_adequate_timely_feedback')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('receive_adequate_timely_feedback'))
+                    <span class="text-danger">{{ $errors->first('receive_adequate_timely_feedback') }}</span>
+                  @endif
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="get_quick_resolution_issue" class="form-label">I get quick resolution to issues from Reporting_Manager_name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="1" @if(old('get_quick_resolution_issue')=='1') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">1</label>
+
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="2" @if(old('get_quick_resolution_issue')=='2') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">2</label>
+
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="3" @if(old('get_quick_resolution_issue')=='3') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">3</label>
+
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="4" @if(old('get_quick_resolution_issue')=='4') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">4</label>
+
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="5" @if(old('get_quick_resolution_issue')=='5') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">5</label>
+
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="NA" @if(old('get_quick_resolution_issue')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                  </span>
+                  @if ($errors->has('get_quick_resolution_issue'))
+                    <span class="text-danger">{{ $errors->first('get_quick_resolution_issue') }}</span>
+                  @endif
+
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="frequently_receive_feedback_manager" class="form-label">How frequently do you want to receive feedback from your manager about your performance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <input type="text" class="form-control" name="frequently_receive_feedback_manager" id="frequently_receive_feedback_manager" value="{{ old('frequently_receive_feedback_manager') }}" required>
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
-                  @if ($errors->has('company_hr_name'))
-                    <span class="text-danger">{{ $errors->first('company_hr_name') }}</span>
+                  @if ($errors->has('frequently_receive_feedback_manager'))
+                    <span class="text-danger">{{ $errors->first('frequently_receive_feedback_manager') }}</span>
                   @endif
                 </div>
 
-               
+
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>Rate on the following parameters, out of 5. [Prompt in responding to my queries]</strong></label>
+                  <label for="any_additional_feedback_manager" class="form-label">Any additional feedback for Reporting_Manager_name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="any_additional_feedback_manager" id="any_additional_feedback_manager" style="height: 100px" required>{{ old('any_additional_feedback_manager')}}</textarea>
+
+                  @if ($errors->has('any_additional_feedback_manager'))
+                    <span class="text-danger">{{ $errors->first('any_additional_feedback_manager') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label class="form-label"><strong>Has the following happened for you yet? </strong></label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="approachable" class="form-label">Approachable:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_proper_job_kra" class="form-label">Did you receive a proper Job Description/KRA sheet from your manager at the time of joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="1" @if(old('approachable')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="Yes" @if(old('receive_proper_job_kra')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="2" @if(old('approachable')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="No" @if(old('receive_proper_job_kra')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="3" @if(old('approachable')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="4" @if(old('approachable')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="5" @if(old('approachable')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="NA" @if(old('receive_proper_job_kra')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
-                  @if ($errors->has('approachable'))
-                    <span class="text-danger">{{ $errors->first('approachable') }}</span>
+                  @if ($errors->has('receive_proper_job_kra'))
+                    <span class="text-danger">{{ $errors->first('receive_proper_job_kra') }}</span>
                   @endif
 
                 </div>
 
+
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Respectful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="proper_training_plan" class="form-label">Did you receive a proper training plan from your reporting manager at the time of our joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="1" @if(old('respectful')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="Yes" @if(old('proper_training_plan')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="2" @if(old('respectful')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="No" @if(old('proper_training_plan')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="3" @if(old('respectful')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="4" @if(old('respectful')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="5" @if(old('respectful')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="NA" @if(old('proper_training_plan')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
-                  @if ($errors->has('respectful'))
-                    <span class="text-danger">{{ $errors->first('respectful') }}</span>
+
+                  @if ($errors->has('proper_training_plan'))
+                    <span class="text-danger">{{ $errors->first('proper_training_plan') }}</span>
                   @endif
 
                 </div>
 
+
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Could explain the job role well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_executed_planned" class="form-label">Was the training executed as planned?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="1" @if(old('explain_job_role')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="Yes" @if(old('training_executed_planned')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="2" @if(old('explain_job_role')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="No" @if(old('training_executed_planned')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="3" @if(old('explain_job_role')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="4" @if(old('explain_job_role')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="5" @if(old('explain_job_role')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="NA" @if(old('training_executed_planned')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
-                  @if ($errors->has('explain_job_role'))
-                    <span class="text-danger">{{ $errors->first('explain_job_role') }}</span>
+
+                  @if ($errors->has('training_executed_planned'))
+                    <span class="text-danger">{{ $errors->first('training_executed_planned') }}</span>
                   @endif
 
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Could explain the company background well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="marked_regularly_your_eod" class="form-label">Are you marked regularly on your EODs?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="1" @if(old('explain_company_background')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="Yes" @if(old('marked_regularly_your_eod')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="2" @if(old('explain_company_background')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="No" @if(old('marked_regularly_your_eod')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="3" @if(old('explain_company_background')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="4" @if(old('explain_company_background')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="5" @if(old('explain_company_background')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="NA" @if(old('marked_regularly_your_eod')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
-                  @if ($errors->has('explain_company_background'))
-                    <span class="text-danger">{{ $errors->first('explain_company_background') }}</span>
+
+                  @if ($errors->has('marked_regularly_your_eod'))
+                    <span class="text-danger">{{ $errors->first('marked_regularly_your_eod') }}</span>
                   @endif
 
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Shared proper information about interview process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="wpr_happen_atleast_once_week" class="form-label">Do your WPRs happen atleast once a week?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="1" @if(old('shared_proper_interview_information')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="Yes" @if(old('wpr_happen_atleast_once_week')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="2" @if(old('shared_proper_interview_information')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="No" @if(old('wpr_happen_atleast_once_week')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="3" @if(old('shared_proper_interview_information')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="4" @if(old('shared_proper_interview_information')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="5" @if(old('shared_proper_interview_information')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="NA" @if(old('wpr_happen_atleast_once_week')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
-                  @if ($errors->has('shared_proper_interview_information'))
-                    <span class="text-danger">{{ $errors->first('shared_proper_interview_information') }}</span>
+
+                  @if ($errors->has('wpr_happen_atleast_once_week'))
+                    <span class="text-danger">{{ $errors->first('wpr_happen_atleast_once_week') }}</span>
                   @endif
 
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Discussed about my profile in detail to check my fitment with the role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="one_to_one_interaction" class="form-label">Has your 1:1 interaction happened with Reporting_Manager_Name atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="1" @if(old('discussed_my_profile')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
+                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="Yes" @if(old('one_to_one_interaction')=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-	                  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="2" @if(old('discussed_my_profile')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
+                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="No" @if(old('one_to_one_interaction')=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
 
-	                  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="3" @if(old('discussed_my_profile')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="4" @if(old('discussed_my_profile')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="5" @if(old('discussed_my_profile')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
+                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="NA" @if(old('one_to_one_interaction')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
-                  @if ($errors->has('discussed_my_profile'))
-                    <span class="text-danger">{{ $errors->first('discussed_my_profile') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Shared my interview feedback quickly after the interview <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="1" @if(old('shared_interview_feedback_quickly')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="2" @if(old('shared_interview_feedback_quickly')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="3" @if(old('shared_interview_feedback_quickly')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="4" @if(old('shared_interview_feedback_quickly')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="5" @if(old('shared_interview_feedback_quickly')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-
-                  @if ($errors->has('shared_interview_feedback_quickly'))
-                    <span class="text-danger">{{ $errors->first('shared_interview_feedback_quickly') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Any additional feedback for the recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px">{{ old('additional_feedback_recruiter')}}</textarea>
-
-                  @if ($errors->has('additional_feedback_recruiter'))
-                    <span class="text-danger">{{ $errors->first('additional_feedback_recruiter') }}</span>
-                  @endif
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label"><strong>How much will you rate overall conduct? (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="1" @if(old('rate_overall_conduct')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="2" @if(old('rate_overall_conduct')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="3" @if(old('rate_overall_conduct')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="4" @if(old('rate_overall_conduct')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="5" @if(old('rate_overall_conduct')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('rate_overall_conduct'))
-                    <span class="text-danger">{{ $errors->first('rate_overall_conduct') }}</span>
+                  @if ($errors->has('one_to_one_interaction'))
+                    <span class="text-danger">{{ $errors->first('one_to_one_interaction') }}</span>
                   @endif
 
                 </div>
 
                 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label"><strong>Rate the interviewers on the following parameters (Out of 5)</strong></label>
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Professionalism <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="1" @if(old('professionalism')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="2" @if(old('professionalism')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="3" @if(old('professionalism')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="4" @if(old('professionalism')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="5" @if(old('professionalism')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('professionalism'))
-                    <span class="text-danger">{{ $errors->first('professionalism') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="1" @if(old('friendliness')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="2" @if(old('friendliness')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="3" @if(old('friendliness')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="4" @if(old('friendliness')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="5" @if(old('friendliness')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('friendliness'))
-                    <span class="text-danger">{{ $errors->first('friendliness') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Heplful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="1" @if(old('heplful')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="2" @if(old('heplful')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="3" @if(old('heplful')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="4" @if(old('heplful')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="5" @if(old('heplful')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('heplful'))
-                    <span class="text-danger">{{ $errors->first('heplful') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Approachable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="1" @if(old('approachable_interviewers')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="2" @if(old('approachable_interviewers')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="3" @if(old('approachable_interviewers')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="4" @if(old('approachable_interviewers')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="5" @if(old('approachable_interviewers')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('approachable_interviewers'))
-                    <span class="text-danger">{{ $errors->first('approachable_interviewers') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Respectable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="1" @if(old('respectable')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="2" @if(old('respectable')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="3" @if(old('respectable')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="4" @if(old('respectable')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="5" @if(old('respectable')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('respectable'))
-                    <span class="text-danger">{{ $errors->first('respectable') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Knowledgeable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="1" @if(old('knowledgeable')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="2" @if(old('knowledgeable')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="3" @if(old('knowledgeable')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="4" @if(old('knowledgeable')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="5" @if(old('knowledgeable')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('knowledgeable'))
-                    <span class="text-danger">{{ $errors->first('knowledgeable') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Clear communication about company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="1" @if(old('clear_communication_about_company')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="2" @if(old('clear_communication_about_company')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="3" @if(old('clear_communication_about_company')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="4" @if(old('clear_communication_about_company')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="5" @if(old('clear_communication_about_company')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('clear_communication_about_company'))
-                    <span class="text-danger">{{ $errors->first('clear_communication_about_company') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Clear communication about job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="1" @if(old('clear_communication_job_role')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="2" @if(old('clear_communication_job_role')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="3" @if(old('clear_communication_job_role')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="4" @if(old('clear_communication_job_role')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="5" @if(old('clear_communication_job_role')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('clear_communication_job_role'))
-                    <span class="text-danger">{{ $errors->first('clear_communication_job_role') }}</span>
-                  @endif
-
-                </div>
-
-
-               
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label"><strong>Rate the interview process on the following parameters (out of 5)</strong></label>
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The process started on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="1" @if(old('process_started_on_time')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="2" @if(old('process_started_on_time')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="3" @if(old('process_started_on_time')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="4" @if(old('process_started_on_time')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="5" @if(old('process_started_on_time')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('process_started_on_time'))
-                    <span class="text-danger">{{ $errors->first('process_started_on_time') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The process was fair & apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="1" @if(old('process_fair_apt')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="2" @if(old('process_fair_apt')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="3" @if(old('process_fair_apt')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="4" @if(old('process_fair_apt')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="5" @if(old('process_fair_apt')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('process_fair_apt'))
-                    <span class="text-danger">{{ $errors->first('process_fair_apt') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The seating arrangement was comfortable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="1" @if(old('seating_arrangement_comfortable')=='51') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="2" @if(old('seating_arrangement_comfortable')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="3" @if(old('seating_arrangement_comfortable')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="4" @if(old('seating_arrangement_comfortable')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="5" @if(old('seating_arrangement_comfortable')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('seating_arrangement_comfortable'))
-                    <span class="text-danger">{{ $errors->first('seating_arrangement_comfortable') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Staff was helpful & supportive <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="1" @if(old('staff_helpful_supportive')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="2" @if(old('staff_helpful_supportive')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="3" @if(old('staff_helpful_supportive')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="4" @if(old('staff_helpful_supportive')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="5" @if(old('staff_helpful_supportive')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('staff_helpful_supportive'))
-                    <span class="text-danger">{{ $errors->first('staff_helpful_supportive') }}</span>
-                  @endif
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Received my interview feedback on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="1" @if(old('received_interview_feedback')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="2" @if(old('received_interview_feedback')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="3" @if(old('received_interview_feedback')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="4" @if(old('received_interview_feedback')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="5" @if(old('received_interview_feedback')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-                  @if ($errors->has('received_interview_feedback'))
-                    <span class="text-danger">{{ $errors->first('received_interview_feedback') }}</span>
-                  @endif
-
-                </div>
-
-
-                <div class="col-md-12 position-relative">
-                  <label for="define_overall_interview_process" class="form-label">How will you define the overall Interview Process? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="define_overall_interview_process" id="define_overall_interview_process" required>
-                    <option value="">Choose...</option>
-
-                    <option value="Challenging and interesting" @if(old('define_overall_interview_process')=='Challenging and interesting') selected @endif>Challenging and interesting</option>
-
-                    <option value="Time consuming" @if(old('define_overall_interview_process')=='Time consuming') selected @endif>Time consuming</option>
-
-                    <option value="stressful" @if(old('define_overall_interview_process')=='stressful') selected @endif>stressful</option>
-
-                  </select>
-                  <div class="invalid-tooltip">
-                    Please select a valid state.
+                  <label for="best_experience_tenure" class="form-label">What’s the best experience you have had during your tenure till date? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="best_experience_tenure" id="best_experience_tenure" style="height: 100px" required>{{ old('best_experience_tenure') }}</textarea>
+                  <div class="invalid-feedback">
+                    What’s the best experience you have had during your tenure till date?
                   </div>
-                  @if ($errors->has('define_overall_interview_process'))
-                    <span class="text-danger">{{ $errors->first('define_overall_interview_process') }}</span>
+                  @if ($errors->has('best_experience_tenure'))
+                    <span class="text-danger">{{ $errors->first('best_experience_tenure') }}</span>
                   @endif
-
                 </div>
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_interview_process" class="form-label"><strong>Rate the overall interview process. (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-
-                  <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="1" @if(old('rate_overall_interview_process')=='1') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">1</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="2" @if(old('rate_overall_interview_process')=='2') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">2</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="3" @if(old('rate_overall_interview_process')=='3') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">3</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="4" @if(old('rate_overall_interview_process')=='4') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">4</label>
-
-	                  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="5" @if(old('rate_overall_interview_process')=='5') checked @endif>
-	                  <label class="form-check-label" for="gridRadios1">5</label>
-                  </span>
-
-                  @if ($errors->has('rate_overall_interview_process'))
-                    <span class="text-danger">{{ $errors->first('rate_overall_interview_process') }}</span>
-                  @endif
-
-                </div>
-
-
-                <div class="col-md-12 position-relative">
-                  <label for="comments_suggestions_feedback" class="form-label">If you have any comments, suggestions, or feedback, please enter it below: <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="comments_suggestions_feedback" id="comments_suggestions_feedback" style="height: 100px">{{ old('comments_suggestions_feedback') }}</textarea>
-                  <div class="invalid-tooltip">
-                    Please provide a valid city.
+                  <label for="like_most_working" class="form-label">What do you like the most working here? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="like_most_working" id="like_most_working" style="height: 100px" required>{{ old('like_most_working') }}</textarea>
+                  <div class="invalid-feedback">
+                    What do you like the most working here?
                   </div>
-                  @if ($errors->has('comments_suggestions_feedback'))
-                    <span class="text-danger">{{ $errors->first('comments_suggestions_feedback') }}</span>
+                  @if ($errors->has('like_most_working'))
+                    <span class="text-danger">{{ $errors->first('like_most_working') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="like_to_change_add" class="form-label">What would you like to change/add in the organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="like_to_change_add" id="like_to_change_add" style="height: 100px" required>{{ old('like_to_change_add') }}</textarea>
+                  <div class="invalid-feedback">
+                    What would you like to change/add in the organization?
+                  </div>
+                  @if ($errors->has('like_to_change_add'))
+                    <span class="text-danger">{{ $errors->first('like_to_change_add') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="who_inspired_you_organization" class="form-label">What/Who has inspired you in this organization, based on your experiences so far? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="who_inspired_you_organization" id="who_inspired_you_organization" style="height: 100px" required>{{ old('who_inspired_you_organization') }}</textarea>
+                  <div class="invalid-feedback">
+                    What/Who has inspired you in this organization, based on your experiences so far?
+                  </div>
+                  @if ($errors->has('who_inspired_you_organization'))
+                    <span class="text-danger">{{ $errors->first('who_inspired_you_organization') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="mention_achievement" class="form-label">Mention your achievement(s) in terms of your work till date. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="mention_achievement" id="mention_achievement" style="height: 100px" required>{{ old('mention_achievement') }}</textarea>
+                  <div class="invalid-feedback">
+                    Mention your achievement(s) in terms of your work till date.
+                  </div>
+                  @if ($errors->has('mention_achievement'))
+                    <span class="text-danger">{{ $errors->first('mention_achievement') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="facing_any_challenges" class="form-label">Any challenges that you are facing right now? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="facing_any_challenges" id="facing_any_challenges" style="height: 100px" required>{{ old('facing_any_challenges') }}</textarea>
+                  <div class="invalid-feedback">
+                    Any challenges that you are facing right now?
+                  </div>
+                  @if ($errors->has('facing_any_challenges'))
+                    <span class="text-danger">{{ $errors->first('facing_any_challenges') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="need_additional_training" class="form-label">Do you need any additional training or support? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="need_additional_training" id="need_additional_training" style="height: 100px" required>{{ old('need_additional_training') }}</textarea>
+                  <div class="invalid-feedback">
+                    Do you need any additional training or support?
+                  </div>
+                  @if ($errors->has('need_additional_training'))
+                    <span class="text-danger">{{ $errors->first('need_additional_training') }}</span>
+                  @endif
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="any_additional_feedback_share" class="form-label">Any additional feedback that you wish to share? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="any_additional_feedback_share" id="any_additional_feedback_share" style="height: 100px" required>{{ old('any_additional_feedback_share') }}</textarea>
+                  <div class="invalid-feedback">
+                    Any additional feedback that you wish to share?
+                  </div>
+                  @if ($errors->has('any_additional_feedback_share'))
+                    <span class="text-danger">{{ $errors->first('any_additional_feedback_share') }}</span>
                   @endif
                 </div>
 

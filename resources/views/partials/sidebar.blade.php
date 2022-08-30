@@ -1,3 +1,7 @@
+<?php
+$todat_date=date('Y-m-d');
+$last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
+?>
 <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
@@ -98,30 +102,32 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           @if(Auth::user()->role_id=='1')
-          <li>
-            <a href="{{ url('/interview-survey') }}">
-              <i class="bi bi-circle"></i><span>Interview Survey</span>
-            </a>
-          </li>
+            <li>
+              <a href="{{ url('/interview-survey') }}">
+                <i class="bi bi-circle"></i><span>Interview Survey</span>
+              </a>
+            </li>
 
-          <li>
-            <a href="{{ url('/recruitment-survey') }}">
-              <i class="bi bi-circle"></i><span>Recruitment Survey</span>
-            </a>
-          </li>
+            <li>
+              <a href="{{ url('/recruitment-survey') }}">
+                <i class="bi bi-circle"></i><span>Recruitment Survey</span>
+              </a>
+            </li>
 
-          <li>
-            <a href="{{ url('/ppt-upload') }}">
-              <i class="bi bi-upload"></i>
-              <span>Upload PPT</span>
-            </a>
-          </li>
-
-          <!-- <li>
-            <a href="{{ url('/member-check-in-form') }}">
-              <i class="bi bi-circle"></i><span>Member Check-In Form</span>
-            </a>
-          </li> -->
+            <li>
+              <a href="{{ url('/ppt-upload') }}">
+                <i class="bi bi-upload"></i>
+                <span>Upload PPT</span>
+              </a>
+            </li>
+            
+            @if((Auth::user()->joining_date) <= $last45days)
+            <li>
+              <a href="{{ url('/member-check-in-form') }}">
+                <i class="bi bi-circle"></i><span>Member Check-In Form</span>
+              </a>
+            </li>
+            @endif
           @endif
 
           

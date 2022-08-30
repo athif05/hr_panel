@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('days_45_checkin_members', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::table('days_45_checkin_members', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->string('member_name')->nullable();
             $table->string('member_id')->nullable();
@@ -96,6 +95,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('days_45_checkin_members');
+        Schema::table('days_45_checkin_members', function (Blueprint $table) {
+            //
+        });
     }
 };

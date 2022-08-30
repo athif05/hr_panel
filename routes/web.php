@@ -82,9 +82,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/*member check-in form, start here*/
-	Route::get('/member-check-in-form', function () {
-	    return view('member-check-in-form');
-	});
+	Route::get('/member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'index']);
+
+	Route::post('/save-member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'store'])->name('save-member-check-in-form');
 	/*member check-in form, end here*/
 	
 

@@ -362,32 +362,44 @@
 
                   <tr>
                     <td>Training plan was shared with me within the first week of joining</td>
-                    <td>{{$training_survey_details['training_first_week_joining']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['training_first_week_joining']}} @if($training_survey_details['training_first_week_joining']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td></td>
                   </tr>
 
                   <tr>
                     <td>The training sessions went as planned</td>
-                    <td>{{$training_survey_details['training_sessions_went_as_planned']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['training_sessions_went_as_planned']}} @if($training_survey_details['training_sessions_went_as_planned']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td></td>
                   </tr>
 
                   <tr>
                     <td>Training topics were covered in detail</td>
-                    <td>{{$training_survey_details['training_topics_were_covered_in_detail']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['training_topics_were_covered_in_detail']}} @if($training_survey_details['training_topics_were_covered_in_detail']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td></td>
                   </tr>
 
                   <tr>
                     <td>Training was effective & is helping me do my job well</td>
-                    <td>{{$training_survey_details['training_was_effective_helping']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['training_was_effective_helping']}} @if($training_survey_details['training_was_effective_helping']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td>
                   </tr>
 
                   <tr>
                     <td>I have clearly understood all the modules</td>
-                    <td>{{$training_survey_details['clearly_understood_all_modules']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['clearly_understood_all_modules']}} @if($training_survey_details['clearly_understood_all_modules']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td>
                   </tr>
 
                   <tr>
                     <td>Self-study material has been very useful for me</td>
-                    <td>{{$training_survey_details['self_study_material_useful']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>{{$training_survey_details['self_study_material_useful']}} @if($training_survey_details['self_study_material_useful']!='NA')
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endif</td>
                   </tr>
 
                   

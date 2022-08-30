@@ -68,7 +68,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Your Name</label>
                   <input type="text" class="form-control disable-text" name="member_name" id="member_name" value="{{ $hiring_survey_details->member_name }}" readonly>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('member_name'))
@@ -79,7 +79,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
                   <input type="text" class="form-control disable-text" name="designation" id="designation" value="{{ $hiring_survey_details->designation }}" readonly>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('designation'))
@@ -90,7 +90,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
                   <input type="text" class="form-control disable-text" name="department" id="department" value="{{ $hiring_survey_details->department }}" readonly>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('department'))
@@ -102,7 +102,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="location" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <input type="text" class="form-control" name="location" id="location" value="{{ $hiring_survey_details->location }}" required>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('location'))
@@ -119,7 +119,7 @@
                     <option value="{{$company_name['id']}}" @if(($hiring_survey_details->company_name)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
-                  <div class="invalid-tooltip">
+                  <div class="invalid-feedback">
                     Please select a valid company.
                   </div>
                   @if ($errors->has('company_name'))
@@ -139,7 +139,7 @@
                     <option value="{{$recruiter_detail['id']}}" @if(($hiring_survey_details->recruiter_name)==$recruiter_detail['id']) selected @endif>{{$recruiter_detail['first_name']}} {{$recruiter_detail['last_name']}}</option>
                     @endforeach
                   </select>
-                  <div class="invalid-tooltip">
+                  <div class="invalid-feedback">
                     Please select a valid company.
                   </div>
                   @if ($errors->has('recruiter_name'))
@@ -156,7 +156,7 @@
                     <option value="{{$company_location['id']}}" @if(($hiring_survey_details->location_name_position_open)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
                     @endforeach
                   </select>
-                  <div class="invalid-tooltip">
+                  <div class="invalid-feedback">
                     Please select a valid location.
                   </div>
                   @if ($errors->has('location_name'))
@@ -167,7 +167,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="open_designation_name" class="form-label">Name the designation of the open position. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <input type="text" class="form-control" name="open_designation_name" id="open_designation_name" value="{{ $hiring_survey_details->designation_name_open_position }}" required>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('open_designation_name'))
@@ -178,7 +178,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="no_of_openings" class="form-label">No. of openings that were shared? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <input type="text" class="form-control" name="no_of_openings" id="no_of_openings" value="{{ $hiring_survey_details->no_of_openings }}" required>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('no_of_openings'))
