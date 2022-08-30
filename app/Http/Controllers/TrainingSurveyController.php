@@ -121,7 +121,7 @@ class TrainingSurveyController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request);
         $expertise_on_subject_matter_1='NA';
         $clear_effective_communication_skills_1='NA';
         $effective_delivery_content_1='NA';
@@ -321,6 +321,7 @@ class TrainingSurveyController extends Controller
             'any_suggestions_feedback' => $request->any_suggestions_feedback,
 
             'trainer_1_name' => $request->trainer_1_name,
+            'trainer_1_id' => $request->trainer_1_id,
             'expertise_on_subject_matter_1' => $expertise_on_subject_matter_1,
             'clear_effective_communication_skills_1' => $clear_effective_communication_skills_1,
             'effective_delivery_content_1' => $effective_delivery_content_1,
@@ -329,6 +330,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_1' => $additional_feedback_trainer_1,
 
             'trainer_2_name' => $request->trainer_2_name,
+            'trainer_2_id' => $request->trainer_2_id,
             'expertise_on_subject_matter_2' => $expertise_on_subject_matter_2,
             'clear_effective_communication_skills_2' => $clear_effective_communication_skills_2,
             'effective_delivery_content_2' => $effective_delivery_content_2,
@@ -337,6 +339,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_2' => $additional_feedback_trainer_2,
 
             'trainer_3_name' => $request->trainer_3_name,
+            'trainer_3_id' => $request->trainer_3_id,
             'expertise_on_subject_matter_3' => $expertise_on_subject_matter_3,
             'clear_effective_communication_skills_3' => $clear_effective_communication_skills_3,
             'effective_delivery_content_3' => $effective_delivery_content_3,
@@ -345,6 +348,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_3' => $additional_feedback_trainer_3,
 
             'trainer_4_name' => $request->trainer_4_name,
+            'trainer_4_id' => $request->trainer_4_id,
             'expertise_on_subject_matter_4' => $expertise_on_subject_matter_4,
             'clear_effective_communication_skills_4' => $clear_effective_communication_skills_4,
             'effective_delivery_content_4' => $effective_delivery_content_4,
@@ -353,6 +357,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_4' => $additional_feedback_trainer_4,
 
             'trainer_5_name' => $request->trainer_5_name,
+            'trainer_5_id' => $request->trainer_5_id,
             'expertise_on_subject_matter_5' => $expertise_on_subject_matter_5,
             'clear_effective_communication_skills_5' => $clear_effective_communication_skills_5,
             'effective_delivery_content_5' => $effective_delivery_content_5,
@@ -680,6 +685,7 @@ class TrainingSurveyController extends Controller
             'any_suggestions_feedback' => $request->any_suggestions_feedback,
 
             'trainer_1_name' => $request->trainer_1_name,
+            'trainer_1_id' => $request->trainer_1_id,
             'expertise_on_subject_matter_1' => $expertise_on_subject_matter_1,
             'clear_effective_communication_skills_1' => $clear_effective_communication_skills_1,
             'effective_delivery_content_1' => $effective_delivery_content_1,
@@ -688,6 +694,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_1' => $additional_feedback_trainer_1,
 
             'trainer_2_name' => $request->trainer_2_name,
+            'trainer_2_id' => $request->trainer_2_id,
             'expertise_on_subject_matter_2' => $expertise_on_subject_matter_2,
             'clear_effective_communication_skills_2' => $clear_effective_communication_skills_2,
             'effective_delivery_content_2' => $effective_delivery_content_2,
@@ -696,6 +703,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_2' => $additional_feedback_trainer_2,
 
             'trainer_3_name' => $request->trainer_3_name,
+            'trainer_3_id' => $request->trainer_3_id,
             'expertise_on_subject_matter_3' => $expertise_on_subject_matter_3,
             'clear_effective_communication_skills_3' => $clear_effective_communication_skills_3,
             'effective_delivery_content_3' => $effective_delivery_content_3,
@@ -704,6 +712,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_3' => $additional_feedback_trainer_3,
 
             'trainer_4_name' => $request->trainer_4_name,
+            'trainer_4_id' => $request->trainer_4_id,
             'expertise_on_subject_matter_4' => $expertise_on_subject_matter_4,
             'clear_effective_communication_skills_4' => $clear_effective_communication_skills_4,
             'effective_delivery_content_4' => $effective_delivery_content_4,
@@ -712,6 +721,7 @@ class TrainingSurveyController extends Controller
             'additional_feedback_trainer_4' => $additional_feedback_trainer_4,
 
             'trainer_5_name' => $request->trainer_5_name,
+            'trainer_5_id' => $request->trainer_5_id,
             'expertise_on_subject_matter_5' => $expertise_on_subject_matter_5,
             'clear_effective_communication_skills_5' => $clear_effective_communication_skills_5,
             'effective_delivery_content_5' => $effective_delivery_content_5,
@@ -746,4 +756,35 @@ class TrainingSurveyController extends Controller
     {
         //
     }
+
+
+
+    public function getTrainerAjax(Request $request){
+
+        //$data='Ajax start here';
+
+        $data=$request->all_ids;
+        $data=explode(',',$data);
+
+        DB::enableQueryLog(); //for print sql query
+
+        /*fetch all user as trainer*/
+        $trainer_details = User::where('status', '1')
+        ->where('is_deleted', '0')
+        ->where('employee_type', '=', 'Confirmed')
+        ->whereIn('id', $data)
+        ->orderBy('first_name','asc')
+        ->get();
+
+        /*for print sql query, start here */
+        //$quries = DB::getQueryLog();
+        //dd($quries);
+
+        $returnHTML = view('trainer-list-ajax', compact('trainer_details'))->render();
+
+        return response()->json($returnHTML);
+        //return "ajax";
+    }
+
+
 }

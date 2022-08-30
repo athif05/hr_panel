@@ -29,9 +29,13 @@
 			       }
 				}
 		
+				//console.log(selected);
+
+				selected=selected.toString();
+
 				console.log(selected);
 
-				if(count>0) {
+				if(count>0 && count<=5) {
 				
 					$.ajax({
 						url: "{{url('get-all-trainers-name-ajax')}}", 
@@ -41,16 +45,21 @@
 							_token: '{{csrf_token()}}'
 						},  
 						dataType : 'json',
-						success:function(result){
-							console.log(result);
-							/*$('#city_id').html('<option value="">-- Select City --</option>');  
+						success:function(result) {
+
+							//console.log(result);
+
+							$('#all_trainer_list').html(result);
+
 							
-							$.each(result.cities,function(key,value){
-								$("#city_id").append('<option value="'+value.id+'">'+value.name+'</option>');
-							});*/
-					   }  
+					   },
+		                error: function (error) {
+		                    console.log(error);
+		                } 
 
 				   });
+				} else {
+					alert('You can choose Maximum 5 trainer.');
 				}
 			   
 			});

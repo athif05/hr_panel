@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/training-survey-edit/{id}', [App\Http\Controllers\TrainingSurveyController::class, 'edit']);
 
 	Route::post('/update-training-survey', [App\Http\Controllers\TrainingSurveyController::class, 'update'])->name('update-training-survey');
+
+	Route::post('/get-all-trainers-name-ajax', [App\Http\Controllers\TrainingSurveyController::class, 'getTrainerAjax']);
 	/*hiring-survey form, end here*/
 
 

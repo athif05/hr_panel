@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('location_name');
             $table->string('trainer_1_name')->nullable();
+            $table->unsignedBigInteger('trainer_1_id')->nullable();
             $table->enum('expertise_on_subject_matter_1', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('clear_effective_communication_skills_1', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('effective_delivery_content_1', ['NA','1','2','3','4','5'])->default('NA');
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->enum('comfortability_sharing_concerns_doubts_1', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('additional_feedback_trainer_1')->nullable();
             $table->string('trainer_2_name')->nullable();
+            $table->unsignedBigInteger('trainer_2_id')->nullable();
             $table->enum('expertise_on_subject_matter_2', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('clear_effective_communication_skills_2', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('effective_delivery_content_2', ['NA','1','2','3','4','5'])->default('NA');
@@ -38,6 +40,7 @@ return new class extends Migration
             $table->enum('comfortability_sharing_concerns_doubts_2', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('additional_feedback_trainer_2')->nullable();
             $table->string('trainer_3_name')->nullable();
+            $table->unsignedBigInteger('trainer_3_id')->nullable();
             $table->enum('expertise_on_subject_matter_3', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('clear_effective_communication_skills_3', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('effective_delivery_content_3', ['NA','1','2','3','4','5'])->default('NA');
@@ -45,6 +48,7 @@ return new class extends Migration
             $table->enum('comfortability_sharing_concerns_doubts_3', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('additional_feedback_trainer_3')->nullable();
             $table->string('trainer_4_name')->nullable();
+            $table->unsignedBigInteger('trainer_4_id')->nullable();
             $table->enum('expertise_on_subject_matter_4', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('clear_effective_communication_skills_4', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('effective_delivery_content_4', ['NA','1','2','3','4','5'])->default('NA');
@@ -52,6 +56,7 @@ return new class extends Migration
             $table->enum('comfortability_sharing_concerns_doubts_4', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('additional_feedback_trainer_4')->nullable();
             $table->string('trainer_5_name')->nullable();
+            $table->unsignedBigInteger('trainer_5_id')->nullable();
             $table->enum('expertise_on_subject_matter_5', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('clear_effective_communication_skills_5', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('effective_delivery_content_5', ['NA','1','2','3','4','5'])->default('NA');

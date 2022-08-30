@@ -158,9 +158,9 @@
                 </div>
 
 
-                <div class="col-md-6 position-relative">
+                <div class="col-md-12 position-relative">
                   <label for="trainer_1_name" class="form-label">Trainer <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="trainer_1_name" id="trainer_1_name" required>
+                  <select class="form-select" multiple name="trainer_1_name" id="trainer_1_name" required>
                     <option  value="" disabled>Choose...</option>
                     @foreach($trainer_details as $trainer_detail)
                     <option value="{{$trainer_detail['id']}}" @if(old('trainer_1_name')==$trainer_detail['id']) selected @endif>{{$trainer_detail['first_name']}} {{$trainer_detail['last_name']}}</option>
@@ -174,8 +174,10 @@
                   @endif
                 </div>
 
+                <!-- show trainer list by ajax -->
+                <div style="float: left; width: 100%" id="all_trainer_list"></div>
 
-                <div class="col-md-6 position-relative">
+                <!-- <div class="col-md-6 position-relative">
                   <label for="trainer_2_name" class="form-label">Trainer 2 <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="trainer_2_name" id="trainer_2_name" required>
                     <option  value="" disabled>Choose...</option>
@@ -224,7 +226,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="trainer_5_name" class="form-label">Trainer 5</label>
+                  <label for="trainer_5_name" class="form-label">Trainer 5 <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="trainer_5_name" id="trainer_5_name" required>
                     <option  value="" disabled>Choose...</option>
                     @foreach($trainer_details as $trainer_detail)
@@ -237,9 +239,9 @@
                   @if ($errors->has('trainer_5_name'))
                     <span class="text-danger">{{ $errors->first('trainer_5_name') }}</span>
                   @endif
-                </div>
+                </div> -->
 
-                <div style="clear: both; height: 1px;"></div>
+                <!-- <div style="clear: both; height: 1px;"></div>
                 <div class="col-md-12 position-relative" style="margin-bottom: -15px;">
                   <label class="form-label"><strong>Please rate Traininer_1_name on the following parameters</strong></label>
                 </div>
@@ -1022,7 +1024,7 @@
                   @if ($errors->has('additional_feedback_trainer_5'))
                     <span class="text-danger">{{ $errors->first('additional_feedback_trainer_5') }}</span>
                   @endif
-                </div>
+                </div> -->
 
 
                 <div class="col-md-12 position-relative" style="margin-bottom: -15px;">
