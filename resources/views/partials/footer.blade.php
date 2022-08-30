@@ -18,22 +18,26 @@
 		jQuery(document).ready(function(){
 	
 			/* call trainer name list ajax function, start here */
-			$('#trainer_1_name').on('change', function(){
+			$('#trainer_list_name').on('change', function(){
 				
 				var selected = [];
 				var count=0;
-				for (var option of document.getElementById('trainer_1_name').options) {
+				for (var option of document.getElementById('trainer_list_name').options) {
 			       if (option.selected) {
 			           selected.push(option.value);
 						count++;
 			       }
 				}
 		
-				//console.log(selected);
+				/*var user_id=$('#user_id').val();
+				var edit_ajax=$('#edit_ajax').val();*/
+
+				//console.log(user_id);
+				//console.log(edit_ajax);
 
 				selected=selected.toString();
 
-				console.log(selected);
+				//console.log(selected);
 
 				if(count>0 && count<=5) {
 				

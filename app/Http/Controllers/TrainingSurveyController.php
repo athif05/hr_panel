@@ -766,7 +766,18 @@ class TrainingSurveyController extends Controller
         $data=$request->all_ids;
         $data=explode(',',$data);
 
-        DB::enableQueryLog(); //for print sql query
+        /*$user_id=$request->user_id;
+        $edit_ajax=$request->edit_ajax;*/
+
+        //DB::enableQueryLog(); //for print sql query
+
+        /*if($edit_ajax==2){
+
+            $training_survey_details = TrainingSurvey::where('user_id', $user_id)->first();
+        } else {
+
+            $training_survey_details='';
+        }*/
 
         /*fetch all user as trainer*/
         $trainer_details = User::where('status', '1')

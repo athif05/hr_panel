@@ -124,7 +124,7 @@
 
                   @if($training_survey_details['trainer_1_name'])
                   <tr>
-                    <td><strong>Trainer Trainer_1_Name</strong></td>
+                    <td><strong>Trainer 1 Name</strong></td>
                     <td>{{$training_survey_details['trainer_1_name']}}</td>
                   </tr>
 
@@ -166,13 +166,13 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Any additional comments for Trainer_1_Name</strong> : {{$training_survey_details['additional_feedback_trainer_1']}}</td>
+                    <td colspan="2"><strong>Any additional comments for {{$training_survey_details['trainer_1_name']}}</strong> : {{$training_survey_details['additional_feedback_trainer_1']}}</td>
                   </tr>
                   @endif
 
                   @if($training_survey_details['trainer_2_name'])
                   <tr>
-                    <td><strong>Trainer Trainer_2_Name</strong></td>
+                    <td><strong>Trainer 2 Name</strong></td>
                     <td>{{$training_survey_details['trainer_2_name']}}</td>
                   </tr>
 
@@ -212,13 +212,13 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Any additional comments for Trainer_2_Name</strong> : {{$training_survey_details['additional_feedback_trainer_2']}}</td>
+                    <td colspan="2"><strong>Any additional comments for {{$training_survey_details['trainer_2_name']}}</strong> : {{$training_survey_details['additional_feedback_trainer_2']}}</td>
                   </tr>
                   @endif
 
                   @if($training_survey_details['trainer_3_name'])
                   <tr>
-                    <td><strong>Trainer Trainer_3_Name</strong></td>
+                    <td><strong>Trainer 3 Name</strong></td>
                     <td>{{$training_survey_details['trainer_3_name']}}</td>
                   </tr>
 
@@ -258,13 +258,13 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Any additional comments for Trainer_3_Name</strong> : {{$training_survey_details['additional_feedback_trainer_3']}}</td>
+                    <td colspan="2"><strong>Any additional comments for {{$training_survey_details['trainer_3_name']}}</strong> : {{$training_survey_details['additional_feedback_trainer_3']}}</td>
                   </tr>
                   @endif
 
                   @if($training_survey_details['trainer_4_name'])
                   <tr>
-                    <td><strong>Trainer Trainer_4_Name</strong></td>
+                    <td><strong>Trainer 4 Name</strong></td>
                     <td>{{$training_survey_details['trainer_4_name']}}</td>
                   </tr>
 
@@ -304,13 +304,13 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Any additional comments for Trainer_4_Name</strong> : {{$training_survey_details['additional_feedback_trainer_4']}}</td>
+                    <td colspan="2"><strong>Any additional comments for {{$training_survey_details['trainer_4_name']}}</strong> : {{$training_survey_details['additional_feedback_trainer_4']}}</td>
                   </tr>
                   @endif
 
                   @if($training_survey_details['trainer_5_name'])
                   <tr>
-                    <td><strong>Trainer Trainer_5_Name</strong></td>
+                    <td><strong>Trainer 5 Name</strong></td>
                     <td>{{$training_survey_details['trainer_5_name']}}</td>
                   </tr>
 
@@ -350,14 +350,14 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Any additional comments for Trainer_5_Name</strong> : {{$training_survey_details['additional_feedback_trainer_5']}}</td>
+                    <td colspan="2"><strong>Any additional comments for {{$training_survey_details['trainer_5_name']}}</strong> : {{$training_survey_details['additional_feedback_trainer_5']}}</td>
                   </tr>
                   @endif
 
                  
 
                   <tr>
-                    <td colspan="2"><strong>Please share your experience with the following</strong></td>
+                    <td colspan="2" class="text-center"><strong>Please share your experience with the following</strong></td>
                   </tr>
 
                   <tr>

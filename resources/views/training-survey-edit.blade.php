@@ -59,6 +59,7 @@
 
                 <input type="hidden" name="edit_id" id="edit_id" value="{{ $training_survey_details->id }}">
                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="edit_ajax" id="edit_ajax" value="2">
                 
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Your Name</label>
@@ -167,18 +168,18 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="trainer_1_name" class="form-label">Trainer <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" multiple name="trainer_1_name" id="trainer_1_name" required>
+                  <label for="trainer_list_name" class="form-label">Trainer <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" multiple name="trainer_list_name" id="trainer_list_name">
                     <option  value="" disabled>Choose...</option>
                     @foreach($trainer_details as $trainer_detail)
-                    <option value="{{$trainer_detail['id']}}" @if(old('trainer_1_name')==$trainer_detail['id']) selected @endif>{{$trainer_detail['first_name']}} {{$trainer_detail['last_name']}}</option>
+                    <option value="{{$trainer_detail['id']}}" @if((($training_survey_details->trainer_1_id)==$trainer_detail['id']) || (($training_survey_details->trainer_2_id)==$trainer_detail['id']) || (($training_survey_details->trainer_3_id)==$trainer_detail['id']) || (($training_survey_details->trainer_4_id)==$trainer_detail['id']) || (($training_survey_details->trainer_5_id)==$trainer_detail['id'])) selected @endif>{{$trainer_detail['first_name']}} {{$trainer_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
-                    Please select a valid trainer 1.
+                    Please select at least 1 trainer.
                   </div>
-                  @if ($errors->has('trainer_1_name'))
-                    <span class="text-danger">{{ $errors->first('trainer_1_name') }}</span>
+                  @if ($errors->has('trainer_list_name'))
+                    <span class="text-danger">{{ $errors->first('trainer_list_name') }}</span>
                   @endif
                 </div>
 
@@ -187,6 +188,9 @@
                   
                   @if($training_survey_details->trainer_1_id)
                     
+                    <input type="hidden" name="trainer_1_name" id='trainer_1_name' value="{{ $training_survey_details->trainer_1_name}}">
+                    <input type="hidden" name="trainer_1_id" id='trainer_1_id' value="{{ $training_survey_details->trainer_1_id}}">
+
                     <div style="clear: both; height: 1px;"></div>
                       <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
                         <label class="form-label"><strong>Please rate {{$training_survey_details->trainer_1_name}} on the following parameters</strong></label>
@@ -349,6 +353,10 @@
 
 
                   @if($training_survey_details->trainer_2_id)
+
+                    <input type="hidden" name="trainer_2_name" id='trainer_2_name' value="{{ $training_survey_details->trainer_2_name}}">
+                    <input type="hidden" name="trainer_2_id" id='trainer_2_id' value="{{ $training_survey_details->trainer_2_id}}">
+
                     <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
                       <label class="form-label"><strong>Please rate {{$training_survey_details->trainer_2_name}} on the following parameters</strong></label>
                     </div>
@@ -509,6 +517,10 @@
 
 
                   @if($training_survey_details->trainer_3_id)
+
+                    <input type="hidden" name="trainer_3_name" id='trainer_3_name' value="{{ $training_survey_details->trainer_3_name}}">
+                    <input type="hidden" name="trainer_3_id" id='trainer_3_id' value="{{ $training_survey_details->trainer_3_id}}">
+
                     <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
                       <label class="form-label"><strong>Please rate {{$training_survey_details->trainer_3_name}} on the following parameters</strong></label>
                     </div>
@@ -669,6 +681,10 @@
 
 
                   @if($training_survey_details->trainer_4_id)
+
+                    <input type="hidden" name="trainer_4_name" id='trainer_4_name' value="{{ $training_survey_details->trainer_4_name}}">
+                    <input type="hidden" name="trainer_4_id" id='trainer_4_id' value="{{ $training_survey_details->trainer_4_id}}">
+
                     <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
                       <label class="form-label"><strong>Please rate {{$training_survey_details->trainer_4_name}} on the following parameters</strong></label>
                     </div>
@@ -829,6 +845,10 @@
 
 
                   @if($training_survey_details->trainer_5_id)
+
+                    <input type="hidden" name="trainer_5_name" id='trainer_5_name' value="{{ $training_survey_details->trainer_5_name}}">
+                    <input type="hidden" name="trainer_5_id" id='trainer_5_id' value="{{ $training_survey_details->trainer_5_id}}">
+
                     <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
                       <label class="form-label"><strong>Please rate Traininer_5_name on the following parameters</strong></label>
                     </div>
