@@ -20,6 +20,16 @@
     .disable-text{
       background-color: #ddd!important;
     }
+
+    .form-label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .rdioBtn{
+      font-weight: 400!important;
+      font-size: 15px;
+    }
     </style>
 @endsection
 
@@ -222,7 +232,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="target" class="form-label">Target:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="target" class="form-label rdioBtn">Target:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="target" id="target" value="1" @if(($check_in_member_details->target)=='1') checked @endif>
@@ -252,7 +262,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="response" class="form-label">Response <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="response" class="form-label rdioBtn">Response <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     
@@ -281,7 +291,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="jd" class="form-label">JD <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="jd" class="form-label rdioBtn">JD <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
 
@@ -310,7 +320,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="reliability" class="form-label">Reliability <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="reliability" class="form-label rdioBtn">Reliability <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="reliability" id="reliability" value="1" @if(($check_in_member_details->reliability)=='1') checked @endif>
@@ -338,7 +348,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="team_spirit" class="form-label">Team Spirit <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="team_spirit" class="form-label rdioBtn">Team Spirit <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="1" @if(($check_in_member_details->team_spirit)=='1') checked @endif>
@@ -366,7 +376,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="attendance" class="form-label">Attendance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="attendance" class="form-label rdioBtn">Attendance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="attendance" id="attendance" value="1" @if(($check_in_member_details->attendance)=='1') checked @endif>
@@ -395,7 +405,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="attitude" class="form-label">Attitude <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="attitude" class="form-label rdioBtn">Attitude <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="attitude" id="attitude" value="1" @if(($check_in_member_details->attitude)=='1') checked @endif>
@@ -425,7 +435,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rules" class="form-label">Rules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="rules" class="form-label rdioBtn">Rules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="rules" id="rules" value="1" @if(($check_in_member_details->rules)=='1') checked @endif>
@@ -455,7 +465,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="peers" class="form-label">Peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="peers" class="form-label rdioBtn">Peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="peers" id="peers" value="1" @if(($check_in_member_details->peers)=='1') checked @endif>
@@ -491,7 +501,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="integrity" class="form-label">Integrity: Honesty & respect (ईमानंदारी)  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="integrity" class="form-label rdioBtn">Integrity: Honesty & respect (ईमानंदारी)  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="integrity" id="integrity" value="+/+" @if(($check_in_member_details->integrity)=="+/+") checked @endif>
@@ -511,7 +521,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="win_win" class="form-label">Win-Win : You win-I win (सब की जीत) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="win_win" class="form-label rdioBtn">Win-Win : You win-I win (सब की जीत) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="win_win" id="win_win" value="+/+" @if(($check_in_member_details->win_win)=="+/+") checked @endif>
@@ -530,7 +540,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="synergize" class="form-label">Synergize: Together is better (ताल-मेल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="synergize" class="form-label rdioBtn">Synergize: Together is better (ताल-मेल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="synergize" id="synergize" value="+/+" @if(($check_in_member_details->synergize)=="+/+") checked @endif>
@@ -549,7 +559,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="closure" class="form-label">Closure : Do it to close it (समापन) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="closure" class="form-label rdioBtn">Closure : Do it to close it (समापन) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="closure" id="closure" value="+/+" @if(($check_in_member_details->closure)=="+/+") checked @endif>
@@ -568,7 +578,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="knowledge" class="form-label">Knowledge: Ace of trade (ज्ञान) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="knowledge" class="form-label rdioBtn">Knowledge: Ace of trade (ज्ञान) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="knowledge" id="knowledge" value="+/+" @if(($check_in_member_details->knowledge)=="+/+") checked @endif>
@@ -587,7 +597,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="kiss" class="form-label">KISS: Keep it simple, stupid (सरल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="kiss" class="form-label rdioBtn">KISS: Keep it simple, stupid (सरल) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="kiss" id="kiss" value="+/+" @if(($check_in_member_details->kiss)=="+/+") checked @endif>
@@ -607,7 +617,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="innovation" class="form-label">Innovation: New method or idea (नवीनता) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="innovation" class="form-label rdioBtn">Innovation: New method or idea (नवीनता) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="innovation" id="innovation" value="+/+" @if(($check_in_member_details->innovation)=="+/+") checked @endif>
@@ -628,7 +638,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="celebration" class="form-label">Celebration: Work hard, party harder (उत्सव) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="celebration" class="form-label rdioBtn">Celebration: Work hard, party harder (उत्सव) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="celebration" id="celebration" value="+/+" @if(($check_in_member_details->celebration)=="+/+") checked @endif>
@@ -654,7 +664,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_work_culture" class="form-label">The work culture in the company is encouraging:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_work_culture" class="form-label rdioBtn">The work culture in the company is encouraging:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="1" @if(($check_in_member_details->company_work_culture)=='1') checked @endif>
@@ -683,7 +693,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="processes_policies_well_defined" class="form-label">The processes & policies are well defined & well explained. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="processes_policies_well_defined" class="form-label rdioBtn">The processes & policies are well defined & well explained. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="1" @if(($check_in_member_details->processes_policies_well_defined)=='1') checked @endif>
@@ -711,7 +721,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="enjoy_work_life_balance" class="form-label">I enjoy the work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="enjoy_work_life_balance" class="form-label rdioBtn">I enjoy the work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="1" @if(($check_in_member_details->enjoy_work_life_balance)=='1') checked @endif>
@@ -739,7 +749,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="happy_with_treated_in_company" class="form-label">I am happy with how I am treated in the company by managers & peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="happy_with_treated_in_company" class="form-label rdioBtn">I am happy with how I am treated in the company by managers & peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="1" @if(($check_in_member_details->happy_with_treated_in_company)=='1') checked @endif>
@@ -767,7 +777,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="job_title_kras" class="form-label">My job title & KRAs are apt for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="job_title_kras" class="form-label rdioBtn">My job title & KRAs are apt for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="1" @if(($check_in_member_details->job_title_kras)=='1') checked @endif>
@@ -795,7 +805,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="necessary_resources_available" class="form-label">I have necessary resources available, to perform my job <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="necessary_resources_available" class="form-label rdioBtn">I have necessary resources available, to perform my job <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="1" @if(($check_in_member_details->necessary_resources_available)=='1') checked @endif>
@@ -824,7 +834,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="feel_grow_in_organization" class="form-label">I feel I will grow in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="feel_grow_in_organization" class="form-label rdioBtn">I feel I will grow in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="1" @if(($check_in_member_details->feel_grow_in_organization)=='1') checked @endif>
@@ -854,7 +864,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="complete_clarity_my_role" class="form-label">I have complete clarity of my role & what's expected out of me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="complete_clarity_my_role" class="form-label rdioBtn">I have complete clarity of my role & what's expected out of me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="1" @if(($check_in_member_details->complete_clarity_my_role)=='1') checked @endif>
@@ -884,7 +894,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="overall_happy_with_job_role" class="form-label">Overall I am happy with my job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="overall_happy_with_job_role" class="form-label rdioBtn">Overall I am happy with my job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="1" @if(($check_in_member_details->overall_happy_with_job_role)=='1') checked @endif>
@@ -919,7 +929,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="training_elaborative_well_explained" class="form-label">Training was elaborative & well explained.  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_elaborative_well_explained" class="form-label rdioBtn">Training was elaborative & well explained.  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="1" @if(($check_in_member_details->training_elaborative_well_explained)=='1') checked @endif>
@@ -948,7 +958,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="training_duration_apt" class="form-label">Duration of training was apt. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_duration_apt" class="form-label rdioBtn">Duration of training was apt. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="1" @if(($check_in_member_details->training_duration_apt)=='1') checked @endif>
@@ -976,7 +986,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="proper_modules_defined_topic" class="form-label">Proper modules are defined for each topic <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="proper_modules_defined_topic" class="form-label rdioBtn">Proper modules are defined for each topic <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="1" @if(($check_in_member_details->proper_modules_defined_topic)=='1') checked @endif>
@@ -1004,7 +1014,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="adequate_supporting_material" class="form-label">Adequate supporting material is provided to help learn faster & better <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="adequate_supporting_material" class="form-label rdioBtn">Adequate supporting material is provided to help learn faster & better <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="1" @if(($check_in_member_details->adequate_supporting_material)=='1') checked @endif>
@@ -1032,7 +1042,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="clarity_on_topics_during_training" class="form-label">The clarity given on topics during training was apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="clarity_on_topics_during_training" class="form-label rdioBtn">The clarity given on topics during training was apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="1" @if(($check_in_member_details->clarity_on_topics_during_training)=='1') checked @endif>
@@ -1068,7 +1078,7 @@
                 <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ $check_in_member_details->reporting_manager_name }}">
 
                 <div class="col-md-12 position-relative">
-                  <label for="great_relationship_with_manager" class="form-label">I have great relationship with <span id="great_relationship_id">{{ $check_in_member_details->reporting_manager_name }}</span>  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="great_relationship_with_manager" class="form-label rdioBtn">I have great relationship with <span id="great_relationship_id">{{ $check_in_member_details->reporting_manager_name }}</span>  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="1" @if(($check_in_member_details->great_relationship_with_manager)=='1') checked @endif>
@@ -1097,7 +1107,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="reviewed_properly_feedback_shared_timely" class="form-label">My work is reviewed properly & feedback is shared timely <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="reviewed_properly_feedback_shared_timely" class="form-label rdioBtn">My work is reviewed properly & feedback is shared timely <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="1" @if(($check_in_member_details->reviewed_properly_feedback_shared_timely)=='1') checked @endif>
@@ -1125,7 +1135,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="openly_share_opinions" class="form-label">I can openly share opinions & feedback with <span id="openly_share_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="openly_share_opinions" class="form-label rdioBtn">I can openly share opinions & feedback with <span id="openly_share_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="1" @if(($check_in_member_details->openly_share_opinions)=='1') checked @endif>
@@ -1153,7 +1163,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="receive_adequate_guidance" class="form-label">I receive adequate guidance from <span id="adequate_guidance_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_adequate_guidance" class="form-label rdioBtn">I receive adequate guidance from <span id="adequate_guidance_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="1" @if(($check_in_member_details->receive_adequate_guidance)=='1') checked @endif>
@@ -1181,7 +1191,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="receive_adequate_timely_feedback" class="form-label">I receive adequate & timely feedback from <span id="timely_feedback_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_adequate_timely_feedback" class="form-label rdioBtn">I receive adequate & timely feedback from <span id="timely_feedback_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="1" @if(($check_in_member_details->receive_adequate_timely_feedback)=='1') checked @endif>
@@ -1209,7 +1219,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="get_quick_resolution_issue" class="form-label">I get quick resolution to issues from <span id="quick_resolution_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="get_quick_resolution_issue" class="form-label rdioBtn">I get quick resolution to issues from <span id="quick_resolution_id">{{ $check_in_member_details->reporting_manager_name }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="1" @if(($check_in_member_details->get_quick_resolution_issue)=='1') checked @endif>
@@ -1269,7 +1279,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="receive_proper_job_kra" class="form-label">Did you receive a proper Job Description/KRA sheet from your manager at the time of joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_proper_job_kra" class="form-label rdioBtn">Did you receive a proper Job Description/KRA sheet from your manager at the time of joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="Yes" @if(($check_in_member_details->receive_proper_job_kra)=='Yes') checked @endif>
@@ -1290,7 +1300,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="proper_training_plan" class="form-label">Did you receive a proper training plan from your reporting manager at the time of our joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="proper_training_plan" class="form-label rdioBtn">Did you receive a proper training plan from your reporting manager at the time of our joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="Yes" @if(($check_in_member_details->proper_training_plan)=='Yes') checked @endif>
@@ -1311,7 +1321,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="training_executed_planned" class="form-label">Was the training executed as planned?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_executed_planned" class="form-label rdioBtn">Was the training executed as planned?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="Yes" @if(($check_in_member_details->training_executed_planned)=='Yes') checked @endif>
@@ -1331,7 +1341,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="marked_regularly_your_eod" class="form-label">Are you marked regularly on your EODs?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="marked_regularly_your_eod" class="form-label rdioBtn">Are you marked regularly on your EODs?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="Yes" @if(($check_in_member_details->marked_regularly_your_eod)=='Yes') checked @endif>
@@ -1351,7 +1361,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="wpr_happen_atleast_once_week" class="form-label">Do your WPRs happen atleast once a week?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="wpr_happen_atleast_once_week" class="form-label rdioBtn">Do your WPRs happen atleast once a week?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="Yes" @if(($check_in_member_details->wpr_happen_atleast_once_week)=='Yes') checked @endif>
@@ -1371,7 +1381,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="one_to_one_interaction" class="form-label">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ $check_in_member_details->reporting_manager_name }}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="one_to_one_interaction" class="form-label rdioBtn">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ $check_in_member_details->reporting_manager_name }}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="Yes" @if(($check_in_member_details->one_to_one_interaction)=='Yes') checked @endif>

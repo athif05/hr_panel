@@ -1,6 +1,8 @@
 <?php
 $todat_date=date('Y-m-d');
 $last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
+
+$last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 ?>
 <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -133,6 +135,14 @@ $last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
               </a>
             </li>
             @endif
+
+            @if((Auth::user()->joining_date) <= $last70days)
+            <li>
+              <a href="{{ url('/fresh-eye-journal-form') }}">
+                <i class="bi bi-circle"></i><span>Fresh Eye Journal</span>
+              </a>
+            </li>
+            @endif 
 
             <li>
               <a href="{{ url('/ppt-upload') }}">

@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/member-check-in-form-edit/{id}', [App\Http\Controllers\Days45CheckInMemberController::class, 'edit']);
 
 	Route::post('/update-member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'update'])->name('update-member-check-in-form');
-	
+
 	Route::post('/get-reporting-manager-name-ajax', [App\Http\Controllers\Days45CheckInMemberController::class, 'getReportingManagerNameAjax']);
 	/*member check-in form, end here*/
 	
@@ -98,9 +98,12 @@ Route::group(['middleware' => ['auth']], function() {
 	    return view('confirmation-process-initation-form');
 	});
 
-	Route::get('/fresh-eye-journal-form', function () {
-	    return view('fresh-eye-journal-form');
-	});
+
+	/*fresh eye journal form, start here*/
+	Route::get('/fresh-eye-journal-form', [App\Http\Controllers\FreshEyeJournalController::class, 'index']);
+
+	Route::post('/save-fresh-eye-journal-form', [App\Http\Controllers\FreshEyeJournalController::class, 'store'])->name('save-fresh-eye-journal-form');
+	/*fresh eye journal form, start here*/
 
 	
 
