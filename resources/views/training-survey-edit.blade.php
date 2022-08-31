@@ -1197,6 +1197,10 @@
                   @if ($errors->has('is_there_any_topic'))
                     <span class="text-danger">{{ $errors->first('is_there_any_topic') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'is_there_any_topic' );
+                  </script>
                 </div>
 
 
@@ -1209,6 +1213,10 @@
                   @if ($errors->has('interesting_part_elaborate'))
                     <span class="text-danger">{{ $errors->first('interesting_part_elaborate') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'interesting_part_elaborate' );
+                  </script>
                 </div>
 
 
@@ -1221,6 +1229,10 @@
                   @if ($errors->has('any_suggestions_feedback'))
                     <span class="text-danger">{{ $errors->first('any_suggestions_feedback') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'any_suggestions_feedback' );
+                  </script>
                 </div>
 
                 <div class="col-12">

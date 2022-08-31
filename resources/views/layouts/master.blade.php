@@ -32,12 +32,9 @@
   <!-- Custom CSS File -->
   <link href="{{ asset('public/assests/assets/css/custom.css') }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.3.1
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
+  <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
 </head>
 
 <body>

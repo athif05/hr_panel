@@ -1285,3 +1285,13 @@ h6 {
   border: 1px solid #ddd;
   line-height: 29px;
 }
+
+.margin_top_bottom{
+  margin-bottom: -16px!important; 
+  margin-top: 25px!important;
+}
+
+
+.txt_justify{
+  text-align: justify!important;
+}

@@ -403,16 +403,16 @@
                   </tr>
 
                   
-                  <tr>
-                    <td colspan="2"><strong>Is there any topic that you still need training on?</strong> : {{$training_survey_details['is_there_any_topic']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Is there any topic that you still need training on?</strong> : {!! $training_survey_details['is_there_any_topic'] !!}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Which part of the training was the most interesting? Please elaborate.</strong> : {{$training_survey_details['interesting_part_elaborate']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Which part of the training was the most interesting? Please elaborate.</strong> : {!! $training_survey_details['interesting_part_elaborate'] !!}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any suggestion/feedback you would like to give in helping us to improve our training sessions?</strong> : {{$training_survey_details['any_suggestions_feedback']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any suggestion/feedback you would like to give in helping us to improve our training sessions?</strong> : {!! $training_survey_details['any_suggestions_feedback'] !!}</td>
                   </tr>
 
                 </tbody>

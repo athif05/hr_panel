@@ -16,6 +16,43 @@
   <script type="text/javascript">
 
 		jQuery(document).ready(function(){
+
+			/*show reporting manager name in check-in form member, start here*/
+			$('#reporting_manager').on('change', function(){
+				var reporting_manager_id=this.value;
+				console.log(reporting_manager_id);
+
+				$.ajax({
+					url: "{{url('get-reporting-manager-name-ajax')}}", 
+					type: "POST",  
+					data:{
+						reporting_manager_id:reporting_manager_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#reporting_manager_name_ajax').val(result);
+						$('#great_relationship_id').html(result);
+						$('#openly_share_id').html(result);
+						$('#adequate_guidance_id').html(result);
+						$('#timely_feedback_id').html(result);
+						$('#quick_resolution_id').html(result);
+						$('#any_additional_feedback_manager_id').html(result);
+						$('#1_on_1_id').html(result);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+			});
+			/*show reporting manager name in check-in form member, end here*/
+
+
 	
 			/* call trainer name list ajax function, start here */
 			$('#trainer_list_name').on('change', function(){

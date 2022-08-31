@@ -7,8 +7,6 @@
 
     <title>MOM Form | {{ env('MY_SITE_NAME') }}</title>
 
-    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-
     <style type="text/css">
     	.form-check-input[type=radio] {
 		  margin-left: 30px;

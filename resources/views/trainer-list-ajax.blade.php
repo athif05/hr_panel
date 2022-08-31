@@ -158,6 +158,10 @@
               @if ($errors->has('additional_feedback_trainer_$j'))
                 <span class="text-danger">{{ $errors->first('additional_feedback_trainer_$j') }}</span>
               @endif
+
+              <script>
+                    CKEDITOR.replace( 'additional_feedback_trainer_$j' );
+                  </script>
             </div>
 
 

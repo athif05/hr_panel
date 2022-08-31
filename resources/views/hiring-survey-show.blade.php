@@ -190,12 +190,12 @@
                     <td>{{$hiring_survey_details['overall_satisfied_hiring_recruiting_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any additional feedback you would like to give for the recruiter?</strong> : {{$hiring_survey_details['additional_feedback_recruiter']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any additional feedback you would like to give for the recruiter?</strong> : {!! $hiring_survey_details['additional_feedback_recruiter'] !!}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any suggestions you would like to give that would help us to improve the hiring process?</strong> : {{$hiring_survey_details['any_suggestions_improve_hiring_process']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any suggestions you would like to give that would help us to improve the hiring process?</strong> : {!! $hiring_survey_details['any_suggestions_improve_hiring_process'] !!}</td>
                   </tr>
 
                 </tbody>

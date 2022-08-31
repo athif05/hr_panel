@@ -85,6 +85,12 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'index']);
 
 	Route::post('/save-member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'store'])->name('save-member-check-in-form');
+
+	Route::get('/member-check-in-form-edit/{id}', [App\Http\Controllers\Days45CheckInMemberController::class, 'edit']);
+
+	Route::post('/update-member-check-in-form', [App\Http\Controllers\Days45CheckInMemberController::class, 'update'])->name('update-member-check-in-form');
+	
+	Route::post('/get-reporting-manager-name-ajax', [App\Http\Controllers\Days45CheckInMemberController::class, 'getReportingManagerNameAjax']);
 	/*member check-in form, end here*/
 	
 

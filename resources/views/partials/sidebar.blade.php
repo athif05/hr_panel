@@ -115,12 +115,17 @@ $last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
             </li>
 
             <li>
-              <a href="{{ url('/ppt-upload') }}">
-                <i class="bi bi-upload"></i>
-                <span>Upload PPT</span>
+              <a href="{{ url('/hiring-survey') }}">
+                <i class="bi bi-circle"></i><span>Hiring Survey</span>
               </a>
             </li>
-            
+
+            <li>
+              <a href="{{ url('/training-survey') }}">
+                <i class="bi bi-circle"></i><span>Training Survey</span>
+              </a>
+            </li>
+
             @if((Auth::user()->joining_date) <= $last45days)
             <li>
               <a href="{{ url('/member-check-in-form') }}">
@@ -128,6 +133,15 @@ $last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
               </a>
             </li>
             @endif
+
+            <li>
+              <a href="{{ url('/ppt-upload') }}">
+                <i class="bi bi-upload"></i>
+                <span>Upload PPT</span>
+              </a>
+            </li>
+            
+            
           @endif
 
           

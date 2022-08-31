@@ -449,6 +449,10 @@
                   @if ($errors->has('additional_feedback_recruiter'))
                     <span class="text-danger">{{ $errors->first('additional_feedback_recruiter') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'additional_feedback_recruiter' );
+                  </script>
                 </div>
 
 
@@ -459,6 +463,10 @@
                   @if ($errors->has('any_suggestions_improve_hiring_process'))
                     <span class="text-danger">{{ $errors->first('any_suggestions_improve_hiring_process') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'any_suggestions_improve_hiring_process' );
+                  </script>
                 </div>
 
                 <div class="col-12">

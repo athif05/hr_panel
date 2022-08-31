@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('company_name')->nullable();
             $table->string('location_name')->nullable();
             $table->string('reporting_manager')->nullable();
+            $table->string('reporting_manager_name')->nullable();
             $table->string('head_of_department')->nullable();
             $table->date('joining_date')->nullable();
             $table->string('hr_name_taking_session')->nullable();
