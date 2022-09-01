@@ -103,6 +103,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/fresh-eye-journal-form', [App\Http\Controllers\FreshEyeJournalController::class, 'index']);
 
 	Route::post('/save-fresh-eye-journal-form', [App\Http\Controllers\FreshEyeJournalController::class, 'store'])->name('save-fresh-eye-journal-form');
+
+	Route::post('/get-company-name-fresh-eye-ajax', [App\Http\Controllers\FreshEyeJournalController::class, 'getCompanyNameAjax']);
+
+	Route::post('/get-hod-name-ajax', [App\Http\Controllers\FreshEyeJournalController::class, 'getHODNameAjax']);
 	/*fresh eye journal form, start here*/
 
 	

@@ -17,6 +17,101 @@
 
 		jQuery(document).ready(function(){
 
+			/*show HOD name in fresh eye form, start here*/
+			$('#head_of_department').on('change', function(){
+				var hod_id=this.value;
+				console.log(hod_id);
+
+				$.ajax({
+					url: "{{url('get-hod-name-ajax')}}", 
+					type: "POST",  
+					data:{
+						hod_id:hod_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#head_of_department_name_ajax').val(result);
+						$('.rate_5_hod_name_ajax_class').html(result);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+			});
+			/*show HOD name in fresh eye form, end here*/
+
+
+			/*show reporting manager name in fresh eye form, start here*/
+			$('#reporting_manager_fresh').on('change', function(){
+				var reporting_manager_id=this.value;
+				console.log(reporting_manager_id);
+
+				$.ajax({
+					url: "{{url('get-reporting-manager-name-ajax')}}", 
+					type: "POST",  
+					data:{
+						reporting_manager_id:reporting_manager_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#reporting_manager_name_ajax').val(result);
+						$('#rate_5_reporting_manager_name_ajax').html(result);
+						$('.rate_5_reporting_manager_name_ajax_class').html(result);
+						$('#how_transparent_reporting_manager_name_ajax').html(result);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+			});
+			/*show reporting manager name in fresh eye form, end here*/
+
+
+			/*show company name in fresh eye form, start here*/
+			$('#company_name_fresh').on('change', function(){
+				var company_name_id=this.value;
+				console.log(company_name_id);
+
+				$.ajax({
+					url: "{{url('get-company-name-fresh-eye-ajax')}}", 
+					type: "POST",  
+					data:{
+						company_name_id:company_name_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#company_name_ajax').val(result);
+						$('#any_additional_feedback_manager_company_name').html(result);
+						$('#what_do_you_like_about_company_name').html(result);
+						$('#what_do_you_dislike_about_company_name').html(result);
+						$('#satisfied_employee_benefits_offered_company_name').html(result);
+				   },
+		            error: function (error) {
+		                console.log(error);
+		            } 
+
+			   });
+
+			});
+			/*show company name in fresh eye form, end here*/
+
+
 			/*show reporting manager name in check-in form member, start here*/
 			$('#reporting_manager').on('change', function(){
 				var reporting_manager_id=this.value;
@@ -107,18 +202,6 @@
 			/* call trainer name list ajax function, end here */
 
 		});
-
-
-  	/*function trainer_list(){
-		var selected = [];
-		var count=0;
-		for (var option of document.getElementById('trainer_1_name').options) {
-	       if (option.selected) {
-	           selected.push(option.value);
-				count++;
-	       }
-		}
-  	}*/
 
 
   	/* Manager MOM form Average Rating of the entire presentation, start here*/

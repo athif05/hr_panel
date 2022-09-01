@@ -65,6 +65,10 @@
   <!--=== Sweet Alert Js ===-->
   <script src="{{ asset('public/assests/assets/js/sweetalert.min.js') }}"></script>
 
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('public/assests/assets/js/custom.js') }}"></script>
+
 </body>
 
 </html>
