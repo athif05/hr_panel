@@ -46,6 +46,13 @@
             <div class="card-body">
               <h5 class="card-title">Fill Fresh Eye Journal Form</h5>
               
+              <!-- @if ($errors)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Fill all required fields...
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              @endif -->
+
 
               <!-- Custom Styled Validation with Tooltips -->
               <form method="post" action="{{ route('save-fresh-eye-journal-form') }}" class="row g-3 needs-validation" novalidate>
@@ -154,6 +161,7 @@
 
 
                 <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ old('reporting_manager_name_ajax') }}">
+
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager_fresh" class="form-label">Name of Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="reporting_manager_fresh" id="reporting_manager_fresh" required>
@@ -210,7 +218,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_things_like_your_job_1" id="top_3_things_like_your_job_1" value="{{ old('top_3_things_like_your_job_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_things_like_your_job_1'))
@@ -223,7 +231,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_things_like_your_job_2" id="top_3_things_like_your_job_2" value="{{ old('top_3_things_like_your_job_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_things_like_your_job_2'))
@@ -236,7 +244,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_things_like_your_job_3" id="top_3_things_like_your_job_3" value="{{ old('top_3_things_like_your_job_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_things_like_your_job_3'))
@@ -255,7 +263,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_things_wish_change_job_role_1" id="three_things_wish_change_job_role_1" value="{{ old('three_things_wish_change_job_role_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_things_wish_change_job_role_1'))
@@ -268,7 +276,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_things_wish_change_job_role_2" id="three_things_wish_change_job_role_2" value="{{ old('three_things_wish_change_job_role_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_things_wish_change_job_role_2'))
@@ -281,7 +289,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_things_wish_change_job_role_3" id="three_things_wish_change_job_role_3" value="{{ old('three_things_wish_change_job_role_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_things_wish_change_job_role_3'))
@@ -1068,8 +1076,8 @@
                     <input class="form-check-input" type="radio" name="how_well_able_learn_under_guidance_reporting_manager" id="how_well_able_learn_under_guidance_reporting_manager" value="5" @if(old('how_well_able_learn_under_guidance_reporting_manager')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
 
-                    <input class="form-check-input" type="radio" name="how_well_able_learn_under_guidance_reporting_manager" id="how_well_able_learn_under_guidance_reporting_manager" value="NA" @if(old('how_well_able_learn_under_guidance_reporting_manager')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <!-- <input class="form-check-input" type="radio" name="how_well_able_learn_under_guidance_reporting_manager" id="how_well_able_learn_under_guidance_reporting_manager" value="NA" @if(old('how_well_able_learn_under_guidance_reporting_manager')=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label> -->
                   </span>
 
                   @if ($errors->has('how_well_able_learn_under_guidance_reporting_manager'))
@@ -1092,19 +1100,6 @@
                   </script>
 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
@@ -1306,7 +1301,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_1" id="top_3_strengths_reporting_manager_qi_1" value="{{ old('top_3_strengths_reporting_manager_qi_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_reporting_manager_qi_1'))
@@ -1319,7 +1314,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_2" id="top_3_strengths_reporting_manager_qi_2" value="{{ old('top_3_strengths_reporting_manager_qi_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_reporting_manager_qi_2'))
@@ -1332,7 +1327,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_3" id="top_3_strengths_reporting_manager_qi_3" value="{{ old('top_3_strengths_reporting_manager_qi_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_reporting_manager_qi_3'))
@@ -1351,7 +1346,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_1" id="three_areas_improvement_reporting_manager_qi_1" value="{{ old('three_areas_improvement_reporting_manager_qi_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_reporting_manager_qi_1'))
@@ -1364,7 +1359,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_2" id="three_areas_improvement_reporting_manager_qi_2" value="{{ old('three_areas_improvement_reporting_manager_qi_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_reporting_manager_qi_2'))
@@ -1377,7 +1372,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_3" id="three_areas_improvement_reporting_manager_qi_3" value="{{ old('three_areas_improvement_reporting_manager_qi_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_reporting_manager_qi_3'))
@@ -1605,7 +1600,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_hod_qj_1" id="top_3_strengths_hod_qj_1" value="{{ old('top_3_strengths_hod_qj_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_hod_qj_1'))
@@ -1618,7 +1613,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_hod_qj_2" id="top_3_strengths_hod_qj_2" value="{{ old('top_3_strengths_hod_qj_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_hod_qj_2'))
@@ -1631,7 +1626,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="top_3_strengths_hod_qj_3" id="top_3_strengths_hod_qj_3" value="{{ old('top_3_strengths_hod_qj_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('top_3_strengths_hod_qj_3'))
@@ -1650,7 +1645,7 @@
                     <div class="div3">1. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_hod_qj_1" id="three_areas_improvement_hod_qj_1" value="{{ old('three_areas_improvement_hod_qj_1') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_hod_qj_1'))
@@ -1663,7 +1658,7 @@
                     <div class="div3">2. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_hod_qj_2" id="three_areas_improvement_hod_qj_2" value="{{ old('three_areas_improvement_hod_qj_2') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_hod_qj_2'))
@@ -1676,7 +1671,7 @@
                     <div class="div3">3. </div>
                     <div class="div97">
                       <input type="text" class="form-control" name="three_areas_improvement_hod_qj_3" id="three_areas_improvement_hod_qj_3" value="{{ old('three_areas_improvement_hod_qj_3') }}" required>
-                      <div class="valid-tooltip">
+                      <div class="valid-feedback">
                         Looks good!
                       </div>
                       @if ($errors->has('three_areas_improvement_hod_qj_3'))
@@ -1701,9 +1696,6 @@
                   </script>
 
                 </div>
-
-
-
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
