@@ -64,7 +64,7 @@
 						</td>
             <td>
               @if($all_name['logo'])
-                <img src="{{ asset('').$all_name['logo'] }}" alt="Profile" class="rounded-circle" style="width: 100px;">
+                <img src="{{ asset('').$all_name['logo'] }}" alt="Profile" style="width: 100px;">
               @endif
             </td>
 						<td>
