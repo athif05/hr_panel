@@ -269,6 +269,18 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </a>
           </li>
 
+          <li>
+            <a href="{{ url('/manage-departments') }}">
+              <i class="bi bi-circle"></i><span>Manage Departments</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/manage-designations') }}">
+              <i class="bi bi-circle"></i><span>Manage Designations</span>
+            </a>
+          </li>
+
           
         </ul>
       </li><!-- End Tables Nav -->

@@ -115,6 +115,33 @@ Route::group(['middleware' => ['auth']], function() {
 
 	
 
+	/* manage departments, start here */
+	Route::get('/manage-departments',  [App\Http\Controllers\DepartmentController::class, 'index'])->middleware('isManagement');
+
+	Route::get('/add-new-department',  [App\Http\Controllers\DepartmentController::class, 'create'])->middleware('isManagement');
+
+	Route::post('/save-new-department', [App\Http\Controllers\DepartmentController::class, 'store'])->name('save-new-department');
+
+	Route::get('/edit-department/{id}', [App\Http\Controllers\DepartmentController::class, 'edit'])->middleware('isManagement');
+
+	Route::post('/update-department', [App\Http\Controllers\DepartmentController::class, 'update'])->name('update-department');
+	/* manage departments, end here */
+
+
+
+	/* manage departments, start here */
+	Route::get('/manage-designations',  [App\Http\Controllers\DesignationController::class, 'index'])->middleware('isManagement');
+
+	Route::get('/add-new-designation',  [App\Http\Controllers\DesignationController::class, 'create'])->middleware('isManagement');
+
+	Route::post('/save-new-designation', [App\Http\Controllers\DesignationController::class, 'store'])->name('save-new-designation');
+
+	Route::get('/edit-designation/{id}', [App\Http\Controllers\DesignationController::class, 'edit'])->middleware('isManagement');
+
+	Route::post('/update-designation', [App\Http\Controllers\DesignationController::class, 'update'])->name('update-designation');
+	/* manage departments, end here */
+
+
 
 	/* manage roles, start here */
 	Route::get('/manage-roles',  [App\Http\Controllers\RoleController::class, 'index'])->middleware('isManagement');
