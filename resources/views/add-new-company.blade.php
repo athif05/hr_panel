@@ -39,7 +39,7 @@
 
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('save-new-company')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('save-new-company')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
                 @csrf
 
                 <div class="col-md-6 position-relative">
@@ -52,6 +52,18 @@
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                   @endif
                 </div>
+
+
+                <div class="col-md-6 position-relative">
+                  <label for="name" class="form-label">Company Logo</label>
+                  <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg, image/jpg">
+                  @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                  @endif
+                </div>
+
+                
+
 
                 <div class="col-12">
                   <input type="submit" name="submit" value="Add" class="btn btn-primary">

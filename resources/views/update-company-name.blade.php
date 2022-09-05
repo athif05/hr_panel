@@ -24,7 +24,7 @@
               	<h5 class="card-title">Update Company Name</h5>
               
                <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('update-company-name')}}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('update-company-name')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
                 @csrf
 
                 <input type="hidden" name="edit_id" id="edit_id" value="{{ $company_details['id']}}">
@@ -39,6 +39,19 @@
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                   @endif
                 </div>
+
+
+                <div class="col-md-6 position-relative">
+                  <label for="name" class="form-label">Company Logo</label>
+                  <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg, image/jpg">
+                  @if($company_details['logo'])
+                    <img src="{{ asset('').$company_details['logo'] }}" alt="Profile" class="rounded-circle" style="width: 100px;">
+                  @endif
+                  @if ($errors->has('image'))
+                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                  @endif
+                </div>
+
 
                 <div class="col-12">
                   <input type="submit" name="submit" value="Update" class="btn btn-primary">

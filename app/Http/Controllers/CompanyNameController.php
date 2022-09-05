@@ -45,8 +45,15 @@ class CompanyNameController extends Controller
             'name.required' => 'Name is required',
         ]);
 
+
+        $profile_filePath = $request->file('image')->store('all-company-logos');
+
+        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+
+
         $input = CompanyName::insert([
             'name' => $request->name,
+            'logo' => $profile_pic_file_path,
             'status' => '1',
         ]);
 
@@ -91,16 +98,48 @@ class CompanyNameController extends Controller
      */
     public function update(Request $request)
     {
+        $base_url=$_SERVER['DOCUMENT_ROOT'];
+
+        $edit_id=$request->edit_id;
+
         $request->validate([
             'name' => 'required|max:100',
         ], [
             'name.required' => 'Name is required',
         ]);
 
-        CompanyName::where('id', $request->edit_id)
+
+        CompanyName::where('id', $edit_id)
             ->update([
                 'name' => $request->name,
             ]);
+
+
+        if($request->file('image')) {
+
+            $image_details = CompanyName::where('id', $edit_id)->first();
+
+            $unlink_url=$base_url.''.$image_details['logo'];
+
+
+            if($image_details['logo']){
+                
+                unlink($unlink_url);
+
+            }
+
+            $profile_filePath = $request->file('image')->store('all-company-logos');
+
+            $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+
+            CompanyName::where('id', $edit_id)
+            ->update([
+                'name' => $request->name,
+                'logo' => $profile_pic_file_path,
+            ]);
+
+        }
+        
 
         return redirect('/manage-company-names')->with('success_msg', 'Company name updated.');
     }

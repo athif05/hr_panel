@@ -42,11 +42,12 @@
               
 
               <!-- Custom Styled Validation with Tooltips -->
-              <table class="table table-striped">
+              <table class="table datatable table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Company Name</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Logo</th>
                     <th scope="col">Status</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -61,6 +62,11 @@
 								{{$all_name['name']}}
 							</a>
 						</td>
+            <td>
+              @if($all_name['logo'])
+                <img src="{{ asset('').$all_name['logo'] }}" alt="Profile" class="rounded-circle" style="width: 100px;">
+              @endif
+            </td>
 						<td>
 							
 							<label class="switch">
