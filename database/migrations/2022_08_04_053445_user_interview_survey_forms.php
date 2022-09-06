@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('official_email');
             $table->string('company_name');
             $table->string('job_position_name');
-            $table->string('location_name');
-            $table->string('learn_about_job_opening');
-            $table->string('referral_source_name');
-            $table->string('company_hr_name');
+            $table->string('location_name')->nullable();
+            $table->string('learn_about_job_opening')->nullable();
+            $table->string('referral_source_name')->nullable();
+            $table->string('company_hr_name')->nullable();
             $table->enum('approachable', ['0','1','2','3','4','5'])->default('0');
             $table->enum('respectful', ['0','1','2','3','4','5'])->default('0');
             $table->enum('explain_job_role', ['0','1','2','3','4','5'])->default('0');
@@ -47,11 +47,11 @@ return new class extends Migration
             $table->enum('staff_helpful_supportive', ['0','1','2','3','4','5'])->default('0');
             $table->enum('received_interview_feedback', ['0','1','2','3','4','5'])->default('0');
 
-            $table->string('define_overall_interview_process');
+            $table->string('define_overall_interview_process')->nullable();
 
             $table->enum('rate_overall_interview_process', ['0','1','2','3','4','5'])->default('0');
 
-            $table->text('comments_suggestions_feedback');
+            $table->text('comments_suggestions_feedback')->nullable();
 
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             

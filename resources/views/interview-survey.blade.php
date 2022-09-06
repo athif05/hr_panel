@@ -80,11 +80,11 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="company_name" class="form-label">Which company did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name" id="company_name" required>
+                  <label for="company_name" class="form-label">Which company did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <select class="form-select disable-text" name="company_name" id="company_name">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                    <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                    <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-tooltip">
@@ -96,8 +96,13 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="job_position_name" class="form-label">What position were you interviewed for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="job_position_name" id="job_position_name" value="{{ old('job_position_name') }}" required>
+                  <label for="job_position_name" class="form-label">What position were you interviewed for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <select class="form-select disable-text" name="job_position_name" id="job_position_name">
+                    <option value="">Choose...</option>
+                    @foreach($designation_names as $designation_name)
+                    <option value="{{$designation_name['id']}}" @if((Auth::user()->designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -107,11 +112,11 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="location_name" class="form-label">Which location did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="location_name" id="location_name" required>
+                  <label for="location_name" class="form-label">Which location did you apply for? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <select class="form-select disable-text" name="location_name" id="location_name" >
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
-                    <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                    <option value="{{$company_location['id']}}" @if((Auth::user()->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-tooltip">
@@ -123,8 +128,8 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="learn_about_job_opening" class="form-label">How did you learn about the job opening with us? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="learn_about_job_opening" id="learn_about_job_opening" required>
+                  <label for="learn_about_job_opening" class="form-label">How did you learn about the job opening with us? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <select class="form-select" name="learn_about_job_opening" id="learn_about_job_opening" >
                     <option value="">Choose...</option>
                     @foreach($job_opening_types as $job_opening_type)
                     <option value="{{$job_opening_type['id']}}" @if(old('learn_about_job_opening')==$job_opening_type['id']) selected @endif>{{$job_opening_type['name']}}</option>
@@ -139,8 +144,8 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="referral_source_name" class="form-label">Name the Referral Source <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="referral_source_name" id="referral_source_name" value="{{ old('referral_source_name') }}" required>
+                  <label for="referral_source_name" class="form-label">Name the Referral Source <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <input type="text" class="form-control" name="referral_source_name" id="referral_source_name" value="{{ old('referral_source_name') }}" >
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -150,8 +155,8 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Name the HR from the company, who coordinated with you for the interview? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="company_hr_name" id="company_hr_name" value="{{ old('company_hr_name') }}" required>
+                  <label for="company_hr_name" class="form-label">Name the HR from the company, who coordinated with you for the interview? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <input type="text" class="form-control" name="company_hr_name" id="company_hr_name" value="{{ old('company_hr_name') }}" >
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -166,7 +171,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="approachable" class="form-label">Approachable:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="approachable" class="form-label">Approachable:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="approachable" id="approachable" value="1" @if(old('approachable')=='1') checked @endif>
@@ -192,7 +197,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Respectful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Respectful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="respectful" id="respectful" value="1" @if(old('respectful')=='1') checked @endif>
@@ -217,7 +222,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Could explain the job role well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Could explain the job role well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="explain_job_role" id="explain_job_role" value="1" @if(old('explain_job_role')=='1') checked @endif>
@@ -242,7 +247,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Could explain the company background well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Could explain the company background well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="explain_company_background" id="explain_company_background" value="1" @if(old('explain_company_background')=='1') checked @endif>
@@ -267,7 +272,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Shared proper information about interview process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Shared proper information about interview process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="shared_proper_interview_information" id="shared_proper_interview_information" value="1" @if(old('shared_proper_interview_information')=='1') checked @endif>
@@ -292,7 +297,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Discussed about my profile in detail to check my fitment with the role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Discussed about my profile in detail to check my fitment with the role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="discussed_my_profile" id="discussed_my_profile" value="1" @if(old('discussed_my_profile')=='1') checked @endif>
@@ -318,7 +323,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Shared my interview feedback quickly after the interview <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Shared my interview feedback quickly after the interview <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="shared_interview_feedback_quickly" id="shared_interview_feedback_quickly" value="1" @if(old('shared_interview_feedback_quickly')=='1') checked @endif>
@@ -344,7 +349,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Any additional feedback for the recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="validationTooltip02" class="form-label">Any additional feedback for the recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
                   <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px">{{ old('additional_feedback_recruiter')}}</textarea>
 
                   @if ($errors->has('additional_feedback_recruiter'))
@@ -353,7 +358,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label"><strong>How much will you rate overall conduct? (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label></label><br>
+                  <label for="validationTooltip02" class="form-label"><strong>How much will you rate overall conduct? (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="1" @if(old('rate_overall_conduct')=='1') checked @endif>
@@ -383,7 +388,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Professionalism <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Professionalism <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="1" @if(old('professionalism')=='1') checked @endif>
@@ -408,7 +413,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="1" @if(old('friendliness')=='1') checked @endif>
@@ -433,7 +438,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Heplful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Heplful <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="heplful" id="heplful" value="1" @if(old('heplful')=='1') checked @endif>
@@ -458,7 +463,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Approachable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Approachable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="approachable_interviewers" id="approachable_interviewers" value="1" @if(old('approachable_interviewers')=='1') checked @endif>
@@ -483,7 +488,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Respectable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Respectable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="respectable" id="respectable" value="1" @if(old('respectable')=='1') checked @endif>
@@ -508,7 +513,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Knowledgeable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Knowledgeable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="knowledgeable" id="knowledgeable" value="1" @if(old('knowledgeable')=='1') checked @endif>
@@ -533,7 +538,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Clear communication about company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Clear communication about company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="clear_communication_about_company" id="clear_communication_about_company" value="1" @if(old('clear_communication_about_company')=='1') checked @endif>
@@ -558,7 +563,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Clear communication about job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Clear communication about job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="clear_communication_job_role" id="clear_communication_job_role" value="1" @if(old('clear_communication_job_role')=='1') checked @endif>
@@ -589,7 +594,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The process started on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">The process started on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="process_started_on_time" id="process_started_on_time" value="1" @if(old('process_started_on_time')=='1') checked @endif>
@@ -614,7 +619,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The process was fair & apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">The process was fair & apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="process_fair_apt" id="process_fair_apt" value="1" @if(old('process_fair_apt')=='1') checked @endif>
@@ -639,7 +644,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">The seating arrangement was comfortable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">The seating arrangement was comfortable <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="seating_arrangement_comfortable" id="seating_arrangement_comfortable" value="1" @if(old('seating_arrangement_comfortable')=='51') checked @endif>
@@ -664,7 +669,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Staff was helpful & supportive <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Staff was helpful & supportive <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="staff_helpful_supportive" id="staff_helpful_supportive" value="1" @if(old('staff_helpful_supportive')=='1') checked @endif>
@@ -689,7 +694,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">Received my interview feedback on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="validationTooltip02" class="form-label">Received my interview feedback on time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="received_interview_feedback" id="received_interview_feedback" value="1" @if(old('received_interview_feedback')=='1') checked @endif>
@@ -715,8 +720,8 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="define_overall_interview_process" class="form-label">How will you define the overall Interview Process? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="define_overall_interview_process" id="define_overall_interview_process" required>
+                  <label for="define_overall_interview_process" class="form-label">How will you define the overall Interview Process? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
+                  <select class="form-select" name="define_overall_interview_process" id="define_overall_interview_process" >
                     <option value="">Choose...</option>
 
                     <option value="Challenging and interesting" @if(old('define_overall_interview_process')=='Challenging and interesting') selected @endif>Challenging and interesting</option>
@@ -737,7 +742,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_interview_process" class="form-label"><strong>Rate the overall interview process. (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="rate_overall_interview_process" class="form-label"><strong>Rate the overall interview process. (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="rate_overall_interview_process" id="rate_overall_interview_process" value="1" @if(old('rate_overall_interview_process')=='1') checked @endif>
@@ -764,7 +769,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="comments_suggestions_feedback" class="form-label">If you have any comments, suggestions, or feedback, please enter it below: <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="comments_suggestions_feedback" class="form-label">If you have any comments, suggestions, or feedback, please enter it below: <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label>
                   <textarea class="form-control" name="comments_suggestions_feedback" id="comments_suggestions_feedback" style="height: 100px">{{ old('comments_suggestions_feedback') }}</textarea>
                   <div class="invalid-tooltip">
                     Please provide a valid city.
