@@ -82,7 +82,15 @@
 
                   <tr>
                     <td>What position were you interviewed for?</td>
-                    <td>{{$find['job_position_name']}}</td>
+                    <td>
+                      @foreach($designation_names as $designation_name)
+
+                        @if($designation_name['id']==$find['job_position_name'])
+                        {{$designation_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
