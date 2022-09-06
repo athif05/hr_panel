@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+
+        $users = User::with('company_name')->where('id', $user_id)->first();
+        $currentLogo = $users->company_name->logo;
+        Session::put('company_logo', $currentLogo);
+
         return view('home');
     }
 }

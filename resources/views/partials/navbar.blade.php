@@ -3,8 +3,12 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('public/assests/assets/img/logo.png') }}" alt="">
+      <a href="index.html" class="logo d-flex ">
+        @if(session('company_logo'))
+          <img src="{{ asset('').session('company_logo') }}" alt="VCOne">
+        @else
+          <img src="{{ asset('public/assests/assets/img/logo.png') }}" alt="VCOne">
+        @endif
         <!--<span class="d-none d-lg-block">{{ env('MY_SITE_NAME') }}</span>-->
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
