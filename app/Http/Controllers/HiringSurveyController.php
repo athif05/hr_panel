@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\HiringSurvey;
-use App\Models\CompanyName;
+use App\Models\{CompanyName, Designation, Department};
 use App\Models\CompanyLocation;
 use App\Models\JobOpeningTypes;
 use App\Models\User;
@@ -47,6 +47,16 @@ class HiringSurveyController extends Controller
             ->orWhere('role_id', '6')
             ->orderBy('first_name','asc')
             ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
         //dd($company_names);
 
         /*check record is exist or not*/
@@ -62,7 +72,7 @@ class HiringSurveyController extends Controller
 
         if(($hiring_survey_details === null) or (($hiring_survey_details['status'] === '0') or ($hiring_survey_details['status'] === ''))){
 
-            return view('hiring-survey', compact('member_details','company_names','company_locations','job_opening_types','recruiter_details'));
+            return view('hiring-survey', compact('member_details','company_names','company_locations','job_opening_types','designation_names','department_names','recruiter_details'));
 
         } else if($hiring_survey_details['status'] === '1'){
 
@@ -74,7 +84,7 @@ class HiringSurveyController extends Controller
 
             ///return redirect('/thank-you')->with('thank_you', 'Alert, you have already submit interview survey form.');
 
-            return view('hiring-survey-show', compact('hiring_survey_details','company_names','company_locations','job_opening_types','recruiter_details'));
+            return view('hiring-survey-show', compact('hiring_survey_details','company_names','company_locations','job_opening_types','designation_names','department_names','recruiter_details'));
         }
 
         
@@ -98,60 +108,61 @@ class HiringSurveyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-            'designation' => 'required|max:50',
-            'department' => 'required|max:50',
-            'location' => 'required',
-            'company_name' => 'required',
-            'recruiter_name' => 'required',
-            'location_name' => 'required',
-            'open_designation_name' => 'required',
-            'no_of_openings' => 'required',
-            'all_posoitions_closed' => 'required',
-            'recruiter_helpful_recruitment_process' => 'required',
-            'recruiter_response' => 'required',
-            'recruiter_understanding_job_requirement' => 'required',
-            'quality_of_candidates_presented' => 'required',
-            'number_of_candidates_presented' => 'required',
-            'rate_the_recruiter_correct_information' => 'required',
-            'assessment_screening_candidates' => 'required',
-            'time_taken_fill_open_position' => 'required',
-            'overall_satisfied_hiring_recruiting_process' => 'required',
-            'additional_feedback_recruiter' => 'required',
-            'any_suggestions_improve_hiring_process' => 'required',
-        ], [
-            'member_name.required' => 'Name is required',
-            'designation.required' => 'Designation is required',
-            'department.required' => 'Department is required',
-            'location.required' => 'Location is required',
-            'company_name.required' => 'Company name is required',
-            'recruiter_name.required' => 'Recruiter name is required',
-            'location_name.required' => 'Location name is required',
-            'open_designation_name.required' => 'Open designation name is required',
-            'no_of_openings.required' => 'No of openings is required',
-            'all_posoitions_closed.required' => 'All posoitions closed?',
-            'recruiter_helpful_recruitment_process.required' => 'Please rate...',
-            'recruiter_response.required' => 'Please rate...',
-            'recruiter_understanding_job_requirement.required' => 'Please rate...',
-            'quality_of_candidates_presented.required' => 'Please rate...',
-            'number_of_candidates_presented.required' => 'Please rate...',
-            'rate_the_recruiter_correct_information.required' => 'Please rate...',
-            'assessment_screening_candidates.required' => 'Additional feedback for recruiter is required',
-            'time_taken_fill_open_position.required' => 'Please rate...',
-            'overall_satisfied_hiring_recruiting_process.required' => 'Please rate...',
-            'additional_feedback_recruiter.required' => 'Additional feedback is required',
-            'any_suggestions_improve_hiring_process.required' => 'Any suggestions is required',
-        ]);
-
+        
+        $user_id=$request->user_id;
 
         if($request['submit']=='Save in Draft'){
             $status='1';
         } else if($request['submit']=='Publish'){
+            
+            $request->validate([
+                'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'designation' => 'required|max:50',
+                'department' => 'required|max:50',
+                'location' => 'required',
+                'company_name' => 'required',
+                'recruiter_name' => 'required',
+                'location_name' => 'required',
+                'open_designation_name' => 'required',
+                'no_of_openings' => 'required',
+                'all_posoitions_closed' => 'required',
+                'recruiter_helpful_recruitment_process' => 'required',
+                'recruiter_response' => 'required',
+                'recruiter_understanding_job_requirement' => 'required',
+                'quality_of_candidates_presented' => 'required',
+                'number_of_candidates_presented' => 'required',
+                'rate_the_recruiter_correct_information' => 'required',
+                'assessment_screening_candidates' => 'required',
+                'time_taken_fill_open_position' => 'required',
+                'overall_satisfied_hiring_recruiting_process' => 'required',
+                'additional_feedback_recruiter' => 'required',
+                'any_suggestions_improve_hiring_process' => 'required',
+            ], [
+                'member_name.required' => 'Name is required',
+                'designation.required' => 'Designation is required',
+                'department.required' => 'Department is required',
+                'location.required' => 'Location is required',
+                'company_name.required' => 'Company name is required',
+                'recruiter_name.required' => 'Recruiter name is required',
+                'location_name.required' => 'Location name is required',
+                'open_designation_name.required' => 'Open designation name is required',
+                'no_of_openings.required' => 'No of openings is required',
+                'all_posoitions_closed.required' => 'All posoitions closed?',
+                'recruiter_helpful_recruitment_process.required' => 'Please rate...',
+                'recruiter_response.required' => 'Please rate...',
+                'recruiter_understanding_job_requirement.required' => 'Please rate...',
+                'quality_of_candidates_presented.required' => 'Please rate...',
+                'number_of_candidates_presented.required' => 'Please rate...',
+                'rate_the_recruiter_correct_information.required' => 'Please rate...',
+                'assessment_screening_candidates.required' => 'Additional feedback for recruiter is required',
+                'time_taken_fill_open_position.required' => 'Please rate...',
+                'overall_satisfied_hiring_recruiting_process.required' => 'Please rate...',
+                'additional_feedback_recruiter.required' => 'Additional feedback is required',
+                'any_suggestions_improve_hiring_process.required' => 'Any suggestions is required',
+            ]);
+
             $status='2';
         }
-
-        $user_id=$request->user_id;
 
         $input = HiringSurvey::insert([
             'user_id' => $user_id,
@@ -160,22 +171,22 @@ class HiringSurveyController extends Controller
             'department' => $request->department,
             'location' => $request->location,
             'company_name' => $request->company_name,
-            'recruiter_name' => $request->recruiter_name,
-            'location_name_position_open' => $request->location_name,
-            'designation_name_open_position' => $request->open_designation_name,
-            'no_of_openings' => $request->no_of_openings,
-            'all_posoitions_closed' => $request->all_posoitions_closed,
-            'recruiter_helpful_recruitment_process' => $request->recruiter_helpful_recruitment_process,
-            'recruiter_response' => $request->recruiter_response,
-            'recruiter_understanding_job_requirement' => $request->recruiter_understanding_job_requirement,
-            'quality_of_candidates_presented' => $request->quality_of_candidates_presented,
-            'number_of_candidates_presented' => $request->number_of_candidates_presented,
-            'rate_the_recruiter_correct_information' => $request->rate_the_recruiter_correct_information,
-            'assessment_screening_candidates' => $request->assessment_screening_candidates,
-            'time_taken_fill_open_position' => $request->time_taken_fill_open_position,
-            'overall_satisfied_hiring_recruiting_process' => $request->overall_satisfied_hiring_recruiting_process,
-            'additional_feedback_recruiter' => $request->additional_feedback_recruiter,
-            'any_suggestions_improve_hiring_process' => $request->any_suggestions_improve_hiring_process,
+            'recruiter_name' => (!is_null($request->recruiter_name) ? $request->recruiter_name : ""),
+            'location_name_position_open' => (!is_null($request->location_name) ? $request->location_name : ""),
+            'designation_name_open_position' => (!is_null($request->open_designation_name) ? $request->open_designation_name : ""),
+            'no_of_openings' => (!is_null($request->no_of_openings) ? $request->no_of_openings : ""),
+            'all_posoitions_closed' => (!is_null($request->all_posoitions_closed) ? $request->all_posoitions_closed : ""),
+            'recruiter_helpful_recruitment_process' => (!is_null($request->recruiter_helpful_recruitment_process) ? $request->recruiter_helpful_recruitment_process : "0"),
+            'recruiter_response' => (!is_null($request->recruiter_response) ? $request->recruiter_response : "0"),
+            'recruiter_understanding_job_requirement' => (!is_null($request->recruiter_understanding_job_requirement) ? $request->recruiter_understanding_job_requirement : "0"),
+            'quality_of_candidates_presented' => (!is_null($request->quality_of_candidates_presented) ? $request->quality_of_candidates_presented : "0"),
+            'number_of_candidates_presented' => (!is_null($request->number_of_candidates_presented) ? $request->number_of_candidates_presented : "0"),
+            'rate_the_recruiter_correct_information' => (!is_null($request->rate_the_recruiter_correct_information) ? $request->rate_the_recruiter_correct_information : "0"),
+            'assessment_screening_candidates' => (!is_null($request->assessment_screening_candidates) ? $request->assessment_screening_candidates : "0"),
+            'time_taken_fill_open_position' => (!is_null($request->time_taken_fill_open_position) ? $request->time_taken_fill_open_position : "0"),
+            'overall_satisfied_hiring_recruiting_process' => (!is_null($request->overall_satisfied_hiring_recruiting_process) ? $request->overall_satisfied_hiring_recruiting_process : "0"),
+            'additional_feedback_recruiter' => (!is_null($request->additional_feedback_recruiter) ? $request->additional_feedback_recruiter : ""),
+            'any_suggestions_improve_hiring_process' => (!is_null($request->any_suggestions_improve_hiring_process) ? $request->any_suggestions_improve_hiring_process : ""),
             'status' => $status,
         ]);
 
@@ -243,6 +254,18 @@ class HiringSurveyController extends Controller
             ->orWhere('role_id', '6')
             ->orderBy('first_name','asc')
             ->get();
+
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
@@ -250,7 +273,7 @@ class HiringSurveyController extends Controller
 
         if($hiring_survey_details->status==1){
             
-            return view('hiring-survey-edit', compact('company_names','company_locations','job_opening_types','recruiter_details','hiring_survey_details'));
+            return view('hiring-survey-edit', compact('company_names','company_locations','job_opening_types','recruiter_details','designation_names','department_names','hiring_survey_details'));
 
         } else if($hiring_survey_details->status==2){
 
@@ -271,60 +294,61 @@ class HiringSurveyController extends Controller
     {
         $status=0;
 
-        $request->validate([
-            'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-            'designation' => 'required|max:50',
-            'department' => 'required|max:50',
-            'location' => 'required',
-            'company_name' => 'required',
-            'recruiter_name' => 'required',
-            'location_name' => 'required',
-            'open_designation_name' => 'required',
-            'no_of_openings' => 'required',
-            'all_posoitions_closed' => 'required',
-            'recruiter_helpful_recruitment_process' => 'required',
-            'recruiter_response' => 'required',
-            'recruiter_understanding_job_requirement' => 'required',
-            'quality_of_candidates_presented' => 'required',
-            'number_of_candidates_presented' => 'required',
-            'rate_the_recruiter_correct_information' => 'required',
-            'assessment_screening_candidates' => 'required',
-            'time_taken_fill_open_position' => 'required',
-            'overall_satisfied_hiring_recruiting_process' => 'required',
-            'additional_feedback_recruiter' => 'required',
-            'any_suggestions_improve_hiring_process' => 'required',
-        ], [
-            'member_name.required' => 'Name is required',
-            'designation.required' => 'Designation is required',
-            'department.required' => 'Department is required',
-            'location.required' => 'Location is required',
-            'company_name.required' => 'Company name is required',
-            'recruiter_name.required' => 'Recruiter name is required',
-            'location_name.required' => 'Location name is required',
-            'open_designation_name.required' => 'Open designation name is required',
-            'no_of_openings.required' => 'No of openings is required',
-            'all_posoitions_closed.required' => 'All posoitions closed?',
-            'recruiter_helpful_recruitment_process.required' => 'Please rate...',
-            'recruiter_response.required' => 'Please rate...',
-            'recruiter_understanding_job_requirement.required' => 'Please rate...',
-            'quality_of_candidates_presented.required' => 'Please rate...',
-            'number_of_candidates_presented.required' => 'Please rate...',
-            'rate_the_recruiter_correct_information.required' => 'Please rate...',
-            'assessment_screening_candidates.required' => 'Additional feedback for recruiter is required',
-            'time_taken_fill_open_position.required' => 'Please rate...',
-            'overall_satisfied_hiring_recruiting_process.required' => 'Please rate...',
-            'additional_feedback_recruiter.required' => 'Additional feedback is required',
-            'any_suggestions_improve_hiring_process.required' => 'Any suggestions is required',
-        ]);
-
-
+        $user_id=$request->user_id;
+        
         if($request['submit']=='Save in Draft'){
             $status='1';
         } else if($request['submit']=='Publish'){
+            
+            $request->validate([
+                'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'designation' => 'required|max:50',
+                'department' => 'required|max:50',
+                'location' => 'required',
+                'company_name' => 'required',
+                'recruiter_name' => 'required',
+                'location_name' => 'required',
+                'open_designation_name' => 'required',
+                'no_of_openings' => 'required',
+                'all_posoitions_closed' => 'required',
+                'recruiter_helpful_recruitment_process' => 'required',
+                'recruiter_response' => 'required',
+                'recruiter_understanding_job_requirement' => 'required',
+                'quality_of_candidates_presented' => 'required',
+                'number_of_candidates_presented' => 'required',
+                'rate_the_recruiter_correct_information' => 'required',
+                'assessment_screening_candidates' => 'required',
+                'time_taken_fill_open_position' => 'required',
+                'overall_satisfied_hiring_recruiting_process' => 'required',
+                'additional_feedback_recruiter' => 'required',
+                'any_suggestions_improve_hiring_process' => 'required',
+            ], [
+                'member_name.required' => 'Name is required',
+                'designation.required' => 'Designation is required',
+                'department.required' => 'Department is required',
+                'location.required' => 'Location is required',
+                'company_name.required' => 'Company name is required',
+                'recruiter_name.required' => 'Recruiter name is required',
+                'location_name.required' => 'Location name is required',
+                'open_designation_name.required' => 'Open designation name is required',
+                'no_of_openings.required' => 'No of openings is required',
+                'all_posoitions_closed.required' => 'All posoitions closed?',
+                'recruiter_helpful_recruitment_process.required' => 'Please rate...',
+                'recruiter_response.required' => 'Please rate...',
+                'recruiter_understanding_job_requirement.required' => 'Please rate...',
+                'quality_of_candidates_presented.required' => 'Please rate...',
+                'number_of_candidates_presented.required' => 'Please rate...',
+                'rate_the_recruiter_correct_information.required' => 'Please rate...',
+                'assessment_screening_candidates.required' => 'Additional feedback for recruiter is required',
+                'time_taken_fill_open_position.required' => 'Please rate...',
+                'overall_satisfied_hiring_recruiting_process.required' => 'Please rate...',
+                'additional_feedback_recruiter.required' => 'Additional feedback is required',
+                'any_suggestions_improve_hiring_process.required' => 'Any suggestions is required',
+            ]);
+
             $status='2';
         }
 
-        $user_id=$request->user_id;
 
         HiringSurvey::where('user_id', $user_id)
         ->update([
@@ -333,22 +357,22 @@ class HiringSurveyController extends Controller
             'department' => $request->department,
             'location' => $request->location,
             'company_name' => $request->company_name,
-            'recruiter_name' => $request->recruiter_name,
-            'location_name_position_open' => $request->location_name,
-            'designation_name_open_position' => $request->open_designation_name,
-            'no_of_openings' => $request->no_of_openings,
-            'all_posoitions_closed' => $request->all_posoitions_closed,
-            'recruiter_helpful_recruitment_process' => $request->recruiter_helpful_recruitment_process,
-            'recruiter_response' => $request->recruiter_response,
-            'recruiter_understanding_job_requirement' => $request->recruiter_understanding_job_requirement,
-            'quality_of_candidates_presented' => $request->quality_of_candidates_presented,
-            'number_of_candidates_presented' => $request->number_of_candidates_presented,
-            'rate_the_recruiter_correct_information' => $request->rate_the_recruiter_correct_information,
-            'assessment_screening_candidates' => $request->assessment_screening_candidates,
-            'time_taken_fill_open_position' => $request->time_taken_fill_open_position,
-            'overall_satisfied_hiring_recruiting_process' => $request->overall_satisfied_hiring_recruiting_process,
-            'additional_feedback_recruiter' => $request->additional_feedback_recruiter,
-            'any_suggestions_improve_hiring_process' => $request->any_suggestions_improve_hiring_process,
+            'recruiter_name' => (!is_null($request->recruiter_name) ? $request->recruiter_name : ""),
+            'location_name_position_open' => (!is_null($request->location_name) ? $request->location_name : ""),
+            'designation_name_open_position' => (!is_null($request->open_designation_name) ? $request->open_designation_name : ""),
+            'no_of_openings' => (!is_null($request->no_of_openings) ? $request->no_of_openings : ""),
+            'all_posoitions_closed' => (!is_null($request->all_posoitions_closed) ? $request->all_posoitions_closed : ""),
+            'recruiter_helpful_recruitment_process' => (!is_null($request->recruiter_helpful_recruitment_process) ? $request->recruiter_helpful_recruitment_process : "0"),
+            'recruiter_response' => (!is_null($request->recruiter_response) ? $request->recruiter_response : "0"),
+            'recruiter_understanding_job_requirement' => (!is_null($request->recruiter_understanding_job_requirement) ? $request->recruiter_understanding_job_requirement : "0"),
+            'quality_of_candidates_presented' => (!is_null($request->quality_of_candidates_presented) ? $request->quality_of_candidates_presented : "0"),
+            'number_of_candidates_presented' => (!is_null($request->number_of_candidates_presented) ? $request->number_of_candidates_presented : "0"),
+            'rate_the_recruiter_correct_information' => (!is_null($request->rate_the_recruiter_correct_information) ? $request->rate_the_recruiter_correct_information : "0"),
+            'assessment_screening_candidates' => (!is_null($request->assessment_screening_candidates) ? $request->assessment_screening_candidates : "0"),
+            'time_taken_fill_open_position' => (!is_null($request->time_taken_fill_open_position) ? $request->time_taken_fill_open_position : "0"),
+            'overall_satisfied_hiring_recruiting_process' => (!is_null($request->overall_satisfied_hiring_recruiting_process) ? $request->overall_satisfied_hiring_recruiting_process : "0"),
+            'additional_feedback_recruiter' => (!is_null($request->additional_feedback_recruiter) ? $request->additional_feedback_recruiter : ""),
+            'any_suggestions_improve_hiring_process' => (!is_null($request->any_suggestions_improve_hiring_process) ? $request->any_suggestions_improve_hiring_process : ""),
             'status' => $status,
         ]);
 

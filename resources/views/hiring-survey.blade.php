@@ -82,7 +82,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <input type="text" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details->designation }}" readonly>
+                  <select class="form-select disable-text" name="designation" id="designation">
+                    <option value="">Choose...</option>
+                    @foreach($designation_names as $designation_name)
+                    <option value="{{$designation_name['id']}}" @if((Auth::user()->designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -93,7 +98,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <input type="text" class="form-control disable-text" name="department" id="department" value="{{ $member_details->department }}" readonly>
+                  <select class="form-select disable-text" name="department" id="department">
+                    <option value="">Choose...</option>
+                    @foreach($department_names as $department_name)
+                    <option value="{{$department_name['id']}}" @if((Auth::user()->department)==$department_name['id']) selected @endif>{{$department_name['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -105,7 +115,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="location" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="location" id="location" value="{{ old('location') }}" required>
+                  <select class="form-select disable-text" name="location" id="location">
+                    <option  value="">Choose...</option>
+                    @foreach($company_locations as $company_location)
+                    <option value="{{$company_location['id']}}" @if((Auth::user()->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -117,10 +132,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name" id="company_name" required>
+                  <select class="form-select disable-text" name="company_name" id="company_name">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                    <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                    <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -137,7 +152,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="recruiter_name" class="form-label">Please choose name of the recruiter who worked on your position. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="recruiter_name" id="recruiter_name" required>
+                  <select class="form-select" name="recruiter_name" id="recruiter_name">
                     <option value="">Choose...</option>
                     @foreach($recruiter_details as $recruiter_detail)
                     <option value="{{$recruiter_detail['id']}}" @if(old('recruiter_name')==$recruiter_detail['id']) selected @endif>{{$recruiter_detail['first_name']}} {{$recruiter_detail['last_name']}}</option>
@@ -154,7 +169,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">For which location was the position open? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="location_name" id="location_name" required>
+                  <select class="form-select" name="location_name" id="location_name">
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
                     <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
@@ -170,7 +185,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="open_designation_name" class="form-label">Name the designation of the open position. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="open_designation_name" id="open_designation_name" value="{{ old('open_designation_name') }}" required>
+                  <input type="text" class="form-control" name="open_designation_name" id="open_designation_name" value="{{ old('open_designation_name') }}">
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -181,7 +196,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="no_of_openings" class="form-label">No. of openings that were shared? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="no_of_openings" id="no_of_openings" value="{{ old('no_of_openings') }}" required>
+                  <input type="text" class="form-control" name="no_of_openings" id="no_of_openings" value="{{ old('no_of_openings') }}">
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -448,7 +463,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="additional_feedback_recruiter" class="form-label">Any additional feedback you would like to give for the recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px" required>{{ old('additional_feedback_recruiter')}}</textarea>
+                  <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px">{{ old('additional_feedback_recruiter')}}</textarea>
 
                   @if ($errors->has('additional_feedback_recruiter'))
                     <span class="text-danger">{{ $errors->first('additional_feedback_recruiter') }}</span>
@@ -462,7 +477,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_suggestions_improve_hiring_process" class="form-label">Any suggestions you would like to give that would help us to improve the hiring process? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_suggestions_improve_hiring_process" id="any_suggestions_improve_hiring_process" style="height: 100px" required>{{ old('any_suggestions_improve_hiring_process')}}</textarea>
+                  <textarea class="form-control" name="any_suggestions_improve_hiring_process" id="any_suggestions_improve_hiring_process" style="height: 100px">{{ old('any_suggestions_improve_hiring_process')}}</textarea>
 
                   @if ($errors->has('any_suggestions_improve_hiring_process'))
                     <span class="text-danger">{{ $errors->first('any_suggestions_improve_hiring_process') }}</span>

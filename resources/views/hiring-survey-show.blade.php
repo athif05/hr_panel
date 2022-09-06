@@ -56,17 +56,41 @@
 
                   <tr>
                     <td>Designation</td>
-                    <td>{{$hiring_survey_details['designation']}}</td>
+                    <td>
+                      @foreach($designation_names as $designation_name)
+
+                        @if($designation_name['id']==$hiring_survey_details['designation'])
+                        {{$designation_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Department</td>
-                    <td>{{$hiring_survey_details['department']}}</td>
+                    <td>
+                      @foreach($department_names as $department_name)
+
+                        @if($department_name['id']==$hiring_survey_details['department'])
+                        {{$department_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Location</td>
-                    <td>{{$hiring_survey_details['location']}}</td>
+                    <td>
+                      @foreach($company_locations as $company_location)
+
+                        @if($company_location['id']==$hiring_survey_details['location'])
+                        {{$company_location['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
