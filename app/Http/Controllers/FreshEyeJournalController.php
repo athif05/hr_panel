@@ -27,11 +27,6 @@ class FreshEyeJournalController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $users = User::with('company_name')->where('id', $user_id)->first();
-        $currentLogo = $users->company_name->logo;
-        Session::put('company_logo', $currentLogo);
-        //dd($currentLogo);
-
         $user_details = User::where('id', $user_id)
             ->first();
 
