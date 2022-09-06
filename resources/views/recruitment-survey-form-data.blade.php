@@ -69,12 +69,28 @@
 
                   <tr>
                     <td>Designation</td>
-                    <td>{{$find['designation']}}</td>
+                    <td>
+                      @foreach($designation_names as $designation_name)
+
+                        @if($designation_name['id']==$find['designation'])
+                        {{$designation_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Department</td>
-                    <td>{{$find['department']}}</td>
+                    <td>
+                      @foreach($department_names as $department_name)
+
+                        @if($department_name['id']==$find['department'])
+                        {{$department_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>

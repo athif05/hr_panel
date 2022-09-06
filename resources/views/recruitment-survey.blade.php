@@ -88,7 +88,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <input type="text" class="form-control disable-text" name="designation" id="designation" value="{{ Auth::user()->designation }}" readonly>
+                  <select class="form-select disable-text" name="designation" id="designation">
+                    <option value="">Choose...</option>
+                    @foreach($designation_names as $designation_name)
+                    <option value="{{$designation_name['id']}}" @if((Auth::user()->designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -99,7 +104,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="department" id="department" value="{{ old('department') }}" required>
+                  <select class="form-select disable-text" name="department" id="department">
+                    <option value="">Choose...</option>
+                    @foreach($department_names as $department_name)
+                    <option value="{{$department_name['id']}}" @if((Auth::user()->department)==$department_name['id']) selected @endif>{{$department_name['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -110,10 +120,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name" id="company_name" required>
+                  <select class="form-select disable-text" name="company_name" id="company_name">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                    <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                    <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-tooltip">
@@ -126,7 +136,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="date_of_joining" class="form-label">Date of Joining <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="date" class="form-control" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining') }}" max="<?php echo date("Y-m-d"); ?>" required>
+                  <input type="date" class="form-control disable-text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining', Auth::user()->joining_date) }}" max="<?php echo date("Y-m-d"); ?>">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -138,7 +148,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="how_come_for_job_opening" class="form-label">How did you come across this job opening? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="how_come_for_job_opening" id="how_come_for_job_opening" required onchange="openReferalData(this.value)">
+                  <select class="form-select" name="how_come_for_job_opening" id="how_come_for_job_opening" onchange="openReferalData(this.value)">
                     <option value="">Choose...</option>
                     @foreach($job_opening_types as $job_opening_type)
                     <option value="{{$job_opening_type['id']}}" @if(old('how_come_for_job_opening')==$job_opening_type['id']) selected @endif>{{$job_opening_type['name']}}</option>
@@ -188,7 +198,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="name_of_your_recruiter" class="form-label">What's the name of your recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="name_of_your_recruiter" id="name_of_your_recruiter" value="{{ old('name_of_your_recruiter') }}" required>
+                  <input type="text" class="form-control" name="name_of_your_recruiter" id="name_of_your_recruiter" value="{{ old('name_of_your_recruiter') }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Models\CompanyName;
+use App\Models\{CompanyName, Designation, Department};
 use App\Models\JobOpeningTypes;
 use App\Models\UserRecruitmentForm;
 use Illuminate\Support\Facades\Session;
@@ -51,6 +51,16 @@ class UserRecruitmentFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
@@ -59,7 +69,7 @@ class UserRecruitmentFormController extends Controller
 
         if(($find === null) or (($find['status'] === '0') or ($find['status'] === ''))){
 
-            return view('recruitment-survey', compact('company_names', 'job_opening_types'));
+            return view('recruitment-survey', compact('company_names', 'job_opening_types','designation_names','department_names'));
 
         } else if($find['status'] === '1'){
 
@@ -71,7 +81,7 @@ class UserRecruitmentFormController extends Controller
 
             ///return redirect('/thank-you')->with('thank_you', 'Alert, you have already submit interview survey form.');
 
-            return view('recruitment-survey-form-data', compact('company_names','job_opening_types', 'find'));
+            return view('recruitment-survey-form-data', compact('company_names','job_opening_types', 'designation_names', 'department_names','find'));
         }
     }
 
@@ -93,78 +103,79 @@ class UserRecruitmentFormController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'your_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-            'member_id' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
-            'company_name' => 'required',
-            'date_of_joining' => 'required',
-            'how_come_for_job_opening' => 'required',
-            'name_of_your_recruiter' => 'required|max:100',
-            'professionalism' => 'required',
-            'friendliness' => 'required',
-            'length_time_spent_talking' => 'required',
-            'company_knowledge' => 'required',
-            'specific_knowledge_job_profile' => 'required',
-            'timely_response_email_phone' => 'required',
-            'company_policies_procedures' => 'required',
-            'manager_expectation_setting' => 'required',
-            'job_duties_responsibilities' => 'required',
-            'job_title_properly_named' => 'required',
-            'mission_for_first_year' => 'required',
-            'aim_in_second_year' => 'required',
-            'aim_third_year_tenure' => 'required',
-            'rate_overall_recruitment_process' => 'required',
-            'additional_feedback_recruitment_process' => 'required',
-            'rate_hr_induction' => 'required',
-            'additional_feedback_hr_induction' => 'required',
-        ], [
-            'your_name.required' => 'Name is required',
-            'member_id.required' => 'Member ID is required',
-            'designation.required' => 'Designation is required',
-            'department.required' => 'Department name is required',
-            'company_name.required' => 'Company name is required',
-            'date_of_joining.required' => 'Date of joining is required',
-            'how_come_for_job_opening.required' => 'Learn about job opening is required',
-            'name_of_your_recruiter.required' => 'Name of your recruiter is required',
-            'professionalism.required' => 'Please rate...',
-            'friendliness.required' => 'Please rate...',
-            'length_time_spent_talking.required' => 'Please rate...',
-            'company_knowledge.required' => 'Please rate...',
-            'specific_knowledge_job_profile.required' => 'Please rate...',
-            'timely_response_email_phone.required' => 'Please rate...',
-            'company_policies_procedures.required' => 'Yes or No...',
-            'manager_expectation_setting.required' => 'Yes or No',
-            'job_duties_responsibilities.required' => 'Yes or No',
-            'job_title_properly_named.required' => 'Yes or No',
-            'mission_for_first_year.required' => 'Mission for first year is required',
-            'aim_in_second_year.required' => 'AIM in second year is required',
-            'aim_third_year_tenure.required' => 'AIM third year tenure is required',
-            'rate_overall_recruitment_process.required' => 'Please rate...',
-            'additional_feedback_recruitment_process.required' => 'Additional feedback recruitment process is required',
-            'rate_hr_induction.required' => 'Please rate...',
-            'additional_feedback_hr_induction.required' => 'Additional feedback for HR induction is required',
-        ]);
-
-
-
-        if($request->how_come_for_job_opening=='1'){
-            $request->validate([
-                'internal_employee_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-                'internal_employee_designation' => 'required|max:100',
-                'internal_employee_department' => 'required|max:100',
-            ], [
-                'internal_employee_name.required' => 'Employee name is required',
-                'internal_employee_designation.required' => 'Eployee designation is required',
-                'internal_employee_department.required' => 'Employee department is required',
-            ]);
-        }
-
-
         if($request['submit']=='Save in Draft'){
             $status='1';
         } else if($request['submit']=='Publish'){
+            
+
+            $request->validate([
+                'your_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'member_id' => 'required',
+                'designation' => 'required',
+                'department' => 'required',
+                'company_name' => 'required',
+                'date_of_joining' => 'required',
+                'how_come_for_job_opening' => 'required',
+                'name_of_your_recruiter' => 'required|max:100',
+                'professionalism' => 'required',
+                'friendliness' => 'required',
+                'length_time_spent_talking' => 'required',
+                'company_knowledge' => 'required',
+                'specific_knowledge_job_profile' => 'required',
+                'timely_response_email_phone' => 'required',
+                'company_policies_procedures' => 'required',
+                'manager_expectation_setting' => 'required',
+                'job_duties_responsibilities' => 'required',
+                'job_title_properly_named' => 'required',
+                'mission_for_first_year' => 'required',
+                'aim_in_second_year' => 'required',
+                'aim_third_year_tenure' => 'required',
+                'rate_overall_recruitment_process' => 'required',
+                'additional_feedback_recruitment_process' => 'required',
+                'rate_hr_induction' => 'required',
+                'additional_feedback_hr_induction' => 'required',
+            ], [
+                'your_name.required' => 'Name is required',
+                'member_id.required' => 'Member ID is required',
+                'designation.required' => 'Designation is required',
+                'department.required' => 'Department name is required',
+                'company_name.required' => 'Company name is required',
+                'date_of_joining.required' => 'Date of joining is required',
+                'how_come_for_job_opening.required' => 'Learn about job opening is required',
+                'name_of_your_recruiter.required' => 'Name of your recruiter is required',
+                'professionalism.required' => 'Please rate...',
+                'friendliness.required' => 'Please rate...',
+                'length_time_spent_talking.required' => 'Please rate...',
+                'company_knowledge.required' => 'Please rate...',
+                'specific_knowledge_job_profile.required' => 'Please rate...',
+                'timely_response_email_phone.required' => 'Please rate...',
+                'company_policies_procedures.required' => 'Yes or No...',
+                'manager_expectation_setting.required' => 'Yes or No',
+                'job_duties_responsibilities.required' => 'Yes or No',
+                'job_title_properly_named.required' => 'Yes or No',
+                'mission_for_first_year.required' => 'Mission for first year is required',
+                'aim_in_second_year.required' => 'AIM in second year is required',
+                'aim_third_year_tenure.required' => 'AIM third year tenure is required',
+                'rate_overall_recruitment_process.required' => 'Please rate...',
+                'additional_feedback_recruitment_process.required' => 'Additional feedback recruitment process is required',
+                'rate_hr_induction.required' => 'Please rate...',
+                'additional_feedback_hr_induction.required' => 'Additional feedback for HR induction is required',
+            ]);
+
+
+
+            if($request->how_come_for_job_opening == '1'){
+                $request->validate([
+                    'internal_employee_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                    'internal_employee_designation' => 'required|max:100',
+                    'internal_employee_department' => 'required|max:100',
+                ], [
+                    'internal_employee_name.required' => 'Employee name is required',
+                    'internal_employee_designation.required' => 'Eployee designation is required',
+                    'internal_employee_department.required' => 'Employee department is required',
+                ]);
+            }
+
             $status='2';
         }
 
@@ -176,37 +187,32 @@ class UserRecruitmentFormController extends Controller
             'department' => $request->department,
             'company_name' => $request->company_name,
             'date_of_joining' => $request->date_of_joining,
-            'how_come_for_job_opening' => $request->how_come_for_job_opening,
-            'internal_employee_name' => $request->internal_employee_name,
-            'internal_employee_designation' => $request->internal_employee_designation,
-            'internal_employee_department' => $request->internal_employee_department,
-            'name_of_your_recruiter' => $request->name_of_your_recruiter,
-            'professionalism' => $request->professionalism,
-            'friendliness' => $request->friendliness,
-            'length_time_spent_talking' => $request->length_time_spent_talking,
-            'company_knowledge' => $request->company_knowledge,
-            'specific_knowledge_job_profile' => $request->specific_knowledge_job_profile,
-            'timely_response_email_phone' => $request->timely_response_email_phone,
-            'company_policies_procedures' => $request->company_policies_procedures,
-            'manager_expectation_setting' => $request->manager_expectation_setting,
-            'job_duties_responsibilities' => $request->job_duties_responsibilities,
-            'job_title_properly_named' => $request->job_title_properly_named,
+            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "0"),
+            'internal_employee_name' => (!is_null($request->internal_employee_name) ? $request->internal_employee_name : ""),
+            'internal_employee_designation' => (!is_null($request->internal_employee_designation) ? $request->internal_employee_designation : ""),
+            'internal_employee_department' => (!is_null($request->internal_employee_department) ? $request->internal_employee_department : ""),
+            'name_of_your_recruiter' => (!is_null($request->name_of_your_recruiter) ? $request->name_of_your_recruiter : ""),
+            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "0"),
+            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "0"),
+            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "0"),
+            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "0"),
+            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "0"),
+            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "0"),
+            'company_policies_procedures' => (!is_null($request->company_policies_procedures) ? $request->company_policies_procedures : ""),
+            'manager_expectation_setting' => (!is_null($request->manager_expectation_setting) ? $request->manager_expectation_setting : ""),
+            'job_duties_responsibilities' => (!is_null($request->job_duties_responsibilities) ? $request->job_duties_responsibilities : ""),
+            'job_title_properly_named' => (!is_null($request->job_title_properly_named) ? $request->job_title_properly_named : ""),
             'mission_for_first_year' => $request->mission_for_first_year,
             'aim_in_second_year' => $request->aim_in_second_year,
             'aim_third_year_tenure' => $request->aim_third_year_tenure,
-            'rate_overall_recruitment_process' => $request->rate_overall_recruitment_process,
+            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "0"),
             'additional_feedback_recruitment_process' => $request->additional_feedback_recruitment_process,
-            'rate_hr_induction' => $request->rate_hr_induction,
+            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "0"),
             'additional_feedback_hr_induction' => $request->additional_feedback_hr_induction,
             'status' => $status,
         ]);
 
         if($input){
-
-            User::where('id', $request->user_id)
-            ->update([
-                'department' => $request->department,
-            ]);
         
             
             if($status==1){
@@ -255,12 +261,22 @@ class UserRecruitmentFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
         $form_details = UserRecruitmentForm::where('user_id', $id)->first();
         
-        return view('recruitment-survey-edit', compact('company_names','job_opening_types','form_details'));
+        return view('recruitment-survey-edit', compact('company_names','job_opening_types','designation_names','department_names','form_details'));
     }
 
     /**
@@ -272,73 +288,82 @@ class UserRecruitmentFormController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'your_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-            'member_id' => 'required',
-            'designation' => 'required',
-            'department' => 'required',
-            'company_name' => 'required',
-            'date_of_joining' => 'required',
-            'how_come_for_job_opening' => 'required',
-            'name_of_your_recruiter' => 'required|max:100',
-            'professionalism' => 'required',
-            'friendliness' => 'required',
-            'length_time_spent_talking' => 'required',
-            'company_knowledge' => 'required',
-            'specific_knowledge_job_profile' => 'required',
-            'timely_response_email_phone' => 'required',
-            'company_policies_procedures' => 'required',
-            'manager_expectation_setting' => 'required',
-            'job_duties_responsibilities' => 'required',
-            'job_title_properly_named' => 'required',
-            'mission_for_first_year' => 'required',
-            'aim_in_second_year' => 'required',
-            'aim_third_year_tenure' => 'required',
-            'rate_overall_recruitment_process' => 'required',
-            'additional_feedback_recruitment_process' => 'required',
-            'rate_hr_induction' => 'required',
-            'additional_feedback_hr_induction' => 'required',
-        ], [
-            'your_name.required' => 'Name is required',
-            'member_id.required' => 'Member ID is required',
-            'designation.required' => 'Designation is required',
-            'department.required' => 'Department name is required',
-            'company_name.required' => 'Company name is required',
-            'date_of_joining.required' => 'Date of joining is required',
-            'how_come_for_job_opening.required' => 'Learn about job opening is required',
-            'name_of_your_recruiter.required' => 'Name of your recruiter is required',
-            'professionalism.required' => 'Please rate...',
-            'friendliness.required' => 'Please rate...',
-            'length_time_spent_talking.required' => 'Please rate...',
-            'company_knowledge.required' => 'Please rate...',
-            'specific_knowledge_job_profile.required' => 'Please rate...',
-            'timely_response_email_phone.required' => 'Please rate...',
-            'company_policies_procedures.required' => 'Yes or No...',
-            'manager_expectation_setting.required' => 'Yes or No',
-            'job_duties_responsibilities.required' => 'Yes or No',
-            'job_title_properly_named.required' => 'Yes or No',
-            'mission_for_first_year.required' => 'Mission for first year is required',
-            'aim_in_second_year.required' => 'AIM in second year is required',
-            'aim_third_year_tenure.required' => 'AIM third year tenure is required',
-            'rate_overall_recruitment_process.required' => 'Please rate...',
-            'additional_feedback_recruitment_process.required' => 'Additional feedback recruitment process is required',
-            'rate_hr_induction.required' => 'Please rate...',
-            'additional_feedback_hr_induction.required' => 'Additional feedback for HR induction is required',
-        ]);
 
-
-
-        if($request->how_come_for_job_opening=='1'){
+        if($request['submit']=='Save in Draft'){
+            $status='1';
+        } else if($request['submit']=='Publish'){
+            
             $request->validate([
-                'internal_employee_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-                'internal_employee_designation' => 'required|max:100',
-                'internal_employee_department' => 'required|max:100',
+                'your_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'member_id' => 'required',
+                'designation' => 'required',
+                'department' => 'required',
+                'company_name' => 'required',
+                'date_of_joining' => 'required',
+                'how_come_for_job_opening' => 'required',
+                'name_of_your_recruiter' => 'required|max:100',
+                'professionalism' => 'required',
+                'friendliness' => 'required',
+                'length_time_spent_talking' => 'required',
+                'company_knowledge' => 'required',
+                'specific_knowledge_job_profile' => 'required',
+                'timely_response_email_phone' => 'required',
+                'company_policies_procedures' => 'required',
+                'manager_expectation_setting' => 'required',
+                'job_duties_responsibilities' => 'required',
+                'job_title_properly_named' => 'required',
+                'mission_for_first_year' => 'required',
+                'aim_in_second_year' => 'required',
+                'aim_third_year_tenure' => 'required',
+                'rate_overall_recruitment_process' => 'required',
+                'additional_feedback_recruitment_process' => 'required',
+                'rate_hr_induction' => 'required',
+                'additional_feedback_hr_induction' => 'required',
             ], [
-                'internal_employee_name.required' => 'Employee name is required',
-                'internal_employee_designation.required' => 'Eployee designation is required',
-                'internal_employee_department.required' => 'Employee department is required',
+                'your_name.required' => 'Name is required',
+                'member_id.required' => 'Member ID is required',
+                'designation.required' => 'Designation is required',
+                'department.required' => 'Department name is required',
+                'company_name.required' => 'Company name is required',
+                'date_of_joining.required' => 'Date of joining is required',
+                'how_come_for_job_opening.required' => 'Learn about job opening is required',
+                'name_of_your_recruiter.required' => 'Name of your recruiter is required',
+                'professionalism.required' => 'Please rate...',
+                'friendliness.required' => 'Please rate...',
+                'length_time_spent_talking.required' => 'Please rate...',
+                'company_knowledge.required' => 'Please rate...',
+                'specific_knowledge_job_profile.required' => 'Please rate...',
+                'timely_response_email_phone.required' => 'Please rate...',
+                'company_policies_procedures.required' => 'Yes or No...',
+                'manager_expectation_setting.required' => 'Yes or No',
+                'job_duties_responsibilities.required' => 'Yes or No',
+                'job_title_properly_named.required' => 'Yes or No',
+                'mission_for_first_year.required' => 'Mission for first year is required',
+                'aim_in_second_year.required' => 'AIM in second year is required',
+                'aim_third_year_tenure.required' => 'AIM third year tenure is required',
+                'rate_overall_recruitment_process.required' => 'Please rate...',
+                'additional_feedback_recruitment_process.required' => 'Additional feedback recruitment process is required',
+                'rate_hr_induction.required' => 'Please rate...',
+                'additional_feedback_hr_induction.required' => 'Additional feedback for HR induction is required',
             ]);
+
+
+
+            if($request->how_come_for_job_opening=='1'){
+                $request->validate([
+                    'internal_employee_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                    'internal_employee_designation' => 'required|max:100',
+                    'internal_employee_department' => 'required|max:100',
+                ], [
+                    'internal_employee_name.required' => 'Employee name is required',
+                    'internal_employee_designation.required' => 'Eployee designation is required',
+                    'internal_employee_department.required' => 'Employee department is required',
+                ]);
+            }
+
+            $status='2';
         }
+
 
         if($request->how_come_for_job_opening=='1'){
             $internal_employee_name=$request->internal_employee_name;
@@ -351,12 +376,6 @@ class UserRecruitmentFormController extends Controller
         }
 
 
-        if($request['submit']=='Save in Draft'){
-            $status='1';
-        } else if($request['submit']=='Publish'){
-            $status='2';
-        }
-
         UserRecruitmentForm::where('user_id', $request->user_id)
         ->update([
             'your_name' => $request->your_name,
@@ -365,35 +384,29 @@ class UserRecruitmentFormController extends Controller
             'department' => $request->department,
             'company_name' => $request->company_name,
             'date_of_joining' => $request->date_of_joining,
-            'how_come_for_job_opening' => $request->how_come_for_job_opening,
-            'internal_employee_name' => $internal_employee_name,
-            'internal_employee_designation' => $internal_employee_designation,
-            'internal_employee_department' => $internal_employee_department,
-            'name_of_your_recruiter' => $request->name_of_your_recruiter,
-            'professionalism' => $request->professionalism,
-            'friendliness' => $request->friendliness,
-            'length_time_spent_talking' => $request->length_time_spent_talking,
-            'company_knowledge' => $request->company_knowledge,
-            'specific_knowledge_job_profile' => $request->specific_knowledge_job_profile,
-            'timely_response_email_phone' => $request->timely_response_email_phone,
-            'company_policies_procedures' => $request->company_policies_procedures,
-            'manager_expectation_setting' => $request->manager_expectation_setting,
-            'job_duties_responsibilities' => $request->job_duties_responsibilities,
-            'job_title_properly_named' => $request->job_title_properly_named,
+            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "0"),
+            'internal_employee_name' => (!is_null($request->internal_employee_name) ? $request->internal_employee_name : ""),
+            'internal_employee_designation' => (!is_null($request->internal_employee_designation) ? $request->internal_employee_designation : ""),
+            'internal_employee_department' => (!is_null($request->internal_employee_department) ? $request->internal_employee_department : ""),
+            'name_of_your_recruiter' => (!is_null($request->name_of_your_recruiter) ? $request->name_of_your_recruiter : ""),
+            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "0"),
+            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "0"),
+            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "0"),
+            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "0"),
+            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "0"),
+            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "0"),
+            'company_policies_procedures' => (!is_null($request->company_policies_procedures) ? $request->company_policies_procedures : ""),
+            'manager_expectation_setting' => (!is_null($request->manager_expectation_setting) ? $request->manager_expectation_setting : ""),
+            'job_duties_responsibilities' => (!is_null($request->job_duties_responsibilities) ? $request->job_duties_responsibilities : ""),
+            'job_title_properly_named' => (!is_null($request->job_title_properly_named) ? $request->job_title_properly_named : ""),
             'mission_for_first_year' => $request->mission_for_first_year,
             'aim_in_second_year' => $request->aim_in_second_year,
             'aim_third_year_tenure' => $request->aim_third_year_tenure,
-            'rate_overall_recruitment_process' => $request->rate_overall_recruitment_process,
+            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "0"),
             'additional_feedback_recruitment_process' => $request->additional_feedback_recruitment_process,
-            'rate_hr_induction' => $request->rate_hr_induction,
+            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "0"),
             'additional_feedback_hr_induction' => $request->additional_feedback_hr_induction,
             'status' => $status,
-        ]);
-
-
-        User::where('id', $request->user_id)
-        ->update([
-            'department' => $request->department,
         ]);
     
 
