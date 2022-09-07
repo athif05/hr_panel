@@ -48,7 +48,7 @@
               
               <!-- @if ($errors)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Fill all required fields...
+                Fill all fields...
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
               @endif -->
@@ -84,10 +84,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select" name="designation" id="designation" required>
+                  <select class="form-select disable-text" name="designation" id="designation">
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
-                    <option value="{{$designation_detail['id']}}" @if(old('designation')==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
+                    <option value="{{$designation_detail['id']}}" @if((Auth::user()->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -100,10 +100,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select" name="department" id="department" required>
+                  <select class="form-select disable-text" name="department" id="department">
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
-                    <option value="{{$department_detail['id']}}" @if(old('department')==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
+                    <option value="{{$department_detail['id']}}" @if((Auth::user()->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -114,14 +114,14 @@
                   @endif
                 </div>
 
-                <input type="hidden" name="company_name_ajax" id="company_name_ajax" value="{{ old('company_name_ajax') }}">
+                <input type="hidden" name="company_name_ajax" id="company_name_ajax" value="{{ old('company_name_ajax',$company_name_ajax_default->name) }}">
 
                 <div class="col-md-6 position-relative">
                   <label for="company_name_fresh" class="form-label">Company<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name_fresh" id="company_name_fresh" required>
+                  <select class="form-select disable-text" name="company_name_fresh" id="company_name_fresh">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                      <option value="{{$company_name['id']}}" @if(old('company_name_fresh')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                      <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -134,10 +134,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="location_name" id="location_name" required>
+                  <select class="form-select disable-text" name="location_name" id="location_name">
                     <option value="">Choose...</option>
                     @foreach($company_locations as $company_location)
-                      <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                      <option value="{{$company_location['id']}}" @if((Auth::user()->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -160,14 +160,15 @@
                 </div>
 
 
-                <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ old('reporting_manager_name_ajax') }}">
+                <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}">
 
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager_fresh" class="form-label">Name of Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="reporting_manager_fresh" id="reporting_manager_fresh" required>
+                  <select class="form-select disable-text" name="reporting_manager_fresh" id="reporting_manager_fresh">
                     <option value="">Choose...</option>
                     @foreach($manager_details as $manager_detail)
-                      <option value="{{$manager_detail['id']}}" @if(old('reporting_manager_fresh')==$manager_detail['id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                    <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
+                      <option value="{{$manager_detail['id']}}" @if((Auth::user()->manager_name)==$reporting_manager_name) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -182,7 +183,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="head_of_department" class="form-label">Name of Department Head <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="head_of_department" id="head_of_department" required>
+                  <select class="form-select" name="head_of_department" id="head_of_department">
                     <option value="">Choose...</option>
                     @foreach($hod_details as $hod_detail)
                       <option value="{{$hod_detail['id']}}" @if(old('head_of_department')==$hod_detail['id']) selected @endif>{{$hod_detail['first_name']}} {{$hod_detail['last_name']}}</option>
@@ -197,8 +198,8 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="your_journey_so_far_in_company" class="form-label">How has your journey been so far in <span id="any_additional_feedback_manager_company_name">{{ old('company_name_ajax') }}</span>? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="your_journey_so_far_in_company" id="your_journey_so_far_in_company" style="height: 100px" required>{{ old('your_journey_so_far_in_company')}}</textarea>
+                  <label for="your_journey_so_far_in_company" class="form-label">How has your journey been so far in <span id="any_additional_feedback_manager_company_name">{{ old('company_name_ajax',$company_name_ajax_default->name) }}</span>? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="your_journey_so_far_in_company" id="your_journey_so_far_in_company" style="height: 100px">{{ old('your_journey_so_far_in_company')}}</textarea>
 
                   @if ($errors->has('your_journey_so_far_in_company'))
                     <span class="text-danger">{{ $errors->first('your_journey_so_far_in_company') }}</span>
@@ -217,7 +218,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_things_like_your_job_1" id="top_3_things_like_your_job_1" value="{{ old('top_3_things_like_your_job_1') }}" required>
+                      <input type="text" class="form-control" name="top_3_things_like_your_job_1" id="top_3_things_like_your_job_1" value="{{ old('top_3_things_like_your_job_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -230,7 +231,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_things_like_your_job_2" id="top_3_things_like_your_job_2" value="{{ old('top_3_things_like_your_job_2') }}" required>
+                      <input type="text" class="form-control" name="top_3_things_like_your_job_2" id="top_3_things_like_your_job_2" value="{{ old('top_3_things_like_your_job_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -243,7 +244,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_things_like_your_job_3" id="top_3_things_like_your_job_3" value="{{ old('top_3_things_like_your_job_3') }}" required>
+                      <input type="text" class="form-control" name="top_3_things_like_your_job_3" id="top_3_things_like_your_job_3" value="{{ old('top_3_things_like_your_job_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -262,7 +263,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_things_wish_change_job_role_1" id="three_things_wish_change_job_role_1" value="{{ old('three_things_wish_change_job_role_1') }}" required>
+                      <input type="text" class="form-control" name="three_things_wish_change_job_role_1" id="three_things_wish_change_job_role_1" value="{{ old('three_things_wish_change_job_role_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -275,7 +276,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_things_wish_change_job_role_2" id="three_things_wish_change_job_role_2" value="{{ old('three_things_wish_change_job_role_2') }}" required>
+                      <input type="text" class="form-control" name="three_things_wish_change_job_role_2" id="three_things_wish_change_job_role_2" value="{{ old('three_things_wish_change_job_role_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -288,7 +289,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_things_wish_change_job_role_3" id="three_things_wish_change_job_role_3" value="{{ old('three_things_wish_change_job_role_3') }}" required>
+                      <input type="text" class="form-control" name="three_things_wish_change_job_role_3" id="three_things_wish_change_job_role_3" value="{{ old('three_things_wish_change_job_role_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -538,7 +539,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_exemplary_work_achievement_showcase" class="form-label">Any exemplary work or achievement that you would like to showcase? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_exemplary_work_achievement_showcase" id="any_exemplary_work_achievement_showcase" style="height: 100px" required>{{ old('any_exemplary_work_achievement_showcase')}}</textarea>
+                  <textarea class="form-control" name="any_exemplary_work_achievement_showcase" id="any_exemplary_work_achievement_showcase" style="height: 100px">{{ old('any_exemplary_work_achievement_showcase')}}</textarea>
 
                   @if ($errors->has('any_exemplary_work_achievement_showcase'))
                     <span class="text-danger">{{ $errors->first('any_exemplary_work_achievement_showcase') }}</span>
@@ -552,7 +553,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_additional_trainings" class="form-label">Any additional trainings that you'd like? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_additional_trainings" id="any_additional_trainings" style="height: 100px" required>{{ old('any_additional_trainings')}}</textarea>
+                  <textarea class="form-control" name="any_additional_trainings" id="any_additional_trainings" style="height: 100px">{{ old('any_additional_trainings')}}</textarea>
 
                   @if ($errors->has('any_additional_trainings'))
                     <span class="text-danger">{{ $errors->first('any_additional_trainings') }}</span>
@@ -566,8 +567,8 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="what_do_you_like_about_company" class="form-label">What do you like about <span id="what_do_you_like_about_company_name">{{ old('company_name_ajax') }}</span>? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="what_do_you_like_about_company" id="what_do_you_like_about_company" style="height: 100px" required>{{ old('what_do_you_like_about_company')}}</textarea>
+                  <label for="what_do_you_like_about_company" class="form-label">What do you like about <span id="what_do_you_like_about_company_name">{{ old('company_name_ajax',$company_name_ajax_default->name) }}</span>? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="what_do_you_like_about_company" id="what_do_you_like_about_company" style="height: 100px">{{ old('what_do_you_like_about_company')}}</textarea>
 
                   @if ($errors->has('what_do_you_like_about_company'))
                     <span class="text-danger">{{ $errors->first('what_do_you_like_about_company') }}</span>
@@ -580,8 +581,8 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="what_do_you_dislike_about_company" class="form-label">What do you dislike about <span id="what_do_you_dislike_about_company_name">{{ old('company_name_ajax') }}</span>? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="what_do_you_dislike_about_company" id="what_do_you_dislike_about_company" style="height: 100px" required>{{ old('what_do_you_dislike_about_company')}}</textarea>
+                  <label for="what_do_you_dislike_about_company" class="form-label">What do you dislike about <span id="what_do_you_dislike_about_company_name">{{ old('company_name_ajax',$company_name_ajax_default->name) }}</span>? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="what_do_you_dislike_about_company" id="what_do_you_dislike_about_company" style="height: 100px">{{ old('what_do_you_dislike_about_company')}}</textarea>
 
                   @if ($errors->has('what_do_you_dislike_about_company'))
                     <span class="text-danger">{{ $errors->first('what_do_you_dislike_about_company') }}</span>
@@ -594,8 +595,8 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="satisfied_employee_benefits_offered_company" class="form-label">How satisfied are you with employee benefits being offered by <span id="satisfied_employee_benefits_offered_company_name">{{ old('company_name_ajax') }}</span>? Please elaborate. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="satisfied_employee_benefits_offered_company" id="satisfied_employee_benefits_offered_company" style="height: 100px" required>{{ old('satisfied_employee_benefits_offered_company')}}</textarea>
+                  <label for="satisfied_employee_benefits_offered_company" class="form-label">How satisfied are you with employee benefits being offered by <span id="satisfied_employee_benefits_offered_company_name">{{ old('company_name_ajax',$company_name_ajax_default->name) }}</span>? Please elaborate. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="satisfied_employee_benefits_offered_company" id="satisfied_employee_benefits_offered_company" style="height: 100px">{{ old('satisfied_employee_benefits_offered_company')}}</textarea>
 
                   @if ($errors->has('satisfied_employee_benefits_offered_company'))
                     <span class="text-danger">{{ $errors->first('satisfied_employee_benefits_offered_company') }}</span>
@@ -843,7 +844,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_detailed_feedback_support_your_response" class="form-label">Any detailed feedback you would like to share to support your response on the above parameters? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_detailed_feedback_support_your_response" id="any_detailed_feedback_support_your_response" style="height: 100px" required>{{ old('any_detailed_feedback_support_your_response')}}</textarea>
+                  <textarea class="form-control" name="any_detailed_feedback_support_your_response" id="any_detailed_feedback_support_your_response" style="height: 100px">{{ old('any_detailed_feedback_support_your_response')}}</textarea>
 
                   @if ($errors->has('any_detailed_feedback_support_your_response'))
                     <span class="text-danger">{{ $errors->first('any_detailed_feedback_support_your_response') }}</span>
@@ -857,7 +858,7 @@
                 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Rate <span id="rate_5_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax') }}</span> on the below-mentioned parameters out of 5</strong></label>
+                  <label class="form-label"><strong>Rate <span id="rate_5_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span> on the below-mentioned parameters out of 5</strong></label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -946,7 +947,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_transparent_is_reporting_manager" class="form-label rdioBtn">How transparent is <span id="how_transparent_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax') }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_transparent_is_reporting_manager" class="form-label rdioBtn">How transparent is <span id="how_transparent_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager" id="how_transparent_is_reporting_manager" value="1" @if(old('how_transparent_is_reporting_manager')=='1') checked @endif>
@@ -1089,7 +1090,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="our_organization_believes_mantra" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="our_organization_believes_mantra" id="our_organization_believes_mantra" style="height: 100px" required>{{ old('our_organization_believes_mantra')}}</textarea>
+                  <textarea class="form-control" name="our_organization_believes_mantra" id="our_organization_believes_mantra" style="height: 100px">{{ old('our_organization_believes_mantra')}}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra'))
                     <span class="text-danger">{{ $errors->first('our_organization_believes_mantra') }}</span>
@@ -1103,7 +1104,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Rate Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax') }}</span>)  on the below mentioned parameters out of 5 (5- highest, 1- lowest)</strong></label>
+                  <label class="form-label"><strong>Rate Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span>)  on the below mentioned parameters out of 5 (5- highest, 1- lowest)</strong></label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1295,12 +1296,12 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share top three strengths of Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax') }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share top three strengths of Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_1" id="top_3_strengths_reporting_manager_qi_1" value="{{ old('top_3_strengths_reporting_manager_qi_1') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_1" id="top_3_strengths_reporting_manager_qi_1" value="{{ old('top_3_strengths_reporting_manager_qi_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1313,7 +1314,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_2" id="top_3_strengths_reporting_manager_qi_2" value="{{ old('top_3_strengths_reporting_manager_qi_2') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_2" id="top_3_strengths_reporting_manager_qi_2" value="{{ old('top_3_strengths_reporting_manager_qi_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1326,7 +1327,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_3" id="top_3_strengths_reporting_manager_qi_3" value="{{ old('top_3_strengths_reporting_manager_qi_3') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_reporting_manager_qi_3" id="top_3_strengths_reporting_manager_qi_3" value="{{ old('top_3_strengths_reporting_manager_qi_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1340,12 +1341,12 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share three areas of improvement for Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax') }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share three areas of improvement for Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_1" id="three_areas_improvement_reporting_manager_qi_1" value="{{ old('three_areas_improvement_reporting_manager_qi_1') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_1" id="three_areas_improvement_reporting_manager_qi_1" value="{{ old('three_areas_improvement_reporting_manager_qi_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1358,7 +1359,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_2" id="three_areas_improvement_reporting_manager_qi_2" value="{{ old('three_areas_improvement_reporting_manager_qi_2') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_2" id="three_areas_improvement_reporting_manager_qi_2" value="{{ old('three_areas_improvement_reporting_manager_qi_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1371,7 +1372,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_3" id="three_areas_improvement_reporting_manager_qi_3" value="{{ old('three_areas_improvement_reporting_manager_qi_3') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_reporting_manager_qi_3" id="three_areas_improvement_reporting_manager_qi_3" value="{{ old('three_areas_improvement_reporting_manager_qi_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1386,7 +1387,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="our_organization_believes_mantra_reporting_manager_qi" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="our_organization_believes_mantra_reporting_manager_qi" id="our_organization_believes_mantra_reporting_manager_qi" style="height: 100px" required>{{ old('our_organization_believes_mantra_reporting_manager_qi')}}</textarea>
+                  <textarea class="form-control" name="our_organization_believes_mantra_reporting_manager_qi" id="our_organization_believes_mantra_reporting_manager_qi" style="height: 100px">{{ old('our_organization_believes_mantra_reporting_manager_qi')}}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra_reporting_manager_qi'))
                     <span class="text-danger">{{ $errors->first('our_organization_believes_mantra_reporting_manager_qi') }}</span>
@@ -1599,7 +1600,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_1" id="top_3_strengths_hod_qj_1" value="{{ old('top_3_strengths_hod_qj_1') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_1" id="top_3_strengths_hod_qj_1" value="{{ old('top_3_strengths_hod_qj_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1612,7 +1613,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_2" id="top_3_strengths_hod_qj_2" value="{{ old('top_3_strengths_hod_qj_2') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_2" id="top_3_strengths_hod_qj_2" value="{{ old('top_3_strengths_hod_qj_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1625,7 +1626,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_3" id="top_3_strengths_hod_qj_3" value="{{ old('top_3_strengths_hod_qj_3') }}" required>
+                      <input type="text" class="form-control" name="top_3_strengths_hod_qj_3" id="top_3_strengths_hod_qj_3" value="{{ old('top_3_strengths_hod_qj_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1644,7 +1645,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_1" id="three_areas_improvement_hod_qj_1" value="{{ old('three_areas_improvement_hod_qj_1') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_1" id="three_areas_improvement_hod_qj_1" value="{{ old('three_areas_improvement_hod_qj_1') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1657,7 +1658,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_2" id="three_areas_improvement_hod_qj_2" value="{{ old('three_areas_improvement_hod_qj_2') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_2" id="three_areas_improvement_hod_qj_2" value="{{ old('three_areas_improvement_hod_qj_2') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1670,7 +1671,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_3" id="three_areas_improvement_hod_qj_3" value="{{ old('three_areas_improvement_hod_qj_3') }}" required>
+                      <input type="text" class="form-control" name="three_areas_improvement_hod_qj_3" id="three_areas_improvement_hod_qj_3" value="{{ old('three_areas_improvement_hod_qj_3') }}">
                       <div class="valid-feedback">
                         Looks good!
                       </div>
@@ -1685,7 +1686,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="our_organization_believes_mantra_hod_qj" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="our_organization_believes_mantra_hod_qj" id="our_organization_believes_mantra_hod_qj" style="height: 100px" required>{{ old('our_organization_believes_mantra')}}</textarea>
+                  <textarea class="form-control" name="our_organization_believes_mantra_hod_qj" id="our_organization_believes_mantra_hod_qj" style="height: 100px">{{ old('our_organization_believes_mantra')}}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra_hod_qj'))
                     <span class="text-danger">{{ $errors->first('our_organization_believes_mantra_hod_qj') }}</span>
@@ -2144,7 +2145,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_additional_feedback_any_department" class="form-label">Any additional feedback for any department that you would like to share? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_additional_feedback_any_department" id="any_additional_feedback_any_department" style="height: 100px" required>{{ old('any_additional_feedback_any_department')}}</textarea>
+                  <textarea class="form-control" name="any_additional_feedback_any_department" id="any_additional_feedback_any_department" style="height: 100px">{{ old('any_additional_feedback_any_department')}}</textarea>
 
                   @if ($errors->has('any_additional_feedback_any_department'))
                     <span class="text-danger">{{ $errors->first('any_additional_feedback_any_department') }}</span>
@@ -2158,7 +2159,7 @@
                 
                 <div class="col-md-12 position-relative">
                   <label for="any_issue_concern_management" class="form-label">Any issue or concern that you would like to talk to management about? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_issue_concern_management" id="any_issue_concern_management" style="height: 100px" required>{{ old('any_issue_concern_management') }}</textarea>
+                  <textarea class="form-control" name="any_issue_concern_management" id="any_issue_concern_management" style="height: 100px">{{ old('any_issue_concern_management') }}</textarea>
                   <div class="invalid-feedback">
                     What’s the best experience you have had during your tenure till date?
                   </div>
