@@ -151,7 +151,7 @@
 
             <div class="col-md-12 position-relative">
               <label for="additional_feedback_trainer_{{ $j }}" class="form-label">Any additional comments for {{ $trainer_detail->first_name}} {{ $trainer_detail->last_name}} <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-              <textarea class="form-control" name="additional_feedback_trainer_{{ $j }}" id="additional_feedback_trainer_{{ $j }}" style="height: 100px" required>{{ old('additional_feedback_trainer_$j')}}</textarea>
+              <textarea class="form-control" name="additional_feedback_trainer_{{ $j }}" id="additional_feedback_trainer_{{ $j }}" style="height: 100px">{{ old('additional_feedback_trainer_$j')}}</textarea>
               <div class="invalid-feedback">
                 Any additional comments.
               </div>

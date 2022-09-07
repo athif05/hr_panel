@@ -89,10 +89,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select" name="designation" id="designation" required>
+                  <select class="form-select disable-text" name="designation" id="designation">
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
-                    <option value="{{$designation_detail['id']}}" @if(old('designation')==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
+                    <option value="{{$designation_detail['id']}}" @if(($member_details->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -106,10 +106,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select" name="department" id="department" required>
+                  <select class="form-select disable-text" name="department" id="department">
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
-                    <option value="{{$department_detail['id']}}" @if(old('department')==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
+                    <option value="{{$department_detail['id']}}" @if(($member_details->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -122,10 +122,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name" id="company_name" required>
+                  <select class="form-select disable-text" name="company_name" id="company_name">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                    <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                    <option value="{{$company_name['id']}}" @if(($member_details->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -139,10 +139,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Please choose your work-location. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="location_name" id="location_name" required>
+                  <select class="form-select disable-text" name="location_name" id="location_name">
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
-                    <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                    <option value="{{$company_location['id']}}" @if(($member_details->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -161,7 +161,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="trainer_list_name" class="form-label">Trainer <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" multiple name="trainer_list_name" id="trainer_list_name" required>
+                  <select class="form-select" multiple name="trainer_list_name" id="trainer_list_name">
                     <option  value="" disabled>Choose...</option>
                     @foreach($trainer_details as $trainer_detail)
                     <option value="{{$trainer_detail['id']}}" @if(old('trainer_list_name')==$trainer_detail['id']) selected @endif>{{$trainer_detail['first_name']}} {{$trainer_detail['last_name']}}</option>
@@ -357,7 +357,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="is_there_any_topic" class="form-label">Is there any topic that you still need training on? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="is_there_any_topic" id="is_there_any_topic" style="height: 100px" required>{{ old('is_there_any_topic')}}</textarea>
+                  <textarea class="form-control" name="is_there_any_topic" id="is_there_any_topic" style="height: 100px">{{ old('is_there_any_topic')}}</textarea>
                   <div class="invalid-feedback">
                     Is there any topic that you still need training on
                   </div>
@@ -373,7 +373,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="interesting_part_elaborate" class="form-label">Which part of the training was the most interesting? Please elaborate. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="interesting_part_elaborate" id="interesting_part_elaborate" style="height: 100px" required>{{ old('interesting_part_elaborate')}}</textarea>
+                  <textarea class="form-control" name="interesting_part_elaborate" id="interesting_part_elaborate" style="height: 100px">{{ old('interesting_part_elaborate')}}</textarea>
                   <div class="invalid-feedback">
                     Please elaborate.
                   </div>
@@ -389,7 +389,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_suggestions_feedback" class="form-label">Any suggestion/feedback you would like to give in helping us to improve our training sessions? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_suggestions_feedback" id="any_suggestions_feedback" style="height: 100px" required>{{old('any_suggestions_feedback')}}</textarea>
+                  <textarea class="form-control" name="any_suggestions_feedback" id="any_suggestions_feedback" style="height: 100px">{{old('any_suggestions_feedback')}}</textarea>
                   <div class="invalid-feedback">
                     Please elaborate.
                   </div>
