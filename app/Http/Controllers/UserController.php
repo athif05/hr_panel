@@ -202,7 +202,7 @@ class UserController extends Controller
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('confirmation_feedback_forms', 'confirmation_feedback_forms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id')
+        ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id', 'confirmation_feedback_forms.status as confirmation_feedback_forms_status')
         ->orderBy('users.first_name','asc')->get();
 
         return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members'));

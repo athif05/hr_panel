@@ -77,7 +77,17 @@
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
                         @if($all_member['feedback_id'])
+
+                          @if($all_member['confirmation_feedback_forms_status']=='1')
+
                           <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Edit Feedback</button>
+
+                          @elseif($all_member['confirmation_feedback_forms_status']=='2')
+
+                          <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form-show/".$all_member['id']."/".$all_member['feedback_id'])}}';">Show Feedback</button>
+
+                          @endif
+
                         @else
                           <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Feedback</button>
                         @endif
