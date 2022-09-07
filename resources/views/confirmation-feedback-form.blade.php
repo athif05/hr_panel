@@ -73,14 +73,14 @@
                   <input type="email" class="form-control disable-text" name="member_id" id="member_id" value="{{ $member_details['member_id'] }}" readonly>
                 </div>
 
-                <div class="col-md-12 position-relative">
-                  <label for="official_email" class="form-label">3. What is your designation & department in company_name?</label>
-                  <input type="email" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details['designation'] }}" readonly>
+                <div class="col-md-6 position-relative">
+                  <label for="official_email" class="form-label">3. What is your designation in {{ $member_details['company_name'] }}?</label>
+                  <input type="email" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details['designation_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="official_email" class="form-label">4. Department</label>
-                  <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department'] }}" readonly>
+                  <label for="official_email" class="form-label">4. What is your department in {{ $member_details['company_name'] }}?</label>
+                  <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
@@ -237,7 +237,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_1" id="top_3_highlights_1" value="{{ old('top_3_highlights_1') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_1" id="top_3_highlights_1" value="{{ old('top_3_highlights_1') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -250,7 +250,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_2" id="top_3_highlights_2" value="{{ old('top_3_highlights_2') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_2" id="top_3_highlights_2" value="{{ old('top_3_highlights_2') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -263,7 +263,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="top_3_highlights_3" id="top_3_highlights_3" value="{{ old('top_3_highlights_3') }}" required>
+                      <input type="text" class="form-control" name="top_3_highlights_3" id="top_3_highlights_3" value="{{ old('top_3_highlights_3') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -283,7 +283,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_1" id="major_task_1" value="{{ old('major_task_1') }}" required>
+                      <input type="text" class="form-control" name="major_task_1" id="major_task_1" value="{{ old('major_task_1') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -296,7 +296,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_2" id="major_task_2" value="{{ old('major_task_2') }}" required>
+                      <input type="text" class="form-control" name="major_task_2" id="major_task_2" value="{{ old('major_task_2') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -309,7 +309,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="major_task_3" id="major_task_3" value="{{ old('major_task_3') }}" required>
+                      <input type="text" class="form-control" name="major_task_3" id="major_task_3" value="{{ old('major_task_3') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -354,7 +354,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_1" id="areas_of_improvement_1" value="{{ old('areas_of_improvement_1') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_1" id="areas_of_improvement_1" value="{{ old('areas_of_improvement_1') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -367,7 +367,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_2" id="areas_of_improvement_2" value="{{ old('areas_of_improvement_2') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_2" id="areas_of_improvement_2" value="{{ old('areas_of_improvement_2') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -380,7 +380,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="areas_of_improvement_3" id="areas_of_improvement_3" value="{{ old('areas_of_improvement_3') }}" required>
+                      <input type="text" class="form-control" name="areas_of_improvement_3" id="areas_of_improvement_3" value="{{ old('areas_of_improvement_3') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -418,7 +418,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="are_you_sure_to_confirm" class="form-label">13. Are you sure to confirm {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the Organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" required onchange="open_close_pip(this.value)">
+                  <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" onchange="open_close_pip(this.value)">
                     <option value="">Choose...</option>
 
                     <option value="Yes, early confirmation" @if(old('are_you_sure_to_confirm')=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
@@ -471,7 +471,9 @@
                 </div>
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                  <input type="submit" name="submit" value="Save in Draft" class="btn btn-info">
+
+                  <input type="submit" name="submit" value="Publish" class="btn btn-primary">
                 </div>
 
               </form>

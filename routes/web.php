@@ -268,6 +268,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/confirmation-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'edit'])->middleware('isManager');
 
 	Route::post('/update-confirmation-feedback-form', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'update'])->name('update-confirmation-feedback-form');
+
+	Route::get('/confirmation-feedback-form-show/{user_id}/{id}', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'index'])->middleware('isManager');
 	/*manager confirmation feedback form, end here*/
 
 

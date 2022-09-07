@@ -40,6 +40,9 @@ return new class extends Migration
             $table->string('recommend_pip_detailed_plan')->nullable();
             $table->enum('increment_on_confirmation', ['Yes','No'])->default('Yes');
             $table->string('mention_the_amount')->nullable();
+            $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->enum('is_deleted', ['0', '1'])->default('0');
+            $table->enum('status', ['0', '1','2'])->default('0');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('manager_id')->references('id')->on('users');

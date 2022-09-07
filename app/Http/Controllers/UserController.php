@@ -132,7 +132,9 @@ class UserController extends Controller
         $member_details = User::where('users.id',$id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name','departments.name as department_name')
         ->first();
 
 

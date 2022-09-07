@@ -201,7 +201,42 @@
 			});
 			/* call trainer name list ajax function, end here */
 
+
+			/*show and hide amount box in Confirmation feedback form, start here*/
+			$('#increment_on_confirmation').on('change', function(){
+				var val=$('#increment_on_confirmation').val();
+				if(val=='No'){
+		  			document.getElementById('mention_the_amount').setAttribute("class", "form-control  disable-text");
+		  			document.getElementById('mention_the_amount').value='0';
+		  			document.getElementById('mention_the_amount').readOnly
+		                        = true;
+		  		} else {
+		  			document.getElementById('mention_the_amount').setAttribute("class", "form-control");
+		  			document.getElementById('mention_the_amount').removeAttribute("readonly");
+		  			document.getElementById('mention_the_amount').value='';
+		  		}
+			});
+			/*show and hide amount box in Confirmation feedback form, end here*/
+
 		});
+
+	
+	/* Manager MOM form recommend increment, start here*/
+  	function recommend_increment_fun(value){
+
+  		if(value=='No'){
+  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control  disable-text");
+  			document.getElementById('how_much_increment_amount').value='0';
+  			document.getElementById('how_much_increment_amount').readOnly
+                        = true;
+  		} else {
+  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control");
+  			document.getElementById('how_much_increment_amount').removeAttribute("readonly");
+  			document.getElementById('how_much_increment_amount').value='';
+  		}
+  	}
+  	/* Manager MOM form recommend increment, end here*/
+
 
 
   	/* Manager MOM form Average Rating of the entire presentation, start here*/
@@ -267,23 +302,6 @@
   		
   	}
   	/* Manager MOM form Average Rating of the entire presentation, end here*/
-
-
-  	/* Manager MOM form recommend increment, start here*/
-  	function recommend_increment_fun(value){
-
-  		if(value=='No'){
-  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control  disable-text");
-  			document.getElementById('how_much_increment_amount').value='0';
-  			document.getElementById('how_much_increment_amount').readOnly
-                        = true;
-  		} else {
-  			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control");
-  			document.getElementById('how_much_increment_amount').removeAttribute("readonly");
-  			document.getElementById('how_much_increment_amount').value='';
-  		}
-  	}
-  	/* Manager MOM form recommend increment, end here*/
 
 
   	/*disable and unable PIP textarea in Confirmation Feedback Form, start here*/
