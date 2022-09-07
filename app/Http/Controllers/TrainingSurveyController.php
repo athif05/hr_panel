@@ -122,42 +122,7 @@ class TrainingSurveyController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        /*$expertise_on_subject_matter_1='NA';
-        $clear_effective_communication_skills_1='NA';
-        $effective_delivery_content_1='NA';
-        $timely_response_queries_1='NA';
-        $comfortability_sharing_concerns_doubts_1='NA';
-        $additional_feedback_trainer_1='NA';
-
-        $expertise_on_subject_matter_2='NA';
-        $clear_effective_communication_skills_2='NA';
-        $effective_delivery_content_2='NA';
-        $timely_response_queries_2='NA';
-        $comfortability_sharing_concerns_doubts_2='NA';
-        $additional_feedback_trainer_2='NA';
-
-        $expertise_on_subject_matter_3='NA';
-        $clear_effective_communication_skills_3='NA';
-        $effective_delivery_content_3='NA';
-        $timely_response_queries_3='NA';
-        $comfortability_sharing_concerns_doubts_3='NA';
-        $additional_feedback_trainer_3='NA';
-
-        $expertise_on_subject_matter_4='NA';
-        $clear_effective_communication_skills_4='NA';
-        $effective_delivery_content_4='NA';
-        $timely_response_queries_4='NA';
-        $comfortability_sharing_concerns_doubts_4='NA';
-        $additional_feedback_trainer_4='NA';
-
-        $expertise_on_subject_matter_5='NA';
-        $clear_effective_communication_skills_5='NA';
-        $effective_delivery_content_5='NA';
-        $timely_response_queries_5='NA';
-        $comfortability_sharing_concerns_doubts_5='NA';
-        $additional_feedback_trainer_5='NA';*/
-
-
+        
         $user_id=$request->user_id;
         
         if($request['submit']=='Save in Draft'){
@@ -203,107 +168,6 @@ class TrainingSurveyController extends Controller
 
             $status='2';
         }
-
-        
-
-        /*if($request->expertise_on_subject_matter_1){
-            $expertise_on_subject_matter_1=$request->expertise_on_subject_matter_1;
-        }
-        if($request->clear_effective_communication_skills_1){
-            $clear_effective_communication_skills_1=$request->clear_effective_communication_skills_1;
-        }
-        if($request->effective_delivery_content_1){
-            $effective_delivery_content_1=$request->effective_delivery_content_1;
-        }
-        if($request->timely_response_queries_1){
-            $timely_response_queries_1=$request->timely_response_queries_1;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_1){
-            $comfortability_sharing_concerns_doubts_1=$request->comfortability_sharing_concerns_doubts_1;
-        }
-        if($request->additional_feedback_trainer_1){
-            $additional_feedback_trainer_1=$request->additional_feedback_trainer_1;
-        }
-
-
-        if($request->expertise_on_subject_matter_2){
-            $expertise_on_subject_matter_2=$request->expertise_on_subject_matter_2;
-        }
-        if($request->clear_effective_communication_skills_2){
-            $clear_effective_communication_skills_2=$request->clear_effective_communication_skills_2;
-        }
-        if($request->effective_delivery_content_2){
-            $effective_delivery_content_2=$request->effective_delivery_content_2;
-        }
-        if($request->timely_response_queries_2){
-            $timely_response_queries_2=$request->timely_response_queries_2;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_2){
-            $comfortability_sharing_concerns_doubts_2=$request->comfortability_sharing_concerns_doubts_2;
-        }
-        if($request->additional_feedback_trainer_2){
-            $additional_feedback_trainer_2=$request->additional_feedback_trainer_2;
-        }
-
-
-        if($request->expertise_on_subject_matter_3){
-            $expertise_on_subject_matter_3=$request->expertise_on_subject_matter_3;
-        }
-        if($request->clear_effective_communication_skills_3){
-            $clear_effective_communication_skills_3=$request->clear_effective_communication_skills_3;
-        }
-        if($request->effective_delivery_content_3){
-            $effective_delivery_content_3=$request->effective_delivery_content_3;
-        }
-        if($request->timely_response_queries_3){
-            $timely_response_queries_3=$request->timely_response_queries_3;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_3){
-            $comfortability_sharing_concerns_doubts_3=$request->comfortability_sharing_concerns_doubts_3;
-        }
-        if($request->additional_feedback_trainer_3){
-            $additional_feedback_trainer_3=$request->additional_feedback_trainer_3;
-        }
-
-
-        if($request->expertise_on_subject_matter_4){
-            $expertise_on_subject_matter_4=$request->expertise_on_subject_matter_4;
-        }
-        if($request->clear_effective_communication_skills_4){
-            $clear_effective_communication_skills_4=$request->clear_effective_communication_skills_4;
-        }
-        if($request->effective_delivery_content_4){
-            $effective_delivery_content_4=$request->effective_delivery_content_4;
-        }
-        if($request->timely_response_queries_4){
-            $timely_response_queries_4=$request->timely_response_queries_4;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_4){
-            $comfortability_sharing_concerns_doubts_4=$request->comfortability_sharing_concerns_doubts_4;
-        }
-        if($request->additional_feedback_trainer_4){
-            $additional_feedback_trainer_4=$request->additional_feedback_trainer_4;
-        }
-
-
-        if($request->expertise_on_subject_matter_5){
-            $expertise_on_subject_matter_5=$request->expertise_on_subject_matter_5;
-        }
-        if($request->clear_effective_communication_skills_5){
-            $clear_effective_communication_skills_5=$request->clear_effective_communication_skills_5;
-        }
-        if($request->effective_delivery_content_5){
-            $effective_delivery_content_5=$request->effective_delivery_content_5;
-        }
-        if($request->timely_response_queries_5){
-            $timely_response_queries_5=$request->timely_response_queries_5;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_5){
-            $comfortability_sharing_concerns_doubts_5=$request->comfortability_sharing_concerns_doubts_5;
-        }
-        if($request->additional_feedback_trainer_5){
-            $additional_feedback_trainer_5=$request->additional_feedback_trainer_5;
-        }*/
 
         $input = TrainingSurvey::insert([
             'user_id' => $user_id,
@@ -487,43 +351,9 @@ class TrainingSurveyController extends Controller
      */
     public function update(Request $request)
     {
-        /*$expertise_on_subject_matter_1='NA';
-        $clear_effective_communication_skills_1='NA';
-        $effective_delivery_content_1='NA';
-        $timely_response_queries_1='NA';
-        $comfortability_sharing_concerns_doubts_1='NA';
-        $additional_feedback_trainer_1='NA';
-
-        $expertise_on_subject_matter_2='NA';
-        $clear_effective_communication_skills_2='NA';
-        $effective_delivery_content_2='NA';
-        $timely_response_queries_2='NA';
-        $comfortability_sharing_concerns_doubts_2='NA';
-        $additional_feedback_trainer_2='NA';
-
-        $expertise_on_subject_matter_3='NA';
-        $clear_effective_communication_skills_3='NA';
-        $effective_delivery_content_3='NA';
-        $timely_response_queries_3='NA';
-        $comfortability_sharing_concerns_doubts_3='NA';
-        $additional_feedback_trainer_3='NA';
-
-        $expertise_on_subject_matter_4='NA';
-        $clear_effective_communication_skills_4='NA';
-        $effective_delivery_content_4='NA';
-        $timely_response_queries_4='NA';
-        $comfortability_sharing_concerns_doubts_4='NA';
-        $additional_feedback_trainer_4='NA';
-
-        $expertise_on_subject_matter_5='NA';
-        $clear_effective_communication_skills_5='NA';
-        $effective_delivery_content_5='NA';
-        $timely_response_queries_5='NA';
-        $comfortability_sharing_concerns_doubts_5='NA';
-        $additional_feedback_trainer_5='NA';*/
-
-        $user_id=$request->user_id;
         
+        $user_id=$request->user_id;
+
         if($request['submit']=='Save in Draft'){
             $status='1';
         } else if($request['submit']=='Publish'){
@@ -568,107 +398,6 @@ class TrainingSurveyController extends Controller
             $status='2';
         }
 
-
-        /*if($request->expertise_on_subject_matter_1){
-            $expertise_on_subject_matter_1=$request->expertise_on_subject_matter_1;
-        }
-        if($request->clear_effective_communication_skills_1){
-            $clear_effective_communication_skills_1=$request->clear_effective_communication_skills_1;
-        }
-        if($request->effective_delivery_content_1){
-            $effective_delivery_content_1=$request->effective_delivery_content_1;
-        }
-        if($request->timely_response_queries_1){
-            $timely_response_queries_1=$request->timely_response_queries_1;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_1){
-            $comfortability_sharing_concerns_doubts_1=$request->comfortability_sharing_concerns_doubts_1;
-        }
-        if($request->additional_feedback_trainer_1){
-            $additional_feedback_trainer_1=$request->additional_feedback_trainer_1;
-        }
-
-
-        if($request->expertise_on_subject_matter_2){
-            $expertise_on_subject_matter_2=$request->expertise_on_subject_matter_2;
-        }
-        if($request->clear_effective_communication_skills_2){
-            $clear_effective_communication_skills_2=$request->clear_effective_communication_skills_2;
-        }
-        if($request->effective_delivery_content_2){
-            $effective_delivery_content_2=$request->effective_delivery_content_2;
-        }
-        if($request->timely_response_queries_2){
-            $timely_response_queries_2=$request->timely_response_queries_2;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_2){
-            $comfortability_sharing_concerns_doubts_2=$request->comfortability_sharing_concerns_doubts_2;
-        }
-        if($request->additional_feedback_trainer_2){
-            $additional_feedback_trainer_2=$request->additional_feedback_trainer_2;
-        }
-
-
-        if($request->expertise_on_subject_matter_3){
-            $expertise_on_subject_matter_3=$request->expertise_on_subject_matter_3;
-        }
-        if($request->clear_effective_communication_skills_3){
-            $clear_effective_communication_skills_3=$request->clear_effective_communication_skills_3;
-        }
-        if($request->effective_delivery_content_3){
-            $effective_delivery_content_3=$request->effective_delivery_content_3;
-        }
-        if($request->timely_response_queries_3){
-            $timely_response_queries_3=$request->timely_response_queries_3;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_3){
-            $comfortability_sharing_concerns_doubts_3=$request->comfortability_sharing_concerns_doubts_3;
-        }
-        if($request->additional_feedback_trainer_3){
-            $additional_feedback_trainer_3=$request->additional_feedback_trainer_3;
-        }
-
-
-        if($request->expertise_on_subject_matter_4){
-            $expertise_on_subject_matter_4=$request->expertise_on_subject_matter_4;
-        }
-        if($request->clear_effective_communication_skills_4){
-            $clear_effective_communication_skills_4=$request->clear_effective_communication_skills_4;
-        }
-        if($request->effective_delivery_content_4){
-            $effective_delivery_content_4=$request->effective_delivery_content_4;
-        }
-        if($request->timely_response_queries_4){
-            $timely_response_queries_4=$request->timely_response_queries_4;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_4){
-            $comfortability_sharing_concerns_doubts_4=$request->comfortability_sharing_concerns_doubts_4;
-        }
-        if($request->additional_feedback_trainer_4){
-            $additional_feedback_trainer_4=$request->additional_feedback_trainer_4;
-        }
-
-
-        if($request->expertise_on_subject_matter_5){
-            $expertise_on_subject_matter_5=$request->expertise_on_subject_matter_5;
-        }
-        if($request->clear_effective_communication_skills_5){
-            $clear_effective_communication_skills_5=$request->clear_effective_communication_skills_5;
-        }
-        if($request->effective_delivery_content_5){
-            $effective_delivery_content_5=$request->effective_delivery_content_5;
-        }
-        if($request->timely_response_queries_5){
-            $timely_response_queries_5=$request->timely_response_queries_5;
-        } 
-        if($request->comfortability_sharing_concerns_doubts_5){
-            $comfortability_sharing_concerns_doubts_5=$request->comfortability_sharing_concerns_doubts_5;
-        }
-        if($request->additional_feedback_trainer_5){
-            $additional_feedback_trainer_5=$request->additional_feedback_trainer_5;
-        }*/
-
-        
 
         TrainingSurvey::where('user_id', $user_id)
         ->update([
@@ -770,18 +499,7 @@ class TrainingSurveyController extends Controller
         $data=$request->all_ids;
         $data=explode(',',$data);
 
-        /*$user_id=$request->user_id;
-        $edit_ajax=$request->edit_ajax;*/
-
         //DB::enableQueryLog(); //for print sql query
-
-        /*if($edit_ajax==2){
-
-            $training_survey_details = TrainingSurvey::where('user_id', $user_id)->first();
-        } else {
-
-            $training_survey_details='';
-        }*/
 
         /*fetch all user as trainer*/
         $trainer_details = User::where('status', '1')
