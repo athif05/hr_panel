@@ -42,6 +42,7 @@
               </div>
               @endif
               
+              @if($user_details && $all_details)
               <!-- Bordered Table -->
               <table class="table table-striped table-bordered">
                 
@@ -184,7 +185,16 @@
                 </tbody>
               </table>
               <!-- End Bordered Table -->
-
+              @else
+              <table class="table table-striped table-bordered">
+                
+	                <tbody>
+	                  <tr>
+	                    <td colspan="2">No record found...</td>
+	                  </tr>
+	              </tbody>
+	          </table>
+              @endif
               
             </div>
           </div>

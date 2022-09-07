@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>22Recruitment Survey | {{ env('MY_SITE_NAME') }}</title>
+    <title>Recruitment Survey | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
