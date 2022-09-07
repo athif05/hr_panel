@@ -59,12 +59,28 @@
 
                   <tr>
                     <td>Designation</td>
-                    <td>{{$check_in_member_details->designation}}</td>
+                    <td>
+                      @foreach($designation_details as $designation_detail)
+
+                        @if($designation_detail['id']==$check_in_member_details->designation)
+                        {{$designation_detail['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Department</td>
-                    <td>{{$check_in_member_details->department}}</td>
+                    <td>
+                      @foreach($department_details as $department_detail)
+
+                        @if($department_detail['id']==$check_in_member_details->department)
+                        {{$department_detail['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
@@ -118,7 +134,7 @@
 
                   <tr>
                     <td>Your Date of Joining</td>
-                    <td>{{date('d-M-Y', strtotime($check_in_member_details->joining_date))}}</td>
+                    <td>{{ $check_in_member_details->joining_date }}</td>
                   </tr>
 
                   <tr>

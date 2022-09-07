@@ -55,7 +55,7 @@
                 
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Full Name</label>
-                  <input type="text" class="form-control" name="member_name" id="member_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
+                  <input type="text" class="form-control disable-text" name="member_name" id="member_name" value="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}" readonly>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -66,7 +66,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="member_id" class="form-label">Member Code</label>
-                  <input type="text" class="form-control" name="member_id" id="member_id" value="{{ Auth::user()->member_id }}">
+                  <input type="text" class="form-control disable-text" name="member_id" id="member_id" value="{{ Auth::user()->member_id }}" readonly>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -77,7 +77,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <input type="text" class="form-control" name="designation" id="designation" value="{{ Auth::user()->designation }}">
+                  <select class="form-select disable-text" name="designation" id="designation">
+                    <option value="">Choose...</option>
+                    @foreach($designation_details as $designation_detail)
+                    <option value="{{$designation_detail['id']}}" @if((Auth::user()->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -88,7 +93,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <input type="text" class="form-control" name="department" id="department" value="{{ Auth::user()->department }}">
+                  <select class="form-select disable-text" name="department" id="department">
+                    <option value="">Choose...</option>
+                    @foreach($department_details as $department_detail)
+                    <option value="{{$department_detail['id']}}" @if((Auth::user()->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
+                    @endforeach
+                  </select>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -110,10 +120,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Company<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="company_name" id="company_name" required>
+                  <select class="form-select disable-text" name="company_name" id="company_name">
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
-                      <option value="{{$company_name['id']}}" @if(old('company_name')==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
+                      <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -126,10 +136,10 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="location_name" id="location_name" required>
+                  <select class="form-select disable-text" name="location_name" id="location_name">
                     <option value="">Choose...</option>
                     @foreach($company_locations as $company_location)
-                      <option value="{{$company_location['id']}}" @if(old('location_name')==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
+                      <option value="{{$company_location['id']}}" @if((Auth::user()->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -140,13 +150,14 @@
                   @endif
                 </div>
 
-
+                
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager" class="form-label">Your Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="reporting_manager" id="reporting_manager" required>
-                    <option value="">Choose...</option>
+                  <select class="form-select disable-text" name="reporting_manager" id="reporting_manager">
+                    
                     @foreach($manager_details as $manager_detail)
-                      <option value="{{$manager_detail['id']}}" @if(old('reporting_manager')==$manager_detail['id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                    <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
+                      <option value="{{$manager_detail['id']}}" @if((Auth::user()->manager_name)==$reporting_manager_name) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -157,9 +168,12 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}">
+
+
                 <div class="col-md-6 position-relative">
                   <label for="head_of_department" class="form-label">Head of Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="head_of_department" id="head_of_department" required>
+                  <select class="form-select" name="head_of_department" id="head_of_department">
                     <option value="">Choose...</option>
                     @foreach($hod_details as $hod_detail)
                       <option value="{{$hod_detail['id']}}" @if(old('head_of_department')==$hod_detail['id']) selected @endif>{{$hod_detail['first_name']}} {{$hod_detail['last_name']}}</option>
@@ -176,7 +190,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="joining_date" class="form-label">Your Date of Joining <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="date" class="form-control" name="joining_date" id="joining_date" value="{{ Auth::user()->joining_date }}" required>
+                  <input type="date" class="form-control disable-text" name="joining_date" id="joining_date" value="{{ Auth::user()->joining_date }}">
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -188,7 +202,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="hr_name_taking_session" class="form-label">Name of the HR taking this session <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="hr_name_taking_session" id="hr_name_taking_session" required>
+                  <select class="form-select" name="hr_name_taking_session" id="hr_name_taking_session">
                     <option value="">Choose...</option>
                     @foreach($hr_details as $hr_detail)
                       <option value="{{$hr_detail['id']}}" @if(old('hr_name_taking_session')==$hr_detail['id']) selected @endif>{{$hr_detail['first_name']}} {{$hr_detail['last_name']}}</option>
@@ -205,7 +219,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="place_yourself_category" class="form-label">Which category would you like to place yourself in ? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="place_yourself_category" id="place_yourself_category" required>
+                  <select class="form-select" name="place_yourself_category" id="place_yourself_category">
                     <option value="">Choose...</option>
                     @foreach($yourself_category_details as $yourself_category_detail)
                       <option value="{{$yourself_category_detail['id']}}" @if(old('place_yourself_category')==$yourself_category_detail['id']) selected @endif>{{$yourself_category_detail['name']}}</option>
@@ -1068,10 +1082,8 @@
                   <label class="form-label"><strong>Let's talk about your experience with your reporting manager</strong></label>
                 </div>
 
-                <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ old('reporting_manager_name_ajax')}}">
-
                 <div class="col-md-12 position-relative">
-                  <label for="great_relationship_with_manager" class="form-label rdioBtn">I have great relationship with <span id="great_relationship_id">{{ old('reporting_manager_name_ajax')}}</span>  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="great_relationship_with_manager" class="form-label rdioBtn">I have great relationship with <span id="great_relationship_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span>  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="1" @if(old('great_relationship_with_manager')=='1') checked @endif>
@@ -1128,7 +1140,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="openly_share_opinions" class="form-label rdioBtn">I can openly share opinions & feedback with <span id="openly_share_id">{{ old('reporting_manager_name_ajax')}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="openly_share_opinions" class="form-label rdioBtn">I can openly share opinions & feedback with <span id="openly_share_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="1" @if(old('openly_share_opinions')=='1') checked @endif>
@@ -1156,7 +1168,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="receive_adequate_guidance" class="form-label rdioBtn">I receive adequate guidance from <span id="adequate_guidance_id">{{ old('reporting_manager_name_ajax')}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_adequate_guidance" class="form-label rdioBtn">I receive adequate guidance from <span id="adequate_guidance_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="1" @if(old('receive_adequate_guidance')=='1') checked @endif>
@@ -1184,7 +1196,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="receive_adequate_timely_feedback" class="form-label rdioBtn">I receive adequate & timely feedback from <span id="timely_feedback_id">{{ old('reporting_manager_name_ajax')}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="receive_adequate_timely_feedback" class="form-label rdioBtn">I receive adequate & timely feedback from <span id="timely_feedback_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="1" @if(old('receive_adequate_timely_feedback')=='1') checked @endif>
@@ -1212,7 +1224,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="get_quick_resolution_issue" class="form-label rdioBtn">I get quick resolution to issues from <span id="quick_resolution_id">{{ old('reporting_manager_name_ajax')}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="get_quick_resolution_issue" class="form-label rdioBtn">I get quick resolution to issues from <span id="quick_resolution_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="1" @if(old('get_quick_resolution_issue')=='1') checked @endif>
@@ -1242,7 +1254,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="frequently_receive_feedback_manager" class="form-label">How frequently do you want to receive feedback from your manager about your performance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="frequently_receive_feedback_manager" id="frequently_receive_feedback_manager" value="{{ old('frequently_receive_feedback_manager') }}" required>
+                  <input type="text" class="form-control" name="frequently_receive_feedback_manager" id="frequently_receive_feedback_manager" value="{{ old('frequently_receive_feedback_manager') }}">
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -1253,8 +1265,8 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="any_additional_feedback_manager" class="form-label">Any additional feedback for <span id="any_additional_feedback_manager_id">{{ old('reporting_manager_name_ajax')}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_additional_feedback_manager" id="any_additional_feedback_manager" style="height: 100px" required>{{ old('any_additional_feedback_manager')}}</textarea>
+                  <label for="any_additional_feedback_manager" class="form-label">Any additional feedback for <span id="any_additional_feedback_manager_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <textarea class="form-control" name="any_additional_feedback_manager" id="any_additional_feedback_manager" style="height: 100px">{{ old('any_additional_feedback_manager')}}</textarea>
 
                   @if ($errors->has('any_additional_feedback_manager'))
                     <span class="text-danger">{{ $errors->first('any_additional_feedback_manager') }}</span>
@@ -1374,7 +1386,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="one_to_one_interaction" class="form-label rdioBtn">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ old('reporting_manager_name_ajax')}}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="one_to_one_interaction" class="form-label rdioBtn">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="Yes" @if(old('one_to_one_interaction')=='Yes') checked @endif>
@@ -1396,7 +1408,7 @@
                 
                 <div class="col-md-12 position-relative">
                   <label for="best_experience_tenure" class="form-label">What’s the best experience you have had during your tenure till date? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="best_experience_tenure" id="best_experience_tenure" style="height: 100px" required>{{ old('best_experience_tenure') }}</textarea>
+                  <textarea class="form-control" name="best_experience_tenure" id="best_experience_tenure" style="height: 100px">{{ old('best_experience_tenure') }}</textarea>
                   <div class="invalid-feedback">
                     What’s the best experience you have had during your tenure till date?
                   </div>
@@ -1413,7 +1425,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="like_most_working" class="form-label">What do you like the most working here? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="like_most_working" id="like_most_working" style="height: 100px" required>{{ old('like_most_working') }}</textarea>
+                  <textarea class="form-control" name="like_most_working" id="like_most_working" style="height: 100px">{{ old('like_most_working') }}</textarea>
                   <div class="invalid-feedback">
                     What do you like the most working here?
                   </div>
@@ -1429,7 +1441,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="like_to_change_add" class="form-label">What would you like to change/add in the organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="like_to_change_add" id="like_to_change_add" style="height: 100px" required>{{ old('like_to_change_add') }}</textarea>
+                  <textarea class="form-control" name="like_to_change_add" id="like_to_change_add" style="height: 100px">{{ old('like_to_change_add') }}</textarea>
                   <div class="invalid-feedback">
                     What would you like to change/add in the organization?
                   </div>
@@ -1445,7 +1457,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="who_inspired_you_organization" class="form-label">What/Who has inspired you in this organization, based on your experiences so far? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="who_inspired_you_organization" id="who_inspired_you_organization" style="height: 100px" required>{{ old('who_inspired_you_organization') }}</textarea>
+                  <textarea class="form-control" name="who_inspired_you_organization" id="who_inspired_you_organization" style="height: 100px">{{ old('who_inspired_you_organization') }}</textarea>
                   <div class="invalid-feedback">
                     What/Who has inspired you in this organization, based on your experiences so far?
                   </div>
@@ -1460,7 +1472,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="mention_achievement" class="form-label">Mention your achievement(s) in terms of your work till date. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="mention_achievement" id="mention_achievement" style="height: 100px" required>{{ old('mention_achievement') }}</textarea>
+                  <textarea class="form-control" name="mention_achievement" id="mention_achievement" style="height: 100px">{{ old('mention_achievement') }}</textarea>
                   <div class="invalid-feedback">
                     Mention your achievement(s) in terms of your work till date.
                   </div>
@@ -1476,7 +1488,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="facing_any_challenges" class="form-label">Any challenges that you are facing right now? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="facing_any_challenges" id="facing_any_challenges" style="height: 100px" required>{{ old('facing_any_challenges') }}</textarea>
+                  <textarea class="form-control" name="facing_any_challenges" id="facing_any_challenges" style="height: 100px">{{ old('facing_any_challenges') }}</textarea>
                   <div class="invalid-feedback">
                     Any challenges that you are facing right now?
                   </div>
@@ -1491,7 +1503,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="need_additional_training" class="form-label">Do you need any additional training or support? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="need_additional_training" id="need_additional_training" style="height: 100px" required>{{ old('need_additional_training') }}</textarea>
+                  <textarea class="form-control" name="need_additional_training" id="need_additional_training" style="height: 100px">{{ old('need_additional_training') }}</textarea>
                   <div class="invalid-feedback">
                     Do you need any additional training or support?
                   </div>
@@ -1506,7 +1518,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_additional_feedback_share" class="form-label">Any additional feedback that you wish to share? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_additional_feedback_share" id="any_additional_feedback_share" style="height: 100px" required>{{ old('any_additional_feedback_share') }}</textarea>
+                  <textarea class="form-control" name="any_additional_feedback_share" id="any_additional_feedback_share" style="height: 100px">{{ old('any_additional_feedback_share') }}</textarea>
                   <div class="invalid-feedback">
                     Any additional feedback that you wish to share?
                   </div>
