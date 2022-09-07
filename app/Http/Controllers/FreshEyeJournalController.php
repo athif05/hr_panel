@@ -483,9 +483,14 @@ class FreshEyeJournalController extends Controller
         /*check record is exist or not*/
         $fresh_eye_journal_details = FreshEyeJournal::where('user_id', $user_id)->first();
 
-        $hod_id_ajax_default = $fresh_eye_journal_details->head_of_department;
-        $head_of_department_name_ajax_default = User::where('id', $hod_id_ajax_default)->first();
-        $head_of_department_name_ajax_default=$head_of_department_name_ajax_default['first_name'].' '.$head_of_department_name_ajax_default['last_name'];
+        if($fresh_eye_journal_details->head_of_department){
+            $hod_id_ajax_default = $fresh_eye_journal_details->head_of_department;
+            $head_of_department_name_ajax_default = User::where('id', $hod_id_ajax_default)->first();
+            $head_of_department_name_ajax_default=$head_of_department_name_ajax_default['first_name'].' '.$head_of_department_name_ajax_default['last_name'];
+        } else {
+            $head_of_department_name_ajax_default='';
+        }
+        
 
         if($fresh_eye_journal_details['status']==1){
             
