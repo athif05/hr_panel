@@ -485,9 +485,7 @@
 
               <div style="float: left; width: 100%;">
               	<div style="float: left; width: 70%;">
-              		<p>
-              			<strong>Note:</strong> <span class="text-danger"><strong>*</strong></span> mandatory fields.
-              		</p>
+              		@include('partials.common-note')
               	</div>
               	<div style="float: left; width: 30%;">
               		<a href="{{ url('/confirmation-feedback-form') }}">

@@ -1541,7 +1541,9 @@
               </form>
               <!-- End Custom Styled Validation with Tooltips -->
               <br>
-              <p><strong>Note:</strong> <span class="text-danger"><strong>*</strong></span> mandatory fields.</p>
+              <div class="col-12">
+              		@include('partials.common-note')
+              	</div>
 
             </div>
           </div>

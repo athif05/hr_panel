@@ -225,11 +225,17 @@
   	function recommend_increment_fun(value){
 
   		if(value=='No'){
+  			document.getElementById('how_much_increment').setAttribute("class", "form-control  disable-text");
+  			document.getElementById("how_much_increment").setAttribute("disabled", "disabled");
+
   			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control  disable-text");
   			document.getElementById('how_much_increment_amount').value='0';
   			document.getElementById('how_much_increment_amount').readOnly
                         = true;
   		} else {
+  			document.getElementById('how_much_increment').setAttribute("class", "form-control");
+  			document.getElementById("how_much_increment").removeAttribute("disabled", "disabled");
+  			
   			document.getElementById('how_much_increment_amount').setAttribute("class", "form-control");
   			document.getElementById('how_much_increment_amount').removeAttribute("readonly");
   			document.getElementById('how_much_increment_amount').value='';

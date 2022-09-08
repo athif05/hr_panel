@@ -69,7 +69,7 @@
           							{{$all_member['first_name']}} {{$all_member['last_name']}}
           						</td>
           						<td>{{$all_member['email']}}</td>
-          						<td>{{$all_member['designation']}}</td>
+          						<td>{{$all_member['designation_name']}}</td>
           						<!-- <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->

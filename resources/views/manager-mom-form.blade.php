@@ -83,12 +83,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="official_email" class="form-label">2. Member Designation</label>
-                  <input type="email" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details['designation'] }}" readonly>
+                  <input type="email" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details['designation_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
                   <label for="official_email" class="form-label">3. Department</label>
-                  <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department'] }}" readonly>
+                  <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -100,7 +100,7 @@
                   <label for="minutes_of_meeting" class="form-label">5. Minutes of Meeting<br>
                   	<span class="span_green">Please provide your Minutes Of Meeting in bullet points</span>
                   </label>
-                  <textarea class="form-control" name="minutes_of_meeting" id="minutes_of_meeting" style="height: 100px" required>{{ old('minutes_of_meeting')}}</textarea>
+                  <textarea class="form-control" name="minutes_of_meeting" id="minutes_of_meeting" style="height: 100px">{{ old('minutes_of_meeting')}}</textarea>
                   @if ($errors->has('minutes_of_meeting'))
                     <span class="text-danger">{{ $errors->first('minutes_of_meeting') }}</span>
                   @endif
@@ -114,7 +114,7 @@
                 @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
                 <div class="col-md-12 position-relative">
                   <label for="hidden_notes" class="form-label">N. Hidden notes</label>
-                  <textarea class="form-control" name="hidden_notes" id="hidden_notes" style="height: 100px" required>{{ old('hidden_notes')}}</textarea>
+                  <textarea class="form-control" name="hidden_notes" id="hidden_notes" style="height: 100px">{{ old('hidden_notes')}}</textarea>
                   @if ($errors->has('hidden_notes'))
                     <span class="text-danger">{{ $errors->first('hidden_notes') }}</span>
                   @endif
@@ -258,8 +258,8 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="elaborate_performance" class="form-label" style="font-weight: 400;">Average Rating of the entire presentation 
-                    <input type="hidden" name="average_rating_entire_presentation" id="average_rating_entire_presentation" value="0">
-                  	<span class="avg_rating" id="avg_rating_span">0</span>
+                    <input type="hidden" name="average_rating_entire_presentation" id="average_rating_entire_presentation" value="{{ old('average_rating_entire_presentation') }}">
+                  	<span class="avg_rating" id="avg_rating_span">{{ old('average_rating_entire_presentation') }}</span>
                   </label>
                 </div>
 
@@ -315,7 +315,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="are_you_sure_to_confirm" class="form-label">9. Are you sure to confirm his/her in the Organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" required>
+                  <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm">
 
                     <option value="Yes, early confirmation" @if(old('are_you_sure_to_confirm')=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
 
@@ -335,7 +335,9 @@
 
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                  <input type="submit" name="submit" value="Save in Draft" class="btn btn-info">
+
+                  <input type="submit" name="submit" value="Publish" class="btn btn-primary">
                 </div>
 
               </form>
@@ -343,10 +345,8 @@
               <br>
               <div style="float: left; width: 100%;">
                 <div style="float: left; width: 70%;">
-                  <p>
-                    <strong>Note:</strong> <span class="text-danger"><strong>*</strong></span> mandatory fields.
-                  </p>
-                </div>
+              		@include('partials.common-note')
+              	</div>
                 <div style="float: left; width: 30%;">
                   <a href="{{ url('/manager-mom') }}">
                     <button name="cancel" class="btn btn-info" style="float: right; text-align: right;">Cancel/Back</button>

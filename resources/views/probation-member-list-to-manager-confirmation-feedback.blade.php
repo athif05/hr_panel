@@ -71,7 +71,7 @@
           							{{$all_member['first_name']}} {{$all_member['last_name']}}
           						</td>
           						<td>{{$all_member['email']}}</td>
-          						<td>{{$all_member['designation']}}</td>
+          						<td>{{$all_member['designation_name']}}</td>
           						<!-- <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
@@ -80,11 +80,11 @@
 
                           @if($all_member['confirmation_feedback_forms_status']=='1')
 
-                          <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Edit Feedback</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Edit Feedback</button>
 
                           @elseif($all_member['confirmation_feedback_forms_status']=='2')
 
-                          <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form-show/".$all_member['id']."/".$all_member['feedback_id'])}}';">Show Feedback</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form-show/".$all_member['id']."/".$all_member['feedback_id'])}}';">Show Feedback</button>
 
                           @endif
 

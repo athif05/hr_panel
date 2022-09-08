@@ -167,8 +167,17 @@ class ConfirmationFeedbackFormController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name','departments.name as department_name')
         ->first();
 
-        
-        return view('confirmation-feedback-form-edit', compact('member_details','feedback_form_details'));
+
+        if($feedback_form_details['status']=='1'){
+
+            return view('confirmation-feedback-form-edit', compact('member_details','feedback_form_details'));
+
+        } else if($feedback_form_details['status']=='2'){
+
+            return redirect("/confirmation-feedback-form-show/$user_id/$id")->with('thank_you', 'Feedback form successfully updated.');
+
+        }
+
 
 	}
 	/* edit form, end here */

@@ -96,7 +96,9 @@ class UserController extends Controller
         $member_details = User::where('users.id',$id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->first();
 
         $manager_id=Auth::user()->id;
@@ -165,7 +167,9 @@ class UserController extends Controller
         $all_members = User::where('users.employee_type','Probation')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
         return view('hr-mom', compact('all_members'));
@@ -181,7 +185,9 @@ class UserController extends Controller
         $all_members = User::where('users.employee_type','Probation')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
         return view('hr-generate-emails', compact('all_members'));
@@ -202,7 +208,8 @@ class UserController extends Controller
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('confirmation_feedback_forms', 'confirmation_feedback_forms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id', 'confirmation_feedback_forms.status as confirmation_feedback_forms_status')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id', 'confirmation_feedback_forms.status as confirmation_feedback_forms_status','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
         return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members'));
@@ -221,7 +228,8 @@ class UserController extends Controller
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('confirmation_moms', 'confirmation_moms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name', 'confirmation_moms.id as mom_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'confirmation_moms.id as mom_id','confirmation_moms.status as confirmation_mom_status','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
         return view('probation-member-list-to-manager-mom', compact('all_members'));
@@ -241,7 +249,8 @@ class UserController extends Controller
         $all_members = User::where('users.employee_type','Probation')
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
-        ->select('users.*', 'company_locations.name as location_name')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
         return view('probation-member-list-to-manager-check-in', compact('all_members'));
@@ -257,7 +266,11 @@ class UserController extends Controller
      */
     public function index()
     {   
-        $all_candidates = User::where('employee_type','Probation')->orderBy('first_name','asc')->get();
+        $all_candidates = User::where('users.employee_type','Probation')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->select('users.*', 'departments.name as department_name')
+        ->orderBy('users.first_name','asc')
+        ->get();
 
         return view('confirmation-process-mom-email', compact('all_candidates'));
     }
@@ -377,11 +390,11 @@ class UserController extends Controller
     public function myProfile() {
 
         $user_id=Auth::user()->id;
-
         $user_details = User::where('users.id',$user_id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name')
         ->first();
 
         return view('my-profile', compact('user_details'));

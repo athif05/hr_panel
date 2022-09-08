@@ -28,7 +28,7 @@
 
               
               <h2>{{ $user_details['first_name'].' '.$user_details['last_name']}}</h2>
-              <h3>{{ $user_details['designation'] }}</h3>
+              <h3>{{ $user_details['designation_name'] }}</h3>
               <!-- <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -100,7 +100,11 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Joining Date</div>
-                    <div class="col-lg-9 col-md-8">{{ date('d-M-Y', strtotime($user_details['joining_date']))}}</div>
+                    <div class="col-lg-9 col-md-8">
+                      @if($user_details['joining_date'])
+                        {{ date('Y-M-d', strtotime($user_details['joining_date']))}}
+                      @endif
+                    </div>
                   </div>
 
                   <div class="row">
@@ -115,7 +119,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Designation</div>
-                    <div class="col-lg-9 col-md-8">{{ $user_details['designation']}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $user_details['designation_name']}}</div>
                   </div>
 
                   <div class="row">

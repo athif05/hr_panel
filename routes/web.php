@@ -283,6 +283,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/manager-mom-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'edit'])->middleware('isManager');
 
 	Route::post('/update-manager-mom', [App\Http\Controllers\ConfirmationMomController::class, 'update'])->name('update-manager-mom');
+
+	Route::get('/manager-mom-form-show/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'index'])->middleware('isManager');
 	/*manager mom form, end here*/
 
 

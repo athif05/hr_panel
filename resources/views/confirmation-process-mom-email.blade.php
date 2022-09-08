@@ -60,7 +60,7 @@
 						<td>
 							{{$all_candidate['first_name']}} {{$all_candidate['last_name']}}
 						</td>
-						<td>{{$all_candidate['department']}}</td>
+						<td>{{$all_candidate['department_name']}}</td>
 						<td>
 							<button type="button" class="btn btn-primary btn-sm">View</button>
 						</td>
