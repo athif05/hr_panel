@@ -187,14 +187,14 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </a>
           </li>
 
-          <li>
+          <!-- <li>
             <a href="{{ url('/fresh-eye-journal-form') }}">
               <i class="bi bi-circle"></i><span>Fresh Eye Journal Form</span>
             </a>
-          </li>
+          </li> -->
           @endif
 
-          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
+          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6'))
           <li>
             <a href="{{ url('confirmation-process-mom-email') }}">
               <i class="bi bi-hand-thumbs-up-fill"></i>
