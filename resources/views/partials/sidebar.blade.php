@@ -96,7 +96,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
         </ul>
       </li>--><!-- End Components Nav -->
 
-      @if((Auth::user()->role_id!='7'))
+      
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Confirmation Panel</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -194,7 +194,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           </li> -->
           @endif
 
-          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6'))
+          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
           <li>
             <a href="{{ url('confirmation-process-mom-email') }}">
               <i class="bi bi-hand-thumbs-up-fill"></i>
@@ -220,7 +220,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
         </ul>
       </li><!-- End Forms Nav -->
-      @endif
+
 
       
 
