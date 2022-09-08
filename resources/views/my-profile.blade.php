@@ -102,7 +102,7 @@
                     <div class="col-lg-3 col-md-4 label">Joining Date</div>
                     <div class="col-lg-9 col-md-8">
                       @if($user_details['joining_date'])
-                        {{ date('Y-M-d', strtotime($user_details['joining_date']))}}
+                        {{ date('Y-m-d', strtotime($user_details['joining_date']))}}
                       @endif
                     </div>
                   </div>
