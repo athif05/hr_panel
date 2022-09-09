@@ -227,7 +227,8 @@ class UserRecruitmentFormController extends Controller
             if($status==1){
 
                 //return redirect('/thank-you')->with('thank_you', 'Your form save in draft.');
-                return back()->with('thank_you', 'Your form save in draft.');
+                //return back()->with('thank_you', 'Your form save in draft.');
+                return redirect("/recruitment-survey-edit/$request->user_id")->with('thank_you', 'Your form save in draft.');
 
             } else if($status==2){
                 //return redirect('/thank-you')->with('thank_you', 'Thanks, for giving your valuable time for us.');
