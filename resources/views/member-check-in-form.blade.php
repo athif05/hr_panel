@@ -75,9 +75,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="designation" id="designation" value="{{Auth::user()->designation}}" />
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select disable-text" name="designation" id="designation">
+                  <select class="form-select disable-text" name="designation_dis" id="designation_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
                     <option value="{{$designation_detail['id']}}" @if((Auth::user()->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
@@ -91,9 +92,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="department" id="department" value="{{Auth::user()->department}}" />
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select disable-text" name="department" id="department">
+                  <select class="form-select disable-text" name="department_dis" id="department_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
                     <option value="{{$department_detail['id']}}" @if((Auth::user()->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
@@ -118,9 +120,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="company_name" id="company_name" value="{{Auth::user()->company_id}}" />
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Company<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="company_name" id="company_name">
+                  <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
                       <option value="{{$company_name['id']}}" @if((Auth::user()->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
@@ -134,9 +137,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="location_name" id="location_name" value="{{Auth::user()->company_location_id}}" />
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="location_name" id="location_name">
+                  <select class="form-select disable-text" name="location_name_dis" id="location_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_locations as $company_location)
                       <option value="{{$company_location['id']}}" @if((Auth::user()->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
@@ -150,10 +154,10 @@
                   @endif
                 </div>
 
-                
+                <input type="hidden" name="reporting_manager" id="reporting_manager" value="{{Auth::user()->manager_name}}" />
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager" class="form-label">Your Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="reporting_manager" id="reporting_manager">
+                  <select class="form-select disable-text" name="reporting_manager_dis" id="reporting_manager_dis" disabled>
                     
                     @foreach($manager_details as $manager_detail)
                     <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
@@ -190,7 +194,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="joining_date" class="form-label">Your Date of Joining <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="date" class="form-control disable-text" name="joining_date" id="joining_date" value="{{ Auth::user()->joining_date }}">
+                  <input type="date" class="form-control disable-text" name="joining_date" id="joining_date" value="{{ Auth::user()->joining_date }}" readonly>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -235,7 +239,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Please rate yourself on the following parameters.</strong></label>
+                  <label class="form-label">Please rate yourself on the following parameters.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -503,7 +507,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>How well do you see yourself aligned with the company's core values? Please rate yourself, basis on your everyday conduct at work.</strong></label>
+                  <label class="form-label">How well do you see yourself aligned with the company's core values? Please rate yourself, basis on your everyday conduct at work.</label>
                   <span style="color: red; font-size: 13px;">"HINT: +/+ (follow always) , +/- (follow sometimes) , -/- (never follow)"</span>
                 </div>
 
@@ -667,7 +671,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Let's talk about your work-related experience</strong></label>
+                  <label class="form-label">Let's talk about your work-related experience</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -932,7 +936,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Let's talk about your training experience</strong></label>
+                  <label class="form-label">Let's talk about your training experience</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1079,7 +1083,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Let's talk about your experience with your reporting manager</strong></label>
+                  <label class="form-label">Let's talk about your experience with your reporting manager</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1280,7 +1284,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Has the following happened for you yet? </strong></label>
+                  <label class="form-label">Has the following happened for you yet? </label>
                 </div>
 
                 <div class="col-md-12 position-relative">

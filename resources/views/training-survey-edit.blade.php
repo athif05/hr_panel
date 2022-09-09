@@ -95,9 +95,10 @@
                 </div>
 
 
+                <input type="hidden" name="designation" id="designation" value="{{ $training_survey_details->designation }}" />
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select disable-text" name="designation" id="designation">
+                  <select class="form-select disable-text" name="designation_dis" id="designation_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
                     <option value="{{$designation_detail['id']}}" @if(($training_survey_details->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
@@ -111,10 +112,10 @@
                   @endif
                 </div>
 
-
+                <input type="hidden" name="department" id="department" value="{{ $training_survey_details->department }}" />
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select disable-text" name="department" id="department">
+                  <select class="form-select disable-text" name="department_dis" id="department_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
                     <option value="{{$department_detail['id']}}" @if(($training_survey_details->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
@@ -129,9 +130,10 @@
                 </div>
 
 
+                <input type="hidden" name="company_name" id="company_name" value="{{ $training_survey_details->company_name }}" />
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="company_name" id="company_name">
+                  <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
                     <option value="{{$company_name['id']}}" @if(($training_survey_details->company_name)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
@@ -146,9 +148,10 @@
                 </div>
 
 
+                <input type="hidden" name="location_name" id="location_name" value="{{ $training_survey_details->location_name }}" />
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Please choose your work-location. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="location_name" id="location_name">
+                  <select class="form-select disable-text" name="location_name_dis" id="location_name_dis" disabled>
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
                     <option value="{{$company_location['id']}}" @if(($training_survey_details->location_name)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
@@ -346,6 +349,11 @@
                         @if ($errors->has('additional_feedback_trainer_1'))
                           <span class="text-danger">{{ $errors->first('additional_feedback_trainer_1') }}</span>
                         @endif
+
+                        <script>
+                          CKEDITOR.replace( 'additional_feedback_trainer_1' );
+                        </script>
+
                       </div>
 
                   @endif
@@ -511,6 +519,11 @@
                       @if ($errors->has('additional_feedback_trainer_2'))
                         <span class="text-danger">{{ $errors->first('additional_feedback_trainer_2') }}</span>
                       @endif
+
+                      <script>
+                          CKEDITOR.replace( 'additional_feedback_trainer_2' );
+                        </script>
+
                     </div>
                   @endif
 
@@ -675,6 +688,11 @@
                       @if ($errors->has('additional_feedback_trainer_3'))
                         <span class="text-danger">{{ $errors->first('additional_feedback_trainer_3') }}</span>
                       @endif
+
+                      <script>
+                          CKEDITOR.replace( 'additional_feedback_trainer_3' );
+                        </script>
+
                     </div>
                   @endif
 
@@ -839,6 +857,10 @@
                       @if ($errors->has('additional_feedback_trainer_4'))
                         <span class="text-danger">{{ $errors->first('additional_feedback_trainer_4') }}</span>
                       @endif
+
+                      <script>
+                          CKEDITOR.replace( 'additional_feedback_trainer_4' );
+                        </script>
                     </div>
                   @endif
 
@@ -1004,6 +1026,11 @@
                       @if ($errors->has('additional_feedback_trainer_5'))
                         <span class="text-danger">{{ $errors->first('additional_feedback_trainer_5') }}</span>
                       @endif
+
+                      <script>
+                          CKEDITOR.replace( 'additional_feedback_trainer_5' );
+                        </script>
+
                     </div>
                   @endif
 
@@ -1012,7 +1039,7 @@
 
 
                 <div class="col-md-12 position-relative" style="margin-bottom: -5px; margin-top: 10px;">
-                  <label class="form-label"><strong>Please share your experience with the following</strong></label>
+                  <label class="form-label">Please share your experience with the following</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

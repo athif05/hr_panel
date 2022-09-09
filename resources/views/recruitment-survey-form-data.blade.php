@@ -133,18 +133,42 @@
 
                   <tr>
                     <td>Internal Employee Designation</td>
-                    <td>{{$find['internal_employee_designation']}}</td>
+                    <td>
+                      @foreach($designation_names as $designation_name)
+
+                        @if($designation_name['id']==$find['internal_employee_designation'])
+                        {{$designation_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Internal Employee Department</td>
-                    <td>{{$find['internal_employee_department']}}</td>
+                    <td>
+                      @foreach($department_names as $department_name)
+
+                        @if($department_name['id']==$find['internal_employee_department'])
+                        {{$department_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
                   @endif
 
                   <tr>
                     <td>What's the name of your recruiter?</td>
-                    <td>{{$find['name_of_your_recruiter']}}</td>
+                    <td>
+                      @foreach($recruiter_details as $recruiter_detail)
+
+                        @if($recruiter_detail['id']==$find['name_of_your_recruiter'])
+                          {{ $recruiter_detail['first_name'] }} {{ $recruiter_detail['last_name'] }}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>
@@ -205,16 +229,16 @@
                     <td>{{$find['job_title_properly_named']}}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>What will be your mission for the first year? : </strong> {{ $find['mission_for_first_year'] }}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>What will be your mission for the first year? : </strong> {!!  $find['mission_for_first_year'] !!}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>What do you aim in the second year? : </strong> {{ $find['aim_in_second_year'] }}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>What do you aim in the second year? : </strong> {!! $find['aim_in_second_year'] !!}</td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>What will be your aim in the third year of your tenure with us? : </strong> {{ $find['aim_third_year_tenure'] }}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>What will be your aim in the third year of your tenure with us? : </strong> {!! $find['aim_third_year_tenure'] !!}</td>
                   </tr>
 
                   <tr>
@@ -222,8 +246,8 @@
                     <td>{{$find['rate_overall_recruitment_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any additional feedback for the recruitment process? : </strong> {{ $find['additional_feedback_recruitment_process'] }}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any additional feedback for the recruitment process? : </strong> {!! $find['additional_feedback_recruitment_process'] !!}</td>
                   </tr>
 
                   <tr>
@@ -231,8 +255,8 @@
                     <td>{{$find['rate_hr_induction']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any additional feedback for HR induction session? : </strong> {{ $find['additional_feedback_hr_induction'] }}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any additional feedback for HR induction session? : </strong> {!! $find['additional_feedback_hr_induction'] !!}</td>
                   </tr>
 
                 </tbody>

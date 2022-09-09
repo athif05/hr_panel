@@ -423,11 +423,11 @@ class Days45CheckInMemberController extends Controller
         $check_in_member_details = DB::table('days_45_checkin_members')->where('user_id', $user_id)->first();
         
 
-        if($check_in_member_details->status === '1'){
+        if($check_in_member_details->status == '1'){
 
             return view('member-check-in-form-edit', compact('company_names','company_locations','manager_details','hod_details','hr_details','yourself_category_details','check_in_member_details','department_details','designation_details','reporting_manager_name_ajax_default'));
 
-        } else if($check_in_member_details->status === '2'){
+        } else if($check_in_member_details->status == '2'){
 
             return redirect('/member-check-in-form');
         }

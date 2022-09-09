@@ -45,6 +45,7 @@ class HiringSurveyController extends Controller
             ->where('is_deleted', '0')
             ->where('role_id', '5')
             ->orWhere('role_id', '6')
+            ->orWhere('role_id', '7')
             ->orderBy('first_name','asc')
             ->get();
 
@@ -75,8 +76,6 @@ class HiringSurveyController extends Controller
             return view('hiring-survey', compact('member_details','company_names','company_locations','job_opening_types','designation_names','department_names','recruiter_details'));
 
         } else if($hiring_survey_details['status'] === '1'){
-
-            //return view("/hiring-survey-edit", compact('hiring_survey_details','company_names','company_locations','job_opening_types','recruiter_details'));
 
             return redirect("/hiring-survey-edit/$user_id");
 
@@ -252,6 +251,7 @@ class HiringSurveyController extends Controller
             ->where('is_deleted', '0')
             ->where('role_id', '5')
             ->orWhere('role_id', '6')
+            ->orWhere('role_id', '7')
             ->orderBy('first_name','asc')
             ->get();
 

@@ -74,7 +74,7 @@ class UserInterviewFormController extends Controller
 
         } else if($find['status'] === '1'){
 
-            return redirect("/interview-survey-edit/$find->user_id")->with('thank_you', 'Your form save in draft.');
+            return redirect("/interview-survey-edit/$find->user_id");
 
         } else if($find['status'] === '2'){
 
@@ -107,7 +107,7 @@ class UserInterviewFormController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request['submit']);
+        //dd($request['company_name']);
 
         if($request['submit']=='Save in Draft'){
             $status='1';
@@ -226,11 +226,15 @@ class UserInterviewFormController extends Controller
         ]);
 
         if($input){
+
+            //$last_id = DB::getPdo()->lastInsertId();
             
             if($status==1){
                 
                 //return redirect('/thank-you')->with('thank_you', 'Your form save in draft.');
-                return back()->with('thank_you', 'Your form save in draft.');
+                //return back()->with('thank_you', 'Your form save in draft.');
+
+                return redirect("/interview-survey-edit/$request->user_id")->with('thank_you', 'Your form save in draft.');
 
             } else if($status==2){
 
@@ -265,6 +269,8 @@ class UserInterviewFormController extends Controller
      */
     public function edit($id)
     {
+        $id = Auth::user()->id;
+        //dd($id);
         $company_names = CompanyName::where('status', '1')
             ->where('is_deleted', '0')
             ->orderBy('name','asc')

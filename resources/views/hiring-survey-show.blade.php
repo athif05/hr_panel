@@ -138,7 +138,15 @@
 
                   <tr>
                     <td>Name the designation of the open position.</td>
-                    <td>{{$hiring_survey_details['designation_name_open_position']}}</td>
+                    <td>
+                      @foreach($designation_names as $designation_name)
+
+                        @if($designation_name['id']==$hiring_survey_details['designation_name_open_position'])
+                        {{$designation_name['name']}}
+                        @endif
+                      
+                      @endforeach
+                    </td>
                   </tr>
 
                   <tr>

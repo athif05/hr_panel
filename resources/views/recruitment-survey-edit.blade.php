@@ -21,6 +21,16 @@
       background-color: #ddd!important;
     }
 
+    .form-label {
+      margin-bottom: 0.5rem;
+      font-weight: 600!important;
+  }
+
+  .rdioBtn{
+    font-weight: 400!important;
+    font-size: 15px;
+  }
+
     </style>
 @endsection
 
@@ -58,6 +68,7 @@
               </div>
               @endif
               
+              @if($form_details)
               <!-- Custom Styled Validation with Tooltips -->
               <form method="post" action="{{ route('update-recruitment-survey-form')}}" class="row g-3 needs-validation" novalidate>
                 @csrf
@@ -86,12 +97,13 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="designation" id="designation" value="{{ $form_details->designation }}" />
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select disable-text" name="designation" id="designation">
+                  <select class="form-select disable-text" name="designation_dis" id="designation_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($designation_names as $designation_name)
-                    <option value="{{$designation_name['id']}}" @if((Auth::user()->designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
+                    <option value="{{$designation_name['id']}}" @if(($form_details->designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="valid-tooltip">
@@ -102,12 +114,13 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="department" id="department" value="{{ $form_details->department}}" />
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="department" id="department">
+                  <select class="form-select disable-text" name="department_dis" id="department_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($department_names as $department_name)
-                    <option value="{{$department_name['id']}}" @if((Auth::user()->department)==$department_name['id']) selected @endif>{{$department_name['name']}}</option>
+                    <option value="{{$department_name['id']}}" @if(($form_details->department)==$department_name['id']) selected @endif>{{$department_name['name']}}</option>
                     @endforeach
                   </select>
                   <div class="valid-tooltip">
@@ -118,9 +131,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="company_name" id="company_name" value="{{$form_details->company_name}}" />
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="company_name" id="company_name">
+                  <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
                     <option value="{{$company_name['id']}}" @if($form_details->company_name==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
@@ -136,7 +150,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="date_of_joining" class="form-label">Date of Joining <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="date" class="form-control disable-text" name="date_of_joining" id="date_of_joining" value="{{ $form_details->date_of_joining }}" max="<?php echo date("Y-m-d"); ?>">
+                  <input type="date" class="form-control disable-text" name="date_of_joining" id="date_of_joining" value="{{ $form_details->date_of_joining }}" max="<?php echo date("Y-m-d"); ?>" readonly>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -175,7 +189,14 @@
 
                 <div class="col-md-6 position-relative" id="internalEmployeeReferenceDesignation" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)!='1') style="display: none;" @endif>
                   <label for="internal_employee_designation" class="form-label">Internal Employee Designation <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="internal_employee_designation" id="internal_employee_designation" value="{{ old('internal_employee_designation',$form_details->internal_employee_designation) }}">
+
+                  <select class="form-select" name="internal_employee_designation" id="internal_employee_designation">
+                    <option value="">Choose...</option>
+                    @foreach($designation_names as $designation_name)
+                    <option value="{{$designation_name['id']}}" @if(old('internal_employee_designation', $form_details->internal_employee_designation)==$designation_name['id']) selected @endif>{{$designation_name['name']}}</option>
+                    @endforeach
+                  </select>
+
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -186,7 +207,14 @@
 
                 <div class="col-md-6 position-relative" id="internalEmployeeReferenceDepartment" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)!='1') style="display: none;" @endif>
                   <label for="internal_employee_department" class="form-label">Internal Employee Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="internal_employee_department" id="internal_employee_department" value="{{ old('internal_employee_department',$form_details->internal_employee_department) }}">
+
+                  <select class="form-select" name="internal_employee_department" id="internal_employee_department">
+                    <option value="">Choose...</option>
+                    @foreach($department_names as $department_name)
+                    <option value="{{$department_name['id']}}" @if(old('internal_employee_department',$form_details->internal_employee_department)==$department_name['id']) selected @endif>{{$department_name['name']}}</option>
+                    @endforeach
+                  </select>
+
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -198,7 +226,14 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="name_of_your_recruiter" class="form-label">What's the name of your recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="text" class="form-control" name="name_of_your_recruiter" id="name_of_your_recruiter" value="{{ old('name_of_your_recruiter',$form_details->name_of_your_recruiter) }}">
+
+                  <select class="form-select" name="name_of_your_recruiter" id="name_of_your_recruiter">
+                    <option value="">Choose...</option>
+                    @foreach($recruiter_details as $recruiter_detail)
+                    <option value="{{ $recruiter_detail['id'] }}" @if(old('name_of_your_recruiter',$form_details->name_of_your_recruiter)==$recruiter_detail['id']) selected @endif>{{ $recruiter_detail['first_name'] }} {{ $recruiter_detail['last_name'] }}</option>
+                    @endforeach
+                  </select>
+
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -209,11 +244,11 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>Rate your recruiter in the following parameters out of 5: </strong></label>
+                  <label class="form-label">Rate your recruiter in the following parameters out of 5:</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="professionalism" class="form-label">Professionalism:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="professionalism" class="form-label rdioBtn">Professionalism:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="1" @if(old('professionalism',$form_details->professionalism)=='1') checked @endif>
@@ -237,7 +272,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="friendliness" class="form-label">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="friendliness" class="form-label rdioBtn">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="1" @if(old('friendliness',$form_details->friendliness)=='1') checked @endif>
@@ -262,7 +297,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="length_time_spent_talking" class="form-label">Length of the time spent talking to you <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="length_time_spent_talking" class="form-label rdioBtn">Length of the time spent talking to you <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="length_time_spent_talking" id="length_time_spent_talking" value="1"@if(old('length_time_spent_talking',$form_details->length_time_spent_talking)=='1') checked @endif>
@@ -287,7 +322,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_knowledge" class="form-label">Company knowledge <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_knowledge" class="form-label rdioBtn">Company knowledge <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="company_knowledge" id="company_knowledge" value="1" @if(old('company_knowledge',$form_details->company_knowledge)=='1') checked @endif>
@@ -311,7 +346,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="specific_knowledge_job_profile" class="form-label">Specific knowledge about the job profile <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="specific_knowledge_job_profile" class="form-label rdioBtn">Specific knowledge about the job profile <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="specific_knowledge_job_profile" id="specific_knowledge_job_profile" value="1" @if(old('specific_knowledge_job_profile',$form_details->specific_knowledge_job_profile)=='1') checked @endif>
@@ -335,7 +370,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="timely_response_email_phone" class="form-label">Timely response to your communications - email or phone <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="timely_response_email_phone" class="form-label rdioBtn">Timely response to your communications - email or phone <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="timely_response_email_phone" id="timely_response_email_phone" value="1" @if(old('timely_response_email_phone',$form_details->timely_response_email_phone)=='1') checked @endif>
@@ -360,11 +395,11 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label"><strong>Yes/No Questions</strong></label><br>
+                  <label for="validationTooltip02" class="form-label">Yes/No Questions</label><br>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_policies_procedures" class="form-label">Do you completely understand our company policies and procedures as outlined in the handbook? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_policies_procedures" class="form-label rdioBtn">Do you completely understand our company policies and procedures as outlined in the handbook? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="company_policies_procedures" id="company_policies_procedures" value="Yes" @if(old('company_policies_procedures',$form_details->company_policies_procedures)=='Yes') checked @endif>
@@ -379,7 +414,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="manager_expectation_setting" class="form-label">Do you completely understand departmental processes as explained in 'Manager's Expectation Setting' session? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="manager_expectation_setting" class="form-label rdioBtn">Do you completely understand departmental processes as explained in 'Manager's Expectation Setting' session? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="manager_expectation_setting" id="manager_expectation_setting" value="Yes" @if(old('manager_expectation_setting',$form_details->manager_expectation_setting)=='Yes') checked @endif>
@@ -394,7 +429,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="job_duties_responsibilities" class="form-label">Do you completely understand your job duties and responsibilities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="job_duties_responsibilities" class="form-label rdioBtn">Do you completely understand your job duties and responsibilities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="job_duties_responsibilities" id="job_duties_responsibilities" value="Yes" @if(old('job_duties_responsibilities',$form_details->job_duties_responsibilities)=='Yes') checked @endif>
@@ -409,7 +444,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="job_title_properly_named" class="form-label">Do you feel that your job title is properly named? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="job_title_properly_named" class="form-label rdioBtn">Do you feel that your job title is properly named? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="job_title_properly_named" id="job_title_properly_named" value="Yes" @if(old('job_title_properly_named',$form_details->job_title_properly_named)=='Yes') checked @endif>
@@ -433,6 +468,11 @@
                   @if ($errors->has('mission_for_first_year'))
                     <span class="text-danger">{{ $errors->first('mission_for_first_year') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'mission_for_first_year' );
+                  </script>
+
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -444,6 +484,11 @@
                   @if ($errors->has('aim_in_second_year'))
                     <span class="text-danger">{{ $errors->first('aim_in_second_year') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'aim_in_second_year' );
+                  </script>
+
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -455,10 +500,15 @@
                   @if ($errors->has('aim_third_year_tenure'))
                     <span class="text-danger">{{ $errors->first('aim_third_year_tenure') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'aim_third_year_tenure' );
+                  </script>
+
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_recruitment_process" class="form-label"><strong>Rate the overall recruitment process of our company! (Rating out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></strong></label><br>
+                  <label for="rate_overall_recruitment_process" class="form-label">Rate the overall recruitment process of our company! (Rating out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="rate_overall_recruitment_process" id="rate_overall_recruitment_process" value="1" @if(old('rate_overall_recruitment_process',$form_details->rate_overall_recruitment_process)=='1') checked @endif>
@@ -491,11 +541,15 @@
                   @if ($errors->has('additional_feedback_recruitment_process'))
                     <span class="text-danger">{{ $errors->first('additional_feedback_recruitment_process') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'additional_feedback_recruitment_process' );
+                  </script>
                 </div>
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_hr_induction" class="form-label"><strong>Rate your HR induction session! (out of 5)</strong> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="rate_hr_induction" class="form-label">Rate your HR induction session! (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	  <input class="form-check-input" type="radio" name="rate_hr_induction" id="rate_hr_induction" value="1" @if(old('rate_hr_induction',$form_details->rate_hr_induction)=='1') checked @endif>
@@ -527,6 +581,11 @@
                   @if ($errors->has('additional_feedback_hr_induction'))
                     <span class="text-danger">{{ $errors->first('additional_feedback_hr_induction') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'additional_feedback_hr_induction' );
+                  </script>
+                  
                 </div>
 
 
@@ -541,6 +600,11 @@
               <div class="col-12">
               		@include('partials.common-note')
               	</div>
+
+                @else
+              <h4>You can edit only own form.</h4>
+              
+              @endif
 
             </div>
 

@@ -168,8 +168,8 @@
                     <td>{{$find['shared_interview_feedback_quickly']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>Any additional feedback for the recruiter?</strong> : {{$find['additional_feedback_recruiter']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>Any additional feedback for the recruiter?</strong> : {!! $find['additional_feedback_recruiter'] !!}</td>
                   </tr>
 
                   <tr>
@@ -251,7 +251,7 @@
                     <td>{{$find['received_interview_feedback']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
+                  <tr class="txt_justify">
                     <td colspan="2"><strong>How will you define the overall Interview Process?</strong> : {{$find['define_overall_interview_process']}}</td>
                   </tr>
 
@@ -260,8 +260,8 @@
                     <td>{{$find['rate_overall_interview_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
                   </tr>
 
-                  <tr>
-                    <td colspan="2"><strong>If you have any comments, suggestions, or feedback, please enter it below:</strong> {{$find['comments_suggestions_feedback']}}</td>
+                  <tr class="txt_justify">
+                    <td colspan="2"><strong>If you have any comments, suggestions, or feedback, please enter it below:</strong> {!! $find['comments_suggestions_feedback'] !!}</td>
                   </tr>
 
                 </tbody>

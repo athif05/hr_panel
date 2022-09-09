@@ -160,7 +160,7 @@
               @endif
 
               <script>
-                    CKEDITOR.replace( 'additional_feedback_trainer_$j' );
+                    CKEDITOR.replace( "additional_feedback_trainer_{{$j}}" );
                   </script>
             </div>
 

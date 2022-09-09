@@ -61,6 +61,15 @@ class UserRecruitmentFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+
+        $recruiter_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orWhere('role_id', '7')
+            ->orderBy('first_name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
@@ -69,19 +78,19 @@ class UserRecruitmentFormController extends Controller
 
         if(($find === null) or (($find['status'] === '0') or ($find['status'] === ''))){
 
-            return view('recruitment-survey', compact('company_names', 'job_opening_types','designation_names','department_names'));
+            return view('recruitment-survey', compact('company_names', 'job_opening_types','designation_names','department_names','recruiter_details'));
 
         } else if($find['status'] === '1'){
 
             //dd($find['status']);
 
-            return redirect("/recruitment-survey-edit/$find->user_id")->with('thank_you', 'Your form save in draft.');
+            return redirect("/recruitment-survey-edit/$find->user_id");
 
         } else if($find['status'] === '2'){
 
             ///return redirect('/thank-you')->with('thank_you', 'Alert, you have already submit interview survey form.');
 
-            return view('recruitment-survey-form-data', compact('company_names','job_opening_types', 'designation_names', 'department_names','find'));
+            return view('recruitment-survey-form-data', compact('company_names','job_opening_types', 'designation_names', 'department_names','find','recruiter_details'));
         }
     }
 
@@ -271,12 +280,20 @@ class UserRecruitmentFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        $recruiter_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orWhere('role_id', '7')
+            ->orderBy('first_name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
         $form_details = UserRecruitmentForm::where('user_id', $id)->first();
         
-        return view('recruitment-survey-edit', compact('company_names','job_opening_types','designation_names','department_names','form_details'));
+        return view('recruitment-survey-edit', compact('company_names','job_opening_types','designation_names','department_names','form_details','recruiter_details'));
     }
 
     /**

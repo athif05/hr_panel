@@ -86,10 +86,10 @@
                   @endif
                 </div>
 
-
+                <input type="hidden" name="designation" id="designation" value="{{ $member_details->designation }}" />
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select disable-text" name="designation" id="designation">
+                  <select class="form-select disable-text" name="designation_dis" id="designation_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
                     <option value="{{$designation_detail['id']}}" @if(($member_details->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
@@ -103,10 +103,10 @@
                   @endif
                 </div>
 
-
+                <input type="hidden" name="department" id="department" value="{{ $member_details->department }}" />
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select disable-text" name="department" id="department">
+                  <select class="form-select disable-text" name="department_dis" id="department_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
                     <option value="{{$department_detail['id']}}" @if(($member_details->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
@@ -120,9 +120,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="company_name" id="company_name" value="{{ $member_details->company_id }}" />
                 <div class="col-md-6 position-relative">
                   <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="company_name" id="company_name">
+                  <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
                     <option value="{{$company_name['id']}}" @if(($member_details->company_id)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
@@ -137,9 +138,10 @@
                 </div>
 
 
+                <input type="hidden" name="location_name" id="location_name" value="{{ $member_details->company_location_id }}" />
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Please choose your work-location. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="location_name" id="location_name">
+                  <select class="form-select disable-text" name="location_name_dis" id="location_name_dis" disabled>
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
                     <option value="{{$company_location['id']}}" @if(($member_details->company_location_id)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
@@ -180,7 +182,7 @@
 
 
                 <div class="col-md-12 position-relative" style="margin-bottom: -15px;">
-                  <label class="form-label"><strong>Please share your experience with the following</strong></label>
+                  <label class="form-label">Please share your experience with the following</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

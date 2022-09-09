@@ -53,6 +53,7 @@
               </div>
               @endif
 
+              @if($fresh_eye_journal_details)
               <!-- Custom Styled Validation with Tooltips -->
               <form method="post" action="{{ route('update-fresh-eye-journal-form') }}" class="row g-3 needs-validation" novalidate>
                 @csrf
@@ -82,9 +83,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="designation" id="designation" value="{{$fresh_eye_journal_details->designation}}" />
                 <div class="col-md-6 position-relative">
                   <label for="designation" class="form-label">Designation</label>
-                  <select class="form-select disable-text" name="designation" id="designation">
+                  <select class="form-select disable-text" name="designation_dis" id="designation_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($designation_details as $designation_detail)
                     <option value="{{$designation_detail['id']}}" @if(($fresh_eye_journal_details->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
@@ -98,9 +100,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="department" id="department" value="{{$fresh_eye_journal_details->department}}" />
                 <div class="col-md-6 position-relative">
                   <label for="department" class="form-label">Department</label>
-                  <select class="form-select disable-text" name="department" id="department">
+                  <select class="form-select disable-text" name="department_dis" id="department_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($department_details as $department_detail)
                     <option value="{{$department_detail['id']}}" @if(($fresh_eye_journal_details->department)==$department_detail['id']) selected @endif>{{$department_detail['name']}}</option>
@@ -116,9 +119,10 @@
 
                 <input type="hidden" name="company_name_ajax" id="company_name_ajax" value="{{ $fresh_eye_journal_details->company_name_ajax }}">
 
+                <input type="hidden" name="company_name_fresh" id="company_name_fresh" value="{{$fresh_eye_journal_details->company_name_fresh}}" />
                 <div class="col-md-6 position-relative">
                   <label for="company_name_fresh" class="form-label">Company<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="company_name_fresh" id="company_name_fresh">
+                  <select class="form-select disable-text" name="company_name_fresh_dis" id="company_name_fresh_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
                       <option value="{{$company_name['id']}}" @if(($fresh_eye_journal_details->company_name_fresh)==$company_name['id']) selected @endif>{{$company_name['name']}}</option>
@@ -132,9 +136,10 @@
                   @endif
                 </div>
 
+                <input type="hidden" name="location_name" id="location_name" value="{{$fresh_eye_journal_details->location_name}}" />
                 <div class="col-md-6 position-relative">
                   <label for="location_name" class="form-label">Location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="location_name" id="location_name">
+                  <select class="form-select disable-text" name="location_name_dis" id="location_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_locations as $company_location)
                       <option value="{{$company_location['id']}}" @if(($fresh_eye_journal_details->location_name)==$company_location['id']) selected @endif>{{$company_location['name']}}</option>
@@ -162,12 +167,14 @@
 
                 <input type="hidden" name="reporting_manager_name_ajax" id="reporting_manager_name_ajax" value="{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}">
                 
+                <input type="hidden" name="reporting_manager_fresh" id="reporting_manager_fresh" value="{{$fresh_eye_journal_details->reporting_manager_fresh}}" />
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager_fresh" class="form-label">Name of Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <select class="form-select disable-text" name="reporting_manager_fresh" id="reporting_manager_fresh">
+                  <select class="form-select disable-text" name="reporting_manager_fresh_dis" id="reporting_manager_fresh_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($manager_details as $manager_detail)
-                      <option value="{{$manager_detail['id']}}" @if(($fresh_eye_journal_details->reporting_manager_fresh)==$manager_detail['id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                    <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
+                      <option value="{{$manager_detail['id']}}" @if(($fresh_eye_journal_details->reporting_manager_fresh)==$reporting_manager_name) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -301,7 +308,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></label>
+                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -609,7 +616,7 @@
                 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></label>
+                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -857,7 +864,7 @@
                 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Rate <span id="rate_5_reporting_manager_name_ajax">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span> on the below-mentioned parameters out of 5</strong></label>
+                  <label class="form-label">Rate <span id="rate_5_reporting_manager_name_ajax">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span> on the below-mentioned parameters out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1103,7 +1110,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>Rate Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>)  on the below mentioned parameters out of 5 (5- highest, 1- lowest)</strong></label>
+                  <label class="form-label">Rate Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>)  on the below mentioned parameters out of 5 (5- highest, 1- lowest)</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1699,11 +1706,11 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label"><strong>"Rate the Departments out of 5"</strong></label>
+                  <label class="form-label">"Rate the Departments out of 5"</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="admin_operations" class="form-label">Admin Operations<!--  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong> --></span></label><br>
+                  <label for="admin_operations" class="form-label rdioBtn">Admin Operations<!--  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong> --></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="admin_operations" id="admin_operations" value="1" @if(old('admin_operations',$fresh_eye_journal_details->admin_operations)=='1') checked @endif>
@@ -1729,7 +1736,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="advertiser_sales" class="form-label">Advertiser Sales</label><br>
+                  <label for="advertiser_sales" class="form-label rdioBtn">Advertiser Sales</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="advertiser_sales" id="advertiser_sales" value="1" @if(old('advertiser_sales',$fresh_eye_journal_details->advertiser_sales)=='1') checked @endif>
@@ -1754,7 +1761,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="advertisers" class="form-label">Advertisers</label><br>
+                  <label for="advertisers" class="form-label rdioBtn">Advertisers</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="advertisers" id="advertisers" value="1" @if(old('advertisers',$fresh_eye_journal_details->advertisers)=='1') checked @endif>
@@ -1779,7 +1786,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="finance_accounts" class="form-label">Finance & Accounts</label><br>
+                  <label for="finance_accounts" class="form-label rdioBtn">Finance & Accounts</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="finance_accounts" id="finance_accounts" value="1" @if(old('finance_accounts',$fresh_eye_journal_details->finance_accounts)=='1') checked @endif>
@@ -1804,7 +1811,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="human_resources" class="form-label">Human Resources</label><br>
+                  <label for="human_resources" class="form-label rdioBtn">Human Resources</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="human_resources" id="human_resources" value="1" @if(old('human_resources',$fresh_eye_journal_details->human_resources)=='1') checked @endif>
@@ -1829,7 +1836,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="management" class="form-label">Management</label><br>
+                  <label for="management" class="form-label rdioBtn">Management</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="management" id="management" value="1" @if(old('management',$fresh_eye_journal_details->management)=='1') checked @endif>
@@ -1855,7 +1862,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="network_operations" class="form-label">Network Operations</label><br>
+                  <label for="network_operations" class="form-label rdioBtn">Network Operations</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="network_operations" id="network_operations" value="1" @if(old('network_operations',$fresh_eye_journal_details->network_operations)=='1') checked @endif>
@@ -1882,7 +1889,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="pocket_money" class="form-label">Pocket Money</label><br>
+                  <label for="pocket_money" class="form-label rdioBtn">Pocket Money</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="pocket_money" id="pocket_money" value="1" @if(old('pocket_money',$fresh_eye_journal_details->pocket_money)=='1') checked @endif>
@@ -1908,7 +1915,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="publishers" class="form-label">Publishers</label><br>
+                  <label for="publishers" class="form-label rdioBtn">Publishers</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="publishers" id="publishers" value="1" @if(old('publishers',$fresh_eye_journal_details->publishers)=='1') checked @endif>
@@ -1934,7 +1941,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="tech_operations_development" class="form-label">Tech Operations - Development</label><br>
+                  <label for="tech_operations_development" class="form-label rdioBtn">Tech Operations - Development</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="tech_operations_development" id="tech_operations_development" value="1" @if(old('tech_operations_development',$fresh_eye_journal_details->tech_operations_development)=='1') checked @endif>
@@ -1960,7 +1967,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="support_ea_pa" class="form-label">Support (EA/PA)</label><br>
+                  <label for="support_ea_pa" class="form-label rdioBtn">Support (EA/PA)</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="support_ea_pa" id="support_ea_pa" value="1" @if(old('support_ea_pa',$fresh_eye_journal_details->support_ea_pa)=='1') checked @endif>
@@ -1986,7 +1993,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="education" class="form-label">Education</label><br>
+                  <label for="education" class="form-label rdioBtn">Education</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="education" id="education" value="1" @if(old('education',$fresh_eye_journal_details->education)=='1') checked @endif>
@@ -2012,7 +2019,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="igaming" class="form-label">iGaming</label><br>
+                  <label for="igaming" class="form-label rdioBtn">iGaming</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="igaming" id="igaming" value="1" @if(old('igaming',$fresh_eye_journal_details->igaming)=='1') checked @endif>
@@ -2038,7 +2045,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="tech_operations_shopify" class="form-label">Tech Operations - Shopify</label><br>
+                  <label for="tech_operations_shopify" class="form-label rdioBtn">Tech Operations - Shopify</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="tech_operations_shopify" id="tech_operations_shopify" value="1" @if(old('tech_operations_shopify',$fresh_eye_journal_details->tech_operations_shopify)=='1') checked @endif>
@@ -2064,7 +2071,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="tech_operations_creative" class="form-label">Tech Operations - Creative</label><br>
+                  <label for="tech_operations_creative" class="form-label rdioBtn">Tech Operations - Creative</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="tech_operations_creative" id="tech_operations_creative" value="1" @if(old('tech_operations_creative',$fresh_eye_journal_details->tech_operations_creative)=='1') checked @endif>
@@ -2090,7 +2097,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="mobile" class="form-label">Mobile</label><br>
+                  <label for="mobile" class="form-label rdioBtn">Mobile</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="mobile" id="mobile" value="1" @if(old('mobile',$fresh_eye_journal_details->mobile)=='1') checked @endif>
@@ -2116,7 +2123,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="vcommission_uk" class="form-label">vCommission - UK</label><br>
+                  <label for="vcommission_uk" class="form-label rdioBtn">vCommission - UK</label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="vcommission_uk" id="vcommission_uk" value="1" @if(old('vcommission_uk',$fresh_eye_journal_details->vcommission_uk)=='1') checked @endif>
@@ -2185,6 +2192,11 @@
               <div class="col-12">
               		@include('partials.common-note')
               	</div>
+
+              @else
+              <h4>You can edit only own form.</h4>
+              
+              @endif
 
             </div>
           </div>
