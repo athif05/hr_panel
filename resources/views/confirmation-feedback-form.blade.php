@@ -22,9 +22,14 @@
     }
 
     .form-label {
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-    }
+      margin-bottom: 0.5rem;
+      font-weight: 600!important;
+  }
+
+  .rdioBtn{
+    font-weight: 400!important;
+    font-size: 15px;
+  }
     </style>
 @endsection
 
@@ -91,11 +96,11 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>6. Rate him/her in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</strong></label>
+                  <label class="form-label">6. Rate him/her in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="discipline" class="form-label">Discipline:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="discipline" class="form-label rdioBtn">Discipline:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="discipline" id="discipline" value="1" @if(old('discipline')=='1') checked @endif>
@@ -121,7 +126,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="punctuality" class="form-label">Punctuality <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="punctuality" class="form-label rdioBtn">Punctuality <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="1" @if(old('punctuality')=='1') checked @endif>
@@ -146,7 +151,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="work_ethics" class="form-label">Work-Ethics <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="work_ethics" class="form-label rdioBtn">Work-Ethics <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="1" @if(old('work_ethics')=='1') checked @endif>
@@ -171,7 +176,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="team_work" class="form-label">Team-Work <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="team_work" class="form-label rdioBtn">Team-Work <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="team_work" id="team_work" value="1" @if(old('team_work')=='1') checked @endif>
@@ -196,7 +201,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="response_towards_feedback" class="form-label">Response towards Feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="response_towards_feedback" class="form-label rdioBtn">Response towards Feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="1" @if(old('response_towards_feedback')=='1') checked @endif>
@@ -228,6 +233,10 @@
                   @if ($errors->has('elaborate_performance'))
                     <span class="text-danger">{{ $errors->first('elaborate_performance') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'elaborate_performance' );
+                  </script>
                 </div>
 
 
@@ -338,13 +347,17 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="" class="form-label">If Yes, Please share an instance in details.</label>
-                  <input type="text" class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" value="{{ old('add_value_in_team_share_instance') }}">
-                  <div class="valid-tooltip">
-                    Looks good!
-                  </div>
+
+                  <textarea class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" style="height: 100px">{{ old('add_value_in_team_share_instance') }}</textarea>
+
                   @if ($errors->has('add_value_in_team_share_instance'))
                     <span class="text-danger">{{ $errors->first('add_value_in_team_share_instance') }}</span>
                   @endif
+
+                  <script>
+                    CKEDITOR.replace( 'add_value_in_team_share_instance' );
+                  </script>
+
                 </div>
 
 
@@ -409,10 +422,18 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="met_your_expectations_other_specify" class="form-label">Other (please specify)</label>
-                  <input type="text" class="form-control" name="met_your_expectations_other_specify" id="met_your_expectations_other_specify" value="{{ old('met_your_expectations_other_specify') }}">
-                  <div class="valid-tooltip">
-                    Looks good!
-                  </div>
+
+                  <textarea class="form-control" name="met_your_expectations_other_specify" id="met_your_expectations_other_specify" style="height: 100px">{{ old('met_your_expectations_other_specify') }}</textarea>
+
+                  @if ($errors->has('met_your_expectations_other_specify'))
+                    <span class="text-danger">{{ $errors->first('met_your_expectations_other_specify') }}</span>
+                  @endif
+
+                  <script>
+                    CKEDITOR.replace( 'met_your_expectations_other_specify' );
+                  </script>
+
+                  
                 </div>
 
 

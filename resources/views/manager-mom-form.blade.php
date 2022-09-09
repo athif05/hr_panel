@@ -26,6 +26,11 @@
         font-weight: 600;
     }
 
+    .rdioBtn{
+      font-weight: 400!important;
+      font-size: 15px;
+    }
+
     .form-label .span_green{
     	font-weight: 400;
 	    background: green;
@@ -127,11 +132,11 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>6. Rate the presentation on the following parameters:</strong></label>
+                  <label class="form-label">6. Rate the presentation on the following parameters:</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="content" class="form-label">Content:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="content" class="form-label rdioBtn">Content:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="content" id="content" value="1" onclick="agv_rat_fun()" @if(old('content')=='1') checked @endif>
@@ -157,7 +162,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="confidence" class="form-label">Confidence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="confidence" class="form-label rdioBtn">Confidence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="confidence" id="confidence" value="1" onclick="agv_rat_fun()" @if(old('confidence')=='1') checked @endif>
@@ -182,7 +187,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="communication" class="form-label">Communication <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="communication" class="form-label rdioBtn">Communication <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="communication" id="communication" value="1" onclick="agv_rat_fun()" @if(old('communication')=='1') checked @endif>
@@ -207,7 +212,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="data_relevance" class="form-label">Data Relevance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="data_relevance" class="form-label rdioBtn">Data Relevance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="1" onclick="agv_rat_fun()" @if(old('data_relevance')=='1') checked @endif>
@@ -232,7 +237,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="overall_growth_individual" class="form-label">Overall growth of the individual <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="overall_growth_individual" class="form-label rdioBtn">Overall growth of the individual <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="1" onclick="agv_rat_fun()" @if(old('overall_growth_individual')=='1') checked @endif>
