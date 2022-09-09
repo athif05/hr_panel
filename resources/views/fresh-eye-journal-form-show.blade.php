@@ -147,7 +147,7 @@
                   </tr>                 
 
                   <tr>
-                    <td colspan="2" class="text-center"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
+                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
                   </tr>
 
                   <tr>
@@ -228,7 +228,7 @@
 
 
                   <tr>
-                    <td colspan="2" class="text-center"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
+                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
                   </tr>
 
                   <tr>
@@ -339,7 +339,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>"Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters out of 5 (5- highest, 1- lowest)"</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters out of 5 (5- highest, 1- lowest)</strong></td>
                   </tr>
 
                   <tr>
@@ -362,7 +362,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>"Rate {{ $fresh_eye_journal_details->reporting_manager_name_ajax }} on the below mentioned parameters out of 5 (5- highest, 1- lowest)"</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details->reporting_manager_name_ajax }} on the below mentioned parameters out of 5 (5- highest, 1- lowest)</strong></td>
                   </tr>
 
                   <tr>
@@ -442,7 +442,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>"Rate {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }} on the below mentioned parameters out of 5 (5- highest, 1- lowest)"</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }} on the below mentioned parameters out of 5 (5- highest, 1- lowest)</strong></td>
                   </tr>
 
                   <tr>
@@ -522,7 +522,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>"Rate the Departments out of 5"</strong></td>
+                    <td colspan="2"><strong>Rate the Departments out of 5</strong></td>
                   </tr>
 
                   <tr>

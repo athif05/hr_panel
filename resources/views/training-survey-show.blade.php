@@ -117,7 +117,7 @@
                   
 
                   <tr>
-                    <td colspan="2" class="text-center"><strong>Please list down the name of your trainers who took your on-job training.</strong></td>
+                    <td colspan="2"><strong>Please list down the name of your trainers who took your on-job training.</strong></td>
                   </tr>
 
 
@@ -357,7 +357,7 @@
                  
 
                   <tr>
-                    <td colspan="2" class="text-center"><strong>Please share your experience with the following</strong></td>
+                    <td colspan="2"><strong>Please share your experience with the following</strong></td>
                   </tr>
 
                   <tr>

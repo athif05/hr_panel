@@ -165,7 +165,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>"Please rate yourself on the following parameters."</strong></td>
+                    <td colspan="2"><strong>Please rate yourself on the following parameters.</strong></td>
                   </tr>
 
                   <tr>

@@ -130,7 +130,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>"Rate ${Q-H} on the following parameters, out of 5. [Prompt in responding to my queries]"</strong></td>
+                    <td colspan="2"><strong>Rate {{$find['company_hr_name']}} on the following parameters, out of 5.</strong></td>
                   </tr>
 
                   <tr>
