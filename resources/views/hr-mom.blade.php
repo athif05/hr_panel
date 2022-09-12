@@ -78,12 +78,51 @@
                     <td>{{$all_member['company_name']}}</td>
                     <td>{{$all_member['location_name']}}</td>
                     <td>{{$all_member['manager_name']}}</td>
-                    <td>{{$all_member['gender']}}</td>
+                    <td>{{$all_member['gender']}} {{ $all_member['mom_user_id']}}</td>
                     <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
                     <td>
-                      <a href="#">
-                        <button type="button" class="btn btn-primary btn-sm">Start MOM</button>
-                      </a>
+                      <?php $jk=0;?>
+                      @foreach($mom_form_details as $mom_form_detail)
+                      
+                        @if(($mom_form_detail['user_id']==$all_member['id']) )
+
+                        <?php $jk=1;?>
+       
+                          @if($mom_form_detail['status']=='1')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Edit MOM</button>
+
+                          @elseif($mom_form_detail['status']=='2')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom-form-show/".$all_member['id']."/".$mom_form_detail['id'])}}';">Show MOM</button>
+
+                          @endif
+
+                        @else
+                          
+                        @endif
+
+                      @endforeach
+
+                      @if($jk==0)
+                      <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
+                      @endif
+                      <!-- @if($all_member['user_id'] == $manager_hr_id)
+
+                          @if($all_member['confirmation_mom_status']=='1')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Edit MOM</button>
+
+                          @elseif($all_member['confirmation_mom_status']=='2')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom-form-show/".$all_member['id']."/".$all_member['mom_id'])}}';">Show MOM</button>
+
+                          @endif
+
+                          
+                        @else
+                          <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
+                        @endif -->
                     </td>
                   </tr>
                 <?php $j++;?>

@@ -276,15 +276,15 @@ Route::group(['middleware' => ['auth']], function() {
 	/*manager mom form, start here*/
 	Route::get('/manager-mom', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerMOM'])->middleware('isManager');
 
-	Route::get('/manager-mom/{id}', [App\Http\Controllers\UserController::class, 'managerMOMForm'])->middleware('isManager');
+	Route::get('/manager-mom/{id}', [App\Http\Controllers\UserController::class, 'managerMOMForm'])->middleware('isManagerHrandHrHead');
 
 	Route::post('/save-manager-mom', [App\Http\Controllers\ConfirmationMomController::class, 'store'])->name('save-manager-mom');
 
-	Route::get('/manager-mom-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'edit'])->middleware('isManager');
+	Route::get('/manager-mom-form-edit/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'edit'])->middleware('isManagerHrandHrHead');
 
 	Route::post('/update-manager-mom', [App\Http\Controllers\ConfirmationMomController::class, 'update'])->name('update-manager-mom');
 
-	Route::get('/manager-mom-form-show/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'index'])->middleware('isManager');
+	Route::get('/manager-mom-form-show/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'index'])->middleware('isManagerHrandHrHead');
 	/*manager mom form, end here*/
 
 

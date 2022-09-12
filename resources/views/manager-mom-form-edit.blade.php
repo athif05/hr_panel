@@ -279,15 +279,15 @@
                   </select>
                 </div>
 
-
+                
                 <div class="col-md-12 position-relative">
                   <label for="how_much_increment" class="form-label">8. How much increment would you recommend? </label>
-                  <select class="form-select" name="how_much_increment" id="how_much_increment">
+                  <select class="form-select @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment" id="how_much_increment" @if($mom_form_details->recommend_increment=='No') disabled @endif>
                     <option value="INR" @if(old('how_much_increment',$mom_form_details->how_much_increment)=='INR') selected @endif>INR</option>
                     <option value="%" @if(old('how_much_increment',$mom_form_details->how_much_increment)=='%') selected @endif>%</option>
                   </select>
 
-                  <input type="text" class="form-control" name="how_much_increment_amount" id="how_much_increment_amount" value="{{ old('how_much_increment_amount',$mom_form_details->how_much_increment_amount) }}" style="margin-top: 10px;">
+                  <input type="text" class="form-control @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment_amount" id="how_much_increment_amount" value="{{ old('how_much_increment_amount',$mom_form_details->how_much_increment_amount) }}" style="margin-top: 10px;" @if($mom_form_details->recommend_increment=='No') readonly @endif>
                   @if ($errors->has('how_much_increment_amount'))
                     <span class="text-danger">{{ $errors->first('how_much_increment_amount') }}</span>
                   @endif

@@ -172,7 +172,14 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('hr-mom', compact('all_members'));
+
+        $manager_hr_id=Auth::user()->id;
+        
+        $mom_form_details = ConfirmationMom::where('manager_id',$manager_hr_id)
+        ->get();
+
+
+        return view('hr-mom', compact('all_members','mom_form_details','manager_hr_id'));
     }
     /*show all probation member list to hr mom, end here*/
 
@@ -226,13 +233,17 @@ class UserController extends Controller
 
         $all_members = User::where('users.employee_type','Probation')
         ->whereIn('users.reporting_to_id',$manager_array)
-        ->leftJoin('confirmation_moms', 'confirmation_moms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
-        ->select('users.*', 'company_locations.name as location_name', 'confirmation_moms.id as mom_id','confirmation_moms.status as confirmation_mom_status','designations.name as designation_name')
+        ->select('users.*', 'company_locations.name as location_name', 'designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('probation-member-list-to-manager-mom', compact('all_members'));
+        $manager_hr_id=Auth::user()->id;
+        
+        $mom_form_details = ConfirmationMom::where('manager_id',$manager_hr_id)
+        ->get();
+
+        return view('probation-member-list-to-manager-mom', compact('all_members','mom_form_details'));
     }
     /*show all member list which is report to manager, end here*/
 
