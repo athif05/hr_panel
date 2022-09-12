@@ -338,25 +338,11 @@ class UserController extends Controller
 
     public function pptUpload(Request $request) {
 
-        $icons = [
-        'pdf' => 'pdf',
-        'doc' => 'word',
-        'docx' => 'word',
-        'xls' => 'excel',
-        'xlsx' => 'excel',
-        'ppt' => 'powerpoint',
-        'pptx' => 'powerpoint',
-        'txt' => 'text',
-        'png' => 'image',
-        'jpg' => 'image',
-        'jpeg' => 'image',
-    ];
-
         $user_id=Auth::user()->id;
 
         $ppt_details = User::where('id',$user_id)->first();
 
-        return view('ppt-upload', compact('ppt_details','icons'));
+        return view('ppt-upload', compact('ppt_details'));
     }
 
 

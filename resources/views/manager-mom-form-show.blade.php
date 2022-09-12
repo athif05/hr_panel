@@ -83,32 +83,56 @@
 
                   <tr>
                     <td>Content</td>
-                    <td>{{$all_details['content']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td> 
+                      @for($i=0; $i < $all_details['content']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Confidence</td>
-                    <td>{{$all_details['confidence']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['confidence']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Communication</td>
-                    <td>{{$all_details['communication']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['communication']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Data Relevance</td>
-                    <td>{{$all_details['data_relevance']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['data_relevance']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Overall growth of the individual</td>
-                    <td>{{$all_details['overall_growth_individual']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['overall_growth_individual']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td><strong>Average Rating of the entire presentation</strong></td>
-                    <td>{{$all_details['average_rating_entire_presentation']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['average_rating_entire_presentation']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   

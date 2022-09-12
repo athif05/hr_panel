@@ -78,32 +78,52 @@
 
                   <tr>
                     <td>Discipline</td>
-                    <td>{{$all_details['discipline']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['discipline']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Punctuality</td>
-                    <td>{{$all_details['punctuality']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['punctuality']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Work-Ethics</td>
-                    <td>{{$all_details['work_ethics']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['work_ethics']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Team-Work</td>
-                    <td>{{$all_details['team_work']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['team_work']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Response towards Feedback</td>
-                    <td>{{$all_details['response_towards_feedback']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $all_details['response_towards_feedback']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   
                   <tr>
-                    <td colspan="2"><strong>Kindly elaborate on his/her performance of the last 3 months? : </strong> {{ $all_details['elaborate_performance'] }}</td>
+                    <td colspan="2"><strong>Kindly elaborate on his/her performance of the last 3 months? : </strong> {!! $all_details['elaborate_performance'] !!}</td>
                   </tr>
 
 
@@ -134,7 +154,7 @@
                   @if($all_details['add_value_in_team']=='Yes')
                   <tr>
                     <td>If Yes, Please share an instance in details.</td>
-                    <td>{{$all_details['add_value_in_team_share_instance']}}</td>
+                    <td>{!! $all_details['add_value_in_team_share_instance'] !!}</td>
                   </tr>
                   @endif
 
@@ -155,7 +175,7 @@
 
                   <tr>
                     <td>Other (please specify)</td>
-                    <td>{{$all_details['met_your_expectations_other_specify']}}</td>
+                    <td>{!! $all_details['met_your_expectations_other_specify'] !!}</td>
                   </tr>
 
 
