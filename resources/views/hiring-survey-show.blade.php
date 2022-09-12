@@ -179,47 +179,83 @@
 
                   <tr>
                     <td>How much was the recruiter helpful throughout the recruitment process?</td>
-                    <td>{{$hiring_survey_details['recruiter_helpful_recruitment_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['recruiter_helpful_recruitment_process']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How prompt was the recruiter's response?</td>
-                    <td>{{$hiring_survey_details['recruiter_response']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['recruiter_response']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the recruiter's understanding of job requirement and needs?</td>
-                    <td>{{$hiring_survey_details['recruiter_understanding_job_requirement']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['recruiter_understanding_job_requirement']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the quality of candidates presented?</td>
-                    <td>{{$hiring_survey_details['quality_of_candidates_presented']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['quality_of_candidates_presented']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the number of candidates presented?</td>
-                    <td>{{$hiring_survey_details['number_of_candidates_presented']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['number_of_candidates_presented']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How much you would rate the recruiter for providing the correct information to the candidate?</td>
-                    <td>{{$hiring_survey_details['rate_the_recruiter_correct_information']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['rate_the_recruiter_correct_information']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well did the assessment and screening of candidates go by the recruiter?</td>
-                    <td>{{$hiring_survey_details['assessment_screening_candidates']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['assessment_screening_candidates']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the time taken to fill the open position?</td>
-                    <td>{{$hiring_survey_details['time_taken_fill_open_position']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['time_taken_fill_open_position']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Overall how satisfied are you with our hiring and recruiting process?</td>
-                    <td>{{$hiring_survey_details['overall_satisfied_hiring_recruiting_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $hiring_survey_details['overall_satisfied_hiring_recruiting_process']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">

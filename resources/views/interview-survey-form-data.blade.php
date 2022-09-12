@@ -135,37 +135,65 @@
 
                   <tr>
                     <td>Approachable</td>
-                    <td>{{$find['approachable']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['approachable']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Respectful</td>
-                    <td>{{$find['respectful']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['respectful']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Could explain the job role well</td>
-                    <td>{{$find['explain_job_role']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['explain_job_role']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Could explain the company background well</td>
-                    <td>{{$find['explain_company_background']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['explain_company_background']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Shared proper information about interview process</td>
-                    <td>{{$find['shared_proper_interview_information']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['shared_proper_interview_information']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Discussed about my profile in detail to check my fitment with the role</td>
-                    <td>{{$find['discussed_my_profile']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['discussed_my_profile']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Shared my interview feedback quickly after the interview</td>
-                    <td>{{$find['shared_interview_feedback_quickly']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['shared_interview_feedback_quickly']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -174,7 +202,11 @@
 
                   <tr>
                     <td>How much will you rate ${Q-H}'s overall conduct? (out of 5)</td>
-                    <td>{{$find['rate_overall_conduct']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['rate_overall_conduct']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
@@ -183,42 +215,74 @@
 
                   <tr>
                     <td>Professionalism</td>
-                    <td>{{$find['professionalism']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['professionalism']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Friendliness</td>
-                    <td>{{$find['friendliness']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['friendliness']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Hepful</td>
-                    <td>{{$find['heplful']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['heplful']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Approachable</td>
-                    <td>{{$find['approachable_interviewers']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['approachable_interviewers']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Respectable</td>
-                    <td>{{$find['respectable']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['respectable']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Knowledgeable</td>
-                    <td>{{$find['knowledgeable']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['knowledgeable']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear communication about company</td>
-                    <td>{{$find['clear_communication_about_company']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['clear_communication_about_company']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear communication about job role</td>
-                    <td>{{$find['clear_communication_job_role']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['clear_communication_job_role']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
@@ -227,28 +291,48 @@
 
                   <tr>
                     <td>The process started on time</td>
-                    <td>{{$find['process_started_on_time']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['process_started_on_time']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>The process was fair & apt</td>
-                    <td>{{$find['process_fair_apt']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['process_fair_apt']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>The seating arrangement was comfortable</td>
-                    <td>{{$find['seating_arrangement_comfortable']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['seating_arrangement_comfortable']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
 
                   <tr>
                     <td>Staff was helpful & supportive</td>
-                    <td>{{$find['staff_helpful_supportive']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['staff_helpful_supportive']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Received my interview feedback on time</td>
-                    <td>{{$find['received_interview_feedback']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['received_interview_feedback']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -257,7 +341,11 @@
 
                   <tr>
                     <td><strong>Rate the overall interview process. (out of 5)</strong></td>
-                    <td>{{$find['rate_overall_interview_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['rate_overall_interview_process']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">

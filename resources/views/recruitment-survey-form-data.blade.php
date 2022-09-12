@@ -177,32 +177,56 @@
 
                   <tr>
                     <td>Professionalism</td>
-                    <td>{{$find['professionalism']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td> 
+                      @for($i=0; $i < $find['professionalism']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Friendliness</td>
-                    <td>{{$find['friendliness']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['friendliness']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Length of the time spent talking to you</td>
-                    <td>{{$find['length_time_spent_talking']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['length_time_spent_talking']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Company knowledge</td>
-                    <td>{{$find['company_knowledge']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['company_knowledge']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Specific knowledge about the job profile</td>
-                    <td>{{$find['specific_knowledge_job_profile']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['specific_knowledge_job_profile']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your communications - email or phone</td>
-                    <td>{{$find['timely_response_email_phone']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['timely_response_email_phone']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr>
@@ -243,7 +267,11 @@
 
                   <tr>
                     <td><strong>Rate the overall recruitment process of our company! (Rating out of 5)</strong></td>
-                    <td>{{$find['rate_overall_recruitment_process']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['rate_overall_recruitment_process']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -252,7 +280,11 @@
 
                   <tr>
                     <td><strong>Rate your HR induction session! (out of 5)</strong></td>
-                    <td>{{$find['rate_hr_induction']}} <i class="bi bi-star-fill rate-star-color"></i></td>
+                    <td>
+                      @for($i=0; $i < $find['rate_hr_induction']; $i++)
+                      <i class="bi bi-star-fill rate-star-color"></i>
+                      @endfor
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">

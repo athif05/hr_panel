@@ -130,39 +130,67 @@
 
                   <tr>
                     <td>Expertise on the subject-matter</td>
-                    <td>{{ $training_survey_details['expertise_on_subject_matter_1'] }} 
+                    <td>
                     	@if($training_survey_details['expertise_on_subject_matter_1']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
+                    	   @for($i=0; $i < $training_survey_details['expertise_on_subject_matter_1']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
                     	@endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Clear and effective communication skills</td>
-                    <td>{{ $training_survey_details['clear_effective_communication_skills_1'] }} @if($training_survey_details['clear_effective_communication_skills_1']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['clear_effective_communication_skills_1']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['clear_effective_communication_skills_1']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Effective delivery of content</td>
-                    <td>{{ $training_survey_details['effective_delivery_content_1'] }} @if($training_survey_details['effective_delivery_content_1']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['effective_delivery_content_1']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['effective_delivery_content_1']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your queries</td>
-                    <td>{{ $training_survey_details['timely_response_queries_1'] }} @if($training_survey_details['timely_response_queries_1']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['timely_response_queries_1']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['timely_response_queries_1']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Comfortability in sharing your concerns & doubts</td>
-                    <td>{{ $training_survey_details['comfortability_sharing_concerns_doubts_1'] }} @if($training_survey_details['comfortability_sharing_concerns_doubts_1']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['comfortability_sharing_concerns_doubts_1']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['comfortability_sharing_concerns_doubts_1']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -178,37 +206,67 @@
 
                   <tr>
                     <td>Expertise on the subject-matter</td>
-                    <td>{{ $training_survey_details['expertise_on_subject_matter_2'] }} @if($training_survey_details['expertise_on_subject_matter_2']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td> 
+                      @if($training_survey_details['expertise_on_subject_matter_2']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['expertise_on_subject_matter_2']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear and effective communication skills</td>
-                    <td>{{ $training_survey_details['clear_effective_communication_skills_2'] }} @if($training_survey_details['clear_effective_communication_skills_2']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['clear_effective_communication_skills_2']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['clear_effective_communication_skills_2']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Effective delivery of content</td>
-                    <td>{{ $training_survey_details['effective_delivery_content_2'] }} @if($training_survey_details['effective_delivery_content_2']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['effective_delivery_content_2']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['effective_delivery_content_2']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your queries</td>
-                    <td>{{ $training_survey_details['timely_response_queries_2'] }} @if($training_survey_details['timely_response_queries_2']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['timely_response_queries_2']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['timely_response_queries_2']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Comfortability in sharing your concerns & doubts</td>
-                    <td>{{ $training_survey_details['comfortability_sharing_concerns_doubts_2'] }} @if($training_survey_details['comfortability_sharing_concerns_doubts_2']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['comfortability_sharing_concerns_doubts_2']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['comfortability_sharing_concerns_doubts_2']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -224,37 +282,67 @@
 
                   <tr>
                     <td>Expertise on the subject-matter</td>
-                    <td>{{ $training_survey_details['expertise_on_subject_matter_3'] }} @if($training_survey_details['expertise_on_subject_matter_3']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['expertise_on_subject_matter_3']!='NA')
+                    	 @for($i=0; $i < $training_survey_details['expertise_on_subject_matter_3']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear and effective communication skills</td>
-                    <td>{{ $training_survey_details['clear_effective_communication_skills_3'] }} @if($training_survey_details['clear_effective_communication_skills_3']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['clear_effective_communication_skills_3']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['clear_effective_communication_skills_3']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Effective delivery of content</td>
-                    <td>{{ $training_survey_details['effective_delivery_content_3'] }} @if($training_survey_details['effective_delivery_content_3']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['effective_delivery_content_3']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['effective_delivery_content_3']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your queries</td>
-                    <td>{{ $training_survey_details['timely_response_queries_3'] }} @if($training_survey_details['timely_response_queries_3']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['timely_response_queries_3']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['timely_response_queries_3']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Comfortability in sharing your concerns & doubts</td>
-                    <td>{{ $training_survey_details['comfortability_sharing_concerns_doubts_3'] }} @if($training_survey_details['comfortability_sharing_concerns_doubts_3']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['comfortability_sharing_concerns_doubts_3']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['comfortability_sharing_concerns_doubts_3']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -270,37 +358,67 @@
 
                   <tr>
                     <td>Expertise on the subject-matter</td>
-                    <td>{{ $training_survey_details['expertise_on_subject_matter_4'] }} @if($training_survey_details['expertise_on_subject_matter_4']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['expertise_on_subject_matter_4']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['expertise_on_subject_matter_4']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear and effective communication skills</td>
-                    <td>{{ $training_survey_details['clear_effective_communication_skills_4'] }} @if($training_survey_details['clear_effective_communication_skills_4']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['clear_effective_communication_skills_4']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['clear_effective_communication_skills_4']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Effective delivery of content</td>
-                    <td>{{ $training_survey_details['effective_delivery_content_4'] }} @if($training_survey_details['effective_delivery_content_4']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['effective_delivery_content_4']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['effective_delivery_content_4']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your queries</td>
-                    <td>{{ $training_survey_details['timely_response_queries_4'] }} @if($training_survey_details['timely_response_queries_4']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['timely_response_queries_4']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['timely_response_queries_4']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Comfortability in sharing your concerns & doubts</td>
-                    <td>{{ $training_survey_details['comfortability_sharing_concerns_doubts_4'] }} @if($training_survey_details['comfortability_sharing_concerns_doubts_4']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['comfortability_sharing_concerns_doubts_4']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['comfortability_sharing_concerns_doubts_4']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -316,37 +434,67 @@
 
                   <tr>
                     <td>Expertise on the subject-matter</td>
-                    <td>{{ $training_survey_details['expertise_on_subject_matter_5'] }} @if($training_survey_details['expertise_on_subject_matter_5']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['expertise_on_subject_matter_5']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['expertise_on_subject_matter_5']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear and effective communication skills</td>
-                    <td>{{ $training_survey_details['clear_effective_communication_skills_5'] }} @if($training_survey_details['clear_effective_communication_skills_5']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['clear_effective_communication_skills_5']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['clear_effective_communication_skills_5']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Effective delivery of content</td>
-                    <td>{{ $training_survey_details['effective_delivery_content_5'] }} @if($training_survey_details['effective_delivery_content_5']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['effective_delivery_content_5']!='NA')
+                    	   @for($i=0; $i < $training_survey_details['effective_delivery_content_5']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your queries</td>
-                    <td>{{ $training_survey_details['timely_response_queries_5'] }} @if($training_survey_details['timely_response_queries_5']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['timely_response_queries_5']!='NA')
+                    	   @for($i=0; $i < $training_survey_details['timely_response_queries_5']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Comfortability in sharing your concerns & doubts</td>
-                    <td>{{ $training_survey_details['comfortability_sharing_concerns_doubts_5'] }} @if($training_survey_details['comfortability_sharing_concerns_doubts_5']!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($training_survey_details['comfortability_sharing_concerns_doubts_5']!='NA')
+                    	  @for($i=0; $i < $training_survey_details['comfortability_sharing_concerns_doubts_5']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -362,44 +510,80 @@
 
                   <tr>
                     <td>Training plan was shared with me within the first week of joining</td>
-                    <td>{{ $training_survey_details['training_first_week_joining'] }} @if($training_survey_details['training_first_week_joining']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($training_survey_details['training_first_week_joining']!='NA')
+                        @for($i=0; $i < $training_survey_details['training_first_week_joining']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>The training sessions went as planned</td>
-                    <td>{{ $training_survey_details['training_sessions_went_as_planned'] }} @if($training_survey_details['training_sessions_went_as_planned']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($training_survey_details['training_sessions_went_as_planned']!='NA')
+                        @for($i=0; $i < $training_survey_details['training_sessions_went_as_planned']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Training topics were covered in detail</td>
-                    <td>{{ $training_survey_details['training_topics_were_covered_in_detail'] }} @if($training_survey_details['training_topics_were_covered_in_detail']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($training_survey_details['training_topics_were_covered_in_detail']!='NA')
+                        @for($i=0; $i < $training_survey_details['training_topics_were_covered_in_detail']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Training was effective & is helping me do my job well</td>
-                    <td>{{ $training_survey_details['training_was_effective_helping'] }} @if($training_survey_details['training_was_effective_helping']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($training_survey_details['training_was_effective_helping']!='NA')
+                        @for($i=0; $i < $training_survey_details['training_was_effective_helping']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I have clearly understood all the modules</td>
-                    <td>{{ $training_survey_details['clearly_understood_all_modules'] }} @if($training_survey_details['clearly_understood_all_modules']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($training_survey_details['clearly_understood_all_modules']!='NA')
+                        @for($i=0; $i < $training_survey_details['clearly_understood_all_modules']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Self-study material has been very useful for me</td>
-                    <td>{{ $training_survey_details['self_study_material_useful'] }} @if($training_survey_details['self_study_material_useful']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($training_survey_details['self_study_material_useful']!='NA')
+                        @for($i=0; $i < $training_survey_details['self_study_material_useful']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   

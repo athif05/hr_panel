@@ -170,67 +170,119 @@
 
                   <tr>
                     <td>Target</td>
-                    <td>{{$check_in_member_details->target}} 
+                    <td> 
                     	@if($check_in_member_details->target!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif
+                    	 @for($i=0; $i < $check_in_member_details->target; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Response</td>
-                    <td>{{$check_in_member_details->response}} @if($check_in_member_details->response!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->response!='NA')
+                        @for($i=0; $i < $check_in_member_details->response; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>JD</td>
-                    <td>{{$check_in_member_details->jd}} @if($check_in_member_details->jd!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->jd!='NA')
+                        @for($i=0; $i < $check_in_member_details->jd; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Reliability</td>
-                    <td>{{$check_in_member_details->reliability}} @if($check_in_member_details->reliability!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->reliability!='NA')
+                        @for($i=0; $i < $check_in_member_details->reliability; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Team Spirit</td>
-                    <td>{{$check_in_member_details->team_spirit}} @if($check_in_member_details->team_spirit!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->team_spirit!='NA')
+                        @for($i=0; $i < $check_in_member_details->team_spirit; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Attendance</td>
-                    <td>{{$check_in_member_details->attendance}} @if($check_in_member_details->attendance!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->attendance!='NA')
+                        @for($i=0; $i < $check_in_member_details->attendance; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Attitude</td>
-                    <td>{{$check_in_member_details->attitude}} @if($check_in_member_details->attitude!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->attitude!='NA')
+                        @for($i=0; $i < $check_in_member_details->attitude; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Rules</td>
-                    <td>{{$check_in_member_details->rules}} @if($check_in_member_details->rules!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->rules!='NA')
+                        @for($i=0; $i < $check_in_member_details->rules; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Peers</td>
-                    <td>{{$check_in_member_details->peers}} @if($check_in_member_details->peers!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->peers!='NA')
+                        @for($i=0; $i < $check_in_member_details->peers; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
 
@@ -285,65 +337,119 @@
 
                   <tr>
                     <td>The work culture in the company is encouraging</td>
-                    <td>{{$check_in_member_details->company_work_culture}} @if($check_in_member_details->company_work_culture!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->company_work_culture!='NA')
+                        @for($i=0; $i < $check_in_member_details->company_work_culture; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>The processes & policies are well defined & well explained.</td>
-                    <td>{{$check_in_member_details->processes_policies_well_defined}} @if($check_in_member_details->processes_policies_well_defined!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->processes_policies_well_defined!='NA')
+                        @for($i=0; $i < $check_in_member_details->processes_policies_well_defined; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I enjoy the work-life balance</td>
-                    <td>{{$check_in_member_details->enjoy_work_life_balance}} @if($check_in_member_details->enjoy_work_life_balance!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->enjoy_work_life_balance!='NA')
+                        @for($i=0; $i < $check_in_member_details->enjoy_work_life_balance; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I am happy with how I am treated in the company by managers & peers</td>
-                    <td>{{$check_in_member_details->happy_with_treated_in_company}} @if($check_in_member_details->happy_with_treated_in_company!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->happy_with_treated_in_company!='NA')
+                        @for($i=0; $i < $check_in_member_details->happy_with_treated_in_company; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>My job title & KRAs are apt for me</td>
-                    <td>{{$check_in_member_details->job_title_kras}} @if($check_in_member_details->job_title_kras!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->job_title_kras!='NA')
+                        @for($i=0; $i < $check_in_member_details->job_title_kras; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I have necessary resources available, to perform my job</td>
-                    <td>{{$check_in_member_details->necessary_resources_available}} @if($check_in_member_details->necessary_resources_available!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->necessary_resources_available!='NA')
+                        @for($i=0; $i < $check_in_member_details->necessary_resources_available; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I feel I will grow in the organization</td>
-                    <td>{{$check_in_member_details->feel_grow_in_organization}} @if($check_in_member_details->feel_grow_in_organization!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->feel_grow_in_organization!='NA')
+                        @for($i=0; $i < $check_in_member_details->feel_grow_in_organization; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I have complete clarity of my role & what's expected out of me</td>
-                    <td>{{$check_in_member_details->complete_clarity_my_role}} @if($check_in_member_details->complete_clarity_my_role!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->complete_clarity_my_role!='NA')
+                        @for($i=0; $i < $check_in_member_details->complete_clarity_my_role; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Overall I am happy with my job role</td>
-                    <td>{{$check_in_member_details->overall_happy_with_job_role}} @if($check_in_member_details->overall_happy_with_job_role!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->overall_happy_with_job_role!='NA')
+                        @for($i=0; $i < $check_in_member_details->overall_happy_with_job_role; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
 
@@ -353,37 +459,67 @@
 
                   <tr>
                     <td>Training was elaborative & well explained.</td>
-                    <td>{{$check_in_member_details->training_elaborative_well_explained}} @if($check_in_member_details->training_elaborative_well_explained!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->training_elaborative_well_explained!='NA')
+                        @for($i=0; $i < $check_in_member_details->training_elaborative_well_explained; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Duration of training was apt.</td>
-                    <td>{{$check_in_member_details->training_duration_apt}} @if($check_in_member_details->training_duration_apt!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->training_duration_apt!='NA')
+                        @for($i=0; $i < $check_in_member_details->training_duration_apt; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Proper modules are defined for each topic</td>
-                    <td>{{$check_in_member_details->proper_modules_defined_topic}} @if($check_in_member_details->proper_modules_defined_topic!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->proper_modules_defined_topic!='NA')
+                        @for($i=0; $i < $check_in_member_details->proper_modules_defined_topic; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Adequate supporting material is provided to help learn faster & better</td>
-                    <td>{{$check_in_member_details->adequate_supporting_material}} @if($check_in_member_details->adequate_supporting_material!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->adequate_supporting_material!='NA')
+                        @for($i=0; $i < $check_in_member_details->adequate_supporting_material; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>The clarity given on topics during training was apt</td>
-                    <td>{{$check_in_member_details->clarity_on_topics_during_training}} @if($check_in_member_details->clarity_on_topics_during_training!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->clarity_on_topics_during_training!='NA')
+                        @for($i=0; $i < $check_in_member_details->clarity_on_topics_during_training; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
 
@@ -393,44 +529,80 @@
 
                   <tr>
                     <td>I have great relationship with {{ $check_in_member_details->reporting_manager_name }}</td>
-                    <td>{{$check_in_member_details->great_relationship_with_manager}} @if($check_in_member_details->great_relationship_with_manager!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->great_relationship_with_manager!='NA')
+                        @for($i=0; $i < $check_in_member_details->great_relationship_with_manager; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>My work is reviewed properly & feedback is shared timely</td>
-                    <td>{{$check_in_member_details->reviewed_properly_feedback_shared_timely}} @if($check_in_member_details->reviewed_properly_feedback_shared_timely!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->reviewed_properly_feedback_shared_timely!='NA')
+                        @for($i=0; $i < $check_in_member_details->reviewed_properly_feedback_shared_timely; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I can openly share opinions & feedback with {{ $check_in_member_details->reporting_manager_name }}</td>
-                    <td>{{$check_in_member_details->openly_share_opinions}} @if($check_in_member_details->openly_share_opinions!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->openly_share_opinions!='NA')
+                        @for($i=0; $i < $check_in_member_details->openly_share_opinions; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I receive adequate guidance from {{ $check_in_member_details->reporting_manager_name }}</td>
-                    <td>{{$check_in_member_details->receive_adequate_guidance}} @if($check_in_member_details->receive_adequate_guidance!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->receive_adequate_guidance!='NA')
+                        @for($i=0; $i < $check_in_member_details->receive_adequate_guidance; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I receive adequate & timely feedback from {{ $check_in_member_details->reporting_manager_name }}</td>
-                    <td>{{$check_in_member_details->receive_adequate_timely_feedback}} @if($check_in_member_details->receive_adequate_timely_feedback!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->receive_adequate_timely_feedback!='NA')
+                        @for($i=0; $i < $check_in_member_details->receive_adequate_timely_feedback; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I get quick resolution to issues from {{ $check_in_member_details->reporting_manager_name }}</td>
-                    <td>{{$check_in_member_details->get_quick_resolution_issue}} @if($check_in_member_details->get_quick_resolution_issue!='NA')
-                    	<i class="bi bi-star-fill rate-star-color"></i>
-                    	@endif</td>
+                    <td>
+                      @if($check_in_member_details->get_quick_resolution_issue!='NA')
+                        @for($i=0; $i < $check_in_member_details->get_quick_resolution_issue; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                  <tr class="txt_justify">

@@ -152,58 +152,106 @@
 
                   <tr>
                     <td>Satisfaction about job role</td>
-                    <td>{{$fresh_eye_journal_details['satisfaction_job_role']}} @if($fresh_eye_journal_details['satisfaction_job_role']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['satisfaction_job_role']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['satisfaction_job_role']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I am well equipped to perform my job</td>
-                    <td>{{$fresh_eye_journal_details['well_equipped_perform_job']}} @if($fresh_eye_journal_details['well_equipped_perform_job']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['well_equipped_perform_job']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['well_equipped_perform_job']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I am able to maintain work-life balance</td>
-                    <td>{{$fresh_eye_journal_details['able_maintain_work_life_balance']}} @if($fresh_eye_journal_details['able_maintain_work_life_balance']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['able_maintain_work_life_balance']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['able_maintain_work_life_balance']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I feel respected by my peers</td>
-                    <td>{{$fresh_eye_journal_details['feel_respected_my_peers']}} @if($fresh_eye_journal_details['feel_respected_my_peers']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['feel_respected_my_peers']!='NA')
+                        @for($i=0; $i < $fresh_eye_journal_details['feel_respected_my_peers']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>My suggestions are heard & implemented</td>
-                    <td>{{$fresh_eye_journal_details['suggestions_heard_implemented']}} @if($fresh_eye_journal_details['suggestions_heard_implemented']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['suggestions_heard_implemented']!='NA')
+                        @for($i=0; $i < $fresh_eye_journal_details['suggestions_heard_implemented']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I share good bond with superiors</td>
-                    <td>{{$fresh_eye_journal_details['share_good_bond_superiors']}} @if($fresh_eye_journal_details['share_good_bond_superiors']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['share_good_bond_superiors']!='NA')
+                        @for($i=0; $i < $fresh_eye_journal_details['share_good_bond_superiors']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I know what I am expected to do</td>
-                    <td>{{$fresh_eye_journal_details['know_what_i_expected_to_do']}} @if($fresh_eye_journal_details['know_what_i_expected_to_do']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['know_what_i_expected_to_do']!='NA')
+                        @for($i=0; $i < $fresh_eye_journal_details['know_what_i_expected_to_do']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>I fee I will grow in the organization</td>
-                    <td>{{$fresh_eye_journal_details['i_feel_grow_in_organization']}} @if($fresh_eye_journal_details['i_feel_grow_in_organization']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['i_feel_grow_in_organization']!='NA')
+                        @for($i=0; $i < $fresh_eye_journal_details['i_feel_grow_in_organization']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -233,58 +281,106 @@
 
                   <tr>
                     <td>Work culture</td>
-                    <td>{{$fresh_eye_journal_details['work_culture']}} @if($fresh_eye_journal_details['work_culture']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['work_culture']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['work_culture']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Recruitment process</td>
-                    <td>{{$fresh_eye_journal_details['recruitment_process']}} @if($fresh_eye_journal_details['recruitment_process']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['recruitment_process']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['recruitment_process']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Induction process</td>
-                    <td>{{$fresh_eye_journal_details['induction_process']}} @if($fresh_eye_journal_details['induction_process']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['induction_process']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['induction_process']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>On-job training process</td>
-                    <td>{{$fresh_eye_journal_details['on_job_training_process']}} @if($fresh_eye_journal_details['on_job_training_process']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['on_job_training_process']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['on_job_training_process']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Clear communication about any changes in the policy</td>
-                    <td>{{$fresh_eye_journal_details['clear_communication_changes_policy']}} @if($fresh_eye_journal_details['clear_communication_changes_policy']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['clear_communication_changes_policy']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['clear_communication_changes_policy']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Feeling of belongingness in the organization</td>
-                    <td>{{$fresh_eye_journal_details['feeling_belongingness_organization']}} @if($fresh_eye_journal_details['feeling_belongingness_organization']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['feeling_belongingness_organization']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['feeling_belongingness_organization']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Having a best friend at work</td>
-                    <td>{{$fresh_eye_journal_details['having_best_friend_at_work']}} @if($fresh_eye_journal_details['having_best_friend_at_work']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['having_best_friend_at_work']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['having_best_friend_at_work']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Work-life balance</td>
-                    <td>{{$fresh_eye_journal_details['work_life_balance']}} @if($fresh_eye_journal_details['work_life_balance']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['work_life_balance']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['work_life_balance']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -298,44 +394,80 @@
 
                   <tr>
                     <td>Quickness in respond to your requests/queries/concerns?</td>
-                    <td>{{$fresh_eye_journal_details['quickness_in_respond_reporting_manager']}} @if($fresh_eye_journal_details['quickness_in_respond_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['quickness_in_respond_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['quickness_in_respond_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well have you received guidance?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_received_guidance_reporting_manager']}} @if($fresh_eye_journal_details['how_well_received_guidance_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_received_guidance_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_received_guidance_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How clearly are your goals set?</td>
-                    <td>{{$fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager']}} @if($fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td></td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How transparent is {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}</td>
-                    <td>{{$fresh_eye_journal_details['how_transparent_is_reporting_manager']}} @if($fresh_eye_journal_details['how_transparent_is_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_transparent_is_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_transparent_is_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>WPRs happen every week.</td>
-                    <td>{{$fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']}} @if($fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well does he/she adjust to changing priorities</td>
-                    <td>{{$fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager']}} @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
@@ -344,16 +476,28 @@
 
                   <tr>
                     <td>How comfortable do you feel in sharing your feedback with him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']}} @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well are you able to learn under {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s guidance?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_able_learn_under_guidance_reporting_manager']}} @if($fresh_eye_journal_details['how_well_able_learn_under_guidance_reporting_manager']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_able_learn_under_guidance_reporting_manager']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_able_learn_under_guidance_reporting_manager']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr class="txt_justify">
@@ -367,51 +511,93 @@
 
                   <tr>
                     <td>How quickly does he/she respond to your requests/queries/concerns?</td>
-                    <td>{{$fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']}} @if($fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well have you received guidance from him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']}} @if($fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How clearly are your goals set by him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']}} @if($fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How transparent is he/she?</td>
-                    <td>{{$fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']}} @if($fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How frequent does your 1:1 happen?</td>
-                    <td>{{$fresh_eye_journal_details['frequent_1_1_happen_reporting_manager_qi']}} @if($fresh_eye_journal_details['frequent_1_1_happen_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['frequent_1_1_happen_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['frequent_1_1_happen_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well does he/she adjust to changing priorities?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']}} @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How comfortable do you feel in sharing your feedback with him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']}} @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
@@ -447,51 +633,93 @@
 
                   <tr>
                     <td>How quickly does he/she respond to your requests/queries/concerns?</td>
-                    <td>{{$fresh_eye_journal_details['quickness_in_respond_hod_qj']}} @if($fresh_eye_journal_details['quickness_in_respond_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['quickness_in_respond_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['quickness_in_respond_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well have you received guidance from him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_received_guidance_hod_qj']}} @if($fresh_eye_journal_details['how_well_received_guidance_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_received_guidance_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_received_guidance_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How clearly are your goals set by him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']}} @if($fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How transparent is he/she?</td>
-                    <td>{{$fresh_eye_journal_details['how_transparent_is_hod_qj']}} @if($fresh_eye_journal_details['how_transparent_is_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_transparent_is_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_transparent_is_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How frequent does your 1:1 happen?</td>
-                    <td>{{$fresh_eye_journal_details['frequent_1_1_happen_hod_qj']}} @if($fresh_eye_journal_details['frequent_1_1_happen_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['frequent_1_1_happen_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['frequent_1_1_happen_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How well does he/she adjust to changing priorities?</td>
-                    <td>{{$fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']}} @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
                     <td>How comfortable do you feel in sharing your feedback with him/her?</td>
-                    <td>{{$fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']}} @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']!='NA')
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endif</td>
+                    <td>
+                      @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']!='NA')
+                    	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                    	@else
+                        NA
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
@@ -528,204 +756,221 @@
                   <tr>
                     <td>Admin Operations</td>
                     <td>
-                    	{{$fresh_eye_journal_details['admin_operations']}} 
-                    	@if($fresh_eye_journal_details['admin_operations'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
+                      @if($fresh_eye_journal_details['admin_operations'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['admin_operations']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
                       	-
-                      	@endif
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Advertiser Sales</td>
                     <td>
-                    	{{$fresh_eye_journal_details['advertiser_sales']}} 
-                    	@if($fresh_eye_journal_details['advertiser_sales'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['advertiser_sales'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['advertiser_sales']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Advertiser</td>
                     <td>
-                    	{{$fresh_eye_journal_details['advertisers']}} 
-                    	@if($fresh_eye_journal_details['advertisers'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['advertisers'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['advertisers']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Finance & Accounts</td>
                     <td>
-                    	{{$fresh_eye_journal_details['finance_accounts']}} 
-                    	@if($fresh_eye_journal_details['finance_accounts'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['finance_accounts'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['finance_accounts']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Human Resources</td>
                     <td>
-                    	{{$fresh_eye_journal_details['human_resources']}} 
-                    	@if($fresh_eye_journal_details['human_resources'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['human_resources'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['human_resources']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Management</td>
                     <td>
-                    	{{$fresh_eye_journal_details['management']}} 
-                    	@if($fresh_eye_journal_details['management'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['management'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['management']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Network Operations</td>
                     <td>
-                    	{{$fresh_eye_journal_details['network_operations']}} 
-                    	@if($fresh_eye_journal_details['network_operations'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['network_operations'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['network_operations']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Pocket Money</td>
                     <td>
-                    	{{$fresh_eye_journal_details['pocket_money']}} 
-                    	@if($fresh_eye_journal_details['pocket_money'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['pocket_money'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['pocket_money']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Publishers</td>
                     <td>
-                    	{{$fresh_eye_journal_details['publishers']}} 
-                    	@if($fresh_eye_journal_details['publishers'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['publishers'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['publishers']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Tech Operations - Development</td>
                     <td>
-                    	{{$fresh_eye_journal_details['tech_operations_development']}} 
-                    	@if($fresh_eye_journal_details['tech_operations_development'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['tech_operations_development'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_development']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Support (EA/PA)</td>
                     <td>
-                    	{{$fresh_eye_journal_details['support_ea_pa']}} 
-                    	@if($fresh_eye_journal_details['support_ea_pa'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['support_ea_pa'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['support_ea_pa']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Education</td>
                     <td>
-                    	{{$fresh_eye_journal_details['education']}} 
-                    	@if($fresh_eye_journal_details['education'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['education'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['education']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>iGaming</td>
                     <td>
-                    	{{$fresh_eye_journal_details['igaming']}} 
-                    	@if($fresh_eye_journal_details['igaming'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['igaming'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['igaming']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Tech Operations - Shopify</td>
                     <td>
-                    	{{$fresh_eye_journal_details['tech_operations_shopify']}} 
-                    	@if($fresh_eye_journal_details['tech_operations_shopify'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['tech_operations_shopify'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_shopify']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Tech Operations - Creative</td>
                     <td>
-                    	{{$fresh_eye_journal_details['tech_operations_creative']}} 
-                    	@if($fresh_eye_journal_details['tech_operations_creative'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['tech_operations_creative'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_creative']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>Mobile</td>
                     <td>
-                    	{{$fresh_eye_journal_details['mobile']}} 
-                    	@if($fresh_eye_journal_details['mobile'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['mobile'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['mobile']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
                    <tr>
                     <td>vCommission - UK</td>
                     <td>
-                    	{{$fresh_eye_journal_details['vcommission_uk']}} 
-                    	@if($fresh_eye_journal_details['vcommission_uk'])
-                      		<i class="bi bi-star-fill rate-star-color"></i>
-                      	@else
-                      	-
-                      	@endif
+                      @if($fresh_eye_journal_details['vcommission_uk'])
+                      		@for($i=0; $i < $fresh_eye_journal_details['vcommission_uk']; $i++)
+                            <i class="bi bi-star-fill rate-star-color"></i>
+                          @endfor
+                      @else
+                        -
+                      @endif
                   	</td>
                    </tr>
 
