@@ -135,9 +135,11 @@
 
 
 
-                      <div class="col-lg-12 text-justify backgrndWhite fontSize14 padding10">
+                      <div class="col-lg-12 text-center backgrndWhite fontSize14 padding10">
                         <div class="clearBoth15"></div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Looking forward to seeing you rise & shine in vCommission! Let's work towards becoming better versions of ourselves with every passing day. Feel free to share the status of the targets in Annual Review.
+                        <br>
+                        All the best for the year!
                       </div>
 
                       <div class="col-lg-12 backgrndBlue text-center line_height30 fontColorWhite">
