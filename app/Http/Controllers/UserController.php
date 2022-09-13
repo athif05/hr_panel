@@ -30,6 +30,8 @@ class UserController extends Controller
         ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
         ->get();
 
+        //dd($confirmation_mom_details);
+
         return view('mom-email-view', compact('user_dtl','confirmation_mom_details'));
     }
     /*mom email view, end here*/

@@ -24,6 +24,8 @@
               	<h5 class="card-title">MOM Feedbacks</h5>
                 
 
+                @if($confirmation_mom_details)
+
                 <div class="col-lg-12" style="border:1px solid #e6abab;">
                   
                   <div class="col-lg-12 backgrndBlue" style="height: 20px;">&nbsp;</div>
@@ -118,15 +120,16 @@
                     <div class="clearBoth10"></div>
                     @endforeach
                       
-                      
+                      <?php if($avg_score>0) { $avg_score=$avg_score/$counter; }?>
+
                       <div class="clearBoth15"></div>
 
                       <div class="col-lg-12 text-center">
 
                         <div class="clearBoth15"></div>
 
-                        <div class="avgBackGrd line_height30 fontSize15" style="margin:auto; width: 200px; position: absolute; margin-top: -15px; margin-left: 34%;">
-                          <strong>Score Card : <?php echo $avg_score=$avg_score/$counter;?></strong>
+                        <div class="avgBackGrd line_height30 fontSize15" style="margin:auto; width: 200px; position: absolute; margin-top: -15px; margin-left: 37%;">
+                          <strong>Score Card : {{ $avg_score }}</strong>
                         </div>
                       </div>
 
@@ -145,6 +148,9 @@
 
                 </div>
               
+                @else 
+                <h5 class="card-title">No MOM Feedbacks data.</h5>
+                @endif
               
             </div>
           </div>
