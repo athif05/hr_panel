@@ -19,6 +19,22 @@ use Auth;
 class UserController extends Controller
 {
 
+    /*mom email view, start here*/
+    public function momEmailView($id) {
+        
+        $user_dtl = User::where('id',$id)
+        ->first();
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+        return view('mom-email-view', compact('user_dtl','confirmation_mom_details'));
+    }
+    /*mom email view, end here*/
+
+
     public function multilevel_manager($manager_id){
 
         $manager_array=array();

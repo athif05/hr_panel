@@ -62,7 +62,9 @@
 						</td>
 						<td>{{$all_candidate['department_name']}}</td>
 						<td>
-							<button type="button" class="btn btn-primary btn-sm">View</button>
+              <a href="{{ url('mom-email-view/'.$all_candidate['id'])}}">
+  							<button type="button" class="btn btn-primary btn-sm">View</button>
+              </a>
 						</td>
 						<td>
 							<a href="{{ url('start-confirmation-process/'.$all_candidate['id'])}}">

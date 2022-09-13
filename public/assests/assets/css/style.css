@@ -1299,3 +1299,73 @@ h6 {
 .txt_justify{
   text-align: justify!important;
 }
+
+.div50{
+  float: left;
+  width: 50%;
+}
+
+.div20{
+  float: left;
+  width: 20%;
+}
+
+.padding10{
+  padding: 10px;
+}
+
+.padding10_0{
+  padding: 10px 0px 10px 0px;
+}
+
+.line_height25{
+  line-height: 25px;
+}
+
+.line_height30{
+  line-height: 30px;
+}
+
+.line_height35{
+  line-height: 35px;
+}
+
+.backgrndWhite{
+  background-color: #fff!important; 
+}
+
+.backgrndBlue{
+  background-color: #6565c6!important; 
+}
+
+.backgrndWhite i {
+  font-size: 20px;
+}
+
+.ratingbackgrnd{
+  background-color: #fcdada;
+}
+
+.avgBackGrd{
+  background-color: #deb887;
+}
+
+.fontSize14{
+  font-size: 14px;
+}
+
+.fontSize15{
+  font-size: 15px;
+}
+
+.fontColorWhite{
+  color: white;
+}
+
+.clearBoth15{
+  clear: both; height:15px;
+}
+
+.clearBoth10{
+  clear: both; height:10px;
+}

@@ -215,6 +215,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/ppt/{id}',  [App\Http\Controllers\UserController::class, 'ppt'])->middleware('isHRManagement');
 
 	Route::get('/thankyou/{id}',  [App\Http\Controllers\UserController::class, 'thankyou'])->middleware('isHRManagement');
+
+	Route::get('/mom-email-view/{id}',  [App\Http\Controllers\UserController::class, 'momEmailView'])->middleware('isHRManagement');
+
 	/*Confirmation Process & MOM Email, end here*/
 
 
