@@ -69,7 +69,7 @@
               </li>
 
 
-              <h2>Q. 9 - "Rate ${Q-H} on the following parameters, out of 5."</h2>
+              <h2>Q. 9 - "Rate {{ $inteview_details['company_hr_name'] }} on the following parameters, out of 5."</h2>
               
 
               <!-- <div class="month_overview feedback_overview">
