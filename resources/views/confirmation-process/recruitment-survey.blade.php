@@ -38,12 +38,12 @@
 
               <h2>Q. 3 - Designation</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['designation'] }}</div>
+              <div class="col-left">{{ $recruitment_details['designation_name'] }}</div>
               </li>
 
               <h2>Q. 4 - Department</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['department'] }}</div>
+              <div class="col-left">{{ $recruitment_details['department_name'] }}</div>
               </li>
 
               <h2>Q. 5 - Please choose the name of your company</h2>
@@ -53,7 +53,7 @@
 
               <h2>Q. 6 - Date of Joining</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['date_of_joining'] ? date('d-M-Y', strtotime($recruitment_details['date_of_joining'])) : ''}}</div>
+              <div class="col-left">{{ $recruitment_details['date_of_joining'] ? date('Y-M-d', strtotime($recruitment_details['date_of_joining'])) : ''}}</div>
               </li>
 
               <h2>Q. 7 - How did you come across this job opening?</h2>
@@ -69,51 +69,93 @@
               </li>
               <li>
               <div class="col-left"><strong>Internal Member Designation</strong>
-                <span class="float_right_div">{{ $recruitment_details['internal_employee_designation'] }}</span>  
+                <span class="float_right_div">
+                  @foreach($designation_names as $designation_name)
+                    @if($recruitment_details['internal_employee_designation'] == $designation_name['id'])
+                      {{ $designation_name['name'] }}
+                    @endif
+                  @endforeach
+                </span>  
               </div>
               </li>
               <li>
               <div class="col-left"><strong>Internal Member Department</strong>
-                <span class="float_right_div">{{ $recruitment_details['internal_employee_department'] }}</span>  
+                <span class="float_right_div">
+                  @foreach($department_names as $department_name)
+                    @if($recruitment_details['internal_employee_department'] == $department_name['id'])
+                      {{ $department_name['name'] }}
+                    @endif
+                  @endforeach
+                </span>  
               </div>
               </li>
               @endif
 
               <h2>Q. 8 - What's the name of your recruiter?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['name_of_your_recruiter'] }}</div>
+              <div class="col-left">
+                @foreach($recruiter_details as $recruiter_detail)
+                    @if($recruitment_details['name_of_your_recruiter'] == $recruiter_detail['id'])
+                      {{ $recruiter_detail['first_name'] }} {{ $recruiter_detail['last_name'] }}
+                    @endif
+                  @endforeach
+              </div>
               </li>
 
 
               <h2>Q. 9 - Rate your recruiter in the following parameters out of 5:</h2>
       
               <li>
-              <div class="col-left">Professionalism <span class="float_right_div">{{ $recruitment_details['professionalism'] }} &nbsp; <i class="fa fa-star rating_star"></i></span>  </div>
+              <div class="col-left">Professionalism
+                @for($i=0; $i < $recruitment_details['professionalism']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               
               <li>
-              <div class="col-left">Friendliness <span class="float_right_div">{{ $recruitment_details['friendliness'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Friendliness 
+                @for($i=0; $i < $recruitment_details['friendliness']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
             
               <li>
-              <div class="col-left">Length of the time spent talking to you <span class="float_right_div">{{ $recruitment_details['length_time_spent_talking'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Length of the time spent talking to you 
+                @for($i=0; $i < $recruitment_details['length_time_spent_talking']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               
               <li>
-              <div class="col-left">Company knowledge <span class="float_right_div">{{ $recruitment_details['company_knowledge'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Company knowledge 
+                @for($i=0; $i < $recruitment_details['company_knowledge']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               
               <li>
-              <div class="col-left">Specific knowledge about the job profile <span class="float_right_div">{{ $recruitment_details['specific_knowledge_job_profile'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Specific knowledge about the job profile 
+                @for($i=0; $i < $recruitment_details['specific_knowledge_job_profile']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               
               <li>
-              <div class="col-left">Timely response to your communications - email or phone <span class="float_right_div">{{ $recruitment_details['timely_response_email_phone'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Timely response to your communications - email or phone 
+                @for($i=0; $i < $recruitment_details['timely_response_email_phone']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
@@ -139,40 +181,48 @@
 
               <h2>Q. 11 - What will be your mission for the first year?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['mission_for_first_year'] }}</div>
+              <div class="col-left">{!! $recruitment_details['mission_for_first_year'] !!}</div>
               </li>
 
               <h2>Q. 12 - What do you aim in the second year?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['aim_in_second_year'] }}</div>
+              <div class="col-left">{!! $recruitment_details['aim_in_second_year'] !!}</div>
               </li>
 
               <h2>Q. 13 - What will be your aim in the third year of your tenure with us?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['aim_third_year_tenure'] }}</div>
+              <div class="col-left">{!! $recruitment_details['aim_third_year_tenure'] !!}</div>
               </li>
 
 
               <h2>Q. 14 - Rate the overall recruitment process of our company! (Rating out of 5)</h2>
               <li>
-              <div class="col-left"><strong>{{ $recruitment_details['rate_overall_recruitment_process'] }}</strong> <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left"><!-- <strong>{{ $recruitment_details['rate_overall_recruitment_process'] }}</strong> --> 
+                @for($i=0; $i < $recruitment_details['rate_overall_recruitment_process']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
               <h2>Q. 15 - Any additional feedback for the recruitment process?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['additional_feedback_recruitment_process'] }}</div>
+              <div class="col-left">{!! $recruitment_details['additional_feedback_recruitment_process'] !!}</div>
               </li>
 
               <h2>Q. 16 - Rate your HR induction session! (out of 5)</h2>
               <li>
-              <div class="col-left"><strong>{{ $recruitment_details['rate_hr_induction'] }}</strong> <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left"><!-- <strong>{{ $recruitment_details['rate_hr_induction'] }}</strong>  -->
+                @for($i=0; $i < $recruitment_details['rate_hr_induction']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
               <h2>Q. 17 - Any additional feedback for HR induction session?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['additional_feedback_hr_induction'] }}</div>
+              <div class="col-left">{!! $recruitment_details['additional_feedback_hr_induction'] !!}</div>
               </li>
 
               @else 

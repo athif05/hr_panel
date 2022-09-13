@@ -37,11 +37,11 @@
           </li>
           <li>
             <div class="col-left">Curr. Designation</div>
-            <div class="col-right">{{ $employee_details['designation'] }}</div>
+            <div class="col-right">{{ $employee_details['designation_name'] }}</div>
           </li>
           <li>
             <div class="col-left">Department</div>
-            <div class="col-right">{{ $employee_details['department'] }}</div>
+            <div class="col-right">{{ $employee_details['department_name'] }}</div>
           </li>
           <li>
             <div class="col-left">Manager's Name</div>
@@ -61,7 +61,7 @@
           </li>
           <li>
             <div class="col-left">Date Of Joining</div>
-            <div class="col-right">{{ $employee_details['joining_date'] ? date('d-M-Y', strtotime($employee_details['joining_date'])) : '' }}</div>
+            <div class="col-right">{{ $employee_details['joining_date'] ? date('Y-M-d', strtotime($employee_details['joining_date'])) : '' }}</div>
           </li>
           <!-- <li>
             <div class="col-left">Date of Confirmation</div>
@@ -69,7 +69,7 @@
           </li> -->
           <li>
             <div class="col-left">Due Date of Confirmation</div>
-            <div class="col-right">{{ $employee_details['due_date_of_confirmation'] ? date('d-M-Y', strtotime($employee_details['due_date_of_confirmation'])) : ''}}</div>
+            <div class="col-right">{{ $employee_details['due_date_of_confirmation'] ? date('Y-M-d', strtotime($employee_details['due_date_of_confirmation'])) : ''}}</div>
           </li>
           <li>
             <div class="col-left">Member Status</div>
@@ -77,7 +77,7 @@
           </li>
           <li>
             <div class="col-left">Appraisal Cycle</div>
-            <div class="col-right">{{ $employee_details['appraisal_cycle'] ? date('d-M-Y', strtotime($employee_details['appraisal_cycle'])) : ''}}</div>
+            <div class="col-right">{{ $employee_details['appraisal_cycle'] ? date('Y-M-d', strtotime($employee_details['appraisal_cycle'])) : ''}}</div>
           </li>
           <li>
             <div class="col-left">Total Tenure</div>

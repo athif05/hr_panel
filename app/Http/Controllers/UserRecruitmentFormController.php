@@ -20,13 +20,35 @@ class UserRecruitmentFormController extends Controller
 
         $employee_id=$id;
 
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $recruiter_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orWhere('role_id', '7')
+            ->orderBy('first_name','asc')
+            ->get();
+
+
         $recruitment_details = UserRecruitmentForm::where('user_recruitment_forms.user_id',$id)
         ->leftJoin('company_names', 'company_names.id', '=', 'user_recruitment_forms.company_name')
         ->leftJoin('job_opening_types', 'job_opening_types.id', '=', 'user_recruitment_forms.how_come_for_job_opening')
-        ->select('user_recruitment_forms.*', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name')
+        ->leftJoin('designations', 'designations.id', '=', 'user_recruitment_forms.designation')
+        ->leftJoin('departments', 'departments.id', '=', 'user_recruitment_forms.department')
+        ->select('user_recruitment_forms.*', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name','designations.name as designation_name','departments.name as department_name')
         ->first();
 
-        return view('confirmation-process.recruitment-survey', compact('employee_id', 'recruitment_details'));
+        return view('confirmation-process.recruitment-survey', compact('employee_id', 'recruitment_details','designation_names','department_names','recruiter_details'));
     }
 
 

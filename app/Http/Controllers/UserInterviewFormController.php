@@ -25,7 +25,8 @@ class UserInterviewFormController extends Controller
         ->leftJoin('company_locations', 'company_locations.id', '=', 'user_interview_forms.location_name')
         ->leftJoin('company_names', 'company_names.id', '=', 'user_interview_forms.company_name')
         ->leftJoin('job_opening_types', 'job_opening_types.id', '=', 'user_interview_forms.learn_about_job_opening')
-        ->select('user_interview_forms.*', 'company_locations.name as location_name', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name')
+        ->leftJoin('designations', 'designations.id', '=', 'user_interview_forms.job_position_name')
+        ->select('user_interview_forms.*', 'company_locations.name as location_name', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name','designations.name as designation_name')
         ->first();
         return view('confirmation-process.interview-survey', compact('employee_id','inteview_details'));
     }

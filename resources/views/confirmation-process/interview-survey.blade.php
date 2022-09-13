@@ -45,7 +45,7 @@
 
               <h2>Q. 4 - What position were you interviewed for?</h2>
               <li>
-              <div class="col-left">{{ $inteview_details['job_position_name'] }}</div>
+              <div class="col-left">{{ $inteview_details['designation_name'] }}</div>
               </li>
 
               <h2>Q. 5 - Which location did you apply for?</h2>
@@ -69,19 +69,23 @@
               </li>
 
 
-              <h2>Q. 9 - "Rate {{ $inteview_details['company_hr_name'] }} on the following parameters, out of 5."</h2>
+              <h2>Q. 9 - Rate {{ $inteview_details['company_hr_name'] }} on the following parameters, out of 5.</h2>
               
 
               <!-- <div class="month_overview feedback_overview">
                 <div class="score_col_row">
                   <div class="score_col">
                     <p>Approachable</p>
-                    <span>{{ $inteview_details['approachable'] }} <span class="float_right_div">{{ $inteview_details['approachable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></span> 
+                    <span>{{ $inteview_details['approachable'] }} <span class="float_right_div">{{ $inteview_details['approachable'] }} @for($i=0; $i < $inteview_details['approachable']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor</span></span> 
                   </div>
 
                   <div class="score_col">
                     <p>Respectful</p>
-                    <span> <span class="float_right_div">{{ $inteview_details['approachable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></span> 
+                    <span> <span class="float_right_div">{{ $inteview_details['approachable'] }} @for($i=0; $i < $inteview_details['approachable']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor</span></span> 
                   </div>
               </div> -->
 
@@ -89,115 +93,206 @@
 
               <!-- <h2>Q. 9 -Approachable</h2> -->
               <li>
-              <div class="col-left">Approachable <span class="float_right_div">{{ $inteview_details['approachable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span>  </div>
+              <div class="col-left">
+                Approachable 
+                @for($i=0; $i < $inteview_details['approachable']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor  
+              </div>
               </li>
 
               <!-- <h2>Q. 10 - Respectful</h2> -->
               <li>
-              <div class="col-left">Respectful <span class="float_right_div">{{ $inteview_details['respectful'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Respectful 
+                @for($i=0; $i < $inteview_details['respectful']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 11 - Could explain the job role well</h2> -->
               <li>
-              <div class="col-left">Could explain the job role well <span class="float_right_div">{{ $inteview_details['explain_job_role'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Could explain the job role well 
+                @for($i=0; $i < $inteview_details['explain_job_role']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 12 - Could explain the company background well</h2> -->
               <li>
-              <div class="col-left">Could explain the company background well <span class="float_right_div">{{ $inteview_details['explain_company_background'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Could explain the company background well 
+                @for($i=0; $i < $inteview_details['explain_company_background']; $i++)
+                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 13 - Shared proper information about interview process</h2> -->
               <li>
-              <div class="col-left">Shared proper information about interview process <span class="float_right_div">{{ $inteview_details['shared_proper_interview_information'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Shared proper information about interview process 
+                @for($i=0; $i < $inteview_details['shared_proper_interview_information']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 14 - Discussed about my profile in detail to check my fitment with the role</h2> -->
               <li>
-              <div class="col-left">Discussed about my profile in detail to check my fitment with the role <span class="float_right_div">{{ $inteview_details['discussed_my_profile'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Discussed about my profile in detail to check my fitment with the role 
+                @for($i=0; $i < $inteview_details['discussed_my_profile']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 15 - Shared my interview feedback quickly after the interview</h2> -->
               <li>
-              <div class="col-left">Shared my interview feedback quickly after the interview <span class="float_right_div">{{ $inteview_details['shared_interview_feedback_quickly'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">
+                Shared my interview feedback quickly after the interview 
+                @for($i=0; $i < $inteview_details['shared_interview_feedback_quickly']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <h2>Q. 10 - Any additional feedback for the recruiter?</h2>
               <li>
-              <div class="col-left">{{ $inteview_details['additional_feedback_recruiter'] }}</div>
+              <div class="col-left">{!! $inteview_details['additional_feedback_recruiter'] !!}</div>
               </li>
 
-              <h2>Q. 11 - How much will you rate ${Q-H}'s overall conduct? (out of 5)</h2>
+              <h2>Q. 11 - How much will you rate {{ $inteview_details['company_hr_name'] }}'s overall conduct? (out of 5)</h2>
               <li>
-              <div class="col-left"><strong>{{ $inteview_details['rate_overall_conduct'] }}</strong> <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left"> 
+                @for($i=0; $i < $inteview_details['rate_overall_conduct']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <h2>Q. 12 - Rate the interviewers on the following parameters (Out of 5)</h2>
               <!-- <h2>Q. 18 - Professionalism</h2> -->
               <li>
-              <div class="col-left">Professionalism <span class="float_right_div">{{ $inteview_details['professionalism'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Professionalism 
+                @for($i=0; $i < $inteview_details['professionalism']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 19 - Friendliness</h2> -->
               <li>
-              <div class="col-left">Friendliness <span class="float_right_div">{{ $inteview_details['friendliness'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Friendliness
+                @for($i=0; $i < $inteview_details['friendliness']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 20 - Hepful</h2> -->
               <li>
-              <div class="col-left">Hepful <span class="float_right_div">{{ $inteview_details['heplful'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Hepful 
+                @for($i=0; $i < $inteview_details['heplful']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 21 - Approachable</h2> -->
               <li>
-              <div class="col-left">Approachable <span class="float_right_div">{{ $inteview_details['approachable_interviewers'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Approachable 
+                @for($i=0; $i < $inteview_details['approachable_interviewers']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 22 - Respectable</h2> -->
               <li>
-              <div class="col-left">Respectable <span class="float_right_div">{{ $inteview_details['respectable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Respectable 
+                @for($i=0; $i < $inteview_details['respectable']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 23 - Knowledgeable</h2> -->
               <li>
-              <div class="col-left">Knowledgeable <span class="float_right_div">{{ $inteview_details['knowledgeable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Knowledgeable 
+                @for($i=0; $i < $inteview_details['knowledgeable']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 24 - Clear communication about company</h2> -->
               <li>
-              <div class="col-left">Clear communication about company <span class="float_right_div">{{ $inteview_details['clear_communication_about_company'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Clear communication about company 
+                @for($i=0; $i < $inteview_details['clear_communication_about_company']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 25 - Clear communication about job role</h2> -->
               <li>
-              <div class="col-left">Clear communication about job role <span class="float_right_div">{{ $inteview_details['clear_communication_job_role'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Clear communication about job role 
+                @for($i=0; $i < $inteview_details['clear_communication_job_role']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
               <h2>Q. 13 - Rate the interview process on the following parameters (out of 5)</h2>
               <!-- <h2>Q. 26 - The process started on time</h2> -->
               <li>
-              <div class="col-left">The process started on time <span class="float_right_div">{{ $inteview_details['process_started_on_time'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">The process started on time 
+                @for($i=0; $i < $inteview_details['process_started_on_time']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 27 - The process was fair & apt</h2> -->
               <li>
-              <div class="col-left">The process was fair & apt <span class="float_right_div">{{ $inteview_details['process_fair_apt'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">The process was fair & apt 
+                @for($i=0; $i < $inteview_details['process_fair_apt']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 28 - The seating arrangement was comfortable</h2> -->
               <li>
-              <div class="col-left">The seating arrangement was comfortable <span class="float_right_div">{{ $inteview_details['seating_arrangement_comfortable'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">The seating arrangement was comfortable 
+                @for($i=0; $i < $inteview_details['seating_arrangement_comfortable']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 29 - Staff was helpful & supportive</h2> -->
               <li>
-              <div class="col-left">Staff was helpful & supportive <span class="float_right_div">{{ $inteview_details['staff_helpful_supportive'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Staff was helpful & supportive 
+                @for($i=0; $i < $inteview_details['staff_helpful_supportive']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
               <!-- <h2>Q. 30 - Received my interview feedback on time</h2> -->
               <li>
-              <div class="col-left">Received my interview feedback on time <span class="float_right_div">{{ $inteview_details['received_interview_feedback'] }} &nbsp; <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left">Received my interview feedback on time 
+                @for($i=0; $i < $inteview_details['received_interview_feedback']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
@@ -209,13 +304,17 @@
 
               <h2>Q. 15 - Rate the overall interview process. (out of 5)</h2>
               <li>
-              <div class="col-left"><strong>{{ $inteview_details['rate_overall_interview_process'] }}</strong> <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span></div>
+              <div class="col-left"><!-- <strong>{{ $inteview_details['rate_overall_interview_process'] }}</strong>  -->
+                @for($i=0; $i < $inteview_details['rate_overall_interview_process']; $i++)
+                      <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                @endfor
+              </div>
               </li>
 
 
               <h2>Q. 16 - If you have any comments, suggestions, or feedback, please enter it below:</h2>
               <li>
-              <div class="col-left">{{ $inteview_details['comments_suggestions_feedback'] }}</div>
+              <div class="col-left">{!! $inteview_details['comments_suggestions_feedback'] !!}</div>
               </li>
 
               @else 
