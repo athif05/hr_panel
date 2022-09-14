@@ -30,9 +30,12 @@ class UserController extends Controller
         ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
         ->get();
 
+        $review_meeting_date = ConfirmationMom::where('user_id',$id)
+        ->first();
+
         //dd($confirmation_mom_details);
 
-        return view('mom-email-view', compact('user_dtl','confirmation_mom_details'));
+        return view('mom-email-view', compact('user_dtl','confirmation_mom_details','review_meeting_date'));
     }
     /*mom email view, end here*/
 

@@ -24,7 +24,7 @@
               	<h5 class="card-title">MOM Feedbacks</h5>
                 
 
-                @if($confirmation_mom_details)
+                @if($confirmation_mom_details && $review_meeting_date)
 
                 <div class="col-lg-12" style="border:1px solid #e6abab;">
                   
@@ -39,7 +39,7 @@
                     </div>
                     <div class="div50 text-center">
                       <strong> Date of Review Meeting </strong><br>
-                      2023-Oct-23
+                      {{ date('Y-m-d',strtotime($review_meeting_date['submitted_date'])) }}
                     </div>
                   </div>
 
@@ -151,7 +151,7 @@
                 </div>
               
                 @else 
-                <h5 class="card-title">No MOM Feedbacks data.</h5>
+                <h6>No data found.</h6>
                 @endif
               
             </div>
