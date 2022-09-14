@@ -82,9 +82,26 @@
           						<td>{{ $all_member['gender'] }}</td>
           						<td>{{ date('d-M-y',strtotime($all_member['joining_date'])) }}</td>
           						<td>
-          							<a href="#">
-          								<button type="button" class="btn btn-primary btn-sm">Generate Email</button>
-          							</a>
+                        <?php $jk=0;?>
+                        @foreach($generate_email_details as $generate_email_detail)
+                        
+                           @if($generate_email_detail['user_id'] == $all_member['id'])
+
+                           <?php $jk=1;?>
+
+                            <a href="{{ url('generate-email-form/'.$all_member['id'])}}">
+                              <button type="button" class="btn btn-info btn-sm">Show Generated Email</button>
+                            </a>
+                          @endif
+          							
+                        @endforeach
+
+                        @if($jk == '0')
+                        <a href="{{ url('generate-email-form/'.$all_member['id'])}}">
+                          <button type="button" class="btn btn-primary btn-sm">Generate Email</button>
+                        </a>
+                        @endif
+
           						</td>
           					</tr>
           				<?php $j++;?>

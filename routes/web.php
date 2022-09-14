@@ -223,6 +223,14 @@ Route::group(['middleware' => ['auth']], function() {
 
 	/*hr generate email, start here*/
 	Route::get('/hr-generate-emails',  [App\Http\Controllers\UserController::class, 'hrGenerateEmails'])->middleware('isHrandHrHead');
+
+	Route::get('/generate-email-form/{id}',  [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'index'])->middleware('isHrandHrHead');
+
+	Route::post('/save-generate-email-form', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'store'])->name('save-generate-email-form');
+
+	Route::get('/generate-email-form-edit/{id}', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'edit']);
+
+	Route::post('/update-generate-email-form', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'update'])->name('update-generate-email-form');
 	/*hr generate email, end here*/
 
 

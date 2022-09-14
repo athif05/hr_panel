@@ -17,6 +17,13 @@
 
 		jQuery(document).ready(function(){
 
+			/*show currentTime in html in Confirmation generate email form, start here */
+			var date = new Date();
+			var currentTime = date.getHours() + ':' + date.getMinutes();
+			$('#session_time').val(currentTime);
+			/*show currentTime in html in Confirmation generate email form, start here */
+
+
 			/*show HOD name in fresh eye form, start here*/
 			$('#head_of_department').on('change', function(){
 				var hod_id=this.value;

@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\UserInterviewForm;
 use App\Models\ConfirmationFeedbackForm;
 use App\Models\ConfirmationMom;
+use App\Models\ConfirmationGenerateEmail;
 
 use Auth;
 
@@ -218,7 +219,9 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('hr-generate-emails', compact('all_members'));
+        $generate_email_details = ConfirmationGenerateEmail::get();
+
+        return view('hr-generate-emails', compact('all_members','generate_email_details'));
     }
     /*show all probation member list to hr generate email, end here*/
 
