@@ -129,7 +129,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="session_time" class="form-label">Session Time <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <input type="time" class="form-control" name="session_time" id="session_time" value="{{ old('session_time',time()) }}">
+                  <input type="time" class="form-control" name="session_time" id="session_time" value="{{ old('session_time') }}">
                   @if ($errors->has('session_time'))
                     <span class="text-danger">{{ $errors->first('session_time') }}</span>
                   @endif
