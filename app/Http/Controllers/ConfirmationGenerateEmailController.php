@@ -63,7 +63,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         } else if($generate_email_details['status'] === '1'){
 
-            return redirect("/hr-generate-confirmation-email-form-edit/$id");
+            return redirect("/generate-email-form-edit/$id");
 
         } else if($generate_email_details['status'] === '2'){
 
