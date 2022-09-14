@@ -24,7 +24,7 @@
               	<h5 class="card-title">MOM Feedbacks</h5>
                 
 
-                @if($confirmation_mom_details && $review_meeting_date)
+                @if($review_meeting_date)
 
                 <div class="col-lg-12" style="border:1px solid #e6abab;">
                   
