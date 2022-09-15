@@ -58,23 +58,7 @@
 											</table>
 										</td>
 
-										<?php $avg_score=0;  $score_card=0; $counter=0;?>
-										@foreach($confirmation_mom_details as $confirmation_mom_detail)
-
-											<?php 
-											$score_card=($score_card+$confirmation_mom_detail['average_rating_entire_presentation']);
-
-											$avg_score=$avg_score+($confirmation_mom_detail['content']+$confirmation_mom_detail['confidence']+$confirmation_mom_detail['communication']+$confirmation_mom_detail['data_relevance']+$confirmation_mom_detail['overall_growth_individual']);
-
-											$counter++;
-
-
-											?>
-
-										@endforeach
-
-										<?php if($score_card>0) { $score_card=$score_card/$counter; }?>
-
+										
 
 										<td style="border-left: 1px solid #ae9322;padding-left: 44px;padding-right: 25px;">
 											<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -107,7 +91,7 @@
 											</table>
 										</td>
 										<td align="center"   style="border-left: 1px solid #ae9322;">
-											<img src="{{ asset('').$user_details['profile_image'] }}" alt="img" width="84" height="87" style="border: solid 4px #f9d94a" />
+											<img src="{{ 'http://52.66.206.92'.$user_details['profile_image'] }}" alt="img" width="84" height="87" style="border: solid 4px #f9d94a" />
 										</td>
 									</tr>
 

@@ -315,13 +315,31 @@ class ConfirmationGenerateEmailController extends Controller
         ->select('confirmation_generate_emails.*','letter_types.name as letter_type_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_poc_name"))
         ->first();
 
-        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$user_id)
         ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
         ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
         ->get();
 
 
-        $data=array('user_details'=>$user_details, 'generate_email_details'=>$generate_email_details, 'confirmation_mom_details'=>$confirmation_mom_details);
+
+        $avg_score=0;  
+        $score_card=0; 
+        $counter=0;
+
+        foreach($confirmation_mom_details as $confirmation_mom_detail) {
+
+            $score_card=($score_card+$confirmation_mom_detail['average_rating_entire_presentation']);
+
+            $avg_score=$avg_score+($confirmation_mom_detail['content']+$confirmation_mom_detail['confidence']+$confirmation_mom_detail['communication']+$confirmation_mom_detail['data_relevance']+$confirmation_mom_detail['overall_growth_individual']);
+
+            $counter++;
+        }
+
+        if($score_card>0) { $score_card=$score_card/$counter; }
+
+
+
+        $data=array('user_details'=>$user_details, 'generate_email_details'=>$generate_email_details, 'confirmation_mom_details'=>$confirmation_mom_details,'score_card'=>$score_card,'avg_score'=>$avg_score);
 
         $mail_from=\config('env_file_value.no_reply');
         $hr_email= \config('env_file_value.hr_email');
@@ -329,8 +347,9 @@ class ConfirmationGenerateEmailController extends Controller
         $candidate_email=$user_details['email'];
         $subject_name=$generate_email_details['letter_type_name'].' '.date('Y');
 
-        //echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name;
+        //echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name."<br>".$score_card."<br>".$avg_score;
         //dd();
+
 
         Mail::send('mail-layout.generate-confirmation-email',$data, function($message) use ($user_details, $generate_email_details, $confirmation_mom_details, $mail_from, $manager_email, $hr_email, $candidate_email, $subject_name) {
             $message->from($mail_from)
