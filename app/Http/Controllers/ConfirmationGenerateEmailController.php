@@ -11,6 +11,8 @@ use App\Models\LetterType;
 use App\Models\ConfirmationGenerateEmail;
 use App\Models\ConfirmationMom;
 
+use Carbon\Carbon;
+
 use Auth;
 
 class ConfirmationGenerateEmailController extends Controller
@@ -22,6 +24,8 @@ class ConfirmationGenerateEmailController extends Controller
      */
     public function index($id)
     {
+
+        
         $user_details = User::where('users.id',$id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
         ->leftJoin('departments', 'departments.id', '=', 'users.department')
@@ -121,6 +125,14 @@ class ConfirmationGenerateEmailController extends Controller
             $status='2';
         }
 
+
+        /*current time*/
+        $mytime = Carbon::now();
+        $my_hour=$mytime->hour;
+        $my_minute=$mytime->minute;
+        $current_time=$my_hour.':'.$my_minute.":00";
+        //$current_time=$mytime->totimeString();
+
         $input = ConfirmationGenerateEmail::insert([
             'user_id' => $user_id,
             'updated_by_id' => $updated_by_id,
@@ -130,7 +142,7 @@ class ConfirmationGenerateEmailController extends Controller
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
             'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
-            'session_time' => (!is_null($request->session_time) ? $request->session_time : "null"),
+            'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
             'location' => (!is_null($request->location) ? $request->location : ""),
             'status' => $status,
@@ -232,6 +244,12 @@ class ConfirmationGenerateEmailController extends Controller
             $status='2';
         }
 
+        /*current time*/
+        $mytime = Carbon::now();
+        $my_hour=$mytime->hour;
+        $my_minute=$mytime->minute;
+        $current_time=$my_hour.':'.$my_minute.":00";
+
         ConfirmationGenerateEmail::where('id', $edit_id)
         ->where('user_id', $user_id)
         ->update([
@@ -243,7 +261,7 @@ class ConfirmationGenerateEmailController extends Controller
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
             'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
-            'session_time' => (!is_null($request->session_time) ? $request->session_time : "null"),
+            'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
             'location' => (!is_null($request->location) ? $request->location : ""),
             'status' => $status,
