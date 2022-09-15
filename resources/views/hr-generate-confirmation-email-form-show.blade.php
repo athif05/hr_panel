@@ -46,7 +46,7 @@
 		          <table  cellpadding="0" cellspacing="0" align="center" width="700" border="0" style="font-family: Calibri, sans-serif; color: #666;">
 		            <tbody>
 		              <tr>
-		                <td bgcolor="#595959" align="center" style="font-family: Calibri, sans-serif;  height: 70px; font-size: 40px; color: #fff; text-transform: uppercase;font-weight: bold;"> Confirmation Letter {{ date('Y') }} </td>
+		                <td bgcolor="#595959" align="center" style="font-family: Calibri, sans-serif;  height: 70px; font-size: 40px; color: #fff; text-transform: uppercase;font-weight: bold;"> <!-- Confirmation Letter  -->{{$generate_email_details['letter_type_name']}} {{ date('Y') }} </td>
 		              </tr>
 		              <tr>
 		                <td style="line-height: 10px;"><img src="https://vcim.net/evaluation/assets/mailers/grey_1/Border_1.jpg" alt="img" width="700" height="16" /></td>
@@ -128,38 +128,128 @@
 
 		                <tr><td align="center">
 
-
 		                    <table width="640" border="0" cellspacing="0" cellpadding="0" >
-		                    <tbody>
-		                      <tr>
-		                <td bgcolor="#fff" align="left" style="font-family: Calibri, sans-serif; font-size: 20px;color: #10131e;"><strong>Hi {{ $user_details['full_name'] }},</strong>
-		                 </td>
-		              </tr>
-		                <tr><td height="20"></td></tr>
-		               <tr><td bgcolor="#fff" align="left" style="font-family: Calibri, sans-serif; font-size: 18px;color: #10131e; text-align: justify; line-height: 22px;">
-
-		            This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from <strong></strong>.
-		            <br/><br/>
-		            As discussed, your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
-		            <br/><br/>
-		            You may go through <a href="https://vcim.net/evaluation/assets/Confirmation Handbook_2020.pptx">confirmation handbook</a> for your information and also book your calendar  for a quick session by me on the same. Please see the details below.
-
-		            <br/><br/>
-		            <strong>Agenda: Session on Benefits after Confirmation</strong> <br/>
-		            POC: {{ $generate_email_details['full_poc_name'] }}<br/>
-		            Date: {{ $generate_email_details['session_date'] }}<br/>
-		            Location: {{ $generate_email_details['location'] }}<br/>
-		            Duration: ½ an hour<br/>
-		            Time: {{ date('h:iA',strtotime($generate_email_details['session_time'])) }}<br/>
-		            <br/>
-		            We look forward to your valuable contributions and wish you all the very best for a rewarding career with the organization.
-		            <br/><br/>
-		            Please accept our congratulations on your confirmation.
+								<tbody>
+									<tr>
+										<td bgcolor="#fff" align="left" style="font-family: Calibri, sans-serif; font-size: 20px;color: #10131e;">
+											<strong>Hi {{ $user_details['full_name'] }},</strong>
+										</td>
+									</tr>
+									<tr><td height="20"></td></tr>
+									<tr>
+										<td bgcolor="#fff" align="left" style="font-family: Calibri, sans-serif; font-size: 18px;color: #10131e; text-align: justify; line-height: 22px;">
 
 
-		        </td></tr>
-		                    </tbody>
-		                  </table>
+
+										@if($generate_email_details['letter_type']==1)
+		                	
+
+											This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+
+											<br/><br/>
+
+											As discussed, your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+
+
+					                	@elseif($generate_email_details['letter_type']==2)
+					                		
+					                		This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+
+											<br/><br/>
+
+											Your total annual compensation stands revised to <strong> INR {{ ($generate_email_details['increment_amount']*12) }}/-</strong>  ( Only) w.e.f. and you will now enjoy all benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+
+											<!-- <br/><br/>
+
+											You may go through <a href="https://vcim.net/evaluation/assets/Confirmation Handbook_2020.pptx">confirmation handbook</a> for your information and also book your calendar for today for a quick session by me on the same. Please see the details below. -->
+
+					                	@elseif($generate_email_details['letter_type']==3)
+					                	
+					                		This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+
+											<br/><br/>
+
+											As discussed, your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+
+
+					                	@elseif($generate_email_details['letter_type']==4)
+					                	
+					                		This is to bring to your notice that consequent to the review of your performance during your probation, we would like to inform you that your confirmation is being delayed for now. This also means that your appraisal cycle is being shifted to the next one.
+
+					                		<br/><br/>
+
+					                		We would like to see more improvements in your work performance. We would like to see you working with great enthusiasm along with following your JD religiously.
+
+					                		<br/><br/>
+
+					                		To help you improve in your performance, HR team along with your manager, will devise a Performance Improvement Plan (PIP) for you for a tenure of starting from . It will have areas of improvement along with actions to be taken to overcome the shortfalls & steps to accomplish the goals to reach next level. We shall revisit the PIP program & evaluate your improvements & accomplishments and a final call on your confirmation will be taken on or before.
+
+					                		<br/><br/>
+
+					                		In case of no visible development, this one month of PIP will be considered as your notice period served to the organization and you will be relieved from the services on its completion.
+
+					                		<br/><br/>
+
+					                		However, we certainly hope that you shall overcome all the challenges & outshine as a performer & contributor in the team.
+
+					                		<br/><br/>
+
+					                		Wishing you all the luck! <br/>
+											Stay positive, stay active!
+
+											<br/><br/>
+
+											For further queries & clarifications, please feel free to contact the HR team.
+
+					                	@elseif($generate_email_details['letter_type']==5)
+					                		
+					                		This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> and your total annual compensation stands revised to<strong> INR {{ ($generate_email_details['increment_amount']*12) }}/-</strong> ( Only) w.e.f.
+
+											<br/><br/>
+
+											You will now enjoy all benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+
+											<br/><br/>
+
+											Please find a quick link for <a href="https://vcim.net/evaluation/assets/Confirmation Handbook_2020.pptx">confirmation handbook</a> that will help you gauge the benefits you shall be eligible for, moving hereon. Also book your calendar for a quick session by me on the same. Please see the details below.
+
+					                	@endif
+
+
+					                	@if($generate_email_details['letter_type']!=4)
+						                	<br/><br/>
+
+						                	@if($generate_email_details['letter_type']!=5)
+							                	You may go through <a href="https://vcim.net/evaluation/assets/Confirmation Handbook_2020.pptx">confirmation handbook</a> for your information and also book your calendar for today for a quick session by me on the same. Please see the details below.
+
+												<br/><br/>
+											@endif
+
+											<strong>Agenda: Session on Benefits after Confirmation</strong> <br/>
+											POC: {{ $generate_email_details['full_poc_name'] }}<br/>
+											Date: {{ $generate_email_details['session_date'] }}<br/>
+											Location: {{ $generate_email_details['location'] }}<br/>
+											Duration: ½ an hour<br/>
+											Time: {{ date('h:iA',strtotime($generate_email_details['session_time'])) }}<br/>
+											<br/>
+
+											We look forward to your valuable contributions and wish you all the very best for a rewarding career with the organization.
+
+											<br/><br/>
+											
+											Please accept our congratulations on your confirmation.
+
+										@endif
+
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+
+
+
 		                    </td></tr>
 
 		              <tr>

@@ -91,7 +91,7 @@
 
                 
                 <div class="col-md-6 position-relative">
-                  <label for="increment_amount" class="form-label">Increment Amount <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="increment_amount" class="form-label">Increment Amount </label>
                   <input type="number" class="form-control" name="increment_amount" id="increment_amount" min="0" value="{{ old('increment_amount') }}">
                   @if ($errors->has('increment_amount'))
                     <span class="text-danger">{{ $errors->first('increment_amount') }}</span>
@@ -101,7 +101,7 @@
 
                 
                 <div class="col-md-6 position-relative">
-                  <label for="promotion" class="form-label">Promotion <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="promotion" class="form-label">Promotion </label>
                   <input type="text" class="form-control" name="promotion" id="promotion" value="{{ old('promotion') }}">
                   @if ($errors->has('promotion'))
                     <span class="text-danger">{{ $errors->first('promotion') }}</span>

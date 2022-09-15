@@ -47,7 +47,8 @@ class ConfirmationGenerateEmailController extends Controller
         /*check record is exist or not*/
         $generate_email_details = ConfirmationGenerateEmail::where('user_id', $id)
         ->leftJoin('users','users.id','=','confirmation_generate_emails.poc_name')
-        ->select('confirmation_generate_emails.*',DB::raw("CONCAT(first_name, ' ', last_name) as full_poc_name"))
+        ->leftJoin('letter_types','letter_types.id','=','confirmation_generate_emails.letter_type')
+        ->select('confirmation_generate_emails.*','letter_types.name as letter_type_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_poc_name"))
         ->first();
 
         $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
@@ -102,8 +103,6 @@ class ConfirmationGenerateEmailController extends Controller
             $request->validate([
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
-                'increment_amount' => 'required|integer',
-                'promotion' => 'required',
                 'appraisal_cycle' => 'required',
                 'session_date' => 'required',
                 'session_time' => 'required',
@@ -112,8 +111,6 @@ class ConfirmationGenerateEmailController extends Controller
             ], [
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
-                'increment_amount.required' => 'Increment amount is required',
-                'promotion.required' => 'Promotion is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
                 'session_date.required' => 'Session date is required',
                 'session_time.required' => 'Session time is required',
@@ -217,8 +214,6 @@ class ConfirmationGenerateEmailController extends Controller
             $request->validate([
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
-                'increment_amount' => 'required|integer',
-                'promotion' => 'required',
                 'appraisal_cycle' => 'required',
                 'session_date' => 'required',
                 'session_time' => 'required',
@@ -227,8 +222,6 @@ class ConfirmationGenerateEmailController extends Controller
             ], [
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
-                'increment_amount.required' => 'Increment amount is required',
-                'promotion.required' => 'Promotion is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
                 'session_date.required' => 'Session date is required',
                 'session_time.required' => 'Session time is required',
