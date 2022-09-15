@@ -231,6 +231,11 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/generate-email-form-edit/{id}', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'edit']);
 
 	Route::post('/update-generate-email-form', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'update'])->name('update-generate-email-form');
+
+	Route::get('/send-generate-confirmation-email/{id}/{user_id}', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmail']);
+
+
+	//Route::get('/send-generate-confirmation-email-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmailTest']);
 	/*hr generate email, end here*/
 
 

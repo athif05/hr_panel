@@ -11,7 +11,10 @@ use App\Models\LetterType;
 use App\Models\ConfirmationGenerateEmail;
 use App\Models\ConfirmationMom;
 
-use Carbon\Carbon;
+use Carbon\Carbon; //for get current time
+use Mail; //for send mail
+
+use Config; //use custom field from .env file
 
 use Auth;
 
@@ -290,4 +293,60 @@ class ConfirmationGenerateEmailController extends Controller
     {
         //
     }
+
+
+    /*send generated email, start here*/
+    public function sendGenerateConfirmationEmail($id, $user_id){
+        //echo $id.' / '.$user_id;
+
+        $user_details = User::where('users.id',$user_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $generate_email_details = ConfirmationGenerateEmail::where('confirmation_generate_emails.id', $id)
+        ->where('confirmation_generate_emails.user_id', $user_id)
+        ->leftJoin('users','users.id','=','confirmation_generate_emails.poc_name')
+        ->leftJoin('letter_types','letter_types.id','=','confirmation_generate_emails.letter_type')
+        ->select('confirmation_generate_emails.*','letter_types.name as letter_type_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_poc_name"))
+        ->first();
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+
+        $data=array('user_details'=>$user_details, 'generate_email_details'=>$generate_email_details, 'confirmation_mom_details'=>$confirmation_mom_details);
+
+        $mail_from=\config('env_file_value.no_reply');
+        $hr_email= \config('env_file_value.hr_email');
+        $manager_email=$user_details['manager_email'];
+        $candidate_email=$user_details['email'];
+        $subject_name=$generate_email_details['letter_type_name'].' '.date('Y');
+
+        echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name;
+        //dd();
+
+        Mail::send('mail-layout.generate-confirmation-email',$data, function($message) use ($user_details, $generate_email_details, $confirmation_mom_details, $mail_from, $manager_email, $hr_email, $candidate_email, $subject_name) {
+            $message->from($mail_from)
+            ->to($candidate_email)
+            ->cc($manager_email)
+            ->bcc($hr_email)
+            ->subject($subject_name);
+        });
+
+    }
+    /*send generated email, end here*/
+
+
+
+    /*public function sendGenerateConfirmationEmailTest(){
+
+        return view('mail-layout.generate-confirmation-email');
+    }*/
 }

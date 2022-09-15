@@ -322,7 +322,7 @@
 
               
 		        <div style="display: flex;margin: auto;justify-content: center;margin-top: 2%;margin-bottom: 2%;">
-					<a href="?send=1" class="btn-default" style="text-decoration: none">Send Email</a>
+					<a href="{{ url('send-generate-confirmation-email/'.$generate_email_details['id'].'/'.$generate_email_details['user_id']) }}" class="btn-default" style="text-decoration: none">Send Email</a>
 				</div>
 
 
