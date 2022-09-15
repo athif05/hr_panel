@@ -157,7 +157,7 @@
 
 											<br/><br/>
 
-											Your total annual compensation stands revised to <strong> INR {{ ($generate_email_details['increment_amount']*12) }}/-</strong>  ( Only) w.e.f. and you will now enjoy all benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+											Your total annual compensation stands revised to <strong> INR {{ number_format(($generate_email_details['increment_amount']*12),2,".",",") }}/-</strong>  ( Only) w.e.f. and you will now enjoy all benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
 
 											<!-- <br/><br/>
 
@@ -203,7 +203,7 @@
 
 					                	@elseif($generate_email_details['letter_type']==5)
 					                		
-					                		This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> and your total annual compensation stands revised to<strong> INR {{ ($generate_email_details['increment_amount']*12) }}/-</strong> ( Only) w.e.f.
+					                		This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> and your total annual compensation stands revised to<strong> INR {{ number_format(($generate_email_details['increment_amount']*12),2,".",",") }}/-</strong> ( Only) w.e.f.
 
 											<br/><br/>
 
