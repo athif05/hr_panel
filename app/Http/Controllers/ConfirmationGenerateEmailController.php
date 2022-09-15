@@ -329,7 +329,7 @@ class ConfirmationGenerateEmailController extends Controller
         $candidate_email=$user_details['email'];
         $subject_name=$generate_email_details['letter_type_name'].' '.date('Y');
 
-        echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name;
+        //echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name;
         //dd();
 
         Mail::send('mail-layout.generate-confirmation-email',$data, function($message) use ($user_details, $generate_email_details, $confirmation_mom_details, $mail_from, $manager_email, $hr_email, $candidate_email, $subject_name) {
@@ -339,6 +339,9 @@ class ConfirmationGenerateEmailController extends Controller
             ->bcc($hr_email)
             ->subject($subject_name);
         });
+
+
+        return back()->with('thank_you', 'Mail successfully sent.');
 
     }
     /*send generated email, end here*/
