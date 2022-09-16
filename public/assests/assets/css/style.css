@@ -1358,6 +1358,10 @@ h6 {
   font-size: 15px;
 }
 
+.fontSize12{
+  font-size: 12px!important;
+}
+
 .fontColorWhite{
   color: white;
 }
@@ -1368,4 +1372,26 @@ h6 {
 
 .clearBoth10{
   clear: both; height:10px;
+}
+
+.filter_submit_btn {
+  width: 80px;
+  font-size: 14px;
+  padding: 0px!important;
+}
+
+.filter_clear_btn {
+  width: 80px;
+  font-size: 14px;
+  padding: 0px!important;
+  margin-left: 6px;
+}
+
+.filter_clear_btn2 {
+  padding: 5px 15px 5px 15px!important;
+  font-size: 14px;
+}
+
+.filter_div_width{
+  width: 20%!important;
 }

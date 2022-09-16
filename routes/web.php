@@ -218,13 +218,14 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/mom-email-view/{id}',  [App\Http\Controllers\UserController::class, 'momEmailView'])->middleware('isHRManagement');
 
+	Route::get('/confirmation-process-mom-email/filter',  [App\Http\Controllers\UserController::class, 'confirmationProcessMomEmailFilter'])->name('confirmation-process-mom-email.filter')->middleware('isHRManagement');
 	/*Confirmation Process & MOM Email, end here*/
 
 
 	/*hr generate email, start here*/
-	Route::get('/hr-generate-emails',  [App\Http\Controllers\UserController::class, 'hrGenerateEmails'])->middleware('isHrandHrHead');
+	Route::get('/hr-generate-emails',  [App\Http\Controllers\UserController::class, 'hrGenerateEmails'])->middleware('isHRManagement');
 
-	Route::get('/generate-email-form/{id}',  [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'index'])->middleware('isHrandHrHead');
+	Route::get('/generate-email-form/{id}',  [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'index'])->middleware('isHRManagement');
 
 	Route::post('/save-generate-email-form', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'store'])->name('save-generate-email-form');
 
@@ -234,13 +235,16 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/send-generate-confirmation-email/{id}/{user_id}', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmail']);
 
+	Route::get('/hr-generate-emails/filter',  [App\Http\Controllers\UserController::class, 'hrGenerateEmailsFilter'])->name('hr-generate-emails.filter')->middleware('isHRManagement');
 
 	//Route::get('/send-generate-confirmation-email-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmailTest']);
 	/*hr generate email, end here*/
 
 
 	/*hr mom, start here*/
-	Route::get('/hr-mom',  [App\Http\Controllers\UserController::class, 'hrMom'])->middleware('isHrandHrHead');
+	Route::get('/hr-mom',  [App\Http\Controllers\UserController::class, 'hrMom'])->middleware('isHRManagement');
+
+	Route::get('/hr-mom/filter',  [App\Http\Controllers\UserController::class, 'hrMomFilter'])->name('hr-mom.filter')->middleware('isHRManagement');
 	/*hr mom, end here*/
 
 

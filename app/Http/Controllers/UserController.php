@@ -14,6 +14,7 @@ use App\Models\UserInterviewForm;
 use App\Models\ConfirmationFeedbackForm;
 use App\Models\ConfirmationMom;
 use App\Models\ConfirmationGenerateEmail;
+use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes};
 
 use Auth;
 
@@ -185,6 +186,27 @@ class UserController extends Controller
     /*show all probation member list to hr mom, start here*/
     public function hrMom() {
 
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
 
         $all_members = User::where('users.employee_type','Probation')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
@@ -201,15 +223,96 @@ class UserController extends Controller
         ->get();
 
 
-        return view('hr-mom', compact('all_members','mom_form_details','manager_hr_id'));
+        return view('hr-mom', compact('all_members','mom_form_details','manager_hr_id','company_names','company_locations','designation_names','department_names'));
     }
     /*show all probation member list to hr mom, end here*/
+
+
+    /*filter probation member list to hr mom, start here*/
+    public function hrMomFilter(Request $request){
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $manager_hr_id=Auth::user()->id;
+        
+        $mom_form_details = ConfirmationMom::where('manager_id',$manager_hr_id)
+        ->get();
+
+        $query = User::where('users.employee_type','Probation')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
+        ->orderBy('users.first_name','asc');
+
+
+        if($request->company_id_filter){
+            $query->where('users.company_id', 'like', '%'.$request->company_id_filter.'%');
+        }
+
+        if($request->department_id_filter){
+            $query->where('users.department', '=', $request->department_id_filter);
+        }
+        if($request->designation_id_filter){
+            $query->where('users.designation', '=', $request->designation_id_filter);
+        }
+        if($request->location_id_filter){
+            $query->where('users.company_location_id', '=', $request->location_id_filter);
+        }
+
+        $all_members = $query->get();
+
+
+        return view('hr-mom', compact('all_members','mom_form_details','manager_hr_id','company_names','company_locations','designation_names','department_names'));
+    }
+    /*filter probation member list to hr mom, end here*/
 
 
 
     /*show all probation member list to hr generate email, start here*/
     public function hrGenerateEmails() {
 
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
 
         $all_members = User::where('users.employee_type','Probation')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
@@ -221,9 +324,70 @@ class UserController extends Controller
 
         $generate_email_details = ConfirmationGenerateEmail::get();
 
-        return view('hr-generate-emails', compact('all_members','generate_email_details'));
+        return view('hr-generate-emails', compact('all_members','generate_email_details','company_names','company_locations','designation_names','department_names'));
     }
     /*show all probation member list to hr generate email, end here*/
+
+
+
+    /*filter probation member list to hr generate email, end here*/
+    public function hrGenerateEmailsFilter(Request $request){
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $generate_email_details = ConfirmationGenerateEmail::get();
+
+        $query = User::where('users.employee_type','Probation')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
+        ->orderBy('users.first_name','asc');
+        
+
+        if($request->company_id_filter){
+            $query->where('users.company_id', 'like', '%'.$request->company_id_filter.'%');
+        }
+
+        if($request->department_id_filter){
+            $query->where('users.department', '=', $request->department_id_filter);
+        }
+        if($request->designation_id_filter){
+            $query->where('users.designation', '=', $request->designation_id_filter);
+        }
+        if($request->location_id_filter){
+            $query->where('users.company_location_id', '=', $request->location_id_filter);
+        }
+
+        $all_members = $query->get();
+
+
+
+        return view('hr-generate-emails', compact('all_members','generate_email_details','company_names','company_locations','designation_names','department_names'));
+
+    }
+    /*filter probation member list to hr generate email, end here*/
 
 
 
@@ -301,14 +465,92 @@ class UserController extends Controller
      */
     public function index()
     {   
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
         $all_candidates = User::where('users.employee_type','Probation')
         ->leftJoin('departments', 'departments.id', '=', 'users.department')
         ->select('users.*', 'departments.name as department_name')
         ->orderBy('users.first_name','asc')
         ->get();
 
-        return view('confirmation-process-mom-email', compact('all_candidates'));
+        return view('confirmation-process-mom-email', compact('all_candidates','company_names','company_locations','designation_names','department_names'));
     }
+
+
+    /*filter confirmation process mom email page, start here*/
+    public function confirmationProcessMomEmailFilter(Request $request) {
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $query = User::where('users.employee_type','Probation')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->select('users.*', 'departments.name as department_name')
+        ->orderBy('users.first_name','asc');
+        
+
+        if($request->company_id_filter){
+            $query->where('users.company_id', '=', $request->company_id_filter);
+        }
+
+        if($request->department_id_filter){
+            $query->where('users.department', '=', $request->department_id_filter);
+        }
+        if($request->designation_id_filter){
+            $query->where('users.designation', '=', $request->designation_id_filter);
+        }
+        if($request->location_id_filter){
+            $query->where('users.company_location_id', '=', $request->location_id_filter);
+        }
+
+        $all_candidates = $query->get();
+
+        return view('confirmation-process-mom-email', compact('all_candidates','company_names','company_locations','designation_names','department_names'));
+        
+    }
+    /*filter confirmation process mom email page, start here*/
+
 
     /**
      * Show the form for creating a new resource.
