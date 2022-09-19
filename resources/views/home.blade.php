@@ -154,17 +154,17 @@
 
                               if($user_appraisal_cycles["company_location_id"]==1){
 
-                                if($cycle=='04-01'){
+                                if($cycle==date('Y-04-01')){
                                   $no_guru_apr=$no_guru_apr+1;
-                                } else if($cycle=='10-01'){
+                                } else if($cycle==date('Y-10-01')){
                                   $no_guru_oct=$no_guru_oct+1;
                                 }
                                   
                               } else if($user_appraisal_cycles["company_location_id"]==2){
 
-                                if($cycle=='04-01'){
+                                if($cycle==date('Y-04-01')){
                                   $no_moh_apr=$no_moh_apr+1;
-                                } else if($cycle=='10-01'){
+                                } else if($cycle==date('Y-10-01')){
                                   $no_moh_oct=$no_moh_oct+1;
                                 }
 
