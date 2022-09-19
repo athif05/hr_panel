@@ -66,16 +66,32 @@
                           data: ['Female', 'Male']
                         },
                         series: [
-                          {
-                            name: 'Gurugram',
-                            type: 'bar',
-                            data: [40, 100]
-                          },
-                          {
-                            name: 'Mohali',
-                            type: 'bar',
-                            data: [20, 50]
+                        <?php 
+
+                        
+                        foreach ($company_locations as $company_location_name) { 
+
+                          $no_male=0;
+                          $no_female=0;
+
+                          foreach ($user_genders as $key => $value_genders) {
+
+                            if($company_location_name["id"]==$value_genders["company_location_id"]){
+
+                              if($value_genders["gender"]=='Male'){
+                                $no_male=$no_male+1;
+                              } else if($value_genders["gender"]=='Female'){
+                                $no_female=$no_female+1;
+                              }
+                            }
                           }
+                          ?>
+                          {
+                            name: '<?php echo $company_location_name["name"]?>',
+                            type: 'bar',
+                            data: ['<?php echo $no_female?>', '<?php echo $no_male?>']
+                          },
+                        <?php } ?>
                         ]
                       });
                     });
@@ -86,8 +102,6 @@
               </div>
             </div>
             <!-- gender graph, end here -->
-
-
 
 
             <!-- Appraisal Cycle graph, start here -->
@@ -124,17 +138,52 @@
                         },
                         yAxis: {
                           type: 'category',
-                          data: ['Mohali', 'Gurugram']
+                          data: [<?php foreach ($company_locations as $company_location_name) { ?>'<?php echo $company_location_name["name"]?>',<?php } ?>]
                         },
-                        series: [{
-                            name: 'Apr-22',
+
+                        <?php 
+                          $no_guru_apr=0;
+                          $no_guru_oct=0;
+
+                          $no_moh_apr=0;
+                          $no_moh_oct=0;
+
+                          foreach ($user_appraisal_cycle as $key => $user_appraisal_cycles) {
+
+                            $cycle = date('m-d', strtotime($user_appraisal_cycles["appraisal_cycle"]));
+
+                              if($user_appraisal_cycles["company_location_id"]==1){
+
+                                if($cycle=='04-01'){
+                                  $no_guru_apr=$no_guru_apr+1;
+                                } else if($cycle=='10-01'){
+                                  $no_guru_oct=$no_guru_oct+1;
+                                }
+                                  
+                              } else if($user_appraisal_cycles["company_location_id"]==2){
+
+                                if($cycle=='04-01'){
+                                  $no_moh_apr=$no_moh_apr+1;
+                                } else if($cycle=='10-01'){
+                                  $no_moh_oct=$no_moh_oct+1;
+                                }
+
+                              }
+                          }
+
+                         ?>
+
+
+                        series: [
+                          {
+                            name: 'Apr-<?php echo date("y");?>',
                             type: 'bar',
-                            data: [40, 100]
+                            data: [<?php echo $no_guru_apr?>, <?php echo $no_moh_apr?>]
                           },
                           {
-                            name: 'Oct-22',
+                            name: 'Oct-<?php echo date("y");?>',
                             type: 'bar',
-                            data: [20, 50]
+                            data: [<?php echo $no_guru_oct?>, <?php echo $no_moh_oct?>]
                           }
                         ]
                       });
@@ -181,17 +230,50 @@
                         },
                         xAxis: {
                           type: 'category',
-                          data: ['Gurugram', 'Mohali']
+                          data: [<?php foreach ($company_locations as $company_location_name) { ?>'<?php echo $company_location_name["name"]?>',<?php } ?>]
                         },
+
+                        <?php 
+                          $no_guru_conf=0;
+                          $no_guru_prob=0;
+
+                          $no_moh_conf=0;
+                          $no_moh_prob=0;
+
+                          foreach ($all_users as $key => $all_user_name) {
+
+                            //$cycle = date('m-d', strtotime($user_appraisal_cycles["appraisal_cycle"]));
+
+                              if($all_user_name["company_location_id"]==1){
+
+                                if($all_user_name["employee_type"]=='Confirmed'){
+                                  $no_guru_conf=$no_guru_conf+1;
+                                } else if($all_user_name["employee_type"]=='Probation'){
+                                  $no_guru_prob=$no_guru_prob+1;
+                                }
+                                  
+                              } else if($all_user_name["company_location_id"]==2){
+
+                                if($all_user_name["employee_type"]=='Confirmed'){
+                                  $no_moh_conf=$no_moh_conf+1;
+                                } else if($all_user_name["employee_type"]=='Probation'){
+                                  $no_moh_prob=$no_moh_prob+1;
+                                }
+
+                              }
+                          }
+
+                         ?>
+
                         series: [{
-                            name: 'Permanent',
-                            type: 'bar',
-                            data: [140, 60]
-                          },
-                          {
                             name: 'Confirmed',
                             type: 'bar',
-                            data: [100, 40]
+                            data: ['<?php echo $no_guru_conf?>', '<?php echo $no_moh_conf?>']
+                          },
+                          {
+                            name: 'Probation',
+                            type: 'bar',
+                            data: ['<?php echo $no_guru_prob?>', '<?php echo $no_moh_prob?>']
                           }
                         ]
                       });
@@ -250,10 +332,32 @@
                       new Chart(document.querySelector('#barChart'), {
                         type: 'bar',
                         data: {
-                          labels: ['Gurugram', 'Mohali'],
+                          labels: [<?php foreach ($company_names as $company_name) { ?>'<?php echo $company_name["name"]?>',<?php } ?>],
+
+                          <?php 
+                          $no_depart_guru=0;
+                          $no_depart_moh=0;
+
+                          foreach ($no_of_departments as $key => $no_of_department) {
+
+                            //$cycle = date('m-d', strtotime($user_appraisal_cycles["appraisal_cycle"]));
+
+                              if($no_of_department["company_id"]==1){
+
+                                $no_depart_guru=$no_depart_guru+1;
+                                  
+                              } else if($no_of_department["company_id"]==2){
+
+                                $no_depart_moh=$no_depart_moh+1;
+
+                              }
+                          }
+
+                         ?>
+
                           datasets: [{
                             label: 'Department Chart',
-                            data: [65, 59],
+                            data: ['<?php echo $no_depart_guru;?>', '<?php echo $no_depart_moh;?>'],
                             backgroundColor: [
                               'rgb(84,112,198)',
                               'rgb(145,204,117)'
@@ -297,7 +401,7 @@
                       new Chart(document.querySelector('#barChartTenure'), {
                         type: 'bar',
                         data: {
-                          labels: ['Gurugram', 'Mohali'],
+                          labels: [<?php foreach ($company_locations as $company_location_name) { ?>'<?php echo $company_location_name["name"]?>',<?php } ?>],
                           datasets: [{
                             label: 'Tenure Chart',
                             data: [65, 59],
