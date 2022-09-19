@@ -31,9 +31,15 @@ class HomeController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $users = User::with('company_name')->where('id', $user_id)->first();
+        $users = User::with('company_name')->where('users.id', $user_id)
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->select('users.*','designations.name as designation_name')
+        ->first();
+
         $currentLogo = $users->company_name->logo;
+        $designation_name = $users->designation_name;
         Session::put('company_logo', $currentLogo);
+        Session::put('designation_name', $designation_name);
 
 
         $company_locations = CompanyLocation::where('status', '1')
@@ -41,6 +47,6 @@ class HomeController extends Controller
             ->orderBy('name','asc')
             ->get();
         //dd($company_locations);
-        return view('home', compact('company_locations'));
+        return view('home', compact('users','company_locations'));
     }
 }

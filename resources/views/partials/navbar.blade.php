@@ -183,7 +183,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ Auth::user()->first_name }}</h6>
-              <span>Web Designer</span>
+              <span>{{session('designation_name')}}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
