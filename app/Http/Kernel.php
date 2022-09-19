@@ -71,5 +71,7 @@ class Kernel extends HttpKernel
         'isMember' => \App\Http\Middleware\MemberMiddleware::class,
         'isHrandHrHead' => \App\Http\Middleware\HRAndHRHeadMiddleware::class,
         'isManagerHrandHrHead' => \App\Http\Middleware\ManagerHRandHRHeadMiddleware::class,
+        'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'isAdminManagementHrHead' => \App\Http\Middleware\AdminManagementHRHeadMiddleware::class,
     ];
 }

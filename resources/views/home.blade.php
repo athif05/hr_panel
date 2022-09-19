@@ -22,6 +22,319 @@
           </nav>
         </div><!-- End Page Title -->
 
+
+        @if((Auth::user()->role_id=='8') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='6'))
+        
+
+        <section class="section">
+          <div class="row">
+
+            <!-- gender graph, start here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Classification as per Gender</h5>
+
+                  <!-- Vertical Bar Chart -->
+                  <div id="verticalBarChart" style="min-height: 400px;" class="echart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      echarts.init(document.querySelector("#verticalBarChart")).setOption({
+                        title: {
+                          text: ''
+                        },
+                        tooltip: {
+                          trigger: 'axis',
+                          axisPointer: {
+                            type: 'shadow'
+                          }
+                        },
+                        legend: {},
+                        grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                        },
+                        xAxis: {
+                          type: 'value',
+                          boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                          type: 'category',
+                          data: ['Female', 'Male']
+                        },
+                        series: [
+                          {
+                            name: 'Gurugram',
+                            type: 'bar',
+                            data: [40, 100]
+                          },
+                          {
+                            name: 'Mohali',
+                            type: 'bar',
+                            data: [20, 50]
+                          }
+                        ]
+                      });
+                    });
+                  </script>
+                  <!-- End Vertical Bar Chart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- gender graph, end here -->
+
+
+
+
+            <!-- Appraisal Cycle graph, start here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Appraisal Cycle</h5>
+
+                  <!-- Vertical Bar Chart -->
+                  <div id="verticalBarChartAppraisal" style="min-height: 400px;" class="echart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      echarts.init(document.querySelector("#verticalBarChartAppraisal")).setOption({
+                        title: {
+                          text: ''
+                        },
+                        tooltip: {
+                          trigger: 'axis',
+                          axisPointer: {
+                            type: 'shadow'
+                          }
+                        },
+                        legend: {},
+                        grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                        },
+                        xAxis: {
+                          type: 'value',
+                          boundaryGap: [0, 0.01]
+                        },
+                        yAxis: {
+                          type: 'category',
+                          data: ['Mohali', 'Gurugram']
+                        },
+                        series: [{
+                            name: 'Apr-22',
+                            type: 'bar',
+                            data: [40, 100]
+                          },
+                          {
+                            name: 'Oct-22',
+                            type: 'bar',
+                            data: [20, 50]
+                          }
+                        ]
+                      });
+                    });
+                  </script>
+                  <!-- End Vertical Bar Chart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Appraisal Cycle graph, end here -->
+
+            <!-- Employee Status graph, start here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Employee Status</h5>
+
+                  <!-- Vertical Bar Chart -->
+                  <div id="verticalBarChartEmployeeStatus" style="min-height: 400px;" class="echart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      echarts.init(document.querySelector("#verticalBarChartEmployeeStatus")).setOption({
+                        title: {
+                          text: ''
+                        },
+                        tooltip: {
+                          trigger: 'axis',
+                          axisPointer: {
+                            type: 'shadow'
+                          }
+                        },
+                        legend: {},
+                        grid: {
+                          left: '3%',
+                          right: '4%',
+                          bottom: '3%',
+                          containLabel: true
+                        },
+                        yAxis: {
+                          type: 'value',
+                          boundaryGap: [0, 0.01]
+                        },
+                        xAxis: {
+                          type: 'category',
+                          data: ['Gurugram', 'Mohali']
+                        },
+                        series: [{
+                            name: 'Permanent',
+                            type: 'bar',
+                            data: [140, 60]
+                          },
+                          {
+                            name: 'Confirmed',
+                            type: 'bar',
+                            data: [100, 40]
+                          }
+                        ]
+                      });
+                    });
+                  </script>
+                  <!-- End Vertical Bar Chart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Employee Status graph, end here -->
+
+
+            <!-- Key Player graph, start here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Key Player</h5>
+
+                  <!-- Pie Chart -->
+                  <div id="pieChart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#pieChart"), {
+                        series: [44, 55, 13, 43, 22],
+                        chart: {
+                          height: 350,
+                          type: 'pie',
+                          toolbar: {
+                            show: true
+                          }
+                        },
+                        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E']
+                      }).render();
+                    });
+                  </script>
+                  <!-- End Pie Chart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Key Player graph, end here -->
+
+
+            <!-- Department graph, end here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Department</h5>
+
+                  <!-- Bar Chart -->
+                  <canvas id="barChart" style="max-height: 400px;"></canvas>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new Chart(document.querySelector('#barChart'), {
+                        type: 'bar',
+                        data: {
+                          labels: ['Gurugram', 'Mohali'],
+                          datasets: [{
+                            label: 'Department Chart',
+                            data: [65, 59],
+                            backgroundColor: [
+                              'rgb(84,112,198)',
+                              'rgb(145,204,117)'
+                            ],
+                            borderColor: [
+                              'rgb(84,112,198)',
+                              'rgb(145,204,117)'
+                            ]/*,
+                            borderWidth: 1*/
+                          }]
+                        },
+                        options: {
+                          scales: {
+                            y: {
+                              beginAtZero: true
+                            }
+                          }
+                        }
+                      });
+                    });
+                  </script>
+                  <!-- End Bar CHart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Department graph, end here -->
+
+
+
+            <!-- Tenure graph, end here -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tenure</h5>
+
+                  <!-- Bar Chart -->
+                  <canvas id="barChartTenure" style="max-height: 400px;"></canvas>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new Chart(document.querySelector('#barChartTenure'), {
+                        type: 'bar',
+                        data: {
+                          labels: ['Gurugram', 'Mohali'],
+                          datasets: [{
+                            label: 'Tenure Chart',
+                            data: [65, 59],
+                            backgroundColor: [
+                              'rgb(84,112,198)',
+                              'rgb(145,204,117)'
+                            ],
+                            borderColor: [
+                              'rgb(84,112,198)',
+                              'rgb(145,204,117)'
+                            ]/*,
+                            borderWidth: 1*/
+                          }]
+                        },
+                        options: {
+                          scales: {
+                            y: {
+                              beginAtZero: true
+                            }
+                          }
+                        }
+                      });
+                    });
+                  </script>
+                  <!-- End Bar CHart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Tenure graph, end here -->
+
+
+          </div>
+        </section>
+
+
+        @else
         <section class="section dashboard">
           <div class="row">
 
@@ -655,6 +968,7 @@
 
           </div>
         </section>
+        @endif
 
     </main><!-- End #main -->
 @endsection

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
+use App\Models\CompanyLocation;
+
 use Auth;
 
 class HomeController extends Controller
@@ -33,6 +35,12 @@ class HomeController extends Controller
         $currentLogo = $users->company_name->logo;
         Session::put('company_logo', $currentLogo);
 
-        return view('home');
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+        //dd($company_locations);
+        return view('home', compact('company_locations'));
     }
 }
