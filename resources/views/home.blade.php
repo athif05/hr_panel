@@ -357,7 +357,6 @@
                             //echo " ".$department_name['id'];
                             if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
 
-                              echo "guru";
                               if($department_name['id']=='1'){
                                 $no_guru_igam=$no_guru_igam+1;
 
@@ -393,7 +392,7 @@
                               }
                               
                             } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
-echo "Mohali";
+
                               if($department_name['id']=='1'){
                                 $no_moh_igam=$no_moh_igam+1;
 
@@ -439,9 +438,6 @@ echo "Mohali";
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#columnChart"), {
-
-                        
-
                         series: [
                         {
                           name: 'Gurugram - AIHP',
