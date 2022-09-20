@@ -56,4 +56,9 @@ class User extends Authenticatable
         return $this->belongsTo(CompanyName::class,'company_id');
     }
 
+
+    public function department_count(){
+        return $this->belongsTo('App\Models\Department','department','id');
+    }
+
 }

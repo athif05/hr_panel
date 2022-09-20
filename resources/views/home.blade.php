@@ -320,66 +320,177 @@
 
 
             <!-- Department graph, end here -->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Department</h5>
+                  <h5 class="card-title">Department-wise member</h5>
+                        <?php 
 
-                  <!-- Bar Chart -->
-                  <canvas id="barChart" style="max-height: 400px;"></canvas>
+                          $no_guru_adope=0;
+                          $no_guru_edu=0;
+                          $no_guru_finAcc=0;
+                          $no_guru_hr=0;
+                          $no_guru_igam=0;
+                          $no_guru_mng=0;
+                          $no_guru_media=0;
+                          $no_guru_mobile=0;
+                          $no_guru_pm=0;
+                          $no_guru_pub=0;
+                          $no_guru_techOpe=0;
+
+
+                          $no_moh_adope=0;
+                          $no_moh_edu=0;
+                          $no_moh_finAcc=0;
+                          $no_moh_hr=0;
+                          $no_moh_igam=0;
+                          $no_moh_mng=0;
+                          $no_moh_media=0;
+                          $no_moh_mobile=0;
+                          $no_moh_pm=0;
+                          $no_moh_pub=0;
+                          $no_moh_techOpe=0;
+
+                        foreach ($user_genders as $user_gender) {
+           
+                          foreach ($department_names as $department_name) {
+                            //echo " ".$department_name['id'];
+                            if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
+                              if($department_name['id']=='1'){
+                                $no_guru_igam=$no_guru_igam+1;
+
+                              } else if($department_name['id']=='2'){
+                                $no_guru_pub=$no_guru_pub+1;
+
+                              } else if($department_name['id']=='3'){
+                                $no_guru_techOpe=$no_guru_techOpe+1;
+
+                              } else if($department_name['id']=='4'){
+                                $no_guru_finAcc=$no_guru_finAcc+1;
+
+                              } else if($department_name['id']=='5'){
+                                $no_guru_hr=$no_guru_hr+1;
+
+                              } else if($department_name['id']=='6'){
+                                $no_guru_mobile=$no_guru_mobile+1;
+
+                              } else if($department_name['id']=='7'){
+                                $no_guru_pm=$no_guru_pm+1;
+
+                              } else if($department_name['id']=='8'){
+                                $no_guru_media=$no_guru_media+1;
+
+                              } else if($department_name['id']=='9'){
+                                $no_guru_adope=$no_guru_adope+1;
+
+                              } else if($department_name['id']=='10'){
+                                $no_guru_edu=$no_guru_edu+1;
+
+                              } else if($department_name['id']=='11'){
+                                $no_guru_mng=$no_guru_mng+1;
+                              }
+                              
+                            } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
+
+                              if($department_name['id']=='1'){
+                                $no_moh_igam=$no_moh_igam+1;
+
+                              } else if($department_name['id']=='2'){
+                                $no_moh_pub=$no_moh_pub+1;
+
+                              } else if($department_name['id']=='3'){
+                                $no_moh_techOpe=$no_moh_techOpe+1;
+
+                              } else if($department_name['id']=='4'){
+                                $no_moh_finAcc=$no_moh_finAcc+1;
+
+                              } else if($department_name['id']=='5'){
+                                $no_moh_hr=$no_moh_hr+1;
+
+                              } else if($department_name['id']=='6'){
+                                $no_moh_mobile=$no_moh_mobile+1;
+
+                              } else if($department_name['id']=='7'){
+                                $no_moh_pm=$no_moh_pm+1;
+
+                              } else if($department_name['id']=='8'){
+                                $no_moh_media=$no_moh_media+1;
+
+                              } else if($department_name['id']=='9'){
+                                $no_moh_adope=$no_moh_adope+1;
+
+                              } else if($department_name['id']=='10'){
+                                $no_moh_edu=$no_moh_edu+1;
+
+                              } else if($department_name['id']=='11'){
+                                $no_moh_mng=$no_moh_mng+1;
+                              }
+
+                            }
+
+                          }
+                        }
+                        ?>
+                  <!-- Column Chart -->
+                  <div id="columnChart"></div>
+
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
-                      new Chart(document.querySelector('#barChart'), {
-                        type: 'bar',
-                        data: {
-                          labels: [<?php foreach ($company_names as $company_name) { ?>'<?php echo $company_name["name"]?>',<?php } ?>],
+                      new ApexCharts(document.querySelector("#columnChart"), {
 
-                          <?php 
-                          $no_depart_guru=0;
-                          $no_depart_moh=0;
+                        
 
-                          foreach ($no_of_departments as $key => $no_of_department) {
-
-                            //$cycle = date('m-d', strtotime($user_appraisal_cycles["appraisal_cycle"]));
-
-                              if($no_of_department["company_id"]==1){
-
-                                $no_depart_guru=$no_depart_guru+1;
-                                  
-                              } else if($no_of_department["company_id"]==2){
-
-                                $no_depart_moh=$no_depart_moh+1;
-
-                              }
-                          }
-
-                         ?>
-
-                          datasets: [{
-                            label: 'Department Chart',
-                            data: ['<?php echo $no_depart_guru;?>', '<?php echo $no_depart_moh;?>'],
-                            backgroundColor: [
-                              'rgb(84,112,198)',
-                              'rgb(145,204,117)'
-                            ],
-                            borderColor: [
-                              'rgb(84,112,198)',
-                              'rgb(145,204,117)'
-                            ]/*,
-                            borderWidth: 1*/
-                          }]
+                        series: [
+                        {
+                          name: 'Gurugram - AIHP',
+                          data: [<?php echo $no_guru_adope;?>,<?php echo $no_guru_edu;?>,<?php echo $no_guru_finAcc;?>,<?php echo $no_guru_hr;?>,<?php echo $no_guru_igam;?>,<?php echo $no_guru_mng;?>,<?php echo $no_guru_media;?>,<?php echo $no_guru_mobile;?>,<?php echo $no_guru_pm;?>,<?php echo $no_guru_pub;?>,<?php echo $no_guru_techOpe;?>]
                         },
-                        options: {
-                          scales: {
-                            y: {
-                              beginAtZero: true
+                        {
+                          name: 'Mohali',
+                          data: [<?php echo $no_moh_adope;?>,<?php echo $no_moh_edu;?>,<?php echo $no_moh_finAcc;?>,<?php echo $no_moh_hr;?>,<?php echo $no_moh_igam;?>,<?php echo $no_moh_mng;?>,<?php echo $no_moh_media;?>,<?php echo $no_moh_mobile;?>,<?php echo $no_moh_pm;?>,<?php echo $no_moh_pub;?>,<?php echo $no_moh_techOpe;?>]
+                        }
+                        ],
+                        chart: {
+                          type: 'bar',
+                          height: 350
+                        },
+                        plotOptions: {
+                          bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                          },
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          show: true,
+                          width: 2,
+                          colors: ['transparent']
+                        },
+                        xaxis: {
+                          categories: [<?php foreach ($department_names as $department_name) { ?>'<?php echo $department_name["name"]?>',<?php } ?>],
+                        },
+                        yaxis: {
+                          title: {
+                            text: ''
+                          }
+                        },
+                        fill: {
+                          opacity: 1
+                        },
+                        tooltip: {
+                          y: {
+                            formatter: function(val) {
+                              return "" + val + " Members"
                             }
                           }
                         }
-                      });
+                      }).render();
                     });
                   </script>
-                  <!-- End Bar CHart -->
+                  <!-- End Column Chart -->
 
                 </div>
               </div>
@@ -388,45 +499,177 @@
 
 
 
+            <?php 
+
+            $no_guru_tenure1=0;
+            $no_guru_tenure2=0;
+            $no_guru_tenure3=0;
+            $no_guru_tenure4=0;
+            $no_guru_tenure5=0;
+            $no_guru_tenure6=0;
+            $no_guru_tenure7=0;
+            $no_guru_tenure8=0;
+            $no_guru_tenure9=0;
+            $no_guru_tenure10=0;
+
+
+            $no_moh_tenure1=0;
+            $no_moh_tenure2=0;
+            $no_moh_tenure3=0;
+            $no_moh_tenure4=0;
+            $no_moh_tenure5=0;
+            $no_moh_tenure6=0;
+            $no_moh_tenure7=0;
+            $no_moh_tenure8=0;
+            $no_moh_tenure9=0;
+            $no_moh_tenure10=0;
+
+            $years=0;
+
+          foreach ($all_users as $all_user) {
+              //echo $all_user['joining_date']." / ";
+
+              $sdate = date("y-m-d");
+              $edate = $all_user['joining_date'];
+              $date_diff = abs(strtotime($edate) - strtotime($sdate));
+
+              $years = floor($date_diff / (365*60*60*24));
+
+              if($all_user['company_location_id']=='1'){
+
+                if($years=='1'){
+                  $no_guru_tenure1=$no_guru_tenure1+1;
+
+                } else if($years=='2'){
+                  $no_guru_tenure2=$no_guru_tenure2+1;
+
+                } else if($years=='3'){
+                  $no_guru_tenure3=$no_guru_tenure3+1;
+
+                } else if($years=='4'){
+                  $no_guru_tenure4=$no_guru_tenure4+1;
+
+                } else if($years=='5'){
+                  $no_guru_tenure5=$no_guru_tenure5+1;
+
+                } else if($years=='6'){
+                  $no_guru_tenure6=$no_guru_tenure6+1;
+
+                } else if($years=='7'){
+                  $no_guru_tenure7=$no_guru_tenure7+1;
+
+                } else if($years=='8'){
+                  $no_guru_tenure8=$no_guru_tenure8+1;
+
+                } else if($years=='9'){
+                  $no_guru_tenure9=$no_guru_tenure9+1;
+
+                } else if($years=='10'){
+                  $no_guru_tenure10=$no_guru_tenure10+1;
+
+                }
+                
+              } else if($all_user['company_location_id']=='2'){
+
+                if($years=='1'){
+                  $no_moh_tenure1=$no_moh_tenure1+1;
+
+                } else if($years=='2'){
+                  $no_moh_tenure2=$no_moh_tenure2+1;
+
+                } else if($years=='3'){
+                  $no_moh_tenure3=$no_moh_tenure3+1;
+
+                } else if($years=='4'){
+                  $no_moh_tenure4=$no_moh_tenure4+1;
+
+                } else if($years=='5'){
+                  $no_moh_tenure5=$no_moh_tenure5+1;
+
+                } else if($years=='6'){
+                  $no_moh_tenure6=$no_moh_tenure6+1;
+
+                } else if($years=='7'){
+                  $no_moh_tenure7=$no_moh_tenure7+1;
+
+                } else if($years=='8'){
+                  $no_moh_tenure8=$no_moh_tenure8+1;
+
+                } else if($years=='9'){
+                  $no_moh_tenure9=$no_moh_tenure9+1;
+
+                } else if($years=='10'){
+                  $no_moh_tenure10=$no_moh_tenure10+1;
+
+                }              
+
+            }
+          }
+          ?>
+
             <!-- Tenure graph, end here -->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Tenure</h5>
 
-                  <!-- Bar Chart -->
-                  <canvas id="barChartTenure" style="max-height: 400px;"></canvas>
+                  <!-- Column Chart -->
+                  <div id="columnChartTenure"></div>
+
                   <script>
                     document.addEventListener("DOMContentLoaded", () => {
-                      new Chart(document.querySelector('#barChartTenure'), {
-                        type: 'bar',
-                        data: {
-                          labels: [<?php foreach ($company_locations as $company_location_name) { ?>'<?php echo $company_location_name["name"]?>',<?php } ?>],
-                          datasets: [{
-                            label: 'Tenure Chart',
-                            data: [65, 59],
-                            backgroundColor: [
-                              'rgb(84,112,198)',
-                              'rgb(145,204,117)'
-                            ],
-                            borderColor: [
-                              'rgb(84,112,198)',
-                              'rgb(145,204,117)'
-                            ]/*,
-                            borderWidth: 1*/
-                          }]
+                      new ApexCharts(document.querySelector("#columnChartTenure"), {
+                        series: [
+                        
+                        {
+                          name: 'Gurugram - AIHP',
+                          data: [<?php echo $no_guru_tenure1;?>,<?php echo $no_guru_tenure2;?>,<?php echo $no_guru_tenure3;?>,<?php echo $no_guru_tenure4;?>,<?php echo $no_guru_tenure5;?>,<?php echo $no_guru_tenure6;?>,<?php echo $no_guru_tenure7;?>,<?php echo $no_guru_tenure8;?>,<?php echo $no_guru_tenure9;?>,<?php echo $no_guru_tenure10;?>]
                         },
-                        options: {
-                          scales: {
-                            y: {
-                              beginAtZero: true
+                        {
+                          name: 'Mohali',
+                          data: [<?php echo $no_moh_tenure1;?>,<?php echo $no_moh_tenure2;?>,<?php echo $no_moh_tenure3;?>,<?php echo $no_moh_tenure4;?>,<?php echo $no_moh_tenure5;?>,<?php echo $no_moh_tenure6;?>,<?php echo $no_moh_tenure7;?>,<?php echo $no_moh_tenure8;?>,<?php echo $no_moh_tenure9;?>,<?php echo $no_moh_tenure10;?>]
+                        }],
+                        chart: {
+                          type: 'bar',
+                          height: 350
+                        },
+                        plotOptions: {
+                          bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded'
+                          },
+                        },
+                        dataLabels: {
+                          enabled: false
+                        },
+                        stroke: {
+                          show: true,
+                          width: 2,
+                          colors: ['transparent']
+                        },
+                        xaxis: {
+                          categories: ['1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '6 Years', '7 Years', '8 Years', '9 Years', '10 Years'],
+                        },
+                        yaxis: {
+                          title: {
+                            text: ''
+                          }
+                        },
+                        fill: {
+                          opacity: 1
+                        },
+                        tooltip: {
+                          y: {
+                            formatter: function(val) {
+                              return " " + val + ""
                             }
                           }
                         }
-                      });
+                      }).render();
                     });
                   </script>
-                  <!-- End Bar CHart -->
+                  <!-- End Column Chart -->
 
                 </div>
               </div>

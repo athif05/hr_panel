@@ -194,7 +194,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           </li> -->
           @endif
 
-          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
+          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='8'))
           <li>
             <a href="{{ url('confirmation-process-mom-email') }}">
               <i class="bi bi-hand-thumbs-up-fill"></i>
