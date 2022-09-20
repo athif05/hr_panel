@@ -354,7 +354,7 @@
                         foreach ($user_genders as $user_gender) {
            
                           foreach ($department_names as $department_name) {
-                            //echo " ".$department_name['id'];
+                            echo " ".$department_name['id'];
                             if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
                               if($department_name['id']=='1'){
                                 $no_guru_igam=$no_guru_igam+1;
