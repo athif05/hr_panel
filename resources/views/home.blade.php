@@ -26,6 +26,31 @@
         @if((Auth::user()->role_id=='8') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='6'))
         
 
+        <!-- filter section, start here -->
+        <label>Filter</label>
+              <form method="get" action="{{ route('home.filter')}}" class="row">
+                
+                <div class="col-md-4 position-relative ">
+                  <select class="form-select fontSize12" name="company_id_filter" id="company_id_filter">
+                    <option value="">-- Select Company --</option>
+                    @foreach($company_names as $company_name_filter)
+                    <option value="{{$company_name_filter['id']}}" @if(request()->get('company_id_filter')==$company_name_filter['id']) selected @endif>{{$company_name_filter['name']}}</option>
+                    @endforeach
+                  </select>
+                </div>
+               
+
+                  <input type="submit" name="submit" value="Filter" class="btn btn-primary filter_submit_btn">
+
+                  <a href="{{ url('/home') }}" class="filter_clear_btn">
+                    <input type="button" name="button" value="Clear" class="btn btn-info filter_clear_btn2">
+                  </a>
+
+              </form>
+              <!-- filter section, end here -->
+              
+              <div style="clear: both; height: 10px;"></div>
+
         <section class="section">
           <div class="row">
 
@@ -441,11 +466,11 @@
                         series: [
                         {
                           name: 'Gurugram - AIHP',
-                          data: [1,3,5,7,9,11,13,15,17,19,21]
+                          data: [<?php echo $no_guru_adope;?>,<?php echo $no_guru_edu;?>,<?php echo $no_guru_finAcc;?>,<?php echo $no_guru_hr;?>,<?php echo $no_guru_igam;?>,<?php echo $no_guru_mng;?>,<?php echo $no_guru_media;?>,<?php echo $no_guru_mobile;?>,<?php echo $no_guru_pm;?>,<?php echo $no_guru_pub;?>,<?php echo $no_guru_techOpe;?>]
                         },
                         {
                           name: 'Mohali',
-                          data: [2,4,6,8,10,12,14,16,18,20,22]
+                          data: [<?php echo $no_moh_adope;?>,<?php echo $no_moh_edu;?>,<?php echo $no_moh_finAcc;?>,<?php echo $no_moh_hr;?>,<?php echo $no_moh_igam;?>,<?php echo $no_moh_mng;?>,<?php echo $no_moh_media;?>,<?php echo $no_moh_mobile;?>,<?php echo $no_moh_pm;?>,<?php echo $no_moh_pub;?>,<?php echo $no_moh_techOpe;?>]
                         }
                         ],
                         chart: {

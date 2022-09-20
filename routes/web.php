@@ -29,6 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /*pages are access only when user is loggedin first option, start here*/
 Route::group(['middleware' => ['auth']], function() {
     
+	Route::get('/home/filter',  [App\Http\Controllers\HomeController::class, 'homeDashboardFilter'])->name('home.filter');
 
     /*show interview survey from*/
 	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index'])->middleware('isMember');
