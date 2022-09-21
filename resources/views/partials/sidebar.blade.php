@@ -117,12 +117,6 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </li>
 
             <li>
-              <a href="{{ url('/hiring-survey') }}">
-                <i class="bi bi-circle"></i><span>Hiring Survey</span>
-              </a>
-            </li>
-
-            <li>
               <a href="{{ url('/training-survey') }}">
                 <i class="bi bi-circle"></i><span>Training Survey</span>
               </a>
@@ -157,6 +151,12 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           
           
           @if(Auth::user()->role_id=='3')
+          <li>
+            <a href="{{ url('/hiring-survey') }}">
+              <i class="bi bi-circle"></i><span>Hiring Survey</span>
+            </a>
+          </li>
+
           <li>
             <a href="{{ url('/manager-check-in-form') }}">
               <i class="bi bi-circle"></i><span>Manager Check-In Form</span>

@@ -225,7 +225,7 @@
             <div class="col-lg-6">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Employee Status</h5>
+                  <h5 class="card-title">Member Status</h5>
 
                   <!-- Vertical Bar Chart -->
                   <div id="verticalBarChartEmployeeStatus" style="min-height: 400px;" class="echart"></div>

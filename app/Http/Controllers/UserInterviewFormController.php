@@ -32,6 +32,21 @@ class UserInterviewFormController extends Controller
     }
 
 
+
+    public function getHrNameAjax(Request $request){
+        
+        $hr_id=$request->hr_id;
+
+        $hr_details = User::where('id', $hr_id)
+        ->first();
+
+        $name = $hr_details->first_name.' '.$hr_details->last_name;
+
+        return response()->json($name);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -63,6 +78,14 @@ class UserInterviewFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        /*fetch all hr data*/
+        $recruiter_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orderBy('first_name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
@@ -71,7 +94,7 @@ class UserInterviewFormController extends Controller
 
         if(($find === null) or (($find['status'] === '0') or ($find['status'] === ''))){
 
-            return view('interview-survey', compact('company_names','company_locations','job_opening_types','designation_names'));
+            return view('interview-survey', compact('company_names','company_locations','job_opening_types','designation_names','recruiter_details'));
 
         } else if($find['status'] === '1'){
 
@@ -81,7 +104,7 @@ class UserInterviewFormController extends Controller
 
             ///return redirect('/thank-you')->with('thank_you', 'Alert, you have already submit interview survey form.');
 
-            return view('interview-survey-form-data', compact('company_names','company_locations','job_opening_types','designation_names', 'find'));
+            return view('interview-survey-form-data', compact('company_names','company_locations','job_opening_types','designation_names','recruiter_details', 'find'));
         }
 
 
@@ -123,7 +146,8 @@ class UserInterviewFormController extends Controller
                 'location_name' => 'required',
                 'learn_about_job_opening' => 'required',
                 'referral_source_name' => 'required|max:100',
-                'company_hr_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'company_hr_name' => 'required',
+                'prompt_responding_my_queries' => 'required',
                 'approachable' => 'required',
                 'respectful' => 'required',
                 'explain_job_role' => 'required',
@@ -158,6 +182,7 @@ class UserInterviewFormController extends Controller
                 'learn_about_job_opening.required' => 'Learn about job opening is required',
                 'referral_source_name.required' => 'Referral source name is required',
                 'company_hr_name.required' => 'Company HR name is required',
+                'prompt_responding_my_queries.required' => 'Please rate...',
                 'approachable.required' => 'Please rate...',
                 'respectful.required' => 'Please rate...',
                 'explain_job_role.required' => 'Please rate...',
@@ -188,6 +213,12 @@ class UserInterviewFormController extends Controller
             $status='2';
         }
 
+        if($request->define_overall_interview_process!='Others'){
+            $define_overall_interview_process_others='';
+        } else {
+            $define_overall_interview_process_others=$request->define_overall_interview_process_others;
+        }
+
         $input = UserInterviewForm::insert([
             'user_id' => $request->user_id,
             'member_name' => $request->member_name,
@@ -198,30 +229,33 @@ class UserInterviewFormController extends Controller
             'learn_about_job_opening' => $request->learn_about_job_opening,
             'referral_source_name' => $request->referral_source_name,
             'company_hr_name' => $request->company_hr_name,
-            'approachable' => (!is_null($request->approachable) ? $request->approachable : "0"),
-            'respectful' =>  (!is_null($request->respectful) ? $request->respectful : "0"),
-            'explain_job_role' =>  (!is_null($request->explain_job_role) ? $request->explain_job_role : "0"),
-            'explain_company_background' =>  (!is_null($request->explain_company_background) ? $request->explain_company_background : "0"),
-            'shared_proper_interview_information' =>  (!is_null($request->shared_proper_interview_information) ? $request->shared_proper_interview_information : "0"),
-            'discussed_my_profile' =>  (!is_null($request->discussed_my_profile) ? $request->discussed_my_profile : "0"),
-            'shared_interview_feedback_quickly' =>  (!is_null($request->shared_interview_feedback_quickly) ? $request->shared_interview_feedback_quickly : "0"),
+            'hr_name_ajax' => $request->hr_name_ajax,
+            'prompt_responding_my_queries' => (!is_null($request->prompt_responding_my_queries) ? $request->prompt_responding_my_queries : "NA"),
+            'approachable' => (!is_null($request->approachable) ? $request->approachable : "NA"),
+            'respectful' =>  (!is_null($request->respectful) ? $request->respectful : "NA"),
+            'explain_job_role' =>  (!is_null($request->explain_job_role) ? $request->explain_job_role : "NA"),
+            'explain_company_background' =>  (!is_null($request->explain_company_background) ? $request->explain_company_background : "NA"),
+            'shared_proper_interview_information' =>  (!is_null($request->shared_proper_interview_information) ? $request->shared_proper_interview_information : "NA"),
+            'discussed_my_profile' =>  (!is_null($request->discussed_my_profile) ? $request->discussed_my_profile : "NA"),
+            'shared_interview_feedback_quickly' =>  (!is_null($request->shared_interview_feedback_quickly) ? $request->shared_interview_feedback_quickly : "NA"),
             'additional_feedback_recruiter' => $request->additional_feedback_recruiter,
-            'rate_overall_conduct' =>  (!is_null($request->rate_overall_conduct) ? $request->rate_overall_conduct : "0"),
-            'professionalism' =>  (!is_null($request->professionalism) ? $request->professionalism : "0"),
-            'friendliness' =>  (!is_null($request->friendliness) ? $request->friendliness : "0"),
-            'heplful' =>  (!is_null($request->heplful) ? $request->heplful : "0"),
-            'approachable_interviewers' =>  (!is_null($request->approachable_interviewers) ? $request->approachable_interviewers : "0"),
-            'respectable' =>  (!is_null($request->respectable) ? $request->respectable : "0"),
-            'knowledgeable' =>  (!is_null($request->knowledgeable) ? $request->knowledgeable : "0"),
-            'clear_communication_about_company' =>  (!is_null($request->clear_communication_about_company) ? $request->clear_communication_about_company : "0"),
-            'clear_communication_job_role' =>  (!is_null($request->clear_communication_job_role) ? $request->clear_communication_job_role : "0"),
-            'process_started_on_time' =>  (!is_null($request->process_started_on_time) ? $request->process_started_on_time : "0"),
-            'process_fair_apt' =>  (!is_null($request->process_fair_apt) ? $request->process_fair_apt : "0"),
-            'seating_arrangement_comfortable' =>  (!is_null($request->seating_arrangement_comfortable) ? $request->seating_arrangement_comfortable : "0"),
-            'staff_helpful_supportive' =>  (!is_null($request->staff_helpful_supportive) ? $request->staff_helpful_supportive : "0"),
-            'received_interview_feedback' =>  (!is_null($request->received_interview_feedback) ? $request->received_interview_feedback : "0"),
+            'rate_overall_conduct' =>  (!is_null($request->rate_overall_conduct) ? $request->rate_overall_conduct : "NA"),
+            'professionalism' =>  (!is_null($request->professionalism) ? $request->professionalism : "NA"),
+            'friendliness' =>  (!is_null($request->friendliness) ? $request->friendliness : "NA"),
+            'heplful' =>  (!is_null($request->heplful) ? $request->heplful : "NA"),
+            'approachable_interviewers' =>  (!is_null($request->approachable_interviewers) ? $request->approachable_interviewers : "NA"),
+            'respectable' =>  (!is_null($request->respectable) ? $request->respectable : "NA"),
+            'knowledgeable' =>  (!is_null($request->knowledgeable) ? $request->knowledgeable : "NA"),
+            'clear_communication_about_company' =>  (!is_null($request->clear_communication_about_company) ? $request->clear_communication_about_company : "NA"),
+            'clear_communication_job_role' =>  (!is_null($request->clear_communication_job_role) ? $request->clear_communication_job_role : "NA"),
+            'process_started_on_time' =>  (!is_null($request->process_started_on_time) ? $request->process_started_on_time : "NA"),
+            'process_fair_apt' =>  (!is_null($request->process_fair_apt) ? $request->process_fair_apt : "NA"),
+            'seating_arrangement_comfortable' =>  (!is_null($request->seating_arrangement_comfortable) ? $request->seating_arrangement_comfortable : "NA"),
+            'staff_helpful_supportive' =>  (!is_null($request->staff_helpful_supportive) ? $request->staff_helpful_supportive : "NA"),
+            'received_interview_feedback' =>  (!is_null($request->received_interview_feedback) ? $request->received_interview_feedback : "NA"),
             'define_overall_interview_process' => $request->define_overall_interview_process,
-            'rate_overall_interview_process' =>  (!is_null($request->rate_overall_interview_process) ? $request->rate_overall_interview_process : "0"),
+            'define_overall_interview_process_others' => $define_overall_interview_process_others,
+            'rate_overall_interview_process' =>  (!is_null($request->rate_overall_interview_process) ? $request->rate_overall_interview_process : "NA"),
             'comments_suggestions_feedback' => $request->comments_suggestions_feedback,
             'status' => $status,
         ]);
@@ -294,12 +328,20 @@ class UserInterviewFormController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        /*fetch all hr data*/
+        $recruiter_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orderBy('first_name','asc')
+            ->get();
+
         //dd($company_names);
 
         /*check record is exist or not*/
         $form_details = UserInterviewForm::where('user_id', $id)->first();
         
-        return view('interview-survey-edit', compact('company_names','company_locations','job_opening_types','designation_names','form_details'));
+        return view('interview-survey-edit', compact('company_names','company_locations','job_opening_types','designation_names','form_details','recruiter_details'));
         
     }
 
@@ -327,7 +369,8 @@ class UserInterviewFormController extends Controller
                 'location_name' => 'required',
                 'learn_about_job_opening' => 'required',
                 'referral_source_name' => 'required|max:100',
-                'company_hr_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
+                'company_hr_name' => 'required',
+                'prompt_responding_my_queries' => 'required',
                 'approachable' => 'required',
                 'respectful' => 'required',
                 'explain_job_role' => 'required',
@@ -362,6 +405,7 @@ class UserInterviewFormController extends Controller
                 'learn_about_job_opening.required' => 'Learn about job opening is required',
                 'referral_source_name.required' => 'Referral source name is required',
                 'company_hr_name.required' => 'Company HR name is required',
+                'prompt_responding_my_queries.required' => 'Please rate...',
                 'approachable.required' => 'Please rate...',
                 'respectful.required' => 'Please rate...',
                 'explain_job_role.required' => 'Please rate...',
@@ -395,6 +439,12 @@ class UserInterviewFormController extends Controller
         //dd($status);
 
         DB::enableQueryLog(); //for print sql query
+
+        if($request->define_overall_interview_process!='Others'){
+            $define_overall_interview_process_others='';
+        } else {
+            $define_overall_interview_process_others=$request->define_overall_interview_process_others;
+        }
         
         
         UserInterviewForm::where('user_id', $request->user_id)
@@ -407,30 +457,33 @@ class UserInterviewFormController extends Controller
             'learn_about_job_opening' => $request->learn_about_job_opening,
             'referral_source_name' => $request->referral_source_name,
             'company_hr_name' => $request->company_hr_name,
-            'approachable' => (!is_null($request->approachable) ? $request->approachable : "0"),
-            'respectful' =>  (!is_null($request->respectful) ? $request->respectful : "0"),
-            'explain_job_role' =>  (!is_null($request->explain_job_role) ? $request->explain_job_role : "0"),
-            'explain_company_background' =>  (!is_null($request->explain_company_background) ? $request->explain_company_background : "0"),
-            'shared_proper_interview_information' =>  (!is_null($request->shared_proper_interview_information) ? $request->shared_proper_interview_information : "0"),
-            'discussed_my_profile' =>  (!is_null($request->discussed_my_profile) ? $request->discussed_my_profile : "0"),
-            'shared_interview_feedback_quickly' =>  (!is_null($request->shared_interview_feedback_quickly) ? $request->shared_interview_feedback_quickly : "0"),
+            'hr_name_ajax' => $request->hr_name_ajax,
+            'prompt_responding_my_queries' => (!is_null($request->prompt_responding_my_queries) ? $request->prompt_responding_my_queries : "NA"),
+            'approachable' => (!is_null($request->approachable) ? $request->approachable : "NA"),
+            'respectful' =>  (!is_null($request->respectful) ? $request->respectful : "NA"),
+            'explain_job_role' =>  (!is_null($request->explain_job_role) ? $request->explain_job_role : "NA"),
+            'explain_company_background' =>  (!is_null($request->explain_company_background) ? $request->explain_company_background : "NA"),
+            'shared_proper_interview_information' =>  (!is_null($request->shared_proper_interview_information) ? $request->shared_proper_interview_information : "NA"),
+            'discussed_my_profile' =>  (!is_null($request->discussed_my_profile) ? $request->discussed_my_profile : "NA"),
+            'shared_interview_feedback_quickly' =>  (!is_null($request->shared_interview_feedback_quickly) ? $request->shared_interview_feedback_quickly : "NA"),
             'additional_feedback_recruiter' => $request->additional_feedback_recruiter,
-            'rate_overall_conduct' =>  (!is_null($request->rate_overall_conduct) ? $request->rate_overall_conduct : "0"),
-            'professionalism' =>  (!is_null($request->professionalism) ? $request->professionalism : "0"),
-            'friendliness' =>  (!is_null($request->friendliness) ? $request->friendliness : "0"),
-            'heplful' =>  (!is_null($request->heplful) ? $request->heplful : "0"),
-            'approachable_interviewers' =>  (!is_null($request->approachable_interviewers) ? $request->approachable_interviewers : "0"),
-            'respectable' =>  (!is_null($request->respectable) ? $request->respectable : "0"),
-            'knowledgeable' =>  (!is_null($request->knowledgeable) ? $request->knowledgeable : "0"),
-            'clear_communication_about_company' =>  (!is_null($request->clear_communication_about_company) ? $request->clear_communication_about_company : "0"),
-            'clear_communication_job_role' =>  (!is_null($request->clear_communication_job_role) ? $request->clear_communication_job_role : "0"),
-            'process_started_on_time' =>  (!is_null($request->process_started_on_time) ? $request->process_started_on_time : "0"),
-            'process_fair_apt' =>  (!is_null($request->process_fair_apt) ? $request->process_fair_apt : "0"),
-            'seating_arrangement_comfortable' =>  (!is_null($request->seating_arrangement_comfortable) ? $request->seating_arrangement_comfortable : "0"),
-            'staff_helpful_supportive' =>  (!is_null($request->staff_helpful_supportive) ? $request->staff_helpful_supportive : "0"),
-            'received_interview_feedback' =>  (!is_null($request->received_interview_feedback) ? $request->received_interview_feedback : "0"),
+            'rate_overall_conduct' =>  (!is_null($request->rate_overall_conduct) ? $request->rate_overall_conduct : "NA"),
+            'professionalism' =>  (!is_null($request->professionalism) ? $request->professionalism : "NA"),
+            'friendliness' =>  (!is_null($request->friendliness) ? $request->friendliness : "NA"),
+            'heplful' =>  (!is_null($request->heplful) ? $request->heplful : "NA"),
+            'approachable_interviewers' =>  (!is_null($request->approachable_interviewers) ? $request->approachable_interviewers : "NA"),
+            'respectable' =>  (!is_null($request->respectable) ? $request->respectable : "NA"),
+            'knowledgeable' =>  (!is_null($request->knowledgeable) ? $request->knowledgeable : "NA"),
+            'clear_communication_about_company' =>  (!is_null($request->clear_communication_about_company) ? $request->clear_communication_about_company : "NA"),
+            'clear_communication_job_role' =>  (!is_null($request->clear_communication_job_role) ? $request->clear_communication_job_role : "NA"),
+            'process_started_on_time' =>  (!is_null($request->process_started_on_time) ? $request->process_started_on_time : "NA"),
+            'process_fair_apt' =>  (!is_null($request->process_fair_apt) ? $request->process_fair_apt : "NA"),
+            'seating_arrangement_comfortable' =>  (!is_null($request->seating_arrangement_comfortable) ? $request->seating_arrangement_comfortable : "NA"),
+            'staff_helpful_supportive' =>  (!is_null($request->staff_helpful_supportive) ? $request->staff_helpful_supportive : "NA"),
+            'received_interview_feedback' =>  (!is_null($request->received_interview_feedback) ? $request->received_interview_feedback : "NA"),
             'define_overall_interview_process' => $request->define_overall_interview_process,
-            'rate_overall_interview_process' =>  (!is_null($request->rate_overall_interview_process) ? $request->rate_overall_interview_process : "0"),
+            'define_overall_interview_process_others' => $define_overall_interview_process_others,
+            'rate_overall_interview_process' =>  (!is_null($request->rate_overall_interview_process) ? $request->rate_overall_interview_process : "NA"),
             'comments_suggestions_feedback' => $request->comments_suggestions_feedback,
             'status' => $status
         ]);

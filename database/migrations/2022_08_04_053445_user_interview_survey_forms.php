@@ -24,37 +24,35 @@ return new class extends Migration
             $table->string('learn_about_job_opening')->nullable();
             $table->string('referral_source_name')->nullable();
             $table->string('company_hr_name')->nullable();
-            $table->enum('approachable', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('respectful', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('explain_job_role', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('explain_company_background', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('shared_proper_interview_information', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('discussed_my_profile', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('shared_interview_feedback_quickly', ['0','1','2','3','4','5'])->default('0');
+            $table->string('hr_name_ajax')->nullable();
+            $table->enum('prompt_responding_my_queries', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('approachable', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('respectful', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('explain_job_role', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('explain_company_background', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('shared_proper_interview_information', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('discussed_my_profile', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('shared_interview_feedback_quickly', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('additional_feedback_recruiter');
-            $table->enum('rate_overall_conduct', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('professionalism', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('friendliness', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('heplful', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('approachable_interviewers', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('respectable', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('knowledgeable', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('clear_communication_about_company', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('clear_communication_job_role', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('process_started_on_time', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('process_fair_apt', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('seating_arrangement_comfortable', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('staff_helpful_supportive', ['0','1','2','3','4','5'])->default('0');
-            $table->enum('received_interview_feedback', ['0','1','2','3','4','5'])->default('0');
-
+            $table->enum('rate_overall_conduct', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('professionalism', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('friendliness', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('heplful', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('approachable_interviewers', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('respectable', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('knowledgeable', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('clear_communication_about_company', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('clear_communication_job_role', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('process_started_on_time', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('process_fair_apt', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('seating_arrangement_comfortable', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('staff_helpful_supportive', ['NA','1','2','3','4','5'])->default('NA');
+            $table->enum('received_interview_feedback', ['NA','1','2','3','4','5'])->default('NA');
             $table->string('define_overall_interview_process')->nullable();
-
-            $table->enum('rate_overall_interview_process', ['0','1','2','3','4','5'])->default('0');
-
+            $table->text('define_overall_interview_process_others')->nullable();
+            $table->enum('rate_overall_interview_process', ['NA','1','2','3','4','5'])->default('NA');
             $table->text('comments_suggestions_feedback')->nullable();
-
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');
             $table->timestamps();

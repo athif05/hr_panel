@@ -17,6 +17,19 @@
 
 		jQuery(document).ready(function(){
 
+
+
+			CKEDITOR.editorConfig = function( config ) {
+	config.toolbar = [
+		
+		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
+		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
+	];
+};
+
+
+
 			/*show currentTime in html in Confirmation generate email form, start here */
 			var date = new Date();
 			var currentTime = date.getHours() + ':' + date.getMinutes();
@@ -156,6 +169,62 @@
 
 
 	
+			/* call hr name ajax function in interview survey form, start here */
+			$('#company_hr_name').on('change', function(){
+				
+				var hr_id=this.value;
+
+				console.log(hr_id);
+
+
+				if(hr_id){
+					$.ajax({
+						url: "{{url('get-hr-name-ajax-for-interview-survey-form')}}", 
+						type: "POST",  
+						data:{
+							hr_id:hr_id,
+							_token: '{{csrf_token()}}'
+						},  
+						dataType : 'json',
+						success:function(result) {
+
+							$('#hr_name_ajax').val(result);
+							$('#hr_name_ajax_span').html(result);
+
+							
+					   },
+		                error: function (error) {
+		                    console.log(error);
+		                } 
+
+				   });
+				} else {
+					$('#hr_name_ajax').val('');
+					$('#hr_name_ajax_span').html('');
+				}
+			   
+			});
+			/* call hr name ajax function in interview survey form, end here */
+
+
+
+			/* hide and show others define the overall Interview Process, start here*/
+		  	$('#define_overall_interview_process').on('change', function(){
+
+		  		var define_overall_value=this.value;
+
+		  		if(define_overall_value=='Others'){
+		  			
+		  			$('#define_overall_interview_process_others_div').show();
+
+		  		} else {
+		  			$('#define_overall_interview_process_others_div').hide();
+		  		}
+		  	});
+		  	/* hide and show others define the overall Interview Process, end here*/
+
+
+
 			/* call trainer name list ajax function, start here */
 			$('#trainer_list_name').on('change', function(){
 				

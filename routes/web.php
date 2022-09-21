@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function() {
     /*show interview survey from*/
 	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index'])->middleware('isMember');
 
+	Route::post('/get-hr-name-ajax-for-interview-survey-form', [App\Http\Controllers\UserInterviewFormController::class, 'getHrNameAjax']);
+
 
 	/*save interview survey form into database*/
 	Route::post('/save-interview-survey-form', [App\Http\Controllers\UserInterviewFormController::class, 'store'])->name('save-interview-survey-form');
