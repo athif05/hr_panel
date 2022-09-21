@@ -230,7 +230,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="approachable" class="form-label rdioBtn">Approachable:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="approachable" class="form-label rdioBtn">Approachable  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	<input class="form-check-input" type="radio" name="approachable" id="approachable" value="NA" @if(old('approachable',$form_details->approachable)=='NA') checked @endif>
@@ -912,7 +912,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="comments_suggestions_feedback" class="form-label">If you have any comments, suggestions, or feedback, please enter it below: <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="comments_suggestions_feedback" class="form-label">If you have any comments, suggestions, or feedback, please enter it below <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="comments_suggestions_feedback" id="comments_suggestions_feedback" style="height: 100px">{{ old('comments_suggestions_feedback',$form_details->comments_suggestions_feedback) }}</textarea>
                   <div class="invalid-tooltip">
                     Please provide a valid city.

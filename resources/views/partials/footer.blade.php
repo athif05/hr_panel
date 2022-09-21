@@ -19,14 +19,14 @@
 
 
 
-			CKEDITOR.editorConfig = function( config ) {
+/*			CKEDITOR.editorConfig = function( config ) {
 	config.toolbar = [
 		
 		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
 		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
 		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
 	];
-};
+};*/
 
 
 
