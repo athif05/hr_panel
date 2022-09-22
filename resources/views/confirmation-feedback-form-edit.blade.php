@@ -94,17 +94,25 @@
                   <input type="email" class="form-control disable-text" name="location" id="location" value="{{ $member_details['location_name'] }}" readonly>
                 </div>
 
+                <div class="col-md-6 position-relative">
+                  <label for="official_email" class="form-label">6. Tenure (in months)</label>
+                  <input type="email" class="form-control disable-text" name="tenure" id="tenure" value="{{ $total_tenure }}" readonly>
+                </div>
+
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">6. Rate him/her in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</label>
+                  <label class="form-label">7. Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
                   <label for="discipline" class="form-label rdioBtn">Discipline:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="discipline" id="discipline" value="1" @if(old('discipline',$feedback_form_details->discipline)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="NA" @if(old('discipline',$feedback_form_details->discipline)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="discipline" id="discipline" value="1" @if(old('discipline',$feedback_form_details->discipline)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="discipline" id="discipline" value="2" @if(old('discipline',$feedback_form_details->discipline)=='2') checked @endif>
@@ -130,7 +138,10 @@
                   <label for="punctuality" class="form-label rdioBtn">Punctuality <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="1" @if(old('punctuality',$feedback_form_details->punctuality)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="NA" @if(old('punctuality',$feedback_form_details->punctuality)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="1" @if(old('punctuality',$feedback_form_details->punctuality)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="punctuality" id="punctuality" value="2" @if(old('punctuality',$feedback_form_details->punctuality)=='2') checked @endif>
@@ -155,7 +166,10 @@
                   <label for="work_ethics" class="form-label rdioBtn">Work-Ethics <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="1" @if(old('work_ethics',$feedback_form_details->work_ethics)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="NA" @if(old('work_ethics',$feedback_form_details->work_ethics)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="1" @if(old('work_ethics',$feedback_form_details->work_ethics)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="work_ethics" id="work_ethics" value="2" @if(old('work_ethics',$feedback_form_details->work_ethics)=='2') checked @endif>
@@ -180,7 +194,10 @@
                   <label for="team_work" class="form-label rdioBtn">Team-Work <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="team_work" id="team_work" value="1" @if(old('team_work',$feedback_form_details->team_work)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="NA" @if(old('team_work',$feedback_form_details->team_work)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="team_work" id="team_work" value="1" @if(old('team_work',$feedback_form_details->team_work)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="team_work" id="team_work" value="2" @if(old('team_work',$feedback_form_details->team_work)=='2') checked @endif>
@@ -205,7 +222,10 @@
                   <label for="response_towards_feedback" class="form-label rdioBtn">Response towards Feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="1" @if(old('response_towards_feedback',$feedback_form_details->response_towards_feedback)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="NA" @if(old('response_towards_feedback',$feedback_form_details->response_towards_feedback)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="1" @if(old('response_towards_feedback',$feedback_form_details->response_towards_feedback)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="response_towards_feedback" id="response_towards_feedback" value="2" @if(old('response_towards_feedback',$feedback_form_details->response_towards_feedback)=='2') checked @endif>
@@ -228,7 +248,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="elaborate_performance" class="form-label">7. Kindly elaborate on his/her performance of the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="elaborate_performance" class="form-label">8. Kindly elaborate on {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} performance of the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="elaborate_performance" id="elaborate_performance" style="height: 100px">{{ old('elaborate_performance',$feedback_form_details->elaborate_performance) }}</textarea>
 
                   @if ($errors->has('elaborate_performance'))
@@ -242,7 +262,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">8. Mention top 3 highlights of {{ $member_details['first_name'] }} {{ $member_details['last_name'] }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">9. Mention top 3 highlights of {{ $member_details['first_name'] }} {{ $member_details['last_name'] }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -288,7 +308,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">9. Mention the major task that have been accomplished by {{ $member_details['first_name'] }} {{ $member_details['last_name'] }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">10. Mention the major task that have been accomplished by {{ $member_details['first_name'] }} {{ $member_details['last_name'] }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -329,35 +349,6 @@
                     </div>
                   </div>
                   
-                </div>
-
-
-                <div class="col-md-12 position-relative">
-                  <label for="add_value_in_team" class="form-label">10. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} been able to add value in your team?</label><br>
-
-                  <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="Yes" @if(old('add_value_in_team',$feedback_form_details->add_value_in_team)=='Yes') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">Yes</label>
-
-                    <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="No" @if(old('add_value_in_team',$feedback_form_details->add_value_in_team)=='No') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">No</label>
-
-                  </span>
-
-                </div>
-
-                <div class="col-md-12 position-relative">
-                  <label for="" class="form-label">If Yes, Please share an instance in details.</label>
-                  
-                  <textarea class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" style="height: 100px">{{ old('add_value_in_team_share_instance',$feedback_form_details->add_value_in_team_share_instance) }}</textarea>
-
-                  @if ($errors->has('add_value_in_team_share_instance'))
-                    <span class="text-danger">{{ $errors->first('add_value_in_team_share_instance') }}</span>
-                  @endif
-
-                  <script>
-                    CKEDITOR.replace( 'add_value_in_team_share_instance' );
-                  </script>
                 </div>
 
 
@@ -406,8 +397,38 @@
                 </div>
 
 
+
                 <div class="col-md-12 position-relative">
-                  <label for="met_your_expectations" class="form-label">12. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} met your expectations in the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="add_value_in_team" class="form-label">12. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} been able to add value in your team?</label><br>
+
+                  <span id="radioBtn">
+                      <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="Yes" @if(old('add_value_in_team',$feedback_form_details->add_value_in_team)=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
+
+                    <input class="form-check-input" type="radio" name="add_value_in_team" id="add_value_in_team" value="No" @if(old('add_value_in_team',$feedback_form_details->add_value_in_team)=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
+
+                  </span>
+
+                </div>
+
+                <div class="col-md-12 position-relative">
+                  <label for="" class="form-label">If Yes, Please share an instance in details.</label>
+                  
+                  <textarea class="form-control" name="add_value_in_team_share_instance" id="add_value_in_team_share_instance" style="height: 100px">{{ old('add_value_in_team_share_instance',$feedback_form_details->add_value_in_team_share_instance) }}</textarea>
+
+                  @if ($errors->has('add_value_in_team_share_instance'))
+                    <span class="text-danger">{{ $errors->first('add_value_in_team_share_instance') }}</span>
+                  @endif
+
+                  <script>
+                    CKEDITOR.replace( 'add_value_in_team_share_instance' );
+                  </script>
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="met_your_expectations" class="form-label">13. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} met your expectations in the last 3 months? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="met_your_expectations" id="met_your_expectations" value="Yes" @if(old('met_your_expectations',$feedback_form_details->met_your_expectations)=='Yes') checked @endif>
@@ -437,19 +458,15 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="are_you_sure_to_confirm" class="form-label">13. Are you sure to confirm {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the Organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="are_you_sure_to_confirm" class="form-label">14. Are you sure to confirm {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the Organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" onchange="open_close_pip(this.value)">
                     <option value="">Choose...</option>
 
-                    <option value="Yes, early confirmation" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
+                    <option value="Yes" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='Yes') selected @endif>Yes</option>
 
-                    <option value="Yes, on time confirmation" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='Yes, on time confirmation') selected @endif>Yes, on time confirmation</option>
+                    <option value="No" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='No') selected @endif>No</option>
 
                     <option value="No, Put under PIP" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='No, Put under PIP') selected @endif>No, Put under PIP</option>
-
-                    <option value="Defer Confirmation without PIP for 30 Days" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 30 Days') selected @endif>Defer Confirmation without PIP for 30 Days</option>
-
-                    <option value="Defer Confirmation without PIP for 60 Days" @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 60 Days') selected @endif>Defer Confirmation without PIP for 60 Days</option>
 
                   </select>
                   <div class="invalid-tooltip">
@@ -460,8 +477,8 @@
                   @endif
                 </div>
 
-                <div class="col-md-12 position-relative">
-                  <label for="recommend_pip_detailed_plan" class="form-label">14. If you want to recommend PIP, Pls share a detailed plan. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                <div class="col-md-12 position-relative" id="pip_div_hide" style="display: none;">
+                  <label for="recommend_pip_detailed_plan" class="form-label">Q. If you want to recommend PIP, Pls share a detailed plan. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='No, Put under PIP') class="form-control" @else class="form-control disable-text" readonly @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" >{{$feedback_form_details->recommend_pip_detailed_plan }}</textarea>
 
                   @if ($errors->has('recommend_pip_detailed_plan'))
@@ -473,14 +490,14 @@
                 <div class="col-md-12 position-relative">
                   <label for="increment_on_confirmation" class="form-label">15. Has {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} been committed an increment on confirmation, at the time of joining? </label>
                   <select class="form-select" name="increment_on_confirmation" id="increment_on_confirmation">
-                    <option value="Yes" @if(old('increment_on_confirmation',$feedback_form_details->increment_on_confirmation)=='Yes') selected @endif>Yes</option>
                     <option value="No" @if(old('increment_on_confirmation',$feedback_form_details->increment_on_confirmation)=='No') selected @endif>No</option>
+                    <option value="Yes" @if(old('increment_on_confirmation',$feedback_form_details->increment_on_confirmation)=='Yes') selected @endif>Yes</option>
                   </select>
                 </div>
 
 
-                <div class="col-md-12 position-relative">
-                  <label for="mention_the_amount" class="form-label">16. If yes, then mention the amount.</label>
+                <div class="col-md-12 position-relative" id="mention_the_amount_div_hide" @if($feedback_form_details->increment_on_confirmation=='Yes') style="display: block;" @else style="display: none;" @endif>
+                  <label for="mention_the_amount" class="form-label">Q. If yes, then mention the amount.</label>
                   <input type="text" @if($feedback_form_details->increment_on_confirmation=='No') class="form-control disable-text" readonly @else class="form-control" @endif name="mention_the_amount" id="mention_the_amount" value="{{ old('mention_the_amount',$feedback_form_details->mention_the_amount) }}">
                   <div class="valid-tooltip">
                     Looks good!

@@ -73,57 +73,82 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate him/her in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</strong></td>
+                   <td>Tenure(In Months)</td>
+                    <td>{{ $user_details['location_name'] }} </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2"><strong>Rate {{ $user_details['full_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</strong></td>
                   </tr>
 
                   <tr>
                     <td>Discipline</td>
                     <td>
-                      @for($i=0; $i < $all_details['discipline']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['discipline']!='NA')
+                        @for($i=0; $i < $all_details['discipline']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Punctuality</td>
                     <td>
-                      @for($i=0; $i < $all_details['punctuality']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['punctuality']!='NA')
+                        @for($i=0; $i < $all_details['punctuality']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Work-Ethics</td>
                     <td>
-                      @for($i=0; $i < $all_details['work_ethics']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['work_ethics']!='NA')
+                        @for($i=0; $i < $all_details['work_ethics']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Team-Work</td>
                     <td>
-                      @for($i=0; $i < $all_details['team_work']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['team_work']!='NA')
+                        @for($i=0; $i < $all_details['team_work']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Response towards Feedback</td>
                     <td>
-                      @for($i=0; $i < $all_details['response_towards_feedback']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['response_towards_feedback']!='NA')
+                        @for($i=0; $i < $all_details['response_towards_feedback']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   
                   <tr>
-                    <td colspan="2"><strong>Kindly elaborate on his/her performance of the last 3 months? : </strong> {!! $all_details['elaborate_performance'] !!}</td>
+                    <td colspan="2"><strong>Kindly elaborate on {{ $user_details['full_name'] }} performance of the last 3 months? </strong> {!! $all_details['elaborate_performance'] !!}</td>
                   </tr>
 
 
@@ -186,7 +211,7 @@
 
                   @if($all_details['are_you_sure_to_confirm']=='No, Put under PIP')
                   <tr>
-                    <td colspan="2"><strong>If you want to recommend PIP, Pls share a detailed plan. : </strong> {{ $all_details['recommend_pip_detailed_plan'] }}</td>
+                    <td colspan="2"><strong>If you want to recommend PIP, Pls share a detailed plan. </strong><br> {{ $all_details['recommend_pip_detailed_plan'] }}</td>
                   </tr>
                   @endif
 

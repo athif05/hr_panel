@@ -26,7 +26,29 @@ class ConfirmationFeedbackFormController extends Controller
         ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
         ->first();
 
-        return view('confirmation-feedback-form-show', compact('all_details','user_details'));
+
+
+        $joining_date = date('Y-m-d', strtotime($user_details->joining_date));
+
+
+        /*tenure calculte, start here*/
+        $total_tenure=0;
+
+        $sdate = date("y-m-d");
+        $edate = $joining_date;
+        $date_diff = abs(strtotime($edate) - strtotime($sdate));
+
+        $years = floor($date_diff / (365*60*60*24));
+        $months = floor(($date_diff - $years * 365*60*60*24) / (30*60*60*24));
+        //$days = floor(($date_diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        $months=$months+($years*12);
+        if($months>0){
+            $total_tenure= (int)$months;
+        }
+        /*tenure calculte, end here*/
+
+        return view('confirmation-feedback-form-show', compact('all_details','user_details','total_tenure'));
     }
 
 	/*save confirmation feedback form data in table, start here*/
@@ -168,9 +190,30 @@ class ConfirmationFeedbackFormController extends Controller
         ->first();
 
 
+        $joining_date = date('Y-m-d', strtotime($member_details->joining_date));
+
+
+        /*tenure calculte, start here*/
+        $total_tenure=0;
+
+        $sdate = date("y-m-d");
+        $edate = $joining_date;
+        $date_diff = abs(strtotime($edate) - strtotime($sdate));
+
+        $years = floor($date_diff / (365*60*60*24));
+        $months = floor(($date_diff - $years * 365*60*60*24) / (30*60*60*24));
+        //$days = floor(($date_diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        $months=$months+($years*12);
+        if($months>0){
+            $total_tenure= (int)$months;
+        }
+        /*tenure calculte, end here*/
+
+
         if($feedback_form_details['status']=='1'){
 
-            return view('confirmation-feedback-form-edit', compact('member_details','feedback_form_details'));
+            return view('confirmation-feedback-form-edit', compact('member_details','feedback_form_details','total_tenure'));
 
         } else if($feedback_form_details['status']=='2'){
 

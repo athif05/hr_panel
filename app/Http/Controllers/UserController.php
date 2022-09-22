@@ -163,6 +163,27 @@ class UserController extends Controller
         ->first();
 
 
+        $joining_date = date('Y-m-d', strtotime($member_details->joining_date));
+
+
+        /*tenure calculte, start here*/
+        $total_tenure=0;
+
+        $sdate = date("y-m-d");
+        $edate = $joining_date;
+        $date_diff = abs(strtotime($edate) - strtotime($sdate));
+
+        $years = floor($date_diff / (365*60*60*24));
+        $months = floor(($date_diff - $years * 365*60*60*24) / (30*60*60*24));
+        //$days = floor(($date_diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        $months=$months+($years*12);
+        if($months>0){
+            $total_tenure= (int)$months;
+        }
+        /*tenure calculte, end here*/
+        
+
         $manager_id=Auth::user()->id;
         
         $feedback_form_details = ConfirmationFeedbackForm::where('user_id',$id)
@@ -174,7 +195,7 @@ class UserController extends Controller
             $edit_id=$feedback_form_details['id'];
             return redirect("/confirmation-feedback-form-edit/$id/$edit_id");
         } else {
-            return view('confirmation-feedback-form', compact('member_details'));
+            return view('confirmation-feedback-form', compact('member_details','total_tenure'));
         }
 
         

@@ -286,10 +286,12 @@
 		  			document.getElementById('mention_the_amount').value='0';
 		  			document.getElementById('mention_the_amount').readOnly
 		                        = true;
+		            document.getElementById('mention_the_amount_div_hide').style.display='none';
 		  		} else {
 		  			document.getElementById('mention_the_amount').setAttribute("class", "form-control");
 		  			document.getElementById('mention_the_amount').removeAttribute("readonly");
 		  			document.getElementById('mention_the_amount').value='';
+		  			document.getElementById('mention_the_amount_div_hide').style.display='block';
 		  		}
 			});
 			/*show and hide amount box in Confirmation feedback form, end here*/
@@ -392,11 +394,13 @@
   		if(val=='No, Put under PIP'){
   			document.getElementById('recommend_pip_detailed_plan').setAttribute("class", "form-control");
   			document.getElementById('recommend_pip_detailed_plan').removeAttribute("readonly");
+  			document.getElementById('pip_div_hide').style.display='block';
   		} else {
   			document.getElementById('recommend_pip_detailed_plan').setAttribute("class", "form-control  disable-text");
   			document.getElementById('recommend_pip_detailed_plan').value='';
   			document.getElementById('recommend_pip_detailed_plan').readOnly
                         = true;
+            document.getElementById('pip_div_hide').style.display='none';
   		}
   	}
   	/*disable and unable PIP textarea in Confirmation Feedback Form, end here*/
