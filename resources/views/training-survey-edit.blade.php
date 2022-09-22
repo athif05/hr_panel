@@ -167,7 +167,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">"Please list down the name of your trainers who took your on-job training."</label>
+                  <label for="company_hr_name" class="form-label">Please list down the name of your trainers who took your on-job training.</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -203,6 +203,9 @@
                         <label for="expertise_on_subject_matter_1" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                         <span id="radioBtn">
+                          <input class="form-check-input" type="radio" name="expertise_on_subject_matter_1" id="expertise_on_subject_matter_1" value="NA" @if(old('expertise_on_subject_matter_1',$training_survey_details->expertise_on_subject_matter_1)=='NA') checked @endif>
+                          <label class="form-check-label" for="gridRadios1">NA</label>
+
                           <input class="form-check-input" type="radio" name="expertise_on_subject_matter_1" id="expertise_on_subject_matter_1" value="1" @if(old('expertise_on_subject_matter_1', $training_survey_details->expertise_on_subject_matter_1)=='1') checked @endif>
                           <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -217,9 +220,6 @@
 
                           <input class="form-check-input" type="radio" name="expertise_on_subject_matter_1" id="expertise_on_subject_matter_1" value="5" @if(old('expertise_on_subject_matter_1',$training_survey_details->expertise_on_subject_matter_1)=='5') checked @endif>
                           <label class="form-check-label" for="gridRadios1">5</label>
-
-                          <input class="form-check-input" type="radio" name="expertise_on_subject_matter_1" id="expertise_on_subject_matter_1" value="NA" @if(old('expertise_on_subject_matter_1',$training_survey_details->expertise_on_subject_matter_1)=='NA') checked @endif>
-                          <label class="form-check-label" for="gridRadios1">NA</label>
                         </span>
 
                         @if ($errors->has('expertise_on_subject_matter_1'))
@@ -232,6 +232,9 @@
                         <label for="clear_effective_communication_skills_1" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                         <span id="radioBtn">
+                          <input class="form-check-input" type="radio" name="clear_effective_communication_skills_1" id="clear_effective_communication_skills_1" value="NA" @if(old('clear_effective_communication_skills_1',$training_survey_details->clear_effective_communication_skills_1)=='NA') checked @endif>
+                          <label class="form-check-label" for="gridRadios1">NA</label>
+
                           <input class="form-check-input" type="radio" name="clear_effective_communication_skills_1" id="clear_effective_communication_skills_1" value="1" @if(old('clear_effective_communication_skills_1',$training_survey_details->clear_effective_communication_skills_1)=='1') checked @endif>
                           <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -246,9 +249,6 @@
 
                           <input class="form-check-input" type="radio" name="clear_effective_communication_skills_1" id="clear_effective_communication_skills_1" value="5" @if(old('clear_effective_communication_skills_1',$training_survey_details->clear_effective_communication_skills_1)=='5') checked @endif>
                           <label class="form-check-label" for="gridRadios1">5</label>
-
-                          <input class="form-check-input" type="radio" name="clear_effective_communication_skills_1" id="clear_effective_communication_skills_1" value="NA" @if(old('clear_effective_communication_skills_1',$training_survey_details->clear_effective_communication_skills_1)=='NA') checked @endif>
-                          <label class="form-check-label" for="gridRadios1">NA</label>
                         </span>
                         @if ($errors->has('clear_effective_communication_skills_1'))
                           <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_1') }}</span>
@@ -260,6 +260,9 @@
                         <label for="effective_delivery_content_1" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                         <span id="radioBtn">
+                          <input class="form-check-input" type="radio" name="effective_delivery_content_1" id="effective_delivery_content_1" value="NA" @if(old('effective_delivery_content_1',$training_survey_details->effective_delivery_content_1)=='NA') checked @endif>
+                          <label class="form-check-label" for="gridRadios1">NA</label>
+
                           <input class="form-check-input" type="radio" name="effective_delivery_content_1" id="effective_delivery_content_1" value="1" @if(old('effective_delivery_content_1',$training_survey_details->effective_delivery_content_1)=='1') checked @endif>
                           <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -274,9 +277,6 @@
 
                           <input class="form-check-input" type="radio" name="effective_delivery_content_1" id="effective_delivery_content_1" value="5" @if(old('effective_delivery_content_1',$training_survey_details->effective_delivery_content_1)=='5') checked @endif>
                           <label class="form-check-label" for="gridRadios1">5</label>
-
-                          <input class="form-check-input" type="radio" name="effective_delivery_content_1" id="effective_delivery_content_1" value="NA" @if(old('effective_delivery_content_1',$training_survey_details->effective_delivery_content_1)=='NA') checked @endif>
-                          <label class="form-check-label" for="gridRadios1">NA</label>
                         </span>
                         @if ($errors->has('effective_delivery_content_1'))
                           <span class="text-danger">{{ $errors->first('effective_delivery_content_1') }}</span>
@@ -288,6 +288,9 @@
                         <label for="timely_response_queries_1" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                         <span id="radioBtn">
+                          <input class="form-check-input" type="radio" name="timely_response_queries_1" id="timely_response_queries_1" value="NA" @if(old('timely_response_queries_1',$training_survey_details->timely_response_queries_1)=='NA') checked @endif>
+                          <label class="form-check-label" for="gridRadios1">NA</label>
+
                           <input class="form-check-input" type="radio" name="timely_response_queries_1" id="timely_response_queries_1" value="1" @if(old('timely_response_queries_1',$training_survey_details->timely_response_queries_1)=='1') checked @endif>
                           <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -302,9 +305,6 @@
 
                           <input class="form-check-input" type="radio" name="timely_response_queries_1" id="timely_response_queries_1" value="5" @if(old('timely_response_queries_1',$training_survey_details->timely_response_queries_1)=='5') checked @endif>
                           <label class="form-check-label" for="gridRadios1">5</label>
-
-                          <input class="form-check-input" type="radio" name="timely_response_queries_1" id="timely_response_queries_1" value="NA" @if(old('timely_response_queries_1',$training_survey_details->timely_response_queries_1)=='NA') checked @endif>
-                          <label class="form-check-label" for="gridRadios1">NA</label>
                         </span>
                         @if ($errors->has('timely_response_queries_1'))
                           <span class="text-danger">{{ $errors->first('timely_response_queries_1') }}</span>
@@ -316,6 +316,9 @@
                         <label for="comfortability_sharing_concerns_doubts_1" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                         <span id="radioBtn">
+                          <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_1" id="comfortability_sharing_concerns_doubts_1" value="NA" @if(old('comfortability_sharing_concerns_doubts_1',$training_survey_details->comfortability_sharing_concerns_doubts_1)=='NA') checked @endif>
+                          <label class="form-check-label" for="gridRadios1">NA</label>
+
                           <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_1" id="comfortability_sharing_concerns_doubts_1" value="1" @if(old('comfortability_sharing_concerns_doubts_1',$training_survey_details->comfortability_sharing_concerns_doubts_1)=='1') checked @endif>
                           <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -330,9 +333,6 @@
 
                           <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_1" id="comfortability_sharing_concerns_doubts_1" value="5" @if(old('comfortability_sharing_concerns_doubts_1',$training_survey_details->comfortability_sharing_concerns_doubts_1)=='5') checked @endif>
                           <label class="form-check-label" for="gridRadios1">5</label>
-
-                          <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_1" id="comfortability_sharing_concerns_doubts_1" value="NA" @if(old('comfortability_sharing_concerns_doubts_1',$training_survey_details->comfortability_sharing_concerns_doubts_1)=='NA') checked @endif>
-                          <label class="form-check-label" for="gridRadios1">NA</label>
                         </span>
                         @if ($errors->has('comfortability_sharing_concerns_doubts_1"'))
                           <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_1"') }}</span>
@@ -373,6 +373,9 @@
                       <label for="expertise_on_subject_matter_2" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_2" id="expertise_on_subject_matter_2" value="NA" @if(old('expertise_on_subject_matter_2',$training_survey_details->expertise_on_subject_matter_2)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_2" id="expertise_on_subject_matter_2" value="1" @if(old('expertise_on_subject_matter_2',$training_survey_details->expertise_on_subject_matter_2)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -387,9 +390,6 @@
 
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_2" id="expertise_on_subject_matter_2" value="5" @if(old('expertise_on_subject_matter_2',$training_survey_details->expertise_on_subject_matter_2)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_2" id="expertise_on_subject_matter_2" value="NA" @if(old('expertise_on_subject_matter_2',$training_survey_details->expertise_on_subject_matter_2)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
 
                       @if ($errors->has('expertise_on_subject_matter_2'))
@@ -402,6 +402,9 @@
                       <label for="clear_effective_communication_skills_2" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_2" id="clear_effective_communication_skills_2" value="NA" @if(old('clear_effective_communication_skills_2',$training_survey_details->clear_effective_communication_skills_2)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_2" id="clear_effective_communication_skills_2" value="1" @if(old('clear_effective_communication_skills_2',$training_survey_details->clear_effective_communication_skills_2)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -416,9 +419,6 @@
 
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_2" id="clear_effective_communication_skills_2" value="5" @if(old('clear_effective_communication_skills_2',$training_survey_details->clear_effective_communication_skills_2)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_2" id="clear_effective_communication_skills_2" value="NA" @if(old('clear_effective_communication_skills_2',$training_survey_details->clear_effective_communication_skills_2)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('clear_effective_communication_skills_2'))
                         <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_2') }}</span>
@@ -430,6 +430,9 @@
                       <label for="effective_delivery_content_2" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="effective_delivery_content_2" id="effective_delivery_content_2" value="NA" @if(old('effective_delivery_content_2',$training_survey_details->effective_delivery_content_2)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="effective_delivery_content_2" id="effective_delivery_content_2" value="1" @if(old('effective_delivery_content_2',$training_survey_details->effective_delivery_content_2)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -444,9 +447,6 @@
 
                         <input class="form-check-input" type="radio" name="effective_delivery_content_2" id="effective_delivery_content_2" value="5" @if(old('effective_delivery_content_2',$training_survey_details->effective_delivery_content_2)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="effective_delivery_content_2" id="effective_delivery_content_2" value="NA" @if(old('effective_delivery_content_2',$training_survey_details->effective_delivery_content_2)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('effective_delivery_content_2'))
                         <span class="text-danger">{{ $errors->first('effective_delivery_content_2') }}</span>
@@ -458,6 +458,9 @@
                       <label for="timely_response_queries_2" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="timely_response_queries_2" id="timely_response_queries_2" value="NA" @if(old('timely_response_queries_2',$training_survey_details->timely_response_queries_2)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="timely_response_queries_2" id="timely_response_queries_2" value="1" @if(old('timely_response_queries_2',$training_survey_details->timely_response_queries_2)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -472,9 +475,6 @@
 
                         <input class="form-check-input" type="radio" name="timely_response_queries_2" id="timely_response_queries_2" value="5" @if(old('timely_response_queries_2',$training_survey_details->timely_response_queries_2)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="timely_response_queries_2" id="timely_response_queries_2" value="NA" @if(old('timely_response_queries_2',$training_survey_details->timely_response_queries_2)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('timely_response_queries_2'))
                         <span class="text-danger">{{ $errors->first('timely_response_queries_2') }}</span>
@@ -486,6 +486,9 @@
                       <label for="comfortability_sharing_concerns_doubts_2" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_2" id="comfortability_sharing_concerns_doubts_2" value="NA" @if(old('comfortability_sharing_concerns_doubts_2',$training_survey_details->comfortability_sharing_concerns_doubts_2)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_2" id="comfortability_sharing_concerns_doubts_2" value="1" @if(old('comfortability_sharing_concerns_doubts_2',$training_survey_details->comfortability_sharing_concerns_doubts_2)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -500,9 +503,6 @@
 
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_2" id="comfortability_sharing_concerns_doubts_2" value="5" @if(old('comfortability_sharing_concerns_doubts_2',$training_survey_details->comfortability_sharing_concerns_doubts_2)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_2" id="comfortability_sharing_concerns_doubts_2" value="NA" @if(old('comfortability_sharing_concerns_doubts_2',$training_survey_details->comfortability_sharing_concerns_doubts_2)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('comfortability_sharing_concerns_doubts_2"'))
                         <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_2"') }}</span>
@@ -542,6 +542,9 @@
                       <label for="expertise_on_subject_matter_3" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_3" id="expertise_on_subject_matter_3" value="NA" @if(old('expertise_on_subject_matter_3',$training_survey_details->expertise_on_subject_matter_3)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_3" id="expertise_on_subject_matter_3" value="1" @if(old('expertise_on_subject_matter_3',$training_survey_details->expertise_on_subject_matter_3)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -556,9 +559,6 @@
 
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_3" id="expertise_on_subject_matter_3" value="5" @if(old('expertise_on_subject_matter_3',$training_survey_details->expertise_on_subject_matter_3)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_3" id="expertise_on_subject_matter_3" value="NA" @if(old('expertise_on_subject_matter_3',$training_survey_details->expertise_on_subject_matter_3)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
 
                       @if ($errors->has('expertise_on_subject_matter_3'))
@@ -571,6 +571,9 @@
                       <label for="clear_effective_communication_skills_3" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_3" id="clear_effective_communication_skills_3" value="NA" @if(old('clear_effective_communication_skills_3',$training_survey_details->clear_effective_communication_skills_3)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_3" id="clear_effective_communication_skills_3" value="1" @if(old('clear_effective_communication_skills_3',$training_survey_details->clear_effective_communication_skills_3)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -585,9 +588,6 @@
 
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_3" id="clear_effective_communication_skills_3" value="5" @if(old('clear_effective_communication_skills_3',$training_survey_details->clear_effective_communication_skills_3)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_3" id="clear_effective_communication_skills_3" value="NA" @if(old('clear_effective_communication_skills_3',$training_survey_details->clear_effective_communication_skills_3)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('clear_effective_communication_skills_3'))
                         <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_3') }}</span>
@@ -599,6 +599,9 @@
                       <label for="effective_delivery_content_3" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="effective_delivery_content_3" id="effective_delivery_content_3" value="NA" @if(old('effective_delivery_content_3',$training_survey_details->effective_delivery_content_3)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="effective_delivery_content_3" id="effective_delivery_content_3" value="1" @if(old('effective_delivery_content_3',$training_survey_details->effective_delivery_content_3)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -613,9 +616,6 @@
 
                         <input class="form-check-input" type="radio" name="effective_delivery_content_3" id="effective_delivery_content_3" value="5" @if(old('effective_delivery_content_3',$training_survey_details->effective_delivery_content_3)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="effective_delivery_content_3" id="effective_delivery_content_3" value="NA" @if(old('effective_delivery_content_3',$training_survey_details->effective_delivery_content_3)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('effective_delivery_content_3'))
                         <span class="text-danger">{{ $errors->first('effective_delivery_content_3') }}</span>
@@ -627,6 +627,9 @@
                       <label for="timely_response_queries_3" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="timely_response_queries_3" id="timely_response_queries_3" value="NA" @if(old('timely_response_queries_3',$training_survey_details->timely_response_queries_3)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="timely_response_queries_3" id="timely_response_queries_3" value="1" @if(old('timely_response_queries_3',$training_survey_details->timely_response_queries_3)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -641,9 +644,6 @@
 
                         <input class="form-check-input" type="radio" name="timely_response_queries_3" id="timely_response_queries_3" value="5" @if(old('timely_response_queries_3',$training_survey_details->timely_response_queries_3)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="timely_response_queries_3" id="timely_response_queries_3" value="NA" @if(old('timely_response_queries_3',$training_survey_details->timely_response_queries_3)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('timely_response_queries_3'))
                         <span class="text-danger">{{ $errors->first('timely_response_queries_3') }}</span>
@@ -655,6 +655,9 @@
                       <label for="comfortability_sharing_concerns_doubts_3" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_3" id="comfortability_sharing_concerns_doubts_3" value="NA" @if(old('comfortability_sharing_concerns_doubts_3',$training_survey_details->comfortability_sharing_concerns_doubts_3)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_3" id="comfortability_sharing_concerns_doubts_3" value="1" @if(old('comfortability_sharing_concerns_doubts_3',$training_survey_details->comfortability_sharing_concerns_doubts_3)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -669,9 +672,6 @@
 
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_3" id="comfortability_sharing_concerns_doubts_3" value="5" @if(old('comfortability_sharing_concerns_doubts_3',$training_survey_details->comfortability_sharing_concerns_doubts_3)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_3" id="comfortability_sharing_concerns_doubts_3" value="NA" @if(old('comfortability_sharing_concerns_doubts_3',$training_survey_details->comfortability_sharing_concerns_doubts_3)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('comfortability_sharing_concerns_doubts_3"'))
                         <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_3"') }}</span>
@@ -711,6 +711,9 @@
                       <label for="expertise_on_subject_matter_4" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_4" id="expertise_on_subject_matter_4" value="NA" @if(old('expertise_on_subject_matter_4',$training_survey_details->expertise_on_subject_matter_4)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_4" id="expertise_on_subject_matter_4" value="1" @if(old('expertise_on_subject_matter_4',$training_survey_details->expertise_on_subject_matter_4)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -725,9 +728,6 @@
 
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_4" id="expertise_on_subject_matter_4" value="5" @if(old('expertise_on_subject_matter_4',$training_survey_details->expertise_on_subject_matter_4)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_4" id="expertise_on_subject_matter_4" value="NA" @if(old('expertise_on_subject_matter_4',$training_survey_details->expertise_on_subject_matter_4)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
 
                       @if ($errors->has('expertise_on_subject_matter_4'))
@@ -740,6 +740,9 @@
                       <label for="clear_effective_communication_skills_4" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_4" id="clear_effective_communication_skills_4" value="NA" @if(old('clear_effective_communication_skills_4',$training_survey_details->clear_effective_communication_skills_4)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_4" id="clear_effective_communication_skills_4" value="1" @if(old('clear_effective_communication_skills_4',$training_survey_details->clear_effective_communication_skills_4)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -754,9 +757,6 @@
 
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_4" id="clear_effective_communication_skills_4" value="5" @if(old('clear_effective_communication_skills_4',$training_survey_details->clear_effective_communication_skills_4)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_4" id="clear_effective_communication_skills_4" value="NA" @if(old('clear_effective_communication_skills_4',$training_survey_details->clear_effective_communication_skills_4)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('clear_effective_communication_skills_4'))
                         <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_4') }}</span>
@@ -768,6 +768,9 @@
                       <label for="effective_delivery_content_4" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="effective_delivery_content_4" id="effective_delivery_content_4" value="NA" @if(old('effective_delivery_content_4',$training_survey_details->effective_delivery_content_4)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="effective_delivery_content_4" id="effective_delivery_content_4" value="1" @if(old('effective_delivery_content_4',$training_survey_details->effective_delivery_content_4)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -782,9 +785,6 @@
 
                         <input class="form-check-input" type="radio" name="effective_delivery_content_4" id="effective_delivery_content_4" value="5" @if(old('effective_delivery_content_4',$training_survey_details->effective_delivery_content_4)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="effective_delivery_content_4" id="effective_delivery_content_4" value="NA" @if(old('effective_delivery_content_4',$training_survey_details->effective_delivery_content_4)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('effective_delivery_content_4'))
                         <span class="text-danger">{{ $errors->first('effective_delivery_content_4') }}</span>
@@ -796,6 +796,9 @@
                       <label for="timely_response_queries_4" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="timely_response_queries_4" id="timely_response_queries_4" value="NA" @if(old('timely_response_queries_4',$training_survey_details->timely_response_queries_4)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="timely_response_queries_4" id="timely_response_queries_4" value="1" @if(old('timely_response_queries_4',$training_survey_details->timely_response_queries_4)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -810,9 +813,6 @@
 
                         <input class="form-check-input" type="radio" name="timely_response_queries_4" id="timely_response_queries_4" value="5" @if(old('timely_response_queries_4',$training_survey_details->timely_response_queries_4)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="timely_response_queries_4" id="timely_response_queries_4" value="NA" @if(old('timely_response_queries_4',$training_survey_details->timely_response_queries_4)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('timely_response_queries_4'))
                         <span class="text-danger">{{ $errors->first('timely_response_queries_4') }}</span>
@@ -824,6 +824,9 @@
                       <label for="comfortability_sharing_concerns_doubts_4" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_4" id="comfortability_sharing_concerns_doubts_4" value="NA" @if(old('comfortability_sharing_concerns_doubts_4',$training_survey_details->comfortability_sharing_concerns_doubts_4)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_4" id="comfortability_sharing_concerns_doubts_4" value="1" @if(old('comfortability_sharing_concerns_doubts_4',$training_survey_details->comfortability_sharing_concerns_doubts_4)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -838,9 +841,6 @@
 
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_4" id="comfortability_sharing_concerns_doubts_4" value="5" @if(old('comfortability_sharing_concerns_doubts_4',$training_survey_details->comfortability_sharing_concerns_doubts_4)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_4" id="comfortability_sharing_concerns_doubts_4" value="NA" @if(old('comfortability_sharing_concerns_doubts_4',$training_survey_details->comfortability_sharing_concerns_doubts_4)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('comfortability_sharing_concerns_doubts_4"'))
                         <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_4"') }}</span>
@@ -879,6 +879,9 @@
                       <label for="expertise_on_subject_matter_5" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_5" id="expertise_on_subject_matter_5" value="NA" @if(old('expertise_on_subject_matter_5',$training_survey_details->expertise_on_subject_matter_5)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_5" id="expertise_on_subject_matter_5" value="1" @if(old('expertise_on_subject_matter_5',$training_survey_details->expertise_on_subject_matter_5)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -893,9 +896,6 @@
 
                         <input class="form-check-input" type="radio" name="expertise_on_subject_matter_5" id="expertise_on_subject_matter_5" value="5" @if(old('expertise_on_subject_matter_5',$training_survey_details->expertise_on_subject_matter_5)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="expertise_on_subject_matter_5" id="expertise_on_subject_matter_5" value="NA" @if(old('expertise_on_subject_matter_5',$training_survey_details->expertise_on_subject_matter_5)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
 
                       @if ($errors->has('expertise_on_subject_matter_5'))
@@ -908,6 +908,9 @@
                       <label for="clear_effective_communication_skills_5" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_5" id="clear_effective_communication_skills_5" value="NA" @if(old('clear_effective_communication_skills_5',$training_survey_details->clear_effective_communication_skills_5)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_5" id="clear_effective_communication_skills_5" value="1" 
                           @if(old('clear_effective_communication_skills_5',$training_survey_details->clear_effective_communication_skills_5)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
@@ -923,9 +926,6 @@
 
                         <input class="form-check-input" type="radio" name="clear_effective_communication_skills_5" id="clear_effective_communication_skills_5" value="5" @if(old('clear_effective_communication_skills_5',$training_survey_details->clear_effective_communication_skills_5)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="clear_effective_communication_skills_5" id="clear_effective_communication_skills_5" value="NA" @if(old('clear_effective_communication_skills_5',$training_survey_details->clear_effective_communication_skills_5)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('clear_effective_communication_skills_5'))
                         <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_5') }}</span>
@@ -937,6 +937,9 @@
                       <label for="effective_delivery_content_5" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="effective_delivery_content_5" id="effective_delivery_content_5" value="NA" @if(old('effective_delivery_content_5',$training_survey_details->effective_delivery_content_5)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="effective_delivery_content_5" id="effective_delivery_content_5" value="1" @if(old('effective_delivery_content_5',$training_survey_details->effective_delivery_content_5)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -951,9 +954,6 @@
 
                         <input class="form-check-input" type="radio" name="effective_delivery_content_5" id="effective_delivery_content_5" value="5" @if(old('effective_delivery_content_5',$training_survey_details->effective_delivery_content_5)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="effective_delivery_content_5" id="effective_delivery_content_5" value="NA" @if(old('effective_delivery_content_5',$training_survey_details->effective_delivery_content_5)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('effective_delivery_content_5'))
                         <span class="text-danger">{{ $errors->first('effective_delivery_content_5') }}</span>
@@ -965,6 +965,9 @@
                       <label for="timely_response_queries_5" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="timely_response_queries_5" id="timely_response_queries_5" value="NA" @if(old('timely_response_queries_5',$training_survey_details->timely_response_queries_5)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="timely_response_queries_5" id="timely_response_queries_5" value="1" @if(old('timely_response_queries_5',$training_survey_details->timely_response_queries_5)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -979,9 +982,6 @@
 
                         <input class="form-check-input" type="radio" name="timely_response_queries_5" id="timely_response_queries_5" value="5" @if(old('timely_response_queries_5',$training_survey_details->timely_response_queries_5)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="timely_response_queries_5" id="timely_response_queries_5" value="NA" @if(old('timely_response_queries_5',$training_survey_details->timely_response_queries_5)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('timely_response_queries_5'))
                         <span class="text-danger">{{ $errors->first('timely_response_queries_5') }}</span>
@@ -993,6 +993,9 @@
                       <label for="comfortability_sharing_concerns_doubts_5" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                       <span id="radioBtn">
+                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_5" id="comfortability_sharing_concerns_doubts_5" value="NA" @if(old('comfortability_sharing_concerns_doubts_5',$training_survey_details->comfortability_sharing_concerns_doubts_5)=='NA') checked @endif>
+                        <label class="form-check-label" for="gridRadios1">NA</label>
+
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_5" id="comfortability_sharing_concerns_doubts_5" value="1" @if(old('comfortability_sharing_concerns_doubts_5',$training_survey_details->comfortability_sharing_concerns_doubts_5)=='1') checked @endif>
                         <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1007,9 +1010,6 @@
 
                         <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_5" id="comfortability_sharing_concerns_doubts_5" value="5" @if(old('comfortability_sharing_concerns_doubts_5',$training_survey_details->comfortability_sharing_concerns_doubts_5)=='5') checked @endif>
                         <label class="form-check-label" for="gridRadios1">5</label>
-
-                        <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_5" id="comfortability_sharing_concerns_doubts_5" value="NA" @if(old('comfortability_sharing_concerns_doubts_5',$training_survey_details->comfortability_sharing_concerns_doubts_5)=='NA') checked @endif>
-                        <label class="form-check-label" for="gridRadios1">NA</label>
                       </span>
                       @if ($errors->has('comfortability_sharing_concerns_doubts_5"'))
                         <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_5"') }}</span>
@@ -1046,6 +1046,9 @@
                   <label for="training_first_week_joining" class="form-label rdioBtn">Training plan was shared with me within the first week of joining  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="NA" @if(old('training_first_week_joining',$training_survey_details->training_first_week_joining)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                   	<input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="1" @if(old('training_first_week_joining',$training_survey_details->training_first_week_joining)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1060,9 +1063,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="5" @if(old('training_first_week_joining',$training_survey_details->training_first_week_joining)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="NA" @if(old('training_first_week_joining',$training_survey_details->training_first_week_joining)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('training_first_week_joining'))
@@ -1075,6 +1075,9 @@
                   <label for="training_sessions_went_as_planned" class="form-label rdioBtn">The training sessions went as planned <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="NA" @if(old('training_sessions_went_as_planned',$training_survey_details->training_sessions_went_as_planned)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="1" @if(old('training_sessions_went_as_planned',$training_survey_details->training_sessions_went_as_planned)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1089,9 +1092,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="5" @if(old('training_sessions_went_as_planned',$training_survey_details->training_sessions_went_as_planned)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="NA" @if(old('training_sessions_went_as_planned',$training_survey_details->training_sessions_went_as_planned)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_sessions_went_as_planned'))
                     <span class="text-danger">{{ $errors->first('training_sessions_went_as_planned') }}</span>
@@ -1103,9 +1103,11 @@
                   <label for="training_topics_were_covered_in_detail" class="form-label rdioBtn">Training topics were covered in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="NA"@if(old('training_topics_were_covered_in_detail',$training_survey_details->training_topics_were_covered_in_detail)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="1"@if(old('training_topics_were_covered_in_detail',$training_survey_details->training_topics_were_covered_in_detail)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
-
 
 	                  <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="2"@if(old('training_topics_were_covered_in_detail',$training_survey_details->training_topics_were_covered_in_detail)=='2') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">2</label>
@@ -1118,9 +1120,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="5"@if(old('training_topics_were_covered_in_detail',$training_survey_details->training_topics_were_covered_in_detail)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="NA"@if(old('training_topics_were_covered_in_detail',$training_survey_details->training_topics_were_covered_in_detail)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_topics_were_covered_in_detail'))
                     <span class="text-danger">{{ $errors->first('training_topics_were_covered_in_detail') }}</span>
@@ -1132,6 +1131,9 @@
                   <label for="training_was_effective_helping" class="form-label rdioBtn">Training was effective & is helping me do my job well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="NA" @if(old('training_was_effective_helping',$training_survey_details->training_was_effective_helping)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="1" @if(old('training_was_effective_helping',$training_survey_details->training_was_effective_helping)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1146,9 +1148,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="5" @if(old('training_was_effective_helping',$training_survey_details->training_was_effective_helping)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="NA" @if(old('training_was_effective_helping',$training_survey_details->training_was_effective_helping)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_was_effective_helping'))
                     <span class="text-danger">{{ $errors->first('training_was_effective_helping') }}</span>
@@ -1160,6 +1159,9 @@
                   <label for="clearly_understood_all_modules" class="form-label rdioBtn">I have clearly understood all the modules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="NA"@if(old('clearly_understood_all_modules',$training_survey_details->clearly_understood_all_modules)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="1"@if(old('clearly_understood_all_modules',$training_survey_details->clearly_understood_all_modules)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1174,9 +1176,6 @@
 
 	                  <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="5"@if(old('clearly_understood_all_modules',$training_survey_details->clearly_understood_all_modules)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="NA"@if(old('clearly_understood_all_modules',$training_survey_details->clearly_understood_all_modules)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('clearly_understood_all_modules'))
                     <span class="text-danger">{{ $errors->first('clearly_understood_all_modules') }}</span>
@@ -1188,6 +1187,9 @@
                   <label for="self_study_material_useful" class="form-label rdioBtn">Self-study material has been very useful for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="NA" @if(old('self_study_material_useful',$training_survey_details->self_study_material_useful)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="1" @if(old('self_study_material_useful',$training_survey_details->self_study_material_useful)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1202,9 +1204,6 @@
 
 	                  <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="5" @if(old('self_study_material_useful',$training_survey_details->self_study_material_useful)=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="NA" @if(old('self_study_material_useful',$training_survey_details->self_study_material_useful)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('self_study_material_useful'))

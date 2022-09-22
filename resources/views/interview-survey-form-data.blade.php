@@ -109,13 +109,17 @@
                   <tr>
                     <td>How did you learn about the job opening with us?</td>
                     <td>
-                    	@foreach($job_opening_types as $job_opening_type)
+                      @if($find['learn_about_job_opening']=='Others')
+                        {{ $find['learn_about_job_opening'] }}
+                      @else
+                        @foreach($job_opening_types as $job_opening_type)
 
-                    		@if($job_opening_type['id']==$find['learn_about_job_opening'])
-                    		{{$job_opening_type['name']}}
-                    		@endif
-                    	
-                    	@endforeach
+                          @if($job_opening_type['id']==$find['learn_about_job_opening'])
+                          {{$job_opening_type['name']}}
+                          @endif
+                        
+                        @endforeach
+                      @endif
                     </td>
                   </tr>
 
@@ -131,6 +135,19 @@
 
                   <tr>
                     <td colspan="2"><strong>Rate {{$find['hr_name_ajax']}} on the following parameters, out of 5.</strong></td>
+                  </tr>
+
+                  <tr>
+                    <td>Prompt in responding to my queries</td>
+                    <td>
+                      @if($find['prompt_responding_my_queries']!='NA')
+                        @for($i=0; $i < $find['prompt_responding_my_queries']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else 
+                        {{ $find['prompt_responding_my_queries'] }}
+                      @endif
+                    </td>
                   </tr>
 
                   <tr>
@@ -420,7 +437,13 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>How will you define the overall Interview Process?</strong> : {{$find['define_overall_interview_process']}}</td>
+                    <td colspan="2"><strong>How will you define the overall Interview Process?</strong> :
+                      @if($find['define_overall_interview_process']=='Others')
+                        {{ $find['define_overall_interview_process_others'] }}
+                      @else 
+                        {{ $find['define_overall_interview_process'] }}
+                      @endif 
+                    </td>
                   </tr>
 
                   <tr>

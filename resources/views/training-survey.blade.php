@@ -157,7 +157,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">"Please list down the name of your trainers who took your on-job training."</label>
+                  <label for="company_hr_name" class="form-label">Please list down the name of your trainers who took your on-job training.</label>
                 </div>
 
 
@@ -189,6 +189,9 @@
                   <label for="training_first_week_joining" class="form-label rdioBtn">Training plan was shared with me within the first week of joining  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="NA" @if(old('training_first_week_joining')=='NA') checked @elseif(old('training_first_week_joining')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="1" @if(old('training_first_week_joining')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -203,9 +206,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="5" @if(old('training_first_week_joining')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_first_week_joining" id="training_first_week_joining" value="NA" @if(old('training_first_week_joining')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('training_first_week_joining'))
@@ -218,6 +218,9 @@
                   <label for="training_sessions_went_as_planned" class="form-label rdioBtn">The training sessions went as planned <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="NA" @if(old('training_sessions_went_as_planned')=='NA') checked @elseif(old('training_sessions_went_as_planned')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="1" @if(old('training_sessions_went_as_planned')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -232,9 +235,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="5" @if(old('training_sessions_went_as_planned')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_sessions_went_as_planned" id="training_sessions_went_as_planned" value="NA" @if(old('training_sessions_went_as_planned')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_sessions_went_as_planned'))
                     <span class="text-danger">{{ $errors->first('training_sessions_went_as_planned') }}</span>
@@ -246,6 +246,9 @@
                   <label for="training_topics_were_covered_in_detail" class="form-label rdioBtn">Training topics were covered in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="NA" @if(old('training_topics_were_covered_in_detail')=='NA') checked @elseif(old('training_topics_were_covered_in_detail')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="1" @if(old('training_topics_were_covered_in_detail')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -260,9 +263,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="5" @if(old('training_topics_were_covered_in_detail')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_topics_were_covered_in_detail" id="training_topics_were_covered_in_detail" value="NA" @if(old('training_topics_were_covered_in_detail')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_topics_were_covered_in_detail'))
                     <span class="text-danger">{{ $errors->first('training_topics_were_covered_in_detail') }}</span>
@@ -274,6 +274,9 @@
                   <label for="training_was_effective_helping" class="form-label rdioBtn">Training was effective & is helping me do my job well <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="NA" @if(old('training_was_effective_helping')=='NA') checked @elseif(old('training_was_effective_helping')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="1" @if(old('training_was_effective_helping')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -288,9 +291,6 @@
 
 	                  <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="5" @if(old('training_was_effective_helping')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_was_effective_helping" id="training_was_effective_helping" value="NA" @if(old('training_was_effective_helping')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_was_effective_helping'))
                     <span class="text-danger">{{ $errors->first('training_was_effective_helping') }}</span>
@@ -302,6 +302,9 @@
                   <label for="clearly_understood_all_modules" class="form-label rdioBtn">I have clearly understood all the modules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="NA" @if(old('clearly_understood_all_modules')=='NA') checked @elseif(old('clearly_understood_all_modules')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="1" @if(old('clearly_understood_all_modules')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -316,9 +319,6 @@
 
 	                  <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="5" @if(old('clearly_understood_all_modules')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="clearly_understood_all_modules" id="clearly_understood_all_modules" value="NA" @if(old('clearly_understood_all_modules')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('clearly_understood_all_modules'))
                     <span class="text-danger">{{ $errors->first('clearly_understood_all_modules') }}</span>
@@ -330,6 +330,9 @@
                   <label for="self_study_material_useful" class="form-label rdioBtn">Self-study material has been very useful for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="NA" @if(old('self_study_material_useful')=='NA') checked @elseif(old('self_study_material_useful')=='') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
 	                  <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="1" @if(old('self_study_material_useful')=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -344,9 +347,6 @@
 
 	                  <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="5" @if(old('self_study_material_useful')=='5') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="self_study_material_useful" id="self_study_material_useful" value="NA" @if(old('self_study_material_useful')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('self_study_material_useful'))

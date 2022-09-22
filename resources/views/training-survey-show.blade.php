@@ -194,7 +194,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_1_name'] }}</strong> : {!! $training_survey_details['additional_feedback_trainer_1'] !!}</td>
+                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_1_name'] }}</strong> {!! $training_survey_details['additional_feedback_trainer_1'] !!}</td>
                   </tr>
                   @endif
 
@@ -270,7 +270,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_2_name'] }}</strong> : {!! $training_survey_details['additional_feedback_trainer_2'] !!}</td>
+                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_2_name'] }}</strong> {!! $training_survey_details['additional_feedback_trainer_2'] !!}</td>
                   </tr>
                   @endif
 
@@ -346,7 +346,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_3_name'] }}</strong> : {!! $training_survey_details['additional_feedback_trainer_3'] !!}</td>
+                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_3_name'] }}</strong> {!! $training_survey_details['additional_feedback_trainer_3'] !!}</td>
                   </tr>
                   @endif
 
@@ -422,7 +422,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_4_name'] }}</strong> : {!! $training_survey_details['additional_feedback_trainer_4'] !!}</td>
+                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_4_name'] }}</strong> {!! $training_survey_details['additional_feedback_trainer_4'] !!}</td>
                   </tr>
                   @endif
 
@@ -498,7 +498,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_5_name'] }}</strong> : {!! $training_survey_details['additional_feedback_trainer_5'] !!}</td>
+                    <td colspan="2"><strong>Any additional comments for {{ $training_survey_details['trainer_5_name'] }}</strong> {!! $training_survey_details['additional_feedback_trainer_5'] !!}</td>
                   </tr>
                   @endif
 
@@ -588,15 +588,15 @@
 
                   
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Is there any topic that you still need training on?</strong> : {!! $training_survey_details['is_there_any_topic'] !!}</td>
+                    <td colspan="2"><strong>Is there any topic that you still need training on?</strong> {!! $training_survey_details['is_there_any_topic'] !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Which part of the training was the most interesting? Please elaborate.</strong> : {!! $training_survey_details['interesting_part_elaborate'] !!}</td>
+                    <td colspan="2"><strong>Which part of the training was the most interesting? Please elaborate.</strong> {!! $training_survey_details['interesting_part_elaborate'] !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any suggestion/feedback you would like to give in helping us to improve our training sessions?</strong> : {!! $training_survey_details['any_suggestions_feedback'] !!}</td>
+                    <td colspan="2"><strong>Any suggestion/feedback you would like to give in helping us to improve our training sessions?</strong> {!! $training_survey_details['any_suggestions_feedback'] !!}</td>
                   </tr>
 
                 </tbody>

@@ -167,6 +167,7 @@
                     @foreach($job_opening_types as $job_opening_type)
                     <option value="{{$job_opening_type['id']}}" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)==$job_opening_type['id']) selected @endif>{{$job_opening_type['name']}}</option>
                     @endforeach
+                    <option value="Others" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)=='Others') selected @endif>Others</option>
                   </select>
                   <div class="invalid-tooltip">
                     Please select a valid job opening.
@@ -244,14 +245,17 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">Rate your recruiter in the following parameters out of 5:</label>
+                  <label class="form-label">Rate your recruiter in the following parameters out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="professionalism" class="form-label rdioBtn">Professionalism:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="professionalism" class="form-label rdioBtn">Professionalism  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="1" @if(old('professionalism',$form_details->professionalism)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="NA" @if(old('professionalism', $form_details->professionalism)=='NA') checked @elseif(old('professionalism')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="1" @if(old('professionalism',$form_details->professionalism)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="professionalism" id="professionalism" value="2" @if(old('professionalism',$form_details->professionalism)=='2') checked @endif>
@@ -275,7 +279,10 @@
                   <label for="friendliness" class="form-label rdioBtn">Friendliness <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="1" @if(old('friendliness',$form_details->friendliness)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="NA" @if(old('friendliness', $form_details->friendliness)=='NA') checked @elseif(old('friendliness')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="1" @if(old('friendliness',$form_details->friendliness)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="friendliness" id="friendliness" value="2" @if(old('friendliness',$form_details->friendliness)=='2') checked @endif>
@@ -300,7 +307,10 @@
                   <label for="length_time_spent_talking" class="form-label rdioBtn">Length of the time spent talking to you <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="length_time_spent_talking" id="length_time_spent_talking" value="1"@if(old('length_time_spent_talking',$form_details->length_time_spent_talking)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="length_time_spent_talking" id="length_time_spent_talking" value="NA" @if(old('length_time_spent_talking', $form_details->length_time_spent_talking)=='NA') checked @elseif(old('length_time_spent_talking')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                  	<input class="form-check-input" type="radio" name="length_time_spent_talking" id="length_time_spent_talking" value="1"@if(old('length_time_spent_talking',$form_details->length_time_spent_talking)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="length_time_spent_talking" id="length_time_spent_talking" value="2"@if(old('length_time_spent_talking',$form_details->length_time_spent_talking)=='2') checked @endif>
@@ -325,7 +335,10 @@
                   <label for="company_knowledge" class="form-label rdioBtn">Company knowledge <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="company_knowledge" id="company_knowledge" value="1" @if(old('company_knowledge',$form_details->company_knowledge)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="company_knowledge" id="company_knowledge" value="NA" @if(old('company_knowledge', $form_details->company_knowledge)=='NA') checked @elseif(old('company_knowledge')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="company_knowledge" id="company_knowledge" value="1" @if(old('company_knowledge',$form_details->company_knowledge)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="company_knowledge" id="company_knowledge" value="2" @if(old('company_knowledge',$form_details->company_knowledge)=='2') checked @endif>
@@ -349,7 +362,10 @@
                   <label for="specific_knowledge_job_profile" class="form-label rdioBtn">Specific knowledge about the job profile <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="specific_knowledge_job_profile" id="specific_knowledge_job_profile" value="1" @if(old('specific_knowledge_job_profile',$form_details->specific_knowledge_job_profile)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="specific_knowledge_job_profile" id="specific_knowledge_job_profile" value="NA" @if(old('specific_knowledge_job_profile', $form_details->specific_knowledge_job_profile)=='NA') checked @elseif(old('specific_knowledge_job_profile')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="specific_knowledge_job_profile" id="specific_knowledge_job_profile" value="1" @if(old('specific_knowledge_job_profile',$form_details->specific_knowledge_job_profile)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="specific_knowledge_job_profile" id="specific_knowledge_job_profile" value="2" @if(old('specific_knowledge_job_profile',$form_details->specific_knowledge_job_profile)=='2') checked @endif>
@@ -373,7 +389,10 @@
                   <label for="timely_response_email_phone" class="form-label rdioBtn">Timely response to your communications - email or phone <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="timely_response_email_phone" id="timely_response_email_phone" value="1" @if(old('timely_response_email_phone',$form_details->timely_response_email_phone)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="timely_response_email_phone" id="timely_response_email_phone" value="NA" @if(old('timely_response_email_phone', $form_details->timely_response_email_phone)=='NA') checked @elseif(old('timely_response_email_phone')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="timely_response_email_phone" id="timely_response_email_phone" value="1" @if(old('timely_response_email_phone',$form_details->timely_response_email_phone)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="timely_response_email_phone" id="timely_response_email_phone" value="2" @if(old('timely_response_email_phone',$form_details->timely_response_email_phone)=='2') checked @endif>
@@ -402,7 +421,7 @@
                   <label for="company_policies_procedures" class="form-label rdioBtn">Do you completely understand our company policies and procedures as outlined in the handbook? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="company_policies_procedures" id="company_policies_procedures" value="Yes" @if(old('company_policies_procedures',$form_details->company_policies_procedures)=='Yes') checked @endif>
+                  	<input class="form-check-input" type="radio" name="company_policies_procedures" id="company_policies_procedures" value="Yes" @if(old('company_policies_procedures',$form_details->company_policies_procedures)=='Yes') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">Yes</label>
 
 	                  <input class="form-check-input" type="radio" name="company_policies_procedures" id="company_policies_procedures" value="No" @if(old('company_policies_procedures',$form_details->company_policies_procedures)=='No') checked @endif>
@@ -417,7 +436,7 @@
                   <label for="manager_expectation_setting" class="form-label rdioBtn">Do you completely understand departmental processes as explained in 'Manager's Expectation Setting' session? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="manager_expectation_setting" id="manager_expectation_setting" value="Yes" @if(old('manager_expectation_setting',$form_details->manager_expectation_setting)=='Yes') checked @endif>
+                  	<input class="form-check-input" type="radio" name="manager_expectation_setting" id="manager_expectation_setting" value="Yes" @if(old('manager_expectation_setting',$form_details->manager_expectation_setting)=='Yes') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">Yes</label>
 
 	                  <input class="form-check-input" type="radio" name="manager_expectation_setting" id="manager_expectation_setting" value="No" @if(old('manager_expectation_setting',$form_details->manager_expectation_setting)=='No') checked @endif>
@@ -432,7 +451,7 @@
                   <label for="job_duties_responsibilities" class="form-label rdioBtn">Do you completely understand your job duties and responsibilities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="job_duties_responsibilities" id="job_duties_responsibilities" value="Yes" @if(old('job_duties_responsibilities',$form_details->job_duties_responsibilities)=='Yes') checked @endif>
+                  	<input class="form-check-input" type="radio" name="job_duties_responsibilities" id="job_duties_responsibilities" value="Yes" @if(old('job_duties_responsibilities',$form_details->job_duties_responsibilities)=='Yes') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">Yes</label>
 
 	                  <input class="form-check-input" type="radio" name="job_duties_responsibilities" id="job_duties_responsibilities" value="No" @if(old('job_duties_responsibilities',$form_details->job_duties_responsibilities)=='No') checked @endif>
@@ -447,7 +466,7 @@
                   <label for="job_title_properly_named" class="form-label rdioBtn">Do you feel that your job title is properly named? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="job_title_properly_named" id="job_title_properly_named" value="Yes" @if(old('job_title_properly_named',$form_details->job_title_properly_named)=='Yes') checked @endif>
+                  	<input class="form-check-input" type="radio" name="job_title_properly_named" id="job_title_properly_named" value="Yes" @if(old('job_title_properly_named',$form_details->job_title_properly_named)=='Yes') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">Yes</label>
 
 	                  <input class="form-check-input" type="radio" name="job_title_properly_named" id="job_title_properly_named" value="No" @if(old('job_title_properly_named',$form_details->job_title_properly_named)=='No') checked @endif>
@@ -511,7 +530,10 @@
                   <label for="rate_overall_recruitment_process" class="form-label">Rate the overall recruitment process of our company! (Rating out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="rate_overall_recruitment_process" id="rate_overall_recruitment_process" value="1" @if(old('rate_overall_recruitment_process',$form_details->rate_overall_recruitment_process)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="rate_overall_recruitment_process" id="rate_overall_recruitment_process" value="NA" @if(old('rate_overall_recruitment_process', $form_details->rate_overall_recruitment_process)=='NA') checked @elseif(old('rate_overall_recruitment_process')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="rate_overall_recruitment_process" id="rate_overall_recruitment_process" value="1" @if(old('rate_overall_recruitment_process',$form_details->rate_overall_recruitment_process)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="rate_overall_recruitment_process" id="rate_overall_recruitment_process" value="2" @if(old('rate_overall_recruitment_process',$form_details->rate_overall_recruitment_process)=='2') checked @endif>
@@ -552,7 +574,10 @@
                   <label for="rate_hr_induction" class="form-label">Rate your HR induction session! (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                  	  <input class="form-check-input" type="radio" name="rate_hr_induction" id="rate_hr_induction" value="1" @if(old('rate_hr_induction',$form_details->rate_hr_induction)=='1') checked @endif>
+                  	<input class="form-check-input" type="radio" name="rate_hr_induction" id="rate_hr_induction" value="NA" @if(old('rate_hr_induction', $form_details->rate_hr_induction)=='NA') checked @elseif(old('rate_hr_induction')=='') checked @endif >
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    
+                    <input class="form-check-input" type="radio" name="rate_hr_induction" id="rate_hr_induction" value="1" @if(old('rate_hr_induction',$form_details->rate_hr_induction)=='1') checked @endif>
 	                  <label class="form-check-label" for="gridRadios1">1</label>
 
 	                  <input class="form-check-input" type="radio" name="rate_hr_induction" id="rate_hr_induction" value="2" @if(old('rate_hr_induction',$form_details->rate_hr_induction)=='2') checked @endif>

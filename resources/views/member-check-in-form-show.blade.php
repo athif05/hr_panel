@@ -153,13 +153,17 @@
                   <tr>
                     <td>Which category would you like to place yourself in?</td>
                     <td>
-                    	@foreach($yourself_category_details as $yourself_category_detail)
+                      @if($check_in_member_details->place_yourself_category=='Others')
+                        {{ $check_in_member_details->place_yourself_category }}
+                      @else
+                        @foreach($yourself_category_details as $yourself_category_detail)
 
-                    		@if($yourself_category_detail['id']==$check_in_member_details->location_name)
-                    			{{$yourself_category_detail['name']}}
-                    		@endif
-                    	
-                    	@endforeach
+                          @if($yourself_category_detail['id']==$check_in_member_details->place_yourself_category)
+                            {{$yourself_category_detail['name']}}
+                          @endif
+                        
+                        @endforeach
+                      @endif
                     </td>
                   </tr>
 
@@ -606,12 +610,12 @@
                   </tr>
 
                  <tr class="txt_justify">
-                    <td colspan="2"><strong>How frequently do you want to receive feedback from your manager about your performance?</strong> : {{$check_in_member_details->frequently_receive_feedback_manager}}</td>
+                    <td colspan="2"><strong>How frequently do you want to receive feedback from your manager about your performance?</strong><br> {{$check_in_member_details->frequently_receive_feedback_manager}}</td>
                   </tr>
 
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback for {{ $check_in_member_details->reporting_manager_name }}</strong> : {!! ($check_in_member_details->any_additional_feedback_manager) !!}</td>
+                    <td colspan="2"><strong>Any additional feedback for {{ $check_in_member_details->reporting_manager_name }}</strong> {!! ($check_in_member_details->any_additional_feedback_manager) !!}</td>
                   </tr>
 
 
@@ -651,35 +655,35 @@
                   </tr>
                   
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What’s the best experience you have had during your tenure till date?</strong> : {!! $check_in_member_details->best_experience_tenure !!}</td>
+                    <td colspan="2"><strong>What’s the best experience you have had during your tenure till date?</strong> {!! $check_in_member_details->best_experience_tenure !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What do you like the most working here?</strong> : {!! $check_in_member_details->like_most_working !!}</td>
+                    <td colspan="2"><strong>What do you like the most working here?</strong> {!! $check_in_member_details->like_most_working !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What would you like to change/add in the organization?</strong> : {!! $check_in_member_details->like_to_change_add !!}</td>
+                    <td colspan="2"><strong>What would you like to change/add in the organization?</strong> {!! $check_in_member_details->like_to_change_add !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What/Who has inspired you in this organization, based on your experiences so far?</strong> : {!! $check_in_member_details->who_inspired_you_organization !!}</td>
+                    <td colspan="2"><strong>What/Who has inspired you in this organization, based on your experiences so far?</strong> {!! $check_in_member_details->who_inspired_you_organization !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Mention your achievement(s) in terms of your work till date.</strong> : {!! $check_in_member_details->mention_achievement !!}</td>
+                    <td colspan="2"><strong>Mention your achievement(s) in terms of your work till date.</strong> {!! $check_in_member_details->mention_achievement !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any challenges that you are facing right now?</strong> : {!! $check_in_member_details->facing_any_challenges !!}</td>
+                    <td colspan="2"><strong>Any challenges that you are facing right now?</strong> {!! $check_in_member_details->facing_any_challenges !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Do you need any additional training or support?</strong> : {!! $check_in_member_details->need_additional_training !!}</td>
+                    <td colspan="2"><strong>Do you need any additional training or support?</strong> {!! $check_in_member_details->need_additional_training !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback that you wish to share?</strong> : {!! $check_in_member_details->any_additional_feedback_share !!}</td>
+                    <td colspan="2"><strong>Any additional feedback that you wish to share?</strong> {!! $check_in_member_details->any_additional_feedback_share !!}</td>
                   </tr>
 
                   

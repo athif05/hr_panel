@@ -312,9 +312,12 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="satisfaction_job_role" class="form-label rdioBtn">Satisfaction about job role:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="satisfaction_job_role" class="form-label rdioBtn">Satisfaction about job role  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="NA" @if(old('satisfaction_job_role',$fresh_eye_journal_details->satisfaction_job_role)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="1" @if(old('satisfaction_job_role',$fresh_eye_journal_details->satisfaction_job_role)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -330,9 +333,6 @@
                     <input class="form-check-input" type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="5" @if(old('satisfaction_job_role',$fresh_eye_journal_details->satisfaction_job_role)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
 
-                    <input class="form-check-input" type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="NA" @if(old('satisfaction_job_role',$fresh_eye_journal_details->satisfaction_job_role)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
-
                   </span>
 
                   @if ($errors->has('satisfaction_job_role'))
@@ -345,6 +345,8 @@
                   <label for="well_equipped_perform_job" class="form-label rdioBtn">I am well equipped to perform my job <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="well_equipped_perform_job" id="well_equipped_perform_job" value="NA" @if(old('well_equipped_perform_job',$fresh_eye_journal_details->well_equipped_perform_job)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
                     
                     <input class="form-check-input" type="radio" name="well_equipped_perform_job" id="well_equipped_perform_job" value="1" @if(old('well_equipped_perform_job',$fresh_eye_journal_details->well_equipped_perform_job)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
@@ -360,9 +362,6 @@
 
                     <input class="form-check-input" type="radio" name="well_equipped_perform_job" id="well_equipped_perform_job" value="5" @if(old('well_equipped_perform_job',$fresh_eye_journal_details->well_equipped_perform_job)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="well_equipped_perform_job" id="well_equipped_perform_job" value="NA" @if(old('well_equipped_perform_job',$fresh_eye_journal_details->well_equipped_perform_job)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('well_equipped_perform_job'))
                     <span class="text-danger">{{ $errors->first('well_equipped_perform_job') }}</span>
@@ -374,6 +373,9 @@
                   <label for="able_maintain_work_life_balance" class="form-label rdioBtn">I am able to maintain work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="able_maintain_work_life_balance" id="able_maintain_work_life_balance" value="NA" @if(old('able_maintain_work_life_balance',$fresh_eye_journal_details->able_maintain_work_life_balance)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="able_maintain_work_life_balance" id="able_maintain_work_life_balance" value="1" @if(old('able_maintain_work_life_balance',$fresh_eye_journal_details->able_maintain_work_life_balance)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
@@ -389,9 +391,6 @@
 
                     <input class="form-check-input" type="radio" name="able_maintain_work_life_balance" id="able_maintain_work_life_balance" value="5" @if(old('able_maintain_work_life_balance',$fresh_eye_journal_details->able_maintain_work_life_balance)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="able_maintain_work_life_balance" id="able_maintain_work_life_balance" value="NA" @if(old('able_maintain_work_life_balance',$fresh_eye_journal_details->able_maintain_work_life_balance)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('able_maintain_work_life_balance'))
                     <span class="text-danger">{{ $errors->first('able_maintain_work_life_balance') }}</span>
@@ -403,6 +402,10 @@
                   <label for="feel_respected_my_peers" class="form-label rdioBtn">I feel respected by my peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="feel_respected_my_peers" id="feel_respected_my_peers" value="NA"  @if(old('feel_respected_my_peers',$fresh_eye_journal_details->feel_respected_my_peers)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="feel_respected_my_peers" id="feel_respected_my_peers" value="1" @if(old('feel_respected_my_peers',$fresh_eye_journal_details->feel_respected_my_peers)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -417,9 +420,6 @@
 
                     <input class="form-check-input" type="radio" name="feel_respected_my_peers" id="feel_respected_my_peers" value="5"  @if(old('feel_respected_my_peers',$fresh_eye_journal_details->feel_respected_my_peers)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="feel_respected_my_peers" id="feel_respected_my_peers" value="NA"  @if(old('feel_respected_my_peers',$fresh_eye_journal_details->feel_respected_my_peers)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('feel_respected_my_peers'))
                     <span class="text-danger">{{ $errors->first('feel_respected_my_peers') }}</span>
@@ -431,6 +431,10 @@
                   <label for="suggestions_heard_implemented" class="form-label rdioBtn">My suggestions are heard & implemented <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="suggestions_heard_implemented" id="suggestions_heard_implemented" value="NA" @if(old('suggestions_heard_implemented',$fresh_eye_journal_details->suggestions_heard_implemented)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="suggestions_heard_implemented" id="suggestions_heard_implemented" value="1"  @if(old('suggestions_heard_implemented',$fresh_eye_journal_details->suggestions_heard_implemented)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -445,9 +449,6 @@
 
                     <input class="form-check-input" type="radio" name="suggestions_heard_implemented" id="suggestions_heard_implemented" value="5" @if(old('suggestions_heard_implemented',$fresh_eye_journal_details->suggestions_heard_implemented)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="suggestions_heard_implemented" id="suggestions_heard_implemented" value="NA" @if(old('suggestions_heard_implemented',$fresh_eye_journal_details->suggestions_heard_implemented)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('suggestions_heard_implemented'))
                     <span class="text-danger">{{ $errors->first('suggestions_heard_implemented') }}</span>
@@ -459,6 +460,10 @@
                   <label for="share_good_bond_superiors" class="form-label rdioBtn">I share good bond with superiors <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="share_good_bond_superiors" id="share_good_bond_superiors" value="NA" @if(old('share_good_bond_superiors',$fresh_eye_journal_details->share_good_bond_superiors)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="share_good_bond_superiors" id="share_good_bond_superiors" value="1" @if(old('share_good_bond_superiors',$fresh_eye_journal_details->share_good_bond_superiors)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -473,9 +478,6 @@
 
                     <input class="form-check-input" type="radio" name="share_good_bond_superiors" id="share_good_bond_superiors" value="5" @if(old('share_good_bond_superiors',$fresh_eye_journal_details->share_good_bond_superiors)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="share_good_bond_superiors" id="share_good_bond_superiors" value="NA" @if(old('share_good_bond_superiors',$fresh_eye_journal_details->share_good_bond_superiors)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('share_good_bond_superiors'))
@@ -488,6 +490,10 @@
                   <label for="know_what_i_expected_to_do" class="form-label rdioBtn">I know what I am expected to do <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="know_what_i_expected_to_do" id="know_what_i_expected_to_do" value="NA" @if(old('know_what_i_expected_to_do',$fresh_eye_journal_details->know_what_i_expected_to_do)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="know_what_i_expected_to_do" id="know_what_i_expected_to_do" value="1" @if(old('know_what_i_expected_to_do',$fresh_eye_journal_details->know_what_i_expected_to_do)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -502,9 +508,6 @@
 
                     <input class="form-check-input" type="radio" name="know_what_i_expected_to_do" id="know_what_i_expected_to_do" value="5" @if(old('know_what_i_expected_to_do',$fresh_eye_journal_details->know_what_i_expected_to_do)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="know_what_i_expected_to_do" id="know_what_i_expected_to_do" value="NA" @if(old('know_what_i_expected_to_do',$fresh_eye_journal_details->know_what_i_expected_to_do)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('know_what_i_expected_to_do'))
@@ -518,6 +521,10 @@
                   <label for="i_feel_grow_in_organization" class="form-label rdioBtn">I feel I will grow in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="i_feel_grow_in_organization" id="i_feel_grow_in_organization" value="NA" @if(old('i_feel_grow_in_organization',$fresh_eye_journal_details->i_feel_grow_in_organization)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="i_feel_grow_in_organization" id="i_feel_grow_in_organization" value="1" @if(old('i_feel_grow_in_organization',$fresh_eye_journal_details->i_feel_grow_in_organization)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -532,9 +539,6 @@
 
                     <input class="form-check-input" type="radio" name="i_feel_grow_in_organization" id="i_feel_grow_in_organization" value="5" @if(old('i_feel_grow_in_organization',$fresh_eye_journal_details->i_feel_grow_in_organization)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="i_feel_grow_in_organization" id="i_feel_grow_in_organization" value="NA" @if(old('i_feel_grow_in_organization',$fresh_eye_journal_details->i_feel_grow_in_organization)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('i_feel_grow_in_organization'))
@@ -623,6 +627,10 @@
                   <label for="work_culture" class="form-label rdioBtn">Work culture  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="work_culture" id="work_culture" value="NA" @if(old('work_culture',$fresh_eye_journal_details->work_culture)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="work_culture" id="work_culture" value="1" @if(old('work_culture',$fresh_eye_journal_details->work_culture)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -637,9 +645,6 @@
 
                     <input class="form-check-input" type="radio" name="work_culture" id="work_culture" value="5" @if(old('work_culture',$fresh_eye_journal_details->work_culture)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="work_culture" id="work_culture" value="NA" @if(old('work_culture',$fresh_eye_journal_details->work_culture)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('work_culture'))
@@ -652,6 +657,10 @@
                   <label for="recruitment_process" class="form-label rdioBtn">Recruitment process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="recruitment_process" id="recruitment_process" value="NA" @if(old('recruitment_process',$fresh_eye_journal_details->recruitment_process)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="recruitment_process" id="recruitment_process" value="1" @if(old('recruitment_process',$fresh_eye_journal_details->recruitment_process)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -666,9 +675,6 @@
 
                     <input class="form-check-input" type="radio" name="recruitment_process" id="recruitment_process" value="5" @if(old('recruitment_process',$fresh_eye_journal_details->recruitment_process)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="recruitment_process" id="recruitment_process" value="NA" @if(old('recruitment_process',$fresh_eye_journal_details->recruitment_process)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('recruitment_process'))
                     <span class="text-danger">{{ $errors->first('recruitment_process') }}</span>
@@ -680,6 +686,10 @@
                   <label for="induction_process" class="form-label rdioBtn">Induction process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="induction_process" id="induction_process" value="NA" @if(old('induction_process',$fresh_eye_journal_details->induction_process)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="induction_process" id="induction_process" value="1" @if(old('induction_process',$fresh_eye_journal_details->induction_process)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -694,9 +704,6 @@
 
                     <input class="form-check-input" type="radio" name="induction_process" id="induction_process" value="5" @if(old('induction_process',$fresh_eye_journal_details->induction_process)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="induction_process" id="induction_process" value="NA" @if(old('induction_process',$fresh_eye_journal_details->induction_process)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('induction_process'))
                     <span class="text-danger">{{ $errors->first('induction_process') }}</span>
@@ -708,6 +715,10 @@
                   <label for="on_job_training_process" class="form-label rdioBtn">On-job training process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="on_job_training_process" id="on_job_training_process" value="NA" @if(old('on_job_training_process',$fresh_eye_journal_details->on_job_training_process)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="on_job_training_process" id="on_job_training_process" value="1" @if(old('on_job_training_process',$fresh_eye_journal_details->on_job_training_process)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -722,9 +733,6 @@
 
                     <input class="form-check-input" type="radio" name="on_job_training_process" id="on_job_training_process" value="5" @if(old('on_job_training_process',$fresh_eye_journal_details->on_job_training_process)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="on_job_training_process" id="on_job_training_process" value="NA" @if(old('on_job_training_process',$fresh_eye_journal_details->on_job_training_process)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('on_job_training_process'))
                     <span class="text-danger">{{ $errors->first('on_job_training_process') }}</span>
@@ -736,6 +744,10 @@
                   <label for="clear_communication_changes_policy" class="form-label rdioBtn">Clear communication about any changes in the policy <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="clear_communication_changes_policy" id="clear_communication_changes_policy" value="NA" @if(old('clear_communication_changes_policy',$fresh_eye_journal_details->clear_communication_changes_policy)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="clear_communication_changes_policy" id="clear_communication_changes_policy" value="1" @if(old('clear_communication_changes_policy',$fresh_eye_journal_details->clear_communication_changes_policy)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -750,9 +762,6 @@
 
                     <input class="form-check-input" type="radio" name="clear_communication_changes_policy" id="clear_communication_changes_policy" value="5" @if(old('clear_communication_changes_policy',$fresh_eye_journal_details->clear_communication_changes_policy)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="clear_communication_changes_policy" id="clear_communication_changes_policy" value="NA" @if(old('clear_communication_changes_policy',$fresh_eye_journal_details->clear_communication_changes_policy)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('clear_communication_changes_policy'))
                     <span class="text-danger">{{ $errors->first('clear_communication_changes_policy') }}</span>
@@ -764,6 +773,10 @@
                   <label for="feeling_belongingness_organization" class="form-label rdioBtn">Feeling of belongingness in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="feeling_belongingness_organization" id="feeling_belongingness_organization" value="NA" @if(old('feeling_belongingness_organization',$fresh_eye_journal_details->feeling_belongingness_organization)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="feeling_belongingness_organization" id="feeling_belongingness_organization" value="1" @if(old('feeling_belongingness_organization',$fresh_eye_journal_details->feeling_belongingness_organization)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -778,9 +791,6 @@
 
                     <input class="form-check-input" type="radio" name="feeling_belongingness_organization" id="feeling_belongingness_organization" value="5" @if(old('feeling_belongingness_organization',$fresh_eye_journal_details->feeling_belongingness_organization)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="feeling_belongingness_organization" id="feeling_belongingness_organization" value="NA" @if(old('feeling_belongingness_organization',$fresh_eye_journal_details->feeling_belongingness_organization)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('feeling_belongingness_organization'))
@@ -793,6 +803,10 @@
                   <label for="having_best_friend_at_work" class="form-label rdioBtn">Having a best friend at work <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="having_best_friend_at_work" id="having_best_friend_at_work" value="NA" @if(old('having_best_friend_at_work',$fresh_eye_journal_details->having_best_friend_at_work)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="having_best_friend_at_work" id="having_best_friend_at_work" value="1" @if(old('having_best_friend_at_work',$fresh_eye_journal_details->having_best_friend_at_work)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -807,9 +821,6 @@
 
                     <input class="form-check-input" type="radio" name="having_best_friend_at_work" id="having_best_friend_at_work" value="5" @if(old('having_best_friend_at_work',$fresh_eye_journal_details->having_best_friend_at_work)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="having_best_friend_at_work" id="having_best_friend_at_work" value="NA" @if(old('having_best_friend_at_work',$fresh_eye_journal_details->having_best_friend_at_work)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('having_best_friend_at_work'))
@@ -823,6 +834,10 @@
                   <label for="work_life_balance" class="form-label rdioBtn">Work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="work_life_balance" id="work_life_balance" value="NA" @if(old('work_life_balance',$fresh_eye_journal_details->work_life_balance)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="work_life_balance" id="work_life_balance" value="1" @if(old('work_life_balance',$fresh_eye_journal_details->work_life_balance)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -837,9 +852,6 @@
 
                     <input class="form-check-input" type="radio" name="work_life_balance" id="work_life_balance" value="5" @if(old('work_life_balance',$fresh_eye_journal_details->work_life_balance)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="work_life_balance" id="work_life_balance" value="NA" @if(old('work_life_balance',$fresh_eye_journal_details->work_life_balance)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('work_life_balance'))
@@ -871,6 +883,10 @@
                   <label for="quickness_in_respond_reporting_manager" class="form-label rdioBtn">Quickness in respond to your requests/queries/concerns?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager" id="quickness_in_respond_reporting_manager" value="NA" @if(old('quickness_in_respond_reporting_manager',$fresh_eye_journal_details->quickness_in_respond_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager" id="quickness_in_respond_reporting_manager" value="1" @if(old('quickness_in_respond_reporting_manager',$fresh_eye_journal_details->quickness_in_respond_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -885,9 +901,6 @@
 
                     <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager" id="quickness_in_respond_reporting_manager" value="5" @if(old('quickness_in_respond_reporting_manager',$fresh_eye_journal_details->quickness_in_respond_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager" id="quickness_in_respond_reporting_manager" value="NA" @if(old('quickness_in_respond_reporting_manager',$fresh_eye_journal_details->quickness_in_respond_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('quickness_in_respond_reporting_manager'))
@@ -900,6 +913,10 @@
                   <label for="how_well_received_guidance_reporting_manager" class="form-label rdioBtn">How well have you received guidance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager" id="how_well_received_guidance_reporting_manager" value="NA" @if(old('how_well_received_guidance_reporting_manager',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager" id="how_well_received_guidance_reporting_manager" value="1" @if(old('how_well_received_guidance_reporting_manager',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -914,9 +931,6 @@
 
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager" id="how_well_received_guidance_reporting_manager" value="5" @if(old('how_well_received_guidance_reporting_manager',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager" id="how_well_received_guidance_reporting_manager" value="NA" @if(old('how_well_received_guidance_reporting_manager',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('how_well_received_guidance_reporting_manager'))
                     <span class="text-danger">{{ $errors->first('how_well_received_guidance_reporting_manager') }}</span>
@@ -928,6 +942,10 @@
                   <label for="how_clearly_your_goals_set_reporting_manager" class="form-label rdioBtn">How clearly are your goals set? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager" id="how_clearly_your_goals_set_reporting_manager" value="NA" @if(old('how_clearly_your_goals_set_reporting_manager',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager" id="how_clearly_your_goals_set_reporting_manager" value="1" @if(old('how_clearly_your_goals_set_reporting_manager',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -942,9 +960,6 @@
 
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager" id="how_clearly_your_goals_set_reporting_manager" value="5" @if(old('how_clearly_your_goals_set_reporting_manager',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager" id="how_clearly_your_goals_set_reporting_manager" value="NA" @if(old('how_clearly_your_goals_set_reporting_manager',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('how_clearly_your_goals_set_reporting_manager'))
                     <span class="text-danger">{{ $errors->first('how_clearly_your_goals_set_reporting_manager') }}</span>
@@ -956,6 +971,10 @@
                   <label for="how_transparent_is_reporting_manager" class="form-label rdioBtn">How transparent is <span id="how_transparent_reporting_manager_name_ajax">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager" id="how_transparent_is_reporting_manager" value="NA" @if(old('how_transparent_is_reporting_manager',$fresh_eye_journal_details->how_transparent_is_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager" id="how_transparent_is_reporting_manager" value="1" @if(old('how_transparent_is_reporting_manager',$fresh_eye_journal_details->how_transparent_is_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -970,9 +989,6 @@
 
                     <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager" id="how_transparent_is_reporting_manager" value="5" @if(old('how_transparent_is_reporting_manager',$fresh_eye_journal_details->how_transparent_is_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager" id="how_transparent_is_reporting_manager" value="NA" @if(old('how_transparent_is_reporting_manager',$fresh_eye_journal_details->how_transparent_is_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('how_transparent_is_reporting_manager'))
                     <span class="text-danger">{{ $errors->first('how_transparent_is_reporting_manager') }}</span>
@@ -984,6 +1000,10 @@
                   <label for="wprs_happen_every_week_reporting_manager" class="form-label rdioBtn">WPRs happen every week. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="wprs_happen_every_week_reporting_manager" id="wprs_happen_every_week_reporting_manager" value="NA" @if(old('wprs_happen_every_week_reporting_manager',$fresh_eye_journal_details->wprs_happen_every_week_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="wprs_happen_every_week_reporting_manager" id="wprs_happen_every_week_reporting_manager" value="1" @if(old('wprs_happen_every_week_reporting_manager',$fresh_eye_journal_details->wprs_happen_every_week_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -998,9 +1018,6 @@
 
                     <input class="form-check-input" type="radio" name="wprs_happen_every_week_reporting_manager" id="wprs_happen_every_week_reporting_manager" value="5" @if(old('wprs_happen_every_week_reporting_manager',$fresh_eye_journal_details->wprs_happen_every_week_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="wprs_happen_every_week_reporting_manager" id="wprs_happen_every_week_reporting_manager" value="NA" @if(old('wprs_happen_every_week_reporting_manager',$fresh_eye_journal_details->wprs_happen_every_week_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('wprs_happen_every_week_reporting_manager'))
                     <span class="text-danger">{{ $errors->first('wprs_happen_every_week_reporting_manager') }}</span>
@@ -1012,6 +1029,10 @@
                   <label for="how_well_adjust_changing_priorities_reporting_manager" class="form-label rdioBtn">How well does he/she adjust to changing priorities <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+
+                    <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager" id="how_well_adjust_changing_priorities_reporting_manager" value="NA" @if(old('how_well_adjust_changing_priorities_reporting_manager',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager" id="how_well_adjust_changing_priorities_reporting_manager" value="1" @if(old('how_well_adjust_changing_priorities_reporting_manager',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1026,9 +1047,6 @@
 
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager" id="how_well_adjust_changing_priorities_reporting_manager" value="5" @if(old('how_well_adjust_changing_priorities_reporting_manager',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager)=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager" id="how_well_adjust_changing_priorities_reporting_manager" value="NA" @if(old('how_well_adjust_changing_priorities_reporting_manager',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('how_well_adjust_changing_priorities_reporting_manager'))
@@ -1041,6 +1059,9 @@
                   <label for="how_comfortable_feel_sharing_feedback_reporting_manager" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager" id="how_comfortable_feel_sharing_feedback_reporting_manager" value="NA" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager" id="how_comfortable_feel_sharing_feedback_reporting_manager" value="1" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1068,6 +1089,9 @@
                   <label for="how_well_able_learn_under_guidance_reporting_manager" class="form-label rdioBtn">How well are you able to learn under guidance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_well_able_learn_under_guidance_reporting_manager" id="how_well_able_learn_under_guidance_reporting_manager" value="NA" @if(old('how_well_able_learn_under_guidance_reporting_manager',$fresh_eye_journal_details->how_well_able_learn_under_guidance_reporting_manager)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_able_learn_under_guidance_reporting_manager" id="how_well_able_learn_under_guidance_reporting_manager" value="1" @if(old('how_well_able_learn_under_guidance_reporting_manager',$fresh_eye_journal_details->how_well_able_learn_under_guidance_reporting_manager)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1117,6 +1141,9 @@
                   <label for="quickness_in_respond_reporting_manager_qi" class="form-label rdioBtn">How quickly does he/she respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager_qi" id="quickness_in_respond_reporting_manager_qi" value="NA" @if(old('quickness_in_respond_reporting_manager_qi',$fresh_eye_journal_details->quickness_in_respond_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager_qi" id="quickness_in_respond_reporting_manager_qi" value="1" @if(old('quickness_in_respond_reporting_manager_qi',$fresh_eye_journal_details->quickness_in_respond_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1144,6 +1171,9 @@
                   <label for="how_well_received_guidance_reporting_manager_qi" class="form-label rdioBtn">How well have you received guidance? How well have you received guidance from him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager_qi" id="how_well_received_guidance_reporting_manager_qi" value="NA" @if(old('how_well_received_guidance_reporting_manager_qi',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager_qi" id="how_well_received_guidance_reporting_manager_qi" value="1" @if(old('how_well_received_guidance_reporting_manager_qi',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1171,6 +1201,9 @@
                   <label for="how_clearly_your_goals_set_reporting_manager_qi" class="form-label rdioBtn">How clearly are your goals set by him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager_qi" id="how_clearly_your_goals_set_reporting_manager_qi" value="NA" @if(old('how_clearly_your_goals_set_reporting_manager_qi',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager_qi" id="how_clearly_your_goals_set_reporting_manager_qi" value="1" @if(old('how_clearly_your_goals_set_reporting_manager_qi',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1197,6 +1230,9 @@
                   <label for="how_transparent_is_reporting_manager_qi" class="form-label rdioBtn">How transparent is he/she? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager_qi" id="how_transparent_is_reporting_manager_qi" value="NA" @if(old('how_transparent_is_reporting_manager_qi',$fresh_eye_journal_details->how_transparent_is_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager_qi" id="how_transparent_is_reporting_manager_qi" value="1" @if(old('how_transparent_is_reporting_manager_qi',$fresh_eye_journal_details->how_transparent_is_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1224,6 +1260,9 @@
                   <label for="frequent_1_1_happen_reporting_manager_qi" class="form-label rdioBtn">How frequent does your 1:1 happen? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="frequent_1_1_happen_reporting_manager_qi" id="frequent_1_1_happen_reporting_manager_qi" value="NA" @if(old('frequent_1_1_happen_reporting_manager_qi',$fresh_eye_journal_details->frequent_1_1_happen_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="frequent_1_1_happen_reporting_manager_qi" id="frequent_1_1_happen_reporting_manager_qi" value="1" @if(old('frequent_1_1_happen_reporting_manager_qi',$fresh_eye_journal_details->frequent_1_1_happen_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1251,6 +1290,9 @@
                   <label for="how_well_adjust_changing_priorities_reporting_manager_qi" class="form-label rdioBtn">How well does he/she adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager_qi" id="how_well_adjust_changing_priorities_reporting_manager_qi" value="NA" @if(old('how_well_adjust_changing_priorities_reporting_manager_qi',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager_qi" id="how_well_adjust_changing_priorities_reporting_manager_qi" value="1" @if(old('how_well_adjust_changing_priorities_reporting_manager_qi',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1278,6 +1320,9 @@
                   <label for="how_comfortable_feel_sharing_feedback_reporting_manager_qi" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager_qi" id="how_comfortable_feel_sharing_feedback_reporting_manager_qi" value="NA" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager_qi',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager_qi)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager_qi" id="how_comfortable_feel_sharing_feedback_reporting_manager_qi" value="1" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager_qi',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager_qi)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1416,6 +1461,9 @@
                   <label for="quickness_in_respond_hod_qj" class="form-label rdioBtn">How quickly does he/she respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="quickness_in_respond_hod_qj" id="quickness_in_respond_hod_qj" value="NA" @if(old('quickness_in_respond_hod_qj',$fresh_eye_journal_details->quickness_in_respond_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="quickness_in_respond_hod_qj" id="quickness_in_respond_hod_qj" value="1" @if(old('quickness_in_respond_hod_qj',$fresh_eye_journal_details->quickness_in_respond_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1443,6 +1491,9 @@
                   <label for="how_well_received_guidance_hod_qj" class="form-label rdioBtn">How well have you received guidance from him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_well_received_guidance_hod_qj" id="how_well_received_guidance_hod_qj" value="NA" @if(old('how_well_received_guidance_hod_qj',$fresh_eye_journal_details->how_well_received_guidance_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_hod_qj" id="how_well_received_guidance_hod_qj" value="1" @if(old('how_well_received_guidance_hod_qj',$fresh_eye_journal_details->how_well_received_guidance_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1470,6 +1521,9 @@
                   <label for="how_clearly_your_goals_set_hod_qj" class="form-label rdioBtn">How clearly are your goals set by him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_hod_qj" id="how_clearly_your_goals_set_hod_qj" value="NA" @if(old('how_clearly_your_goals_set_hod_qj',$fresh_eye_journal_details->how_clearly_your_goals_set_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_hod_qj" id="how_clearly_your_goals_set_hod_qj" value="1"@if(old('how_clearly_your_goals_set_hod_qj',$fresh_eye_journal_details->how_clearly_your_goals_set_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1496,6 +1550,9 @@
                   <label for="how_transparent_is_hod_qj" class="form-label rdioBtn">How transparent is he/she? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_transparent_is_hod_qj" id="how_transparent_is_hod_qj" value="NA" @if(old('how_transparent_is_hod_qj',$fresh_eye_journal_details->how_transparent_is_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_transparent_is_hod_qj" id="how_transparent_is_hod_qj" value="1" @if(old('how_transparent_is_hod_qj',$fresh_eye_journal_details->how_transparent_is_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1523,6 +1580,9 @@
                   <label for="frequent_1_1_happen_hod_qj" class="form-label rdioBtn">How frequent does your 1:1 happen? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="frequent_1_1_happen_hod_qj" id="frequent_1_1_happen_hod_qj" value="NA" @if(old('frequent_1_1_happen_hod_qj',$fresh_eye_journal_details->frequent_1_1_happen_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="frequent_1_1_happen_hod_qj" id="frequent_1_1_happen_hod_qj" value="1" @if(old('frequent_1_1_happen_hod_qj',$fresh_eye_journal_details->frequent_1_1_happen_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1550,6 +1610,9 @@
                   <label for="how_well_adjust_changing_priorities_hod_qj" class="form-label rdioBtn">How well does he/she adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_hod_qj" id="how_well_adjust_changing_priorities_hod_qj" value="NA" @if(old('how_well_adjust_changing_priorities_hod_qj',$fresh_eye_journal_details->how_well_adjust_changing_priorities_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_hod_qj" id="how_well_adjust_changing_priorities_hod_qj" value="1" @if(old('how_well_adjust_changing_priorities_hod_qj',$fresh_eye_journal_details->how_well_adjust_changing_priorities_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1577,6 +1640,9 @@
                   <label for="how_comfortable_feel_sharing_feedback_hod_qj" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_hod_qj" id="how_comfortable_feel_sharing_feedback_hod_qj" value="NA" @if(old('how_comfortable_feel_sharing_feedback_hod_qj',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_hod_qj)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_hod_qj" id="how_comfortable_feel_sharing_feedback_hod_qj" value="1" @if(old('how_comfortable_feel_sharing_feedback_hod_qj',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_hod_qj)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1713,6 +1779,9 @@
                   <label for="admin_operations" class="form-label rdioBtn">Admin Operations<!--  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong> --></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="admin_operations" id="admin_operations" value="NA" @if(old('admin_operations',$fresh_eye_journal_details->admin_operations)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="admin_operations" id="admin_operations" value="1" @if(old('admin_operations',$fresh_eye_journal_details->admin_operations)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1739,6 +1808,9 @@
                   <label for="advertiser_sales" class="form-label rdioBtn">Advertiser Sales</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="advertiser_sales" id="advertiser_sales" value="NA" @if(old('advertiser_sales',$fresh_eye_journal_details->advertiser_sales)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="advertiser_sales" id="advertiser_sales" value="1" @if(old('advertiser_sales',$fresh_eye_journal_details->advertiser_sales)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1764,6 +1836,9 @@
                   <label for="advertisers" class="form-label rdioBtn">Advertisers</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="advertisers" id="advertisers" value="NA" @if(old('advertisers',$fresh_eye_journal_details->advertisers)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="advertisers" id="advertisers" value="1" @if(old('advertisers',$fresh_eye_journal_details->advertisers)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1789,6 +1864,9 @@
                   <label for="finance_accounts" class="form-label rdioBtn">Finance & Accounts</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="finance_accounts" id="finance_accounts" value="NA" @if(old('finance_accounts',$fresh_eye_journal_details->finance_accounts)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="finance_accounts" id="finance_accounts" value="1" @if(old('finance_accounts',$fresh_eye_journal_details->finance_accounts)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1814,6 +1892,9 @@
                   <label for="human_resources" class="form-label rdioBtn">Human Resources</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="human_resources" id="human_resources" value="NA" @if(old('human_resources',$fresh_eye_journal_details->human_resources)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="human_resources" id="human_resources" value="1" @if(old('human_resources',$fresh_eye_journal_details->human_resources)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1839,6 +1920,9 @@
                   <label for="management" class="form-label rdioBtn">Management</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="management" id="management" value="NA" @if(old('management',$fresh_eye_journal_details->management)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="management" id="management" value="1" @if(old('management',$fresh_eye_journal_details->management)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1865,6 +1949,9 @@
                   <label for="network_operations" class="form-label rdioBtn">Network Operations</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="network_operations" id="network_operations" value="NA" @if(old('network_operations',$fresh_eye_journal_details->network_operations)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="network_operations" id="network_operations" value="1" @if(old('network_operations',$fresh_eye_journal_details->network_operations)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1892,6 +1979,9 @@
                   <label for="pocket_money" class="form-label rdioBtn">Pocket Money</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="pocket_money" id="pocket_money" value="NA" @if(old('pocket_money',$fresh_eye_journal_details->pocket_money)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="pocket_money" id="pocket_money" value="1" @if(old('pocket_money',$fresh_eye_journal_details->pocket_money)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1918,6 +2008,9 @@
                   <label for="publishers" class="form-label rdioBtn">Publishers</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="publishers" id="publishers" value="NA" @if(old('publishers',$fresh_eye_journal_details->publishers)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="publishers" id="publishers" value="1" @if(old('publishers',$fresh_eye_journal_details->publishers)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1944,6 +2037,9 @@
                   <label for="tech_operations_development" class="form-label rdioBtn">Tech Operations - Development</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="tech_operations_development" id="tech_operations_development" value="NA" @if(old('tech_operations_development',$fresh_eye_journal_details->tech_operations_development)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="tech_operations_development" id="tech_operations_development" value="1" @if(old('tech_operations_development',$fresh_eye_journal_details->tech_operations_development)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1970,6 +2066,9 @@
                   <label for="support_ea_pa" class="form-label rdioBtn">Support (EA/PA)</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="support_ea_pa" id="support_ea_pa" value="NA" @if(old('support_ea_pa',$fresh_eye_journal_details->support_ea_pa)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="support_ea_pa" id="support_ea_pa" value="1" @if(old('support_ea_pa',$fresh_eye_journal_details->support_ea_pa)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1996,6 +2095,9 @@
                   <label for="education" class="form-label rdioBtn">Education</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="education" id="education" value="NA" @if(old('education',$fresh_eye_journal_details->education)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="education" id="education" value="1" @if(old('education',$fresh_eye_journal_details->education)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -2022,6 +2124,9 @@
                   <label for="igaming" class="form-label rdioBtn">iGaming</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="igaming" id="igaming" value="NA" @if(old('igaming',$fresh_eye_journal_details->igaming)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="igaming" id="igaming" value="1" @if(old('igaming',$fresh_eye_journal_details->igaming)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -2048,6 +2153,9 @@
                   <label for="tech_operations_shopify" class="form-label rdioBtn">Tech Operations - Shopify</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="tech_operations_shopify" id="tech_operations_shopify" value="NA" @if(old('tech_operations_shopify',$fresh_eye_journal_details->tech_operations_shopify)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="tech_operations_shopify" id="tech_operations_shopify" value="1" @if(old('tech_operations_shopify',$fresh_eye_journal_details->tech_operations_shopify)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -2074,6 +2182,9 @@
                   <label for="tech_operations_creative" class="form-label rdioBtn">Tech Operations - Creative</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="tech_operations_creative" id="tech_operations_creative" value="NA" @if(old('tech_operations_creative',$fresh_eye_journal_details->tech_operations_creative)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="tech_operations_creative" id="tech_operations_creative" value="1" @if(old('tech_operations_creative',$fresh_eye_journal_details->tech_operations_creative)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -2100,6 +2211,9 @@
                   <label for="mobile" class="form-label rdioBtn">Mobile</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="mobile" id="mobile" value="NA" @if(old('mobile',$fresh_eye_journal_details->mobile)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="mobile" id="mobile" value="1" @if(old('mobile',$fresh_eye_journal_details->mobile)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -2126,6 +2240,9 @@
                   <label for="vcommission_uk" class="form-label rdioBtn">vCommission - UK</label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="vcommission_uk" id="vcommission_uk" value="NA" @if(old('vcommission_uk',$fresh_eye_journal_details->vcommission_uk)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    
                     <input class="form-check-input" type="radio" name="vcommission_uk" id="vcommission_uk" value="1" @if(old('vcommission_uk',$fresh_eye_journal_details->vcommission_uk)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 

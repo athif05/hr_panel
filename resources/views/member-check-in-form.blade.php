@@ -228,6 +228,7 @@
                     @foreach($yourself_category_details as $yourself_category_detail)
                       <option value="{{$yourself_category_detail['id']}}" @if(old('place_yourself_category')==$yourself_category_detail['id']) selected @endif>{{$yourself_category_detail['name']}}</option>
                     @endforeach
+                    <option value="Others" @if(old('place_yourself_category')=='Others') selected @endif>Others</option>
                   </select>
                   <div class="invalid-feedback">
                     Please select a category.
@@ -243,9 +244,12 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="target" class="form-label rdioBtn">Target:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="target" class="form-label rdioBtn">Target  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="target" id="target" value="NA" @if(old('target')=='NA') checked @elseif(old('target')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="target" id="target" value="1" @if(old('target')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -261,9 +265,6 @@
                     <input class="form-check-input" type="radio" name="target" id="target" value="5" @if(old('target')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
 
-                    <input class="form-check-input" type="radio" name="target" id="target" value="NA" @if(old('target')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
-
                   </span>
 
                   @if ($errors->has('target'))
@@ -276,7 +277,9 @@
                   <label for="response" class="form-label rdioBtn">Response <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    
+                    <input class="form-check-input" type="radio" name="response" id="response" value="NA" @if(old('response')=='NA') checked @elseif(old('response')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="response" id="response" value="1" @if(old('response')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -291,9 +294,6 @@
 
                     <input class="form-check-input" type="radio" name="response" id="response" value="5" @if(old('response')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="response" id="response" value="NA" @if(old('response')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('response'))
                     <span class="text-danger">{{ $errors->first('response') }}</span>
@@ -305,6 +305,8 @@
                   <label for="jd" class="form-label rdioBtn">JD <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="jd" id="jd" value="NA" @if(old('jd')=='NA') checked @elseif(old('jd')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="jd" id="jd" value="1" @if(old('jd')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
@@ -320,9 +322,6 @@
 
                     <input class="form-check-input" type="radio" name="jd" id="jd" value="5" @if(old('jd')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="jd" id="jd" value="NA" @if(old('jd')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('jd'))
                     <span class="text-danger">{{ $errors->first('jd') }}</span>
@@ -334,6 +333,9 @@
                   <label for="reliability" class="form-label rdioBtn">Reliability <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="NA" @if(old('reliability')=='NA') checked @elseif(old('reliability')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="reliability" id="reliability" value="1" @if(old('reliability')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -348,9 +350,6 @@
 
                     <input class="form-check-input" type="radio" name="reliability" id="reliability" value="5" @if(old('reliability')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="reliability" id="reliability" value="NA" @if(old('reliability')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('reliability'))
                     <span class="text-danger">{{ $errors->first('reliability') }}</span>
@@ -362,6 +361,9 @@
                   <label for="team_spirit" class="form-label rdioBtn">Team Spirit <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="NA" @if(old('team_spirit')=='NA') checked @elseif(old('team_spirit')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="1" @if(old('team_spirit')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -376,9 +378,6 @@
 
                     <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="5" @if(old('team_spirit')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="team_spirit" id="team_spirit" value="NA" @if(old('team_spirit')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('team_spirit'))
                     <span class="text-danger">{{ $errors->first('team_spirit') }}</span>
@@ -390,6 +389,9 @@
                   <label for="attendance" class="form-label rdioBtn">Attendance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="NA" @if(old('attendance')=='NA') checked @elseif(old('attendance')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="attendance" id="attendance" value="1" @if(old('attendance')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -404,9 +406,6 @@
 
                     <input class="form-check-input" type="radio" name="attendance" id="attendance" value="5" @if(old('attendance')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="attendance" id="attendance" value="NA" @if(old('attendance')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('attendance'))
@@ -419,6 +418,9 @@
                   <label for="attitude" class="form-label rdioBtn">Attitude <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="NA" @if(old('attitude')=='NA') checked @elseif(old('attitude')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="attitude" id="attitude" value="1" @if(old('attitude')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -433,9 +435,6 @@
 
                     <input class="form-check-input" type="radio" name="attitude" id="attitude" value="5" @if(old('attitude')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="attitude" id="attitude" value="NA" @if(old('attitude')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('attitude'))
@@ -449,6 +448,9 @@
                   <label for="rules" class="form-label rdioBtn">Rules <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="rules" id="rules" value="NA" @if(old('rules')=='NA') checked @elseif(old('rules')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="rules" id="rules" value="1" @if(old('rules')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -463,9 +465,6 @@
 
                     <input class="form-check-input" type="radio" name="rules" id="rules" value="5" @if(old('rules')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="rules" id="rules" value="NA" @if(old('rules')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('rules'))
@@ -479,6 +478,9 @@
                   <label for="peers" class="form-label rdioBtn">Peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="peers" id="peers" value="NA" @if(old('peers')=='NA') checked @elseif(old('peers')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="peers" id="peers" value="1" @if(old('peers')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -493,9 +495,6 @@
 
                     <input class="form-check-input" type="radio" name="peers" id="peers" value="5" @if(old('peers')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="peers" id="peers" value="NA" @if(old('peers')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('peers'))
@@ -675,9 +674,12 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_work_culture" class="form-label rdioBtn">The work culture in the company is encouraging:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_work_culture" class="form-label rdioBtn">The work culture in the company is encouraging  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="NA" @if(old('company_work_culture')=='NA') checked @elseif(old('company_work_culture')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="1" @if(old('company_work_culture')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -692,9 +694,6 @@
 
                     <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="5" @if(old('company_work_culture')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="company_work_culture" id="company_work_culture" value="NA" @if(old('company_work_culture')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('company_work_culture'))
@@ -707,6 +706,9 @@
                   <label for="processes_policies_well_defined" class="form-label rdioBtn">The processes & policies are well defined & well explained. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="NA" @if(old('processes_policies_well_defined')=='NA') checked @elseif(old('processes_policies_well_defined')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="1" @if(old('processes_policies_well_defined')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -721,9 +723,6 @@
 
                     <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="5" @if(old('processes_policies_well_defined')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="NA" @if(old('processes_policies_well_defined')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('processes_policies_well_defined'))
                     <span class="text-danger">{{ $errors->first('processes_policies_well_defined') }}</span>
@@ -735,6 +734,9 @@
                   <label for="enjoy_work_life_balance" class="form-label rdioBtn">I enjoy the work-life balance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="NA" @if(old('enjoy_work_life_balance')=='NA') checked @elseif(old('enjoy_work_life_balance')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="1" @if(old('enjoy_work_life_balance')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -749,9 +751,6 @@
 
                     <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="5" @if(old('enjoy_work_life_balance')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="enjoy_work_life_balance" id="enjoy_work_life_balance" value="NA" @if(old('enjoy_work_life_balance')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('enjoy_work_life_balance'))
                     <span class="text-danger">{{ $errors->first('enjoy_work_life_balance') }}</span>
@@ -763,6 +762,9 @@
                   <label for="happy_with_treated_in_company" class="form-label rdioBtn">I am happy with how I am treated in the company by managers & peers <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="NA" @if(old('happy_with_treated_in_company')=='NA') checked @elseif(old('happy_with_treated_in_company')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="1" @if(old('happy_with_treated_in_company')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -777,9 +779,6 @@
 
                     <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="5" @if(old('happy_with_treated_in_company')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="happy_with_treated_in_company" id="happy_with_treated_in_company" value="NA" @if(old('happy_with_treated_in_company')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('happy_with_treated_in_company'))
                     <span class="text-danger">{{ $errors->first('happy_with_treated_in_company') }}</span>
@@ -791,6 +790,9 @@
                   <label for="job_title_kras" class="form-label rdioBtn">My job title & KRAs are apt for me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="NA" @if(old('job_title_kras')=='NA') checked @elseif(old('job_title_kras')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="1" @if(old('job_title_kras')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -805,9 +807,6 @@
 
                     <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="5" @if(old('job_title_kras')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="job_title_kras" id="job_title_kras" value="NA" @if(old('job_title_kras')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('job_title_kras'))
                     <span class="text-danger">{{ $errors->first('job_title_kras') }}</span>
@@ -819,6 +818,9 @@
                   <label for="necessary_resources_available" class="form-label rdioBtn">I have necessary resources available, to perform my job <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="NA" @if(old('necessary_resources_available')=='NA') checked @elseif(old('necessary_resources_available')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="1" @if(old('necessary_resources_available')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -833,9 +835,6 @@
 
                     <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="5" @if(old('necessary_resources_available')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="necessary_resources_available" id="necessary_resources_available" value="NA" @if(old('necessary_resources_available')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('necessary_resources_available'))
@@ -848,6 +847,9 @@
                   <label for="feel_grow_in_organization" class="form-label rdioBtn">I feel I will grow in the organization <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="NA" @if(old('feel_grow_in_organization')=='NA') checked @elseif(old('feel_grow_in_organization')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="1" @if(old('feel_grow_in_organization')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -862,9 +864,6 @@
 
                     <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="5" @if(old('feel_grow_in_organization')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="feel_grow_in_organization" id="feel_grow_in_organization" value="NA" @if(old('feel_grow_in_organization')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('feel_grow_in_organization'))
@@ -878,6 +877,9 @@
                   <label for="complete_clarity_my_role" class="form-label rdioBtn">I have complete clarity of my role & what's expected out of me <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="NA" @if(old('complete_clarity_my_role')=='NA') checked @elseif(old('complete_clarity_my_role')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="1" @if(old('complete_clarity_my_role')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -892,9 +894,6 @@
 
                     <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="5" @if(old('complete_clarity_my_role')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="complete_clarity_my_role" id="complete_clarity_my_role" value="NA" @if(old('complete_clarity_my_role')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('complete_clarity_my_role'))
@@ -908,6 +907,9 @@
                   <label for="overall_happy_with_job_role" class="form-label rdioBtn">Overall I am happy with my job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="NA" @if(old('overall_happy_with_job_role')=='NA') checked @elseif(old('overall_happy_with_job_role')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="1" @if(old('overall_happy_with_job_role')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -922,9 +924,6 @@
 
                     <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="5" @if(old('overall_happy_with_job_role')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="overall_happy_with_job_role" id="overall_happy_with_job_role" value="NA" @if(old('overall_happy_with_job_role')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('overall_happy_with_job_role'))
@@ -943,6 +942,9 @@
                   <label for="training_elaborative_well_explained" class="form-label rdioBtn">Training was elaborative & well explained.  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="NA" @if(old('training_elaborative_well_explained')=='NA') checked @elseif(old('training_elaborative_well_explained')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="1" @if(old('training_elaborative_well_explained')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -957,9 +959,6 @@
 
                     <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="5" @if(old('training_elaborative_well_explained')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="NA" @if(old('training_elaborative_well_explained')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('training_elaborative_well_explained'))
@@ -972,6 +971,9 @@
                   <label for="training_duration_apt" class="form-label rdioBtn">Duration of training was apt. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="NA" @if(old('training_duration_apt')=='NA') checked @elseif(old('training_duration_apt')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="1" @if(old('training_duration_apt')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -986,9 +988,6 @@
 
                     <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="5" @if(old('training_duration_apt')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="NA" @if(old('training_duration_apt')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('training_duration_apt'))
                     <span class="text-danger">{{ $errors->first('training_duration_apt') }}</span>
@@ -1000,6 +999,9 @@
                   <label for="proper_modules_defined_topic" class="form-label rdioBtn">Proper modules are defined for each topic <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="NA" @if(old('proper_modules_defined_topic')=='NA') checked @elseif(old('proper_modules_defined_topic')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="1" @if(old('proper_modules_defined_topic')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1014,9 +1016,6 @@
 
                     <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="5" @if(old('proper_modules_defined_topic')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="proper_modules_defined_topic" id="proper_modules_defined_topic" value="NA" @if(old('proper_modules_defined_topic')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('proper_modules_defined_topic'))
                     <span class="text-danger">{{ $errors->first('proper_modules_defined_topic') }}</span>
@@ -1028,6 +1027,9 @@
                   <label for="adequate_supporting_material" class="form-label rdioBtn">Adequate supporting material is provided to help learn faster & better <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="NA" @if(old('adequate_supporting_material')=='NA') checked @elseif(old('adequate_supporting_material')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="1" @if(old('adequate_supporting_material')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1042,9 +1044,6 @@
 
                     <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="5" @if(old('adequate_supporting_material')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="adequate_supporting_material" id="adequate_supporting_material" value="NA" @if(old('adequate_supporting_material')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('adequate_supporting_material'))
                     <span class="text-danger">{{ $errors->first('adequate_supporting_material') }}</span>
@@ -1056,6 +1055,9 @@
                   <label for="clarity_on_topics_during_training" class="form-label rdioBtn">The clarity given on topics during training was apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="NA" @if(old('clarity_on_topics_during_training')=='NA') checked @elseif(old('clarity_on_topics_during_training')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="1" @if(old('clarity_on_topics_during_training')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1070,9 +1072,6 @@
 
                     <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="5" @if(old('clarity_on_topics_during_training')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="clarity_on_topics_during_training" id="clarity_on_topics_during_training" value="NA" @if(old('clarity_on_topics_during_training')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('clarity_on_topics_during_training'))
                     <span class="text-danger">{{ $errors->first('clarity_on_topics_during_training') }}</span>
@@ -1090,6 +1089,9 @@
                   <label for="great_relationship_with_manager" class="form-label rdioBtn">I have great relationship with <span id="great_relationship_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span>  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="NA" @if(old('great_relationship_with_manager')=='NA') checked @elseif(old('great_relationship_with_manager')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="1" @if(old('great_relationship_with_manager')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1104,9 +1106,6 @@
 
                     <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="5" @if(old('great_relationship_with_manager')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="great_relationship_with_manager" id="great_relationship_with_manager" value="NA" @if(old('great_relationship_with_manager')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('great_relationship_with_manager'))
@@ -1119,6 +1118,9 @@
                   <label for="reviewed_properly_feedback_shared_timely" class="form-label rdioBtn">My work is reviewed properly & feedback is shared timely <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="NA" @if(old('reviewed_properly_feedback_shared_timely')=='NA') checked @elseif(old('reviewed_properly_feedback_shared_timely')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="1" @if(old('reviewed_properly_feedback_shared_timely')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1133,9 +1135,6 @@
 
                     <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="5" @if(old('reviewed_properly_feedback_shared_timely')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="reviewed_properly_feedback_shared_timely" id="reviewed_properly_feedback_shared_timely" value="NA" @if(old('reviewed_properly_feedback_shared_timely')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('reviewed_properly_feedback_shared_timely'))
                     <span class="text-danger">{{ $errors->first('reviewed_properly_feedback_shared_timely') }}</span>
@@ -1147,6 +1146,9 @@
                   <label for="openly_share_opinions" class="form-label rdioBtn">I can openly share opinions & feedback with <span id="openly_share_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="NA" @if(old('openly_share_opinions')=='NA') checked @elseif(old('openly_share_opinions')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="1" @if(old('openly_share_opinions')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1161,9 +1163,6 @@
 
                     <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="5" @if(old('openly_share_opinions')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="openly_share_opinions" id="openly_share_opinions" value="NA" @if(old('openly_share_opinions')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('openly_share_opinions'))
                     <span class="text-danger">{{ $errors->first('openly_share_opinions') }}</span>
@@ -1175,6 +1174,9 @@
                   <label for="receive_adequate_guidance" class="form-label rdioBtn">I receive adequate guidance from <span id="adequate_guidance_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="NA" @if(old('receive_adequate_guidance')=='NA') checked @elseif(old('receive_adequate_guidance')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="1" @if(old('receive_adequate_guidance')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1189,9 +1191,6 @@
 
                     <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="5" @if(old('receive_adequate_guidance')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="receive_adequate_guidance" id="receive_adequate_guidance" value="NA" @if(old('receive_adequate_guidance')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('receive_adequate_guidance'))
                     <span class="text-danger">{{ $errors->first('receive_adequate_guidance') }}</span>
@@ -1203,6 +1202,9 @@
                   <label for="receive_adequate_timely_feedback" class="form-label rdioBtn">I receive adequate & timely feedback from <span id="timely_feedback_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="NA" @if(old('receive_adequate_timely_feedback')=='NA') checked @elseif(old('receive_adequate_timely_feedback')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="1" @if(old('receive_adequate_timely_feedback')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1217,9 +1219,6 @@
 
                     <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="5" @if(old('receive_adequate_timely_feedback')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="receive_adequate_timely_feedback" id="receive_adequate_timely_feedback" value="NA" @if(old('receive_adequate_timely_feedback')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('receive_adequate_timely_feedback'))
                     <span class="text-danger">{{ $errors->first('receive_adequate_timely_feedback') }}</span>
@@ -1231,6 +1230,9 @@
                   <label for="get_quick_resolution_issue" class="form-label rdioBtn">I get quick resolution to issues from <span id="quick_resolution_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="NA" @if(old('get_quick_resolution_issue')=='NA') checked @elseif(old('get_quick_resolution_issue')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="1" @if(old('get_quick_resolution_issue')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
@@ -1245,9 +1247,6 @@
 
                     <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="5" @if(old('get_quick_resolution_issue')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
-
-                    <input class="form-check-input" type="radio" name="get_quick_resolution_issue" id="get_quick_resolution_issue" value="NA" @if(old('get_quick_resolution_issue')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
                   @if ($errors->has('get_quick_resolution_issue'))
                     <span class="text-danger">{{ $errors->first('get_quick_resolution_issue') }}</span>
@@ -1291,14 +1290,14 @@
                   <label for="receive_proper_job_kra" class="form-label rdioBtn">Did you receive a proper Job Description/KRA sheet from your manager at the time of joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="NA" @if(old('receive_proper_job_kra')=='NA') checked @elseif(old('receive_proper_job_kra')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="Yes" @if(old('receive_proper_job_kra')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="No" @if(old('receive_proper_job_kra')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="NA" @if(old('receive_proper_job_kra')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('receive_proper_job_kra'))
@@ -1312,14 +1311,14 @@
                   <label for="proper_training_plan" class="form-label rdioBtn">Did you receive a proper training plan from your reporting manager at the time of our joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="NA" @if(old('proper_training_plan')=='NA') checked @elseif(old('proper_training_plan')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="Yes" @if(old('proper_training_plan')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="No" @if(old('proper_training_plan')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="NA" @if(old('proper_training_plan')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('proper_training_plan'))
@@ -1333,14 +1332,14 @@
                   <label for="training_executed_planned" class="form-label rdioBtn">Was the training executed as planned?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="NA" @if(old('training_executed_planned')=='NA') checked @elseif(old('training_executed_planned')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="Yes" @if(old('training_executed_planned')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="No" @if(old('training_executed_planned')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="NA" @if(old('training_executed_planned')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('training_executed_planned'))
@@ -1353,14 +1352,14 @@
                   <label for="marked_regularly_your_eod" class="form-label rdioBtn">Are you marked regularly on your EODs?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="NA" @if(old('marked_regularly_your_eod')=='NA') checked @elseif(old('marked_regularly_your_eod')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="Yes" @if(old('marked_regularly_your_eod')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="No" @if(old('marked_regularly_your_eod')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="NA" @if(old('marked_regularly_your_eod')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('marked_regularly_your_eod'))
@@ -1373,14 +1372,14 @@
                   <label for="wpr_happen_atleast_once_week" class="form-label rdioBtn">Do your WPRs happen atleast once a week?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="NA" @if(old('wpr_happen_atleast_once_week')=='NA') checked @elseif(old('wpr_happen_atleast_once_week')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="Yes" @if(old('wpr_happen_atleast_once_week')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="No" @if(old('wpr_happen_atleast_once_week')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="NA" @if(old('wpr_happen_atleast_once_week')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('wpr_happen_atleast_once_week'))
@@ -1393,14 +1392,14 @@
                   <label for="one_to_one_interaction" class="form-label rdioBtn">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="NA" @if(old('one_to_one_interaction')=='NA') checked @elseif(old('one_to_one_interaction')=='') checked @endif
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
                     <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="Yes" @if(old('one_to_one_interaction')=='Yes') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Yes</label>
 
                     <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="No" @if(old('one_to_one_interaction')=='No') checked @endif>
                     <label class="form-check-label" for="gridRadios1">No</label>
-
-                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="NA" @if(old('one_to_one_interaction')=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
                   </span>
 
                   @if ($errors->has('one_to_one_interaction'))

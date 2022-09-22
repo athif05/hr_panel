@@ -35,7 +35,6 @@ class UserRecruitmentFormController extends Controller
             ->where('is_deleted', '0')
             ->where('role_id', '5')
             ->orWhere('role_id', '6')
-            ->orWhere('role_id', '7')
             ->orderBy('first_name','asc')
             ->get();
 
@@ -88,7 +87,6 @@ class UserRecruitmentFormController extends Controller
             ->where('is_deleted', '0')
             ->where('role_id', '5')
             ->orWhere('role_id', '6')
-            ->orWhere('role_id', '7')
             ->orderBy('first_name','asc')
             ->get();
 
@@ -218,17 +216,17 @@ class UserRecruitmentFormController extends Controller
             'department' => $request->department,
             'company_name' => $request->company_name,
             'date_of_joining' => $request->date_of_joining,
-            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "0"),
+            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "NA"),
             'internal_employee_name' => (!is_null($request->internal_employee_name) ? $request->internal_employee_name : ""),
             'internal_employee_designation' => (!is_null($request->internal_employee_designation) ? $request->internal_employee_designation : ""),
             'internal_employee_department' => (!is_null($request->internal_employee_department) ? $request->internal_employee_department : ""),
             'name_of_your_recruiter' => (!is_null($request->name_of_your_recruiter) ? $request->name_of_your_recruiter : ""),
-            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "0"),
-            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "0"),
-            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "0"),
-            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "0"),
-            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "0"),
-            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "0"),
+            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "NA"),
+            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "NA"),
+            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "NA"),
+            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "NA"),
+            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "NA"),
+            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "NA"),
             'company_policies_procedures' => (!is_null($request->company_policies_procedures) ? $request->company_policies_procedures : ""),
             'manager_expectation_setting' => (!is_null($request->manager_expectation_setting) ? $request->manager_expectation_setting : ""),
             'job_duties_responsibilities' => (!is_null($request->job_duties_responsibilities) ? $request->job_duties_responsibilities : ""),
@@ -236,9 +234,9 @@ class UserRecruitmentFormController extends Controller
             'mission_for_first_year' => $request->mission_for_first_year,
             'aim_in_second_year' => $request->aim_in_second_year,
             'aim_third_year_tenure' => $request->aim_third_year_tenure,
-            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "0"),
+            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "NA"),
             'additional_feedback_recruitment_process' => $request->additional_feedback_recruitment_process,
-            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "0"),
+            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "NA"),
             'additional_feedback_hr_induction' => $request->additional_feedback_hr_induction,
             'status' => $status,
         ]);
@@ -307,7 +305,6 @@ class UserRecruitmentFormController extends Controller
             ->where('is_deleted', '0')
             ->where('role_id', '5')
             ->orWhere('role_id', '6')
-            ->orWhere('role_id', '7')
             ->orderBy('first_name','asc')
             ->get();
 
@@ -424,17 +421,17 @@ class UserRecruitmentFormController extends Controller
             'department' => $request->department,
             'company_name' => $request->company_name,
             'date_of_joining' => $request->date_of_joining,
-            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "0"),
+            'how_come_for_job_opening' => (!is_null($request->how_come_for_job_opening) ? $request->how_come_for_job_opening : "NA"),
             'internal_employee_name' => (!is_null($request->internal_employee_name) ? $request->internal_employee_name : ""),
             'internal_employee_designation' => (!is_null($request->internal_employee_designation) ? $request->internal_employee_designation : ""),
             'internal_employee_department' => (!is_null($request->internal_employee_department) ? $request->internal_employee_department : ""),
             'name_of_your_recruiter' => (!is_null($request->name_of_your_recruiter) ? $request->name_of_your_recruiter : ""),
-            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "0"),
-            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "0"),
-            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "0"),
-            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "0"),
-            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "0"),
-            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "0"),
+            'professionalism' => (!is_null($request->professionalism) ? $request->professionalism : "NA"),
+            'friendliness' => (!is_null($request->friendliness) ? $request->friendliness : "NA"),
+            'length_time_spent_talking' => (!is_null($request->length_time_spent_talking) ? $request->length_time_spent_talking : "NA"),
+            'company_knowledge' =>  (!is_null($request->company_knowledge) ? $request->company_knowledge : "NA"),
+            'specific_knowledge_job_profile' =>  (!is_null($request->specific_knowledge_job_profile) ? $request->specific_knowledge_job_profile : "NA"),
+            'timely_response_email_phone' => (!is_null($request->timely_response_email_phone) ? $request->timely_response_email_phone : "NA"),
             'company_policies_procedures' => (!is_null($request->company_policies_procedures) ? $request->company_policies_procedures : ""),
             'manager_expectation_setting' => (!is_null($request->manager_expectation_setting) ? $request->manager_expectation_setting : ""),
             'job_duties_responsibilities' => (!is_null($request->job_duties_responsibilities) ? $request->job_duties_responsibilities : ""),
@@ -442,9 +439,9 @@ class UserRecruitmentFormController extends Controller
             'mission_for_first_year' => $request->mission_for_first_year,
             'aim_in_second_year' => $request->aim_in_second_year,
             'aim_third_year_tenure' => $request->aim_third_year_tenure,
-            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "0"),
+            'rate_overall_recruitment_process' => (!is_null($request->rate_overall_recruitment_process) ? $request->rate_overall_recruitment_process : "NA"),
             'additional_feedback_recruitment_process' => $request->additional_feedback_recruitment_process,
-            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "0"),
+            'rate_hr_induction' => (!is_null($request->rate_hr_induction) ? $request->rate_hr_induction : "NA"),
             'additional_feedback_hr_induction' => $request->additional_feedback_hr_induction,
             'status' => $status,
         ]);

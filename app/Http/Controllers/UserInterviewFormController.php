@@ -210,6 +210,14 @@ class UserInterviewFormController extends Controller
                 'comments_suggestions_feedback.required' => 'Comments, suggestions or feedback is required',
             ]);
 
+            if($request->define_overall_interview_process == 'Others'){
+                $request->validate([
+                    'define_overall_interview_process_others' => 'required',
+                ], [
+                    'define_overall_interview_process_others.required' => 'Please specify it.',
+                ]);
+            }
+
             $status='2';
         }
 
@@ -432,6 +440,14 @@ class UserInterviewFormController extends Controller
                 'rate_overall_interview_process.required' => 'Please rate...',
                 'comments_suggestions_feedback.required' => 'Comments, suggestions or feedback is required',
             ]);
+
+            if($request->define_overall_interview_process == 'Others'){
+                $request->validate([
+                    'define_overall_interview_process_others' => 'required',
+                ], [
+                    'define_overall_interview_process_others.required' => 'Please specify it.',
+                ]);
+            }
 
             $status='2';
         }

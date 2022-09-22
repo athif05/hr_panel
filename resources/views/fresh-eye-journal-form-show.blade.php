@@ -501,7 +501,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> : {!! $fresh_eye_journal_details['our_organization_believes_mantra'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra'] !!}</td>
                   </tr>
 
 
@@ -623,7 +623,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> : {!! $fresh_eye_journal_details['our_organization_believes_mantra_reporting_manager_qi'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_reporting_manager_qi'] !!}</td>
                   </tr>
 
 
@@ -745,7 +745,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> : {!! $fresh_eye_journal_details['our_organization_believes_mantra_hod_qj'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_hod_qj'] !!}</td>
                   </tr>
 
 
@@ -756,12 +756,13 @@
                   <tr>
                     <td>Admin Operations</td>
                     <td>
-                      @if($fresh_eye_journal_details['admin_operations'])
+
+                      @if($fresh_eye_journal_details['admin_operations']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['admin_operations']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                      	-
+                      	NA
                       @endif
                   	</td>
                    </tr>
@@ -769,12 +770,12 @@
                    <tr>
                     <td>Advertiser Sales</td>
                     <td>
-                      @if($fresh_eye_journal_details['advertiser_sales'])
+                      @if($fresh_eye_journal_details['advertiser_sales']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['advertiser_sales']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -782,12 +783,12 @@
                    <tr>
                     <td>Advertiser</td>
                     <td>
-                      @if($fresh_eye_journal_details['advertisers'])
+                      @if($fresh_eye_journal_details['advertisers']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['advertisers']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -795,12 +796,12 @@
                    <tr>
                     <td>Finance & Accounts</td>
                     <td>
-                      @if($fresh_eye_journal_details['finance_accounts'])
+                      @if($fresh_eye_journal_details['finance_accounts']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['finance_accounts']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -808,12 +809,12 @@
                    <tr>
                     <td>Human Resources</td>
                     <td>
-                      @if($fresh_eye_journal_details['human_resources'])
+                      @if($fresh_eye_journal_details['human_resources']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['human_resources']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -821,12 +822,12 @@
                    <tr>
                     <td>Management</td>
                     <td>
-                      @if($fresh_eye_journal_details['management'])
+                      @if($fresh_eye_journal_details['management']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['management']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -834,12 +835,12 @@
                    <tr>
                     <td>Network Operations</td>
                     <td>
-                      @if($fresh_eye_journal_details['network_operations'])
+                      @if($fresh_eye_journal_details['network_operations']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['network_operations']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -847,12 +848,12 @@
                    <tr>
                     <td>Pocket Money</td>
                     <td>
-                      @if($fresh_eye_journal_details['pocket_money'])
+                      @if($fresh_eye_journal_details['pocket_money']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['pocket_money']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -860,12 +861,12 @@
                    <tr>
                     <td>Publishers</td>
                     <td>
-                      @if($fresh_eye_journal_details['publishers'])
+                      @if($fresh_eye_journal_details['publishers']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['publishers']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -873,12 +874,12 @@
                    <tr>
                     <td>Tech Operations - Development</td>
                     <td>
-                      @if($fresh_eye_journal_details['tech_operations_development'])
+                      @if($fresh_eye_journal_details['tech_operations_development']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_development']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -886,12 +887,12 @@
                    <tr>
                     <td>Support (EA/PA)</td>
                     <td>
-                      @if($fresh_eye_journal_details['support_ea_pa'])
+                      @if($fresh_eye_journal_details['support_ea_pa']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['support_ea_pa']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -899,12 +900,12 @@
                    <tr>
                     <td>Education</td>
                     <td>
-                      @if($fresh_eye_journal_details['education'])
+                      @if($fresh_eye_journal_details['education']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['education']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -912,12 +913,12 @@
                    <tr>
                     <td>iGaming</td>
                     <td>
-                      @if($fresh_eye_journal_details['igaming'])
+                      @if($fresh_eye_journal_details['igaming']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['igaming']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -925,12 +926,12 @@
                    <tr>
                     <td>Tech Operations - Shopify</td>
                     <td>
-                      @if($fresh_eye_journal_details['tech_operations_shopify'])
+                      @if($fresh_eye_journal_details['tech_operations_shopify']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_shopify']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -938,12 +939,12 @@
                    <tr>
                     <td>Tech Operations - Creative</td>
                     <td>
-                      @if($fresh_eye_journal_details['tech_operations_creative'])
+                      @if($fresh_eye_journal_details['tech_operations_creative']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['tech_operations_creative']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -951,12 +952,12 @@
                    <tr>
                     <td>Mobile</td>
                     <td>
-                      @if($fresh_eye_journal_details['mobile'])
+                      @if($fresh_eye_journal_details['mobile']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['mobile']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>
@@ -964,12 +965,12 @@
                    <tr>
                     <td>vCommission - UK</td>
                     <td>
-                      @if($fresh_eye_journal_details['vcommission_uk'])
+                      @if($fresh_eye_journal_details['vcommission_uk']!='NA')
                       		@for($i=0; $i < $fresh_eye_journal_details['vcommission_uk']; $i++)
                             <i class="bi bi-star-fill rate-star-color"></i>
                           @endfor
                       @else
-                        -
+                        NA
                       @endif
                   	</td>
                    </tr>

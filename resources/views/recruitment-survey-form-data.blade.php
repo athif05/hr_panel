@@ -115,13 +115,17 @@
                   <tr>
                     <td>How did you come across this job opening?</td>
                     <td>
-                    	@foreach($job_opening_types as $job_opening_type)
+                      @if($find['how_come_for_job_opening']=='Others')
+                        {{ $find['how_come_for_job_opening'] }}
+                      @else
+                      	@foreach($job_opening_types as $job_opening_type)
 
-                    		@if($job_opening_type['id']==$find['how_come_for_job_opening'])
-                    		{{$job_opening_type['name']}}
-                    		@endif
-                    	
-                    	@endforeach
+                      		@if($job_opening_type['id']==$find['how_come_for_job_opening'])
+                      		{{$job_opening_type['name']}}
+                      		@endif
+                      	
+                      	@endforeach
+                      @endif
                     </td>
                   </tr>
 
@@ -172,60 +176,84 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate your recruiter in the following parameters out of 5: </strong></td>
+                    <td colspan="2"><strong>Rate your recruiter in the following parameters out of 5 </strong></td>
                   </tr>
 
                   <tr>
                     <td>Professionalism</td>
-                    <td> 
-                      @for($i=0; $i < $find['professionalism']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                    <td>
+                      @if($find['professionalism']!='NA')
+                        @for($i=0; $i < $find['professionalism']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['professionalism'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Friendliness</td>
                     <td>
-                      @for($i=0; $i < $find['friendliness']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['friendliness']!='NA')
+                        @for($i=0; $i < $find['friendliness']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['friendliness'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Length of the time spent talking to you</td>
                     <td>
-                      @for($i=0; $i < $find['length_time_spent_talking']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['length_time_spent_talking']!='NA')
+                        @for($i=0; $i < $find['length_time_spent_talking']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['length_time_spent_talking'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Company knowledge</td>
                     <td>
-                      @for($i=0; $i < $find['company_knowledge']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['company_knowledge']!='NA')
+                        @for($i=0; $i < $find['company_knowledge']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['company_knowledge'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Specific knowledge about the job profile</td>
                     <td>
-                      @for($i=0; $i < $find['specific_knowledge_job_profile']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['specific_knowledge_job_profile']!='NA')
+                        @for($i=0; $i < $find['specific_knowledge_job_profile']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['specific_knowledge_job_profile'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Timely response to your communications - email or phone</td>
                     <td>
-                      @for($i=0; $i < $find['timely_response_email_phone']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['timely_response_email_phone']!='NA')
+                        @for($i=0; $i < $find['timely_response_email_phone']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['timely_response_email_phone'] }}
+                      @endif
                     </td>
                   </tr>
 
@@ -254,41 +282,49 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What will be your mission for the first year? : </strong> {!!  $find['mission_for_first_year'] !!}</td>
+                    <td colspan="2"><strong>What will be your mission for the first year? </strong> {!!  $find['mission_for_first_year'] !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What do you aim in the second year? : </strong> {!! $find['aim_in_second_year'] !!}</td>
+                    <td colspan="2"><strong>What do you aim in the second year? </strong> {!! $find['aim_in_second_year'] !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>What will be your aim in the third year of your tenure with us? : </strong> {!! $find['aim_third_year_tenure'] !!}</td>
+                    <td colspan="2"><strong>What will be your aim in the third year of your tenure with us? </strong> {!! $find['aim_third_year_tenure'] !!}</td>
                   </tr>
 
                   <tr>
                     <td><strong>Rate the overall recruitment process of our company! (Rating out of 5)</strong></td>
                     <td>
-                      @for($i=0; $i < $find['rate_overall_recruitment_process']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['rate_overall_recruitment_process']!='NA')
+                        @for($i=0; $i < $find['rate_overall_recruitment_process']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['rate_overall_recruitment_process'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback for the recruitment process? : </strong> {!! $find['additional_feedback_recruitment_process'] !!}</td>
+                    <td colspan="2"><strong>Any additional feedback for the recruitment process? </strong> {!! $find['additional_feedback_recruitment_process'] !!}</td>
                   </tr>
 
                   <tr>
                     <td><strong>Rate your HR induction session! (out of 5)</strong></td>
                     <td>
-                      @for($i=0; $i < $find['rate_hr_induction']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($find['rate_hr_induction']!='NA')
+                        @for($i=0; $i < $find['rate_hr_induction']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        {{ $find['rate_hr_induction'] }}
+                      @endif
                     </td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback for HR induction session? : </strong> {!! $find['additional_feedback_hr_induction'] !!}</td>
+                    <td colspan="2"><strong>Any additional feedback for HR induction session? </strong> {!! $find['additional_feedback_hr_induction'] !!}</td>
                   </tr>
 
                 </tbody>
