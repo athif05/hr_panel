@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-ini_set('memory_limit', -1);
-
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -357,8 +355,6 @@ class UserInterviewFormController extends Controller
     public function update(Request $request)
     {
         $status=0;
-
-        ini_set('memory_limit', -1);
 
         if($request['submit']=='Save in Draft'){
             $status='1';
