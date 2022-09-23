@@ -270,7 +270,7 @@ class ConfirmationMomController extends Controller
                 $how_much_increment_amount=(($request->how_much_increment_amount/100) * $request->salary_percentage_automate); //calculate amount
             }   
         }
-        
+
 
         ConfirmationMom::where('id', $request->edit_id)
         ->update([
@@ -307,6 +307,5 @@ class ConfirmationMomController extends Controller
 
 	}
 	/*update confirmation mom form data in table, end here*/
-
 
 }

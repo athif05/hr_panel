@@ -215,7 +215,15 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/recruitment-survey/{id}',  [App\Http\Controllers\UserRecruitmentFormController::class, 'recruitmentSurvey'])->middleware('isHRManagement');
 
+	Route::get('/member-check-in-from/{id}',  [App\Http\Controllers\Days45CheckInMemberController::class, 'memberCheckIn'])->middleware('isHRManagement');
+
+	Route::get('/fresh-eye-journal/{id}',  [App\Http\Controllers\FreshEyeJournalController::class, 'freshEyeJournal'])->middleware('isHRManagement');
+
 	Route::get('/ppt/{id}',  [App\Http\Controllers\UserController::class, 'ppt'])->middleware('isHRManagement');
+
+	//Route::get('/manager-check-in-from/{id}',  [App\Http\Controllers\FreshEyeJournalController::class, 'managerCheckInFrom'])->middleware('isHRManagement');
+
+	Route::get('/manager-confirmation-feedback-form/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
 
 	Route::get('/thankyou/{id}',  [App\Http\Controllers\UserController::class, 'thankyou'])->middleware('isHRManagement');
 

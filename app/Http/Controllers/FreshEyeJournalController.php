@@ -852,4 +852,13 @@ class FreshEyeJournalController extends Controller
     }
 
 
+    /*this is used in start confirmation process in hr login, start here*/
+    public function freshEyeJournal($id){
+        $employee_id=$user_id = $id;
+        $check_in_member_details='data';
+
+        return view('confirmation-process.fresh-eye-journal', compact('employee_id','check_in_member_details'));
+    }
+    /*this is used in start confirmation process in hr login, end here*/
+
 }

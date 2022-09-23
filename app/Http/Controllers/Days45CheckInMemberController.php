@@ -696,4 +696,64 @@ class Days45CheckInMemberController extends Controller
     }
 
 
+    /*this is used in start confirmation process in hr login, start here*/
+    public function memberCheckIn($id){
+
+        $employee_id=$user_id = $id;
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $manager_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '2')
+            ->orWhere('role_id', '3')
+            ->orWhere('role_id', '4')
+            ->orderBy('first_name','asc')
+            ->get();
+
+        $hod_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '4')
+            ->orderBy('first_name','asc')
+            ->get();
+
+        $hr_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->where('role_id', '5')
+            ->orWhere('role_id', '6')
+            ->orderBy('first_name','asc')
+            ->get();
+
+        $yourself_category_details = PlaceYourselfCategory::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_details = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $designation_details = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        
+        /*check record is exist or not*/
+        $check_in_member_details = DB::table('days_45_checkin_members')->where('user_id', $user_id)->first();
+        
+        return view('confirmation-process.member-check-in-from', compact('employee_id','check_in_member_details'));
+
+    }
+    /*this is used in start confirmation process in hr login, end here*/
 }

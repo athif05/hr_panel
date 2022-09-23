@@ -58,7 +58,13 @@
 
               <h2>Q. 7 - How did you come across this job opening?</h2>
               <li>
-              <div class="col-left">{{ $recruitment_details['job_opening_types_name'] }}</div>
+              <div class="col-left">
+                @if($recruitment_details['job_opening_types_name'])
+                  {{ $recruitment_details['job_opening_types_name'] }}
+                @else
+                  Others
+                @endif
+              </div>
               </li>
 
               @if($recruitment_details['how_come_for_job_opening']=='1')
@@ -107,54 +113,78 @@
       
               <li>
               <div class="col-left">Professionalism
-                @for($i=0; $i < $recruitment_details['professionalism']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['professionalism']!='NA')
+                  @for($i=0; $i < $recruitment_details['professionalism']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
               <div class="col-left">Friendliness 
-                @for($i=0; $i < $recruitment_details['friendliness']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['friendliness']!='NA')
+                  @for($i=0; $i < $recruitment_details['friendliness']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
             
               <li>
-              <div class="col-left">Length of the time spent talking to you 
-                @for($i=0; $i < $recruitment_details['length_time_spent_talking']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+              <div class="col-left">Length of the time spent talking to you
+                @if($recruitment_details['length_time_spent_talking']!='NA')
+                  @for($i=0; $i < $recruitment_details['length_time_spent_talking']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
               <div class="col-left">Company knowledge 
-                @for($i=0; $i < $recruitment_details['company_knowledge']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['company_knowledge']!='NA')
+                  @for($i=0; $i < $recruitment_details['company_knowledge']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
               <div class="col-left">Specific knowledge about the job profile 
-                @for($i=0; $i < $recruitment_details['specific_knowledge_job_profile']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['specific_knowledge_job_profile']!='NA')
+                  @for($i=0; $i < $recruitment_details['specific_knowledge_job_profile']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
               <div class="col-left">Timely response to your communications - email or phone 
-                @for($i=0; $i < $recruitment_details['timely_response_email_phone']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['timely_response_email_phone']!='NA')
+                  @for($i=0; $i < $recruitment_details['timely_response_email_phone']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
@@ -198,9 +228,13 @@
               <h2>Q. 14 - Rate the overall recruitment process of our company! (Rating out of 5)</h2>
               <li>
               <div class="col-left"><!-- <strong>{{ $recruitment_details['rate_overall_recruitment_process'] }}</strong> --> 
-                @for($i=0; $i < $recruitment_details['rate_overall_recruitment_process']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['rate_overall_recruitment_process']!='NA')
+                  @for($i=0; $i < $recruitment_details['rate_overall_recruitment_process']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
@@ -213,9 +247,13 @@
               <h2>Q. 16 - Rate your HR induction session! (out of 5)</h2>
               <li>
               <div class="col-left"><!-- <strong>{{ $recruitment_details['rate_hr_induction'] }}</strong>  -->
-                @for($i=0; $i < $recruitment_details['rate_hr_induction']; $i++)
-                  <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
-                @endfor
+                @if($recruitment_details['rate_hr_induction']!='NA')
+                  @for($i=0; $i < $recruitment_details['rate_hr_induction']; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 

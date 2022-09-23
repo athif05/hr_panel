@@ -18,8 +18,24 @@
             <a href="{{ url('/recruitment-survey/'.$employee_id) }}">Recruitment Survey</a>
           </li>
 
+          <li class="{{ request()->is('member-check-in-from/*') ? 'active' : '' }}">
+            <a href="{{ url('/member-check-in-from/'.$employee_id) }}">45 Days Member Check-In Form</a>
+          </li>
+
+          <li class="{{ request()->is('fresh-eye-journal/*') ? 'active' : '' }}">
+            <a href="{{ url('/fresh-eye-journal/'.$employee_id) }}">Fresh Eye Journal</a>
+          </li>
+
           <li class="{{ request()->is('ppt/*') ? 'active' : '' }}">
             <a href="{{ url('/ppt/'.$employee_id) }}">PPT</a>
+          </li>
+
+          <li class="{{ request()->is('manager-check-in-from/*') ? 'active' : '' }}">
+            <a href="{{ url('/manager-check-in-from/'.$employee_id) }}">45 Days Manager Check-In Form</a>
+          </li>
+
+          <li class="{{ request()->is('manager-confirmation-feedback-form/*') ? 'active' : '' }}">
+            <a href="{{ url('/manager-confirmation-feedback-form/'.$employee_id) }}">Manager Confirmation Feedback Form</a>
           </li>
 
           <li class="{{ request()->is('thankyou/*') ? 'active' : '' }}">

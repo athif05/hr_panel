@@ -344,5 +344,13 @@ class ConfirmationFeedbackFormController extends Controller
 	/*save confirmation feedback form data in table, end here*/
 	
 
+    /*this is used in start confirmation process in hr login, start here*/
+    public function managerConfirmationFeedbackForm($id){
+        $employee_id=$user_id = $id;
+        $check_in_member_details='Data';
+
+        return view('confirmation-process.manager-confirmation-feedback-form', compact('employee_id','check_in_member_details'));
+    }
+    /*this is used in start confirmation process in hr login, end here*/
 
 }
