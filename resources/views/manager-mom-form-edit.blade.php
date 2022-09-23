@@ -308,7 +308,17 @@
                     <option value="%" @if(old('how_much_increment',$mom_form_details->how_much_increment)=='%') selected @endif>%</option>
                   </select>
 
-                  <input type="text" class="form-control @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment_amount" id="how_much_increment_amount" value="{{ old('how_much_increment_amount',$mom_form_details->how_much_increment_amount) }}" style="margin-top: 10px;" @if($mom_form_details->recommend_increment=='No') readonly @endif>
+                  @if(old('how_much_increment',$mom_form_details->how_much_increment)=='INR')
+
+                    <input type="text" class="form-control @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment_amount" id="how_much_increment_amount" value="{{ old('how_much_increment_amount',$mom_form_details->how_much_increment_amount) }}" style="margin-top: 10px;" @if($mom_form_details->recommend_increment=='No') readonly @endif>
+
+                  @elseif(old('how_much_increment',$mom_form_details->how_much_increment)=='%')
+
+                    <input type="text" class="form-control @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment_amount" id="how_much_increment_amount" value="{{ old('how_much_increment_amount',$mom_form_details->how_much_increment_percentage) }}" style="margin-top: 10px;" @if($mom_form_details->recommend_increment=='No') readonly @endif>
+                    
+                  @endif
+                  
+
                   @if ($errors->has('how_much_increment_amount'))
                     <span class="text-danger">{{ $errors->first('how_much_increment_amount') }}</span>
                   @endif
