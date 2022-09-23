@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('work_ethics', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('team_work', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('response_towards_feedback', ['NA','1','2','3','4','5'])->default('NA');
-            $table->string('elaborate_performance')->nullable();
+            $table->text('elaborate_performance')->nullable();
             $table->string('top_3_highlights_1')->nullable();
             $table->string('top_3_highlights_2')->nullable();
             $table->string('top_3_highlights_3')->nullable();

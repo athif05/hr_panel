@@ -116,6 +116,11 @@ class UserController extends Controller
     /*confirmation-feedback-form, start here*/
     public function managerMOMForm($id) {
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
         $member_details = User::where('users.id',$id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
@@ -142,7 +147,7 @@ class UserController extends Controller
             $edit_id=$mom_form_details['id'];
             return redirect("/manager-mom-form-edit/$id/$edit_id");
         } else {
-            return view('manager-mom-form', compact('member_details','manager_details'));
+            return view('manager-mom-form', compact('member_details','manager_details','designation_names'));
         }
 
     }

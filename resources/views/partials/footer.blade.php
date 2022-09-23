@@ -296,6 +296,23 @@
 			});
 			/*show and hide amount box in Confirmation feedback form, end here*/
 
+
+
+			/*show and hide promotion designation in manager mom form, start here*/
+			$('#recommend_for_promotion').on('change', function(){
+				var val=$('#recommend_for_promotion').val();
+				console.log(val);
+				if(val=='No'){
+		  			$('#mention_the_amount').val('0');
+		            $('#recommend_for_promotion_id_div').hide();
+		  		} else {
+		  			$('#mention_the_amount').val('');
+		  			$('#recommend_for_promotion_id_div').show();
+		  		}
+			});
+			/*show and hide promotion designation in manager mom form, end here*/
+
+
 		});
 
 	
@@ -303,6 +320,7 @@
   	function recommend_increment_fun(value){
 
   		if(value=='No'){
+  			document.getElementById('recommend_increment_div').style.display='none';
   			document.getElementById('how_much_increment').setAttribute("class", "form-control  disable-text");
   			document.getElementById("how_much_increment").setAttribute("disabled", "disabled");
 
@@ -311,6 +329,7 @@
   			document.getElementById('how_much_increment_amount').readOnly
                         = true;
   		} else {
+  			document.getElementById('recommend_increment_div').style.display='block';
   			document.getElementById('how_much_increment').setAttribute("class", "form-control");
   			document.getElementById("how_much_increment").removeAttribute("disabled", "disabled");
   			
@@ -334,9 +353,14 @@
   		var avg_rate=0;
 
   		var val_content = document.getElementsByName('content');
+  		//console.log(val_content);
 		for(var i = 0; i < val_content.length; i++){
 		    if(val_content[i].checked){
 		        rate_content = val_content[i].value;
+
+		        if(rate_content == 'NA'){
+		        	rate_content=0;
+		        }
 		    }
 		}
 		//console.log('content '+rate_content);
@@ -345,6 +369,9 @@
 		for(var j = 0; j < val_confidence.length; j++){
 		    if(val_confidence[j].checked){
 		        rate_confidence = val_confidence[j].value;
+		        if(rate_confidence == 'NA'){
+		        	rate_confidence=0;
+		        }
 		    }
 		}
 		//console.log('confidence '+rate_confidence);
@@ -354,6 +381,9 @@
 		for(var k = 0; k < val_communication.length; k++){
 		    if(val_communication[k].checked){
 		        rate_communication = val_communication[k].value;
+		        if(rate_communication == 'NA'){
+		        	rate_communication=0;
+		        }
 		    }
 		}
 		//console.log('communication '+rate_communication);
@@ -362,6 +392,9 @@
 		for(var l = 0; l < val_data_relevance.length; l++){
 		    if(val_data_relevance[l].checked){
 		        rate_data_relevance = val_data_relevance[l].value;
+		        if(rate_data_relevance == 'NA'){
+		        	rate_data_relevance=0;
+		        }
 		    }
 		}
 		//console.log('data_relevance '+rate_data_relevance);
@@ -371,6 +404,9 @@
 		for(var m = 0; m < val_overall_growth_individual.length; m++){
 		    if(val_overall_growth_individual[m].checked){
 		        rate_overall_growth_individual = val_overall_growth_individual[m].value;
+		        if(rate_overall_growth_individual == 'NA'){
+		        	rate_overall_growth_individual=0;
+		        }
 		    }
 		}
 		//console.log('overall_growth_individual '+rate_overall_growth_individual);

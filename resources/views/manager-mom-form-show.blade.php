@@ -63,6 +63,11 @@
                   </tr>
 
                   <tr>
+                    <td>Current Salary</td>
+                    <td>{{$user_details['current_salary']}} / Month</td>
+                  </tr>
+
+                  <tr>
                     <td colspan="2"><strong>Confirmation commitment details. </strong> {{ $user_details['confirmation_commitment_details'] }}</td>
                   </tr>
 
@@ -84,67 +89,117 @@
                   <tr>
                     <td>Content</td>
                     <td> 
-                      @for($i=0; $i < $all_details['content']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['content']!='NA')
+                        @for($i=0; $i < $all_details['content']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Confidence</td>
                     <td>
-                      @for($i=0; $i < $all_details['confidence']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['confidence']!='NA')
+                        @for($i=0; $i < $all_details['confidence']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Communication</td>
                     <td>
-                      @for($i=0; $i < $all_details['communication']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['communication']!='NA')
+                        @for($i=0; $i < $all_details['communication']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Data Relevance</td>
                     <td>
-                      @for($i=0; $i < $all_details['data_relevance']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['data_relevance']!='NA')
+                        @for($i=0; $i < $all_details['data_relevance']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Overall growth of the individual</td>
                     <td>
-                      @for($i=0; $i < $all_details['overall_growth_individual']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['overall_growth_individual']!='NA')
+                        @for($i=0; $i < $all_details['overall_growth_individual']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td><strong>Average Rating of the entire presentation</strong></td>
                     <td>
-                      @for($i=0; $i < $all_details['average_rating_entire_presentation']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($all_details['average_rating_entire_presentation']!='NA')
+                        @for($i=0; $i < $all_details['average_rating_entire_presentation']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   
                   <tr>
-                    <td>Would you like to recommend him/her for Increment?</td>
+                    <td>Would you like to recommend {{ $user_details['full_name'] }} for Increment?</td>
                     <td>{{$all_details['recommend_increment']}}</td>
                   </tr>
 
                   @if($all_details['recommend_increment']=='Yes')
                   <tr>
                     <td>How much increment would you recommend?</td>
-                    <td>{{$all_details['how_much_increment_amount']}} {{$all_details['how_much_increment']}}</td>
+                    <td>
+                      @if($all_details['how_much_increment']=='INR') 
+                        {{$all_details['how_much_increment_amount']}} {{$all_details['how_much_increment']}}
+                      @elseif($all_details['how_much_increment']=='%') 
+                        {{$all_details['how_much_increment_percentage']}} {{$all_details['how_much_increment']}}
+                      @endif
+                      
+                    </td>
+                  </tr>
+                  @endif
+
+
+                  <tr>
+                    <td>Would you like to recommend {{ $user_details['full_name'] }} for promotion?</td>
+                    <td>{{$all_details['recommend_for_promotion']}}</td>
+                  </tr>
+
+                  @if($all_details['recommend_for_promotion']=='Yes')
+                  <tr>
+                    <td>Designation name for promotion</td>
+                    <td>
+                      @foreach($designation_names as $designation_name_promotion)
+                        @if($designation_name_promotion['id']==$all_details['recommend_for_promotion_id'])
+                          {{ $designation_name_promotion['name'] }}
+                        @endif
+                      @endforeach
+                    </td>
                   </tr>
                   @endif
 

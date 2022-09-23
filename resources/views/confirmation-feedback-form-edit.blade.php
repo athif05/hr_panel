@@ -477,7 +477,7 @@
                   @endif
                 </div>
 
-                <div class="col-md-12 position-relative" id="pip_div_hide" style="display: none;">
+                <div class="col-md-12 position-relative" id="pip_div_hide" @if($feedback_form_details->are_you_sure_to_confirm=='No, Put under PIP') style="display: block;" @else style="display: none;" @endif>
                   <label for="recommend_pip_detailed_plan" class="form-label">Q. If you want to recommend PIP, Pls share a detailed plan. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea @if(old('are_you_sure_to_confirm',$feedback_form_details->are_you_sure_to_confirm)=='No, Put under PIP') class="form-control" @else class="form-control disable-text" readonly @endif name="recommend_pip_detailed_plan" id="recommend_pip_detailed_plan" style="height: 100px" >{{$feedback_form_details->recommend_pip_detailed_plan }}</textarea>
 

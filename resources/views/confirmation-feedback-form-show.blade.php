@@ -74,7 +74,7 @@
 
                   <tr>
                    <td>Tenure(In Months)</td>
-                    <td>{{ $user_details['location_name'] }} </td>
+                    <td>{{ $total_tenure }} </td>
                   </tr>
 
                   <tr>
@@ -153,7 +153,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>Mention top 3 highlights of Shweta Jaiswal? </strong> 
+                    <td colspan="2"><strong>Mention top 3 highlights of {{ $user_details['full_name'] }}? </strong> 
                     	<br>
                     	<strong>1. </strong>{{ $all_details['top_3_highlights_1'] }} <br>
                     	<strong>2. </strong>{{ $all_details['top_3_highlights_2'] }} <br>
@@ -162,7 +162,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Mention the major task that have been accomplished by Shweta Jaiswal? </strong> 
+                    <td colspan="2"><strong>Mention the major task that have been accomplished by {{ $user_details['full_name'] }}? </strong> 
                     	<br>
                     	<strong>1. </strong>{{ $all_details['major_task_1'] }} <br>
                     	<strong>2. </strong>{{ $all_details['major_task_2'] }} <br>
@@ -172,14 +172,13 @@
 
 
                   <tr>
-                    <td>Has Shweta Jaiswal been able to add value in your team?</td>
+                    <td>Has {{ $user_details['full_name'] }} been able to add value in your team?</td>
                     <td>{{$all_details['add_value_in_team']}}</td>
                   </tr>
 
                   @if($all_details['add_value_in_team']=='Yes')
                   <tr>
-                    <td>If Yes, Please share an instance in details.</td>
-                    <td>{!! $all_details['add_value_in_team_share_instance'] !!}</td>
+                    <td colspan="2"><strong>If Yes, Please share an instance in details.</strong> {!! $all_details['add_value_in_team_share_instance'] !!}</td>
                   </tr>
                   @endif
 
@@ -193,19 +192,18 @@
                   </tr>
 
                   <tr>
-                    <td>Has Shweta Jaiswal met your expectations in the last 3 months?</td>
+                    <td>Has {{ $user_details['full_name'] }} met your expectations in the last 3 months?</td>
                     <td>{{$all_details['met_your_expectations']}}</td>
                   </tr>
 
 
                   <tr>
-                    <td>Other (please specify)</td>
-                    <td>{!! $all_details['met_your_expectations_other_specify'] !!}</td>
+                    <td colspan="2"><strong>Other (please specify)</strong> {!! $all_details['met_your_expectations_other_specify'] !!}</td>
                   </tr>
 
 
                   <tr>
-                    <td>Are you sure to confirm Shweta Jaiswal in the Organization?</td>
+                    <td>Are you sure to confirm {{ $user_details['full_name'] }} in the Organization?</td>
                     <td>{{$all_details['are_you_sure_to_confirm']}}</td>
                   </tr>
 
@@ -216,7 +214,7 @@
                   @endif
 
                   <tr>
-                    <td>Has Shweta Jaiswal been committed an increment on confirmation, at the time of joining?</td>
+                    <td>Has {{ $user_details['full_name'] }} been committed an increment on confirmation, at the time of joining?</td>
                     <td>{{$all_details['increment_on_confirmation']}}</td>
                   </tr>
 

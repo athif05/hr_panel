@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\ConfirmationMom;
 use App\Models\ConfirmationFeedbackForm;
+use App\Models\Designation;
 
 class ConfirmationMomController extends Controller
 {
@@ -32,7 +33,12 @@ class ConfirmationMomController extends Controller
         ->select('confirmation_feedback_forms.*', 'users.first_name as f_name', 'users.last_name as l_name')
         ->get();
 
-        return view('manager-mom-form-show', compact('all_details','user_details','manager_details'));
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        return view('manager-mom-form-show', compact('all_details','user_details','manager_details','designation_names'));
 
     }
 
@@ -62,32 +68,65 @@ class ConfirmationMomController extends Controller
             ]);
 
 
-    		if($request->recommend_increment!='No'){
+    		if($request->recommend_for_promotion!='No'){
+                $request->validate([
+                    'recommend_for_promotion_id' => 'required',
+                ], [
+                    'recommend_for_promotion_id.required' => 'Please select designation for promotion',
+                ]);
+            }
+
+
+            
+            if($request->recommend_increment!='No'){
                 $request->validate([
                     'how_much_increment_amount' => 'required',
                 ], [
-                    'how_much_increment_amount.required' => 'Please share how much increment_amount',
+                    'how_much_increment_amount.required' => 'Please share how much amount for increment',
                 ]);
             }
+
         
             $status='2';
         }
 
+        if($request->recommend_increment=='No'){
+            $how_much_increment='';
+            $how_much_increment_amount='';
+            $how_much_increment_percentage='';
+        } else {
+
+            if($request->how_much_increment=='INR'){
+                $how_much_increment_amount=$request->how_much_increment_amount;
+
+                $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
+                $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+
+            } elseif($request->how_much_increment=='%') {
+
+                $how_much_increment_percentage=$request->how_much_increment_amount; //calculate percentage
+
+                $how_much_increment_amount=(($request->how_much_increment_amount/100) * $request->salary_percentage_automate); //calculate amount
+            }   
+        }
 
         $input = ConfirmationMom::insert([
             'user_id' => $request->user_id,
             'manager_id' => $request->manager_id,
             'minutes_of_meeting' => $request->minutes_of_meeting,
             'hidden_notes' => $request->hidden_notes,
-            'content' => (!is_null($request->content) ? $request->content : "0"),
-            'confidence' => (!is_null($request->confidence) ? $request->confidence : "0"),
-            'communication' => (!is_null($request->communication) ? $request->communication : "0"),
-            'data_relevance' => (!is_null($request->data_relevance) ? $request->data_relevance : "0"),
-            'overall_growth_individual' => (!is_null($request->overall_growth_individual) ? $request->overall_growth_individual : "0"),
+            'content' => (!is_null($request->content) ? $request->content : "NA"),
+            'confidence' => (!is_null($request->confidence) ? $request->confidence : "NA"),
+            'communication' => (!is_null($request->communication) ? $request->communication : "NA"),
+            'data_relevance' => (!is_null($request->data_relevance) ? $request->data_relevance : "NA"),
+            'overall_growth_individual' => (!is_null($request->overall_growth_individual) ? $request->overall_growth_individual : "NA"),
             'average_rating_entire_presentation' => $request->average_rating_entire_presentation,
             'recommend_increment' => $request->recommend_increment,
             'how_much_increment' => $request->how_much_increment,
-            'how_much_increment_amount' => $request->how_much_increment_amount,
+            'how_much_increment_amount' => $how_much_increment_amount,
+            'how_much_increment_percentage' => $how_much_increment_percentage,
+            'recommend_for_promotion' => $request->recommend_for_promotion,
+            'recommend_for_promotion_id' => $request->recommend_for_promotion_id,
             'are_you_sure_to_confirm' => $request->are_you_sure_to_confirm,
             'status' => $status,
         ]);
@@ -102,7 +141,7 @@ class ConfirmationMomController extends Controller
 
             } else if($status==2){
 
-                return redirect('/manager-mom-form-show')->with('thank_you', 'Thanks, for giving your valuable time for us.');
+                return redirect("/manager-mom-form-show/$request->user_id/$last_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
             }
         }
@@ -139,10 +178,15 @@ class ConfirmationMomController extends Controller
         ->select('confirmation_feedback_forms.*', 'users.first_name as f_name', 'users.last_name as l_name')
         ->get();
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
 
         if($mom_form_details['status']=='1'){
 
-            return view('manager-mom-form-edit', compact('member_details','mom_form_details','manager_details'));
+            return view('manager-mom-form-edit', compact('member_details','mom_form_details','manager_details','designation_names'));
 
         } else if($mom_form_details['status']=='2'){
 
@@ -181,6 +225,13 @@ class ConfirmationMomController extends Controller
                 'overall_growth_individual.required' => 'Please rate...',
             ]);
 
+            if($request->recommend_for_promotion!='No'){
+                $request->validate([
+                    'recommend_for_promotion_id' => 'required',
+                ], [
+                    'recommend_for_promotion_id.required' => 'Please select designation for promotion',
+                ]);
+            }
 
     		if($request->recommend_increment!='No'){
                 $request->validate([
@@ -193,6 +244,33 @@ class ConfirmationMomController extends Controller
             $status='2';
         }
         
+        if($request->recommend_for_promotion=='No'){
+            $recommend_for_promotion_id='';
+        } else {
+            $recommend_for_promotion_id=$request->recommend_for_promotion_id;
+        }
+
+
+        if($request->recommend_increment=='No'){
+            $how_much_increment='';
+            $how_much_increment_amount='';
+            $how_much_increment_percentage='';
+        } else {
+
+            if($request->how_much_increment=='INR'){
+                $how_much_increment_amount=$request->how_much_increment_amount;
+
+                $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
+                $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+
+            } elseif($request->how_much_increment=='%') {
+
+                $how_much_increment_percentage=$request->how_much_increment_amount; //calculate percentage
+
+                $how_much_increment_amount=(($request->how_much_increment_amount/100) * $request->salary_percentage_automate); //calculate amount
+            }   
+        }
+        
 
         ConfirmationMom::where('id', $request->edit_id)
         ->update([
@@ -200,15 +278,18 @@ class ConfirmationMomController extends Controller
             'manager_id' => $request->manager_id,
             'minutes_of_meeting' => $request->minutes_of_meeting,
             'hidden_notes' => $request->hidden_notes,
-            'content' => (!is_null($request->content) ? $request->content : "0"),
-            'confidence' => (!is_null($request->confidence) ? $request->confidence : "0"),
-            'communication' => (!is_null($request->communication) ? $request->communication : "0"),
-            'data_relevance' => (!is_null($request->data_relevance) ? $request->data_relevance : "0"),
-            'overall_growth_individual' => (!is_null($request->overall_growth_individual) ? $request->overall_growth_individual : "0"),
+            'content' => (!is_null($request->content) ? $request->content : "NA"),
+            'confidence' => (!is_null($request->confidence) ? $request->confidence : "NA"),
+            'communication' => (!is_null($request->communication) ? $request->communication : "NA"),
+            'data_relevance' => (!is_null($request->data_relevance) ? $request->data_relevance : "NA"),
+            'overall_growth_individual' => (!is_null($request->overall_growth_individual) ? $request->overall_growth_individual : "NA"),
             'average_rating_entire_presentation' => $request->average_rating_entire_presentation,
             'recommend_increment' => $request->recommend_increment,
             'how_much_increment' => $request->how_much_increment,
-            'how_much_increment_amount' => $request->how_much_increment_amount,
+            'how_much_increment_amount' => $how_much_increment_amount,
+            'how_much_increment_percentage' => $how_much_increment_percentage,
+            'recommend_for_promotion' => $request->recommend_for_promotion,
+            'recommend_for_promotion_id' => $recommend_for_promotion_id,
             'are_you_sure_to_confirm' => $request->are_you_sure_to_confirm,
             'status' => $status,
         ]);

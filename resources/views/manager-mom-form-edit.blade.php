@@ -97,13 +97,19 @@
                   <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department_name'] }}" readonly>
                 </div>
 
+                <div class="col-md-6 position-relative">
+                  <label for="official_email" class="form-label">4. Current Salary</label>
+                  <input type="email" class="form-control disable-text" name="current_salary" id="current_salary" value="{{ $member_details['current_salary'] }}" readonly>
+                  <input type="hidden" name="salary_percentage_automate" id="salary_percentage_automate" value="{{ $member_details['current_salary'] }}" readonly>
+                </div>
+
                 <div class="col-md-12 position-relative">
-                  <label for="confirmation_commitment_details" class="form-label">4. Confirmation commitment details.</label>
+                  <label for="confirmation_commitment_details" class="form-label">5. Confirmation commitment details.</label>
                   <textarea class="form-control disable-text" name="confirmation_commitment_details" id="confirmation_commitment_details" style="height: 100px" readonly>{{ $member_details['confirmation_commitment_details'] }}</textarea>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="minutes_of_meeting" class="form-label">5. Minutes of Meeting<br>
+                  <label for="minutes_of_meeting" class="form-label">6. Minutes of Meeting<br>
                     <span class="span_green">Please provide your Minutes Of Meeting in bullet points</span>
                   </label>
                   <textarea class="form-control" name="minutes_of_meeting" id="minutes_of_meeting" style="height: 100px" required>{{ old('minutes_of_meeting',$mom_form_details->minutes_of_meeting) }}</textarea>
@@ -133,14 +139,17 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">6. Rate the presentation on the following parameters:</label>
+                  <label class="form-label">7. Rate the presentation on the following parameters:</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
                   <label for="content" class="form-label rdioBtn">Content:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="content" id="content" value="1" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="content" id="content" value="NA" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="content" id="content" value="1" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="content" id="content" value="2" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='2') checked @endif>
@@ -166,7 +175,10 @@
                   <label for="confidence" class="form-label rdioBtn">Confidence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="confidence" id="confidence" value="1" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="NA" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="1" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="confidence" id="confidence" value="2" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='2') checked @endif>
@@ -191,7 +203,10 @@
                   <label for="communication" class="form-label rdioBtn">Communication <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="communication" id="communication" value="1" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="communication" id="communication" value="NA" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="communication" id="communication" value="1" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="communication" id="communication" value="2" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='2') checked @endif>
@@ -216,7 +231,10 @@
                   <label for="data_relevance" class="form-label rdioBtn">Data Relevance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="1" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="NA" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="1" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="2" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='2') checked @endif>
@@ -241,7 +259,10 @@
                   <label for="overall_growth_individual" class="form-label rdioBtn">Overall growth of the individual <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="1" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="NA" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="1" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="2" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='2') checked @endif>
@@ -271,7 +292,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="recommend_increment" class="form-label">7. Would you like to recommend him/her for Increment?</label>
+                  <label for="recommend_increment" class="form-label">8. Would you like to recommend {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} for Increment?</label>
                   <select class="form-select" name="recommend_increment" id="recommend_increment" onchange="recommend_increment_fun(this.value)">
                     <option value="Yes" @if(old('recommend_increment',$mom_form_details->recommend_increment)=="Yes") selected @endif>Yes</option>
                     <option value="No" @if(old('recommend_increment',$mom_form_details->recommend_increment)=="No") selected @endif>No</option>
@@ -280,8 +301,8 @@
                 </div>
 
                 
-                <div class="col-md-12 position-relative">
-                  <label for="how_much_increment" class="form-label">8. How much increment would you recommend? </label>
+                <div class="col-md-12 position-relative" id="recommend_increment_div" @if(old('recommend_increment',$mom_form_details->recommend_increment)=="No") style="display: none;" @else style="display: block;" @endif >
+                  <label for="how_much_increment" class="form-label">Q. How much increment would you recommend? </label>
                   <select class="form-select @if($mom_form_details->recommend_increment=='No')disable-text @endif" name="how_much_increment" id="how_much_increment" @if($mom_form_details->recommend_increment=='No') disabled @endif>
                     <option value="INR" @if(old('how_much_increment',$mom_form_details->how_much_increment)=='INR') selected @endif>INR</option>
                     <option value="%" @if(old('how_much_increment',$mom_form_details->how_much_increment)=='%') selected @endif>%</option>
@@ -294,6 +315,32 @@
                       
                 </div>
 
+
+                <div class="col-md-12 position-relative">
+                  <label for="recommend_for_promotion" class="form-label">9. Would you like to recommend {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} for promotion?</label>
+                  <select class="form-select" name="recommend_for_promotion" id="recommend_for_promotion">
+                    <option value="Yes" @if(old('recommend_for_promotion',$mom_form_details->recommend_for_promotion)=='Yes') selected @endif>Yes</option>
+                    <option value="No" @if(old('recommend_for_promotion',$mom_form_details->recommend_for_promotion)=='No') selected @endif>No</option>
+                  </select>
+                </div>
+
+                <div class="col-md-12 position-relative" id="recommend_for_promotion_id_div" @if(old('recommend_for_promotion',$mom_form_details->recommend_for_promotion)=="No") style="display: none;" @else style="display: block;" @endif>
+                  <label for="how_much_increment" class="form-label">Q. If Yes, Select Designation </label>
+                  <select class="form-select" name="recommend_for_promotion_id" id="recommend_for_promotion_id">
+                    <option value="">-- Select Designation --</option>
+                    @foreach($designation_names as $designation_name)
+                    <option value="{{ $designation_name['id'] }}" @if(old('recommend_for_promotion_id',$mom_form_details->recommend_for_promotion_id)==$designation_name['id']) selected @endif>
+                      {{ $designation_name['name'] }}
+                    </option>
+                    @endforeach
+                  </select>
+
+                  
+                  @if ($errors->has('recommend_for_promotion_id'))
+                    <span class="text-danger">{{ $errors->first('recommend_for_promotion_id') }}</span>
+                  @endif
+                      
+                </div>
 
 
                 <div class="col-md-12 position-relative">
@@ -320,18 +367,14 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="are_you_sure_to_confirm" class="form-label">9. Are you sure to confirm his/her in the Organization? {{$mom_form_details->are_you_sure_to_confirm}}<span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="are_you_sure_to_confirm" class="form-label">10. Are you sure to confirm {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the Organization? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="are_you_sure_to_confirm" id="are_you_sure_to_confirm" required>
 
-                    <option value="Yes, early confirmation" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='Yes, early confirmation') selected @endif>Yes, early confirmation</option>
+                    <option value="Yes" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='Yes') selected @endif>Yes</option>
 
-                    <option value="Yes, on time confirmation" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='Yes, on time confirmation') selected @endif>Yes, on time confirmation</option>
+                    <option value="No" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='No') selected @endif>No</option>
 
                     <option value="No, Put under PIP" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='No, Put under PIP') selected @endif>No, Put under PIP</option>
-
-                    <option value="Defer Confirmation without PIP for 30 Days" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 30 Days') selected @endif>Defer Confirmation without PIP for 30 Days</option>
-
-                    <option value="Defer Confirmation without PIP for 60 Days" @if(old('are_you_sure_to_confirm',$mom_form_details->are_you_sure_to_confirm)=='Defer Confirmation without PIP for 60 Days') selected @endif>Defer Confirmation without PIP for 60 Days</option>
 
                   </select>
                   @if ($errors->has('are_you_sure_to_confirm'))
