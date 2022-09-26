@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/home/filter',  [App\Http\Controllers\HomeController::class, 'homeDashboardFilter'])->name('home.filter');
 
     /*show interview survey from*/
-	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index'])->middleware('isMember');
+	Route::get('/interview-survey', [App\Http\Controllers\UserInterviewFormController::class, 'index']);
 
 	Route::post('/get-hr-name-ajax-for-interview-survey-form', [App\Http\Controllers\UserInterviewFormController::class, 'getHrNameAjax']);
 
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* edit interview form */
-	Route::get('/interview-survey-edit/{id}', [App\Http\Controllers\UserInterviewFormController::class, 'edit'])->middleware('isMember');
+	Route::get('/interview-survey-edit/{id}', [App\Http\Controllers\UserInterviewFormController::class, 'edit']);
 
 
 	/*update interview survey form into database*/
@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* edit interview form */
-	Route::get('/recruitment-survey-edit/{id}', [App\Http\Controllers\UserRecruitmentFormController::class, 'edit'])->middleware('isMember');
+	Route::get('/recruitment-survey-edit/{id}', [App\Http\Controllers\UserRecruitmentFormController::class, 'edit']);
 
 
 	/*update interview survey form into database*/
@@ -324,7 +324,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 /*pages are access only when user is loggedin second option, start here*/
-Route::get('/recruitment-survey', [App\Http\Controllers\UserRecruitmentFormController::class, 'index'])->middleware('auth', 'isMember');
+Route::get('/recruitment-survey', [App\Http\Controllers\UserRecruitmentFormController::class, 'index'])->middleware('auth');
 /*pages are access only when user is loggedin second option, end here*/
 
 
