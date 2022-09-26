@@ -24,179 +24,212 @@
             <div class="imployee_detail mCustomScrollbar">
             <ul>
   
-              @if($check_in_member_details)
+              @if($confirmation_feedback_details)
 
-              <h2>Q. 1 - Full Name</h2>
+              <h2>Q. 1 - What is your name?</h2>
               <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 2 - Member Code</h2>
-              <li>
-              <div class="col-left"></div>
+              <div class="col-left">{{ $user_details['full_name'] }}</div>
               </li>
 
-              <h2>Q. 3 - Designation</h2>
+              <h2>Q. 2 - What is your Member ID?</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">{{ $user_details['member_id'] }}</div>
               </li>
 
-              <h2>Q. 4 - Department</h2>
+              <h2>Q. 3 - What is your designation in {{ $user_details['company_name'] }}?</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">{{ $user_details['designation_name'] }}</div>
               </li>
 
-              <h2>Q. 5 - Please choose the name of your company</h2>
+              <h2>Q. 4 - What is your department in {{ $user_details['company_name'] }}?</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">{{ $user_details['department_name'] }}</div>
               </li>
 
-              <h2>Q. 6 - Date of Joining</h2>
+              <h2>Q. 5 - Location</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">{{ $user_details['location_name'] }}</div>
               </li>
 
-              <h2>Q. 7 - How did you come across this job opening?</h2>
+              <h2>Q. 6 - Tenure (in months)</h2>
               <li>
-              <div class="col-left">
-                
-              </div>
-              </li>
-
-              
-              <li>
-              <div class="col-left"><strong>Internal Member Name</strong>
-                <span class="float_right_div"></span>  
-              </div>
-              </li>
-              <li>
-              <div class="col-left"><strong>Internal Member Designation</strong>
-                <span class="float_right_div">
-                  
-                </span>  
-              </div>
-              </li>
-              <li>
-              <div class="col-left"><strong>Internal Member Department</strong>
-                <span class="float_right_div">
-                 
-                </span>  
-              </div>
-              </li>
-              
-
-              <h2>Q. 8 - What's the name of your recruiter?</h2>
-              <li>
-              <div class="col-left">
-                
-              </div>
+              <div class="col-left">{{ $total_tenure }}</div>
               </li>
 
 
-              <h2>Q. 9 - Rate your recruiter in the following parameters out of 5:</h2>
+
+              @foreach($confirmation_feedback_details as $confirmation_feedback_detail)
+
+              <h2 style="margin-bottom: -20px;"><strong>Confirmation feedback by {{ $confirmation_feedback_detail['manager_full_name'] }}</strong></h2>
+              <h2>Q. 7 - Rate {{ $user_details['full_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</h2>
       
               <li>
-              <div class="col-left">Professionalism
-                
+              <div class="col-left">Discipline
+                @if($confirmation_feedback_detail->discipline!='NA')
+                  @for($i=0; $i < $confirmation_feedback_detail->discipline; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
-
               
               <li>
-              <div class="col-left">Friendliness 
-                
+              <div class="col-left">Punctuality  
+                @if($confirmation_feedback_detail->punctuality!='NA')
+                  @for($i=0; $i < $confirmation_feedback_detail->punctuality; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
-            
               <li>
-              <div class="col-left">Length of the time spent talking to you
-                
+              <div class="col-left">Work-Ethics 
+                @if($confirmation_feedback_detail->work_ethics!='NA')
+                  @for($i=0; $i < $confirmation_feedback_detail->work_ethics; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
+
+              <li>
+              <div class="col-left">Team-Work
+                @if($confirmation_feedback_detail->team_work!='NA')
+                  @for($i=0; $i < $confirmation_feedback_detail->team_work; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
+              </div>
+              </li>
+
+              <li>
+              <div class="col-left">Response towards Feedback
+                @if($confirmation_feedback_detail->response_towards_feedback!='NA')
+                  @for($i=0; $i < $confirmation_feedback_detail->response_towards_feedback; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
+              </div>
+              </li>
+
+
+              <h2>Q. 8 - Kindly elaborate on {{ $user_details['full_name'] }} performance of the last 3 months?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $confirmation_feedback_detail['elaborate_performance'] !!}</div>
+              </li>
+
+              <h2>Q. 9 - Mention top 3 highlights of {{ $user_details['full_name'] }}?</h2>
+              <li>
+              <div class="col-left"><strong>1. </strong>
+                <span class="">{{ $confirmation_feedback_detail->top_3_highlights_1 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>2. </strong>
+                <span class="">{{ $confirmation_feedback_detail->top_3_highlights_2 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>3. </strong>
+                <span class="">{{ $confirmation_feedback_detail->top_3_highlights_3 }}</span>  
+              </div>
+              </li>
+
+              <h2>Q. 10 - Mention the major task that have been accomplished by {{ $user_details['full_name'] }}?</h2>
+              <li>
+              <div class="col-left"><strong>1. </strong>
+                <span class="">{{ $confirmation_feedback_detail->major_task_1 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>2. </strong>
+                <span class="">{{ $confirmation_feedback_detail->major_task_2 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>3. </strong>
+                <span class="">{{ $confirmation_feedback_detail->major_task_3 }}</span>  
+              </div>
+              </li>
+
+              <h2>Q. 11 - Mention 3 areas of improvement?</h2>
+              <li>
+              <div class="col-left"><strong>1. </strong>
+                <span class="">{{ $confirmation_feedback_detail->areas_of_improvement_1 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>2. </strong>
+                <span class="">{{ $confirmation_feedback_detail->areas_of_improvement_2 }}</span>  
+              </div>
+              </li>
+              <li>
+              <div class="col-left"><strong>3. </strong>
+                <span class="">{{ $confirmation_feedback_detail->areas_of_improvement_3 }}</span>  
+              </div>
+              </li>
+
+
+              <h2>Q. 12 - Has {{ $user_details['full_name'] }} been able to add value in your team?</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->add_value_in_team }}</div>
+              </li>
+
+              <h2>If Yes, Please share an instance in details.</h2>
+              <li>
+              <div class="col-left">{!! $confirmation_feedback_detail->add_value_in_team_share_instance !!}</div>
+              </li>
+
+              <h2>Q. 13 - Has {{ $user_details['full_name'] }} met your expectations in the last 3 months</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->met_your_expectations }}</div>
+              </li>
+
+              <h2>Other (please specify)</h2>
+              <li>
+              <div class="col-left">{!! $confirmation_feedback_detail->met_your_expectations_other_specify !!}</div>
+              </li>
+
+              <h2>Q. 14 - Are you sure to confirm {{ $user_details['full_name'] }} in the Organization?</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->are_you_sure_to_confirm }}</div>
+              </li>
+
+              @if($confirmation_feedback_detail->are_you_sure_to_confirm=='No, Put under PIP')
+              <h2>If you want to recommend PIP, Pls share a detailed plan.</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->recommend_pip_detailed_plan }}</div>
+              </li>
+              @endif
+
+              <h2>Q. 15 - Has {{ $user_details['full_name'] }} been committed an increment on confirmation, at the time of joining?</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->increment_on_confirmation }}</div>
+              </li>
+
+              @if($confirmation_feedback_detail->increment_on_confirmation=='Yes')
+              <h2>If yes, then mention the amount.</h2>
+              <li>
+              <div class="col-left">{{ $confirmation_feedback_detail->mention_the_amount }}</div>
+              </li>
+              @endif
+
+              @endforeach
+
+
 
               
-              <li>
-              <div class="col-left">Company knowledge 
-                
-              </div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Specific knowledge about the job profile 
-                
-              </div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Timely response to your communications - email or phone 
-                
-              </div>
-              </li>
-
-
-              <h2>Q. 10 - Yes/No Questions</h2>
-              <li>
-              <div class="col-left">Do you completely understand our company policies and procedures as outlined in the handbook? <span class="float_right_div"></span></div>
-              </li>
-
-              <li>
-              <div class="col-left">Do you completely understand departmental processes as explained in 'Manager's Expectation Setting' session? <span class="float_right_div"></span></div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Do you completely understand your job duties and responsibilities? <span class="float_right_div"></span></div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Do you feel that your job title is properly named? <span class="float_right_div"></span></div>
-              </li>
-
-
-              <h2>Q. 11 - What will be your mission for the first year?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 12 - What do you aim in the second year?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 13 - What will be your aim in the third year of your tenure with us?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-
-              <h2>Q. 14 - Rate the overall recruitment process of our company! (Rating out of 5)</h2>
-              <li>
-              <div class="col-left">
-                
-              </div>
-              </li>
-
-
-              <h2>Q. 15 - Any additional feedback for the recruitment process?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 16 - Rate your HR induction session! (out of 5)</h2>
-              <li>
-              <div class="col-left">
-              </div>
-              </li>
-
-
-              <h2>Q. 17 - Any additional feedback for HR induction session?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
 
               @else 
 
@@ -210,8 +243,8 @@
             
             
             <div class="btn-group">
-				        <a href="{{ url('/interview-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
-                <a href="{{ url('/ppt/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+				        <a href="{{ url('/manager-check-in-from/'.$employee_id) }}" class="btn btn-default">previous</a>
+                <a href="{{ url('/thankyou/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             

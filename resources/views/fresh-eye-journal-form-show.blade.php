@@ -103,7 +103,7 @@
 
                   <tr>
                     <td>Tenure in {{$fresh_eye_journal_details['company_name_ajax']}} (in months)</td>
-                    <td>{{ $fresh_eye_journal_details['company_name_ajax'] }}</td>
+                    <td>{{ $fresh_eye_journal_details['tenure_in_month'] }}</td>
                   </tr>
 
                   <tr>
@@ -475,7 +475,7 @@
                   </tr>
 
                   <tr>
-                    <td>How comfortable do you feel in sharing your feedback with him/her?</td>
+                    <td>How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager']; $i++)
@@ -510,7 +510,7 @@
                   </tr>
 
                   <tr>
-                    <td>How quickly does he/she respond to your requests/queries/concerns?</td>
+                    <td>How quickly does {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} respond to your requests/queries/concerns?</td>
                     <td>
                       @if($fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['quickness_in_respond_reporting_manager_qi']; $i++)
@@ -523,7 +523,7 @@
                   </tr>
 
                   <tr>
-                    <td>How well have you received guidance from him/her?</td>
+                    <td>How well have you received guidance from {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_well_received_guidance_reporting_manager_qi']; $i++)
@@ -536,7 +536,7 @@
                   </tr>
 
                   <tr>
-                    <td>How clearly are your goals set by him/her?</td>
+                    <td>How clearly are your goals set by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_clearly_your_goals_set_reporting_manager_qi']; $i++)
@@ -549,7 +549,7 @@
                   </tr>
 
                   <tr>
-                    <td>How transparent is he/she?</td>
+                    <td>How transparent is {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_transparent_is_reporting_manager_qi']; $i++)
@@ -575,7 +575,7 @@
                   </tr>
 
                   <tr>
-                    <td>How well does he/she adjust to changing priorities?</td>
+                    <td>How well does {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} adjust to changing priorities?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_well_adjust_changing_priorities_reporting_manager_qi']; $i++)
@@ -588,7 +588,7 @@
                   </tr>
 
                   <tr>
-                    <td>How comfortable do you feel in sharing your feedback with him/her?</td>
+                    <td>How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_reporting_manager_qi']; $i++)
@@ -632,7 +632,7 @@
                   </tr>
 
                   <tr>
-                    <td>How quickly does he/she respond to your requests/queries/concerns?</td>
+                    <td>How quickly does {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }} respond to your requests/queries/concerns?</td>
                     <td>
                       @if($fresh_eye_journal_details['quickness_in_respond_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['quickness_in_respond_hod_qj']; $i++)
@@ -645,7 +645,7 @@
                   </tr>
 
                   <tr>
-                    <td>How well have you received guidance from him/her?</td>
+                    <td>How well have you received guidance from {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_well_received_guidance_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_well_received_guidance_hod_qj']; $i++)
@@ -658,7 +658,7 @@
                   </tr>
 
                   <tr>
-                    <td>How clearly are your goals set by him/her?</td>
+                    <td>How clearly are your goals set by {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_clearly_your_goals_set_hod_qj']; $i++)
@@ -671,7 +671,7 @@
                   </tr>
 
                   <tr>
-                    <td>How transparent is he/she?</td>
+                    <td>How transparent is {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_transparent_is_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_transparent_is_hod_qj']; $i++)
@@ -697,7 +697,7 @@
                   </tr>
 
                   <tr>
-                    <td>How well does he/she adjust to changing priorities?</td>
+                    <td>How well does {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }} adjust to changing priorities?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_well_adjust_changing_priorities_hod_qj']; $i++)
@@ -710,7 +710,7 @@
                   </tr>
 
                   <tr>
-                    <td>How comfortable do you feel in sharing your feedback with him/her?</td>
+                    <td>How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}?</td>
                     <td>
                       @if($fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['how_comfortable_feel_sharing_feedback_hod_qj']; $i++)

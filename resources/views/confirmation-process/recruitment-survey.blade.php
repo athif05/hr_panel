@@ -211,17 +211,17 @@
 
               <h2>Q. 11 - What will be your mission for the first year?</h2>
               <li>
-              <div class="col-left">{!! $recruitment_details['mission_for_first_year'] !!}</div>
+              <div class="col-left text-justify">{!! $recruitment_details['mission_for_first_year'] !!}</div>
               </li>
 
               <h2>Q. 12 - What do you aim in the second year?</h2>
               <li>
-              <div class="col-left">{!! $recruitment_details['aim_in_second_year'] !!}</div>
+              <div class="col-left text-justify">{!! $recruitment_details['aim_in_second_year'] !!}</div>
               </li>
 
               <h2>Q. 13 - What will be your aim in the third year of your tenure with us?</h2>
               <li>
-              <div class="col-left">{!! $recruitment_details['aim_third_year_tenure'] !!}</div>
+              <div class="col-left text-justify">{!! $recruitment_details['aim_third_year_tenure'] !!}</div>
               </li>
 
 
@@ -241,7 +241,7 @@
 
               <h2>Q. 15 - Any additional feedback for the recruitment process?</h2>
               <li>
-              <div class="col-left">{!! $recruitment_details['additional_feedback_recruitment_process'] !!}</div>
+              <div class="col-left text-justify">{!! $recruitment_details['additional_feedback_recruitment_process'] !!}</div>
               </li>
 
               <h2>Q. 16 - Rate your HR induction session! (out of 5)</h2>
@@ -260,7 +260,7 @@
 
               <h2>Q. 17 - Any additional feedback for HR induction session?</h2>
               <li>
-              <div class="col-left">{!! $recruitment_details['additional_feedback_hr_induction'] !!}</div>
+              <div class="col-left text-justify">{!! $recruitment_details['additional_feedback_hr_induction'] !!}</div>
               </li>
 
               @else 
@@ -276,7 +276,7 @@
             
             <div class="btn-group">
 				        <a href="{{ url('/interview-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
-                <a href="{{ url('/ppt/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+                <a href="{{ url('/member-check-in-from/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             

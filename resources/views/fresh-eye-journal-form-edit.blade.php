@@ -1026,7 +1026,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_well_adjust_changing_priorities_reporting_manager" class="form-label rdioBtn">How well does he/she adjust to changing priorities <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_well_adjust_changing_priorities_reporting_manager" class="form-label rdioBtn">How well does {{ $fresh_eye_journal_details->reporting_manager_name_ajax }} adjust to changing priorities <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
 
@@ -1056,7 +1056,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_comfortable_feel_sharing_feedback_reporting_manager" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_comfortable_feel_sharing_feedback_reporting_manager" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager" id="how_comfortable_feel_sharing_feedback_reporting_manager" value="NA" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager)=='NA') checked @endif>
@@ -1138,7 +1138,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="quickness_in_respond_reporting_manager_qi" class="form-label rdioBtn">How quickly does he/she respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="quickness_in_respond_reporting_manager_qi" class="form-label rdioBtn">How quickly does {{ $fresh_eye_journal_details->reporting_manager_name_ajax }} respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="quickness_in_respond_reporting_manager_qi" id="quickness_in_respond_reporting_manager_qi" value="NA" @if(old('quickness_in_respond_reporting_manager_qi',$fresh_eye_journal_details->quickness_in_respond_reporting_manager_qi)=='NA') checked @endif>
@@ -1168,7 +1168,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_well_received_guidance_reporting_manager_qi" class="form-label rdioBtn">How well have you received guidance? How well have you received guidance from him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_well_received_guidance_reporting_manager_qi" class="form-label rdioBtn">How well have you received guidance? How well have you received guidance from {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_reporting_manager_qi" id="how_well_received_guidance_reporting_manager_qi" value="NA" @if(old('how_well_received_guidance_reporting_manager_qi',$fresh_eye_journal_details->how_well_received_guidance_reporting_manager_qi)=='NA') checked @endif>
@@ -1198,7 +1198,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_clearly_your_goals_set_reporting_manager_qi" class="form-label rdioBtn">How clearly are your goals set by him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_clearly_your_goals_set_reporting_manager_qi" class="form-label rdioBtn">How clearly are your goals set by {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_reporting_manager_qi" id="how_clearly_your_goals_set_reporting_manager_qi" value="NA" @if(old('how_clearly_your_goals_set_reporting_manager_qi',$fresh_eye_journal_details->how_clearly_your_goals_set_reporting_manager_qi)=='NA') checked @endif>
@@ -1227,7 +1227,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_transparent_is_reporting_manager_qi" class="form-label rdioBtn">How transparent is he/she? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_transparent_is_reporting_manager_qi" class="form-label rdioBtn">How transparent is {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_transparent_is_reporting_manager_qi" id="how_transparent_is_reporting_manager_qi" value="NA" @if(old('how_transparent_is_reporting_manager_qi',$fresh_eye_journal_details->how_transparent_is_reporting_manager_qi)=='NA') checked @endif>
@@ -1287,7 +1287,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_well_adjust_changing_priorities_reporting_manager_qi" class="form-label rdioBtn">How well does he/she adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_well_adjust_changing_priorities_reporting_manager_qi" class="form-label rdioBtn">How well does {{ $fresh_eye_journal_details->reporting_manager_name_ajax }} adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_reporting_manager_qi" id="how_well_adjust_changing_priorities_reporting_manager_qi" value="NA" @if(old('how_well_adjust_changing_priorities_reporting_manager_qi',$fresh_eye_journal_details->how_well_adjust_changing_priorities_reporting_manager_qi)=='NA') checked @endif>
@@ -1317,7 +1317,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_comfortable_feel_sharing_feedback_reporting_manager_qi" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_comfortable_feel_sharing_feedback_reporting_manager_qi" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_reporting_manager_qi" id="how_comfortable_feel_sharing_feedback_reporting_manager_qi" value="NA" @if(old('how_comfortable_feel_sharing_feedback_reporting_manager_qi',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_reporting_manager_qi)=='NA') checked @endif>
@@ -1458,7 +1458,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="quickness_in_respond_hod_qj" class="form-label rdioBtn">How quickly does he/she respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="quickness_in_respond_hod_qj" class="form-label rdioBtn">How quickly does {{ $fresh_eye_journal_details->head_of_department_name_ajax }} respond to your requests/queries/concerns? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="quickness_in_respond_hod_qj" id="quickness_in_respond_hod_qj" value="NA" @if(old('quickness_in_respond_hod_qj',$fresh_eye_journal_details->quickness_in_respond_hod_qj)=='NA') checked @endif>
@@ -1488,7 +1488,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_well_received_guidance_hod_qj" class="form-label rdioBtn">How well have you received guidance from him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_well_received_guidance_hod_qj" class="form-label rdioBtn">How well have you received guidance from {{ $fresh_eye_journal_details->head_of_department_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_well_received_guidance_hod_qj" id="how_well_received_guidance_hod_qj" value="NA" @if(old('how_well_received_guidance_hod_qj',$fresh_eye_journal_details->how_well_received_guidance_hod_qj)=='NA') checked @endif>
@@ -1518,7 +1518,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_clearly_your_goals_set_hod_qj" class="form-label rdioBtn">How clearly are your goals set by him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_clearly_your_goals_set_hod_qj" class="form-label rdioBtn">How clearly are your goals set by {{ $fresh_eye_journal_details->head_of_department_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_clearly_your_goals_set_hod_qj" id="how_clearly_your_goals_set_hod_qj" value="NA" @if(old('how_clearly_your_goals_set_hod_qj',$fresh_eye_journal_details->how_clearly_your_goals_set_hod_qj)=='NA') checked @endif>
@@ -1547,7 +1547,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_transparent_is_hod_qj" class="form-label rdioBtn">How transparent is he/she? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_transparent_is_hod_qj" class="form-label rdioBtn">How transparent is {{ $fresh_eye_journal_details->head_of_department_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_transparent_is_hod_qj" id="how_transparent_is_hod_qj" value="NA" @if(old('how_transparent_is_hod_qj',$fresh_eye_journal_details->how_transparent_is_hod_qj)=='NA') checked @endif>
@@ -1607,7 +1607,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_well_adjust_changing_priorities_hod_qj" class="form-label rdioBtn">How well does he/she adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_well_adjust_changing_priorities_hod_qj" class="form-label rdioBtn">How well does {{ $fresh_eye_journal_details->head_of_department_name_ajax }} adjust to changing priorities? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_well_adjust_changing_priorities_hod_qj" id="how_well_adjust_changing_priorities_hod_qj" value="NA" @if(old('how_well_adjust_changing_priorities_hod_qj',$fresh_eye_journal_details->how_well_adjust_changing_priorities_hod_qj)=='NA') checked @endif>
@@ -1637,7 +1637,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="how_comfortable_feel_sharing_feedback_hod_qj" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with him/her? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="how_comfortable_feel_sharing_feedback_hod_qj" class="form-label rdioBtn">How comfortable do you feel in sharing your feedback with {{ $fresh_eye_journal_details->head_of_department_name_ajax }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="how_comfortable_feel_sharing_feedback_hod_qj" id="how_comfortable_feel_sharing_feedback_hod_qj" value="NA" @if(old('how_comfortable_feel_sharing_feedback_hod_qj',$fresh_eye_journal_details->how_comfortable_feel_sharing_feedback_hod_qj)=='NA') checked @endif>
@@ -1772,7 +1772,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label">"Rate the Departments out of 5"</label>
+                  <label class="form-label">Rate the Departments out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

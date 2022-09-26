@@ -703,7 +703,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="processes_policies_well_defined" class="form-label rdioBtn">The processes & policies are well defined & well explained. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="processes_policies_well_defined" class="form-label rdioBtn">The processes & policies are well defined & well explained <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="processes_policies_well_defined" id="processes_policies_well_defined" value="NA" @if(old('processes_policies_well_defined')=='NA') checked @elseif(old('processes_policies_well_defined')=='') checked @endif
@@ -939,7 +939,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="training_elaborative_well_explained" class="form-label rdioBtn">Training was elaborative & well explained.  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_elaborative_well_explained" class="form-label rdioBtn">Training was elaborative & well explained  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="training_elaborative_well_explained" id="training_elaborative_well_explained" value="NA" @if(old('training_elaborative_well_explained')=='NA') checked @elseif(old('training_elaborative_well_explained')=='') checked @endif
@@ -968,7 +968,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="training_duration_apt" class="form-label rdioBtn">Duration of training was apt. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="training_duration_apt" class="form-label rdioBtn">Duration of training was apt <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="training_duration_apt" id="training_duration_apt" value="NA" @if(old('training_duration_apt')=='NA') checked @elseif(old('training_duration_apt')=='') checked @endif
@@ -1474,7 +1474,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="mention_achievement" class="form-label">Mention your achievement(s) in terms of your work till date. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="mention_achievement" class="form-label">Mention your achievement(s) in terms of your work till date <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="mention_achievement" id="mention_achievement" style="height: 100px">{{ old('mention_achievement') }}</textarea>
                   <div class="invalid-feedback">
                     Mention your achievement(s) in terms of your work till date.

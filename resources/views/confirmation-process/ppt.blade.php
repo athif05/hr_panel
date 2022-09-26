@@ -36,8 +36,8 @@
             
             
             <div class="btn-group">
-				        <a href="{{ url('/recruitment-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
-                <a href="{{ url('/thankyou/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+				        <a href="{{ url('/fresh-eye-journal/'.$employee_id) }}" class="btn btn-default">previous</a>
+                <a href="{{ url('/manager-check-in-from/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             

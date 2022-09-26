@@ -347,9 +347,42 @@ class ConfirmationFeedbackFormController extends Controller
     /*this is used in start confirmation process in hr login, start here*/
     public function managerConfirmationFeedbackForm($id){
         $employee_id=$user_id = $id;
-        $check_in_member_details='Data';
 
-        return view('confirmation-process.manager-confirmation-feedback-form', compact('employee_id','check_in_member_details'));
+        $confirmation_feedback_details= ConfirmationFeedbackForm::where('confirmation_feedback_forms.user_id',$user_id)
+        ->where('confirmation_feedback_forms.status','2')
+        ->leftJoin('users','users.id','=','confirmation_feedback_forms.manager_id')
+        ->select('confirmation_feedback_forms.*',DB::raw('CONCAT(first_name, " ", last_name) AS manager_full_name'))
+        ->get();
+
+        $user_details= User::where('users.id',$user_id)
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->first();
+
+        $joining_date = date('Y-m-d', strtotime($user_details->joining_date));
+
+
+        /*tenure calculte, start here*/
+        $total_tenure=0;
+
+        $sdate = date("y-m-d");
+        $edate = $joining_date;
+        $date_diff = abs(strtotime($edate) - strtotime($sdate));
+
+        $years = floor($date_diff / (365*60*60*24));
+        $months = floor(($date_diff - $years * 365*60*60*24) / (30*60*60*24));
+        //$days = floor(($date_diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+        $months=$months+($years*12);
+        if($months>0){
+            $total_tenure= (int)$months;
+        }
+        /*tenure calculte, end here*/
+
+        return view('confirmation-process.manager-confirmation-feedback-form', compact('employee_id','confirmation_feedback_details','user_details','total_tenure'));
     }
     /*this is used in start confirmation process in hr login, end here*/
 

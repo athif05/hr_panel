@@ -854,11 +854,30 @@ class FreshEyeJournalController extends Controller
 
     /*this is used in start confirmation process in hr login, start here*/
     public function freshEyeJournal($id){
-        $employee_id=$user_id = $id;
-        $check_in_member_details='data';
 
-        return view('confirmation-process.fresh-eye-journal', compact('employee_id','check_in_member_details'));
+        $employee_id=$user_id = $id;
+
+        
+        /*check record is exist or not*/
+        $fresh_eye_journal_details = FreshEyeJournal::where('fresh_eye_journals.user_id', $user_id)
+        ->leftJoin('designations','designations.id','=','fresh_eye_journals.designation')
+        ->leftJoin('departments','departments.id','=','fresh_eye_journals.department')
+        ->leftJoin('company_locations','company_locations.id','=','fresh_eye_journals.location_name')
+        ->select('fresh_eye_journals.*','designations.name as designation_name','departments.name as department_name','company_locations.name as company_location')
+        ->first();
+        
+
+        return view('confirmation-process.fresh-eye-journal', compact('employee_id','fresh_eye_journal_details'));
     }
     /*this is used in start confirmation process in hr login, end here*/
 
+
+
+    /*for testing*/
+    public function managerCheckInFrom($id){
+        $employee_id=$user_id = $id;
+        $check_in_member_details='data';
+
+        return view('confirmation-process.manager-check-in-form', compact('employee_id','check_in_member_details'));
+    }
 }
