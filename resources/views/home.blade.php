@@ -554,7 +554,7 @@
                           foreach ($department_names as $department_name) {
                             //echo "<br>".$department_name['id'];
                             if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
-echo "<br>Gurugram";
+echo "<br>Gurugram ".$user_gender['department'];
                               if($department_name['id']=='1'){
                                 $no_guru_igam=$no_guru_igam+1;
 
@@ -591,7 +591,7 @@ echo "<br>Gurugram";
                               
                             } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')) {
 
-                              echo "<br>mohali";
+                              echo "<br>mohali".$user_gender['department'];
 
                               if($department_name['id']=='1'){
                                 $no_moh_igam=$no_moh_igam+1;
