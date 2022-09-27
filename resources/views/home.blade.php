@@ -524,32 +524,111 @@
                   <h5 class="card-title">Department-wise Member</h5>
                         <?php 
 
-                          $no_guru_adope=1;
-                          $no_guru_edu=3;
-                          $no_guru_finAcc=5;
-                          $no_guru_hr=7;
-                          $no_guru_igam=9;
-                          $no_guru_mng=11;
-                          $no_guru_media=13;
-                          $no_guru_mobile=15;
-                          $no_guru_pm=17;
-                          $no_guru_pub=19;
-                          $no_guru_techOpe=21;
+                          $no_guru_adope=0;
+                          $no_guru_edu=0;
+                          $no_guru_finAcc=0;
+                          $no_guru_hr=0;
+                          $no_guru_igam=0;
+                          $no_guru_mng=0;
+                          $no_guru_media=0;
+                          $no_guru_mobile=0;
+                          $no_guru_pm=0;
+                          $no_guru_pub=0;
+                          $no_guru_techOpe=0;
 
 
-                          $no_moh_adope=2;
-                          $no_moh_edu=4;
-                          $no_moh_finAcc=6;
-                          $no_moh_hr=8;
-                          $no_moh_igam=10;
-                          $no_moh_mng=12;
-                          $no_moh_media=14;
-                          $no_moh_mobile=16;
-                          $no_moh_pm=18;
-                          $no_moh_pub=20;
-                          $no_moh_techOpe=22;
+                          $no_moh_adope=0;
+                          $no_moh_edu=0;
+                          $no_moh_finAcc=0;
+                          $no_moh_hr=0;
+                          $no_moh_igam=0;
+                          $no_moh_mng=0;
+                          $no_moh_media=0;
+                          $no_moh_mobile=0;
+                          $no_moh_pm=0;
+                          $no_moh_pub=0;
+                          $no_moh_techOpe=0;
 
-                        
+                        foreach ($user_genders as $user_gender) {
+           
+                          foreach ($department_names as $department_name) {
+                            echo "<br>".$department_name['id'];
+                            if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
+
+                              if($department_name['id']=='1'){
+                                $no_guru_igam=$no_guru_igam+1;
+
+                              } else if($department_name['id']=='2'){
+                                $no_guru_pub=$no_guru_pub+1;
+
+                              } else if($department_name['id']=='3'){
+                                $no_guru_techOpe=$no_guru_techOpe+1;
+
+                              } else if($department_name['id']=='4'){
+                                $no_guru_finAcc=$no_guru_finAcc+1;
+
+                              } else if($department_name['id']=='5'){
+                                $no_guru_hr=$no_guru_hr+1;
+
+                              } else if($department_name['id']=='6'){
+                                $no_guru_mobile=$no_guru_mobile+1;
+
+                              } else if($department_name['id']=='7'){
+                                $no_guru_pm=$no_guru_pm+1;
+
+                              } else if($department_name['id']=='8'){
+                                $no_guru_media=$no_guru_media+1;
+
+                              } else if($department_name['id']=='9'){
+                                $no_guru_adope=$no_guru_adope+1;
+
+                              } else if($department_name['id']=='10'){
+                                $no_guru_edu=$no_guru_edu+1;
+
+                              } else if($department_name['id']=='11'){
+                                $no_guru_mng=$no_guru_mng+1;
+                              }
+                              
+                            } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
+
+                              if($department_name['id']=='1'){
+                                $no_moh_igam=$no_moh_igam+1;
+
+                              } else if($department_name['id']=='2'){
+                                $no_moh_pub=$no_moh_pub+1;
+
+                              } else if($department_name['id']=='3'){
+                                $no_moh_techOpe=$no_moh_techOpe+1;
+
+                              } else if($department_name['id']=='4'){
+                                $no_moh_finAcc=$no_moh_finAcc+1;
+
+                              } else if($department_name['id']=='5'){
+                                $no_moh_hr=$no_moh_hr+1;
+
+                              } else if($department_name['id']=='6'){
+                                $no_moh_mobile=$no_moh_mobile+1;
+
+                              } else if($department_name['id']=='7'){
+                                $no_moh_pm=$no_moh_pm+1;
+
+                              } else if($department_name['id']=='8'){
+                                $no_moh_media=$no_moh_media+1;
+
+                              } else if($department_name['id']=='9'){
+                                $no_moh_adope=$no_moh_adope+1;
+
+                              } else if($department_name['id']=='10'){
+                                $no_moh_edu=$no_moh_edu+1;
+
+                              } else if($department_name['id']=='11'){
+                                $no_moh_mng=$no_moh_mng+1;
+                              }
+
+                            }
+
+                          }
+                        }
                         ?>
                   <!-- Column Chart -->
                   <div id="columnChartDepartment"></div>
