@@ -300,8 +300,6 @@ class ConfirmationGenerateEmailController extends Controller
         $id = $request->id;
         $user_id = $request->user_id;
 
-        //dd($id+' / '+$user_id);
-
         $user_details = User::where('users.id',$user_id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
         ->leftJoin('departments', 'departments.id', '=', 'users.department')
