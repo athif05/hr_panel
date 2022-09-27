@@ -523,16 +523,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Department-wise Member</h5>
 
-                   <?php $department_name_list='';?>
-                  @foreach($department_names as $department_name)
-
-                    <?php $department_name_list.="'".$department_name['name']."',";?>
-                    
-
-                  @endforeach
-
-                  <?php echo $department_name_list."<br><br>"; ?>
-
+                  
                         <?php 
 
                           $no_guru_adope=0;
@@ -682,8 +673,8 @@
                           colors: ['transparent']
                         },
                         xaxis: {
-                          /*categories: ['a','b','c','d','e','f','g','h','i','j','k']*/
-                          categories: [<?php echo $department_name_list; ?>]
+                          /*categories: ['Admin Operations','Education','Finance & Accounts','HR','iGaming','Management','Media Buying','Mobile','Pocket Money','Publishers ','Tech Operations']*/
+                          categories: [<?php foreach($department_names as $department_name){?>'<?php echo $department_name["name"]?>',<?php } ?>]
                         },
                         yaxis: {
                           title: {
