@@ -521,7 +521,7 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Department-wise Member</h5>
+                  <h5 class="card-title">Department-wise Member <?php foreach ($department_names as $department_name2) { ?><?php echo $department_name2->name;?>,<?php } ?></h5>
                         <?php 
 
                           $no_guru_adope=0;
