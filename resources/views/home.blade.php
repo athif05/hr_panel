@@ -522,6 +522,17 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Department-wise Member</h5>
+
+                   <?php $department_name_list='';?>
+                  @foreach($department_names as $department_name)
+
+                    <?php $department_name_list.="'".$department_name['name']."',";?>
+                    
+
+                  @endforeach
+
+                  <?php echo $department_name_list."<br><br>"; ?>
+
                         <?php 
 
                           $no_guru_adope=0;
@@ -548,6 +559,7 @@
                           $no_moh_pm=0;
                           $no_moh_pub=0;
                           $no_moh_techOpe=0;
+
 
                         foreach ($user_genders as $user_gender) {
                           $cnt=0;
@@ -671,7 +683,7 @@
                         },
                         xaxis: {
                           /*categories: ['a','b','c','d','e','f','g','h','i','j','k']*/
-                          categories: [<?php for($i=0;$i<count($department_names); $i++){?>"<?php echo $department_names[$i]['name']?>",<?php } ?>]
+                          categories: [<?php echo $department_name_list; ?>]
                         },
                         yaxis: {
                           title: {
