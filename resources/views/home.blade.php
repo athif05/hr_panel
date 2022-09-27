@@ -671,7 +671,7 @@
                         },
                         xaxis: {
                           /*categories: ['a','b','c','d','e','f','g','h','i','j','k']*/
-                          categories: [<?php for($i=0;$i<count($department_names); $i++){?>'<?php echo $department_names[$i]['name']?>',<?php } ?>]
+                          categories: [<?php for($i=0;$i<count($department_names); $i++){?>"<?php echo $department_names[$i]['name']?>",<?php } ?>]
                         },
                         yaxis: {
                           title: {
