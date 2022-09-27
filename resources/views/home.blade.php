@@ -640,11 +640,11 @@
                         series: [
                         {
                           name: 'Gurugram - AIHP',
-                          data: ['<?php echo $no_guru_adope;?>','<?php echo $no_guru_edu;?>','<?php echo $no_guru_finAcc;?>','<?php echo $no_guru_hr;?>','<?php echo $no_guru_igam;?>','<?php echo $no_guru_mng;?>','<?php echo $no_guru_media;?>','<?php echo $no_guru_mobile;?>','<?php echo $no_guru_pm;?>','<?php echo $no_guru_pub;?>','<?php echo $no_guru_techOpe;?>']
+                          data: ['<?php echo $no_guru_adope;?>','<?php echo $no_guru_edu;?>','<?php echo $no_guru_finAcc;?>','<?php echo $no_guru_hr;?>','<?php echo $no_guru_igam;?>','<?php echo $no_guru_mng;?>','<?php echo $no_guru_media;?>','<?php echo $no_guru_mobile;?>','<?php echo $no_guru_pm;?>','<?php echo $no_guru_pub;?>','<?php echo $no_guru_techOpe;?>',]
                         },
                         {
                           name: 'Mohali',
-                          data: ['<?php echo $no_moh_adope;?>','<?php echo $no_moh_edu;?>','<?php echo $no_moh_finAcc;?>','<?php echo $no_moh_hr;?>','<?php echo $no_moh_igam;?>','<?php echo $no_moh_mng;?>','<?php echo $no_moh_media;?>','<?php echo $no_moh_mobile;?>','<?php echo $no_moh_pm;?>','<?php echo $no_moh_pub;?>','<?php echo $no_moh_techOpe;?>']
+                          data: ['<?php echo $no_moh_adope;?>','<?php echo $no_moh_edu;?>','<?php echo $no_moh_finAcc;?>','<?php echo $no_moh_hr;?>','<?php echo $no_moh_igam;?>','<?php echo $no_moh_mng;?>','<?php echo $no_moh_media;?>','<?php echo $no_moh_mobile;?>','<?php echo $no_moh_pm;?>','<?php echo $no_moh_pub;?>','<?php echo $no_moh_techOpe;?>',]
                         }
                         ],
                         chart: {
