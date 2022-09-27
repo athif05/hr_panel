@@ -552,9 +552,9 @@
                         foreach ($user_genders as $user_gender) {
            
                           foreach ($department_names as $department_name) {
-                            echo "<br>".$department_name['id'];
+                            //echo "<br>".$department_name['id'];
                             if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
-
+echo "<br>Gurugram";
                               if($department_name['id']=='1'){
                                 $no_guru_igam=$no_guru_igam+1;
 
@@ -589,7 +589,9 @@
                                 $no_guru_mng=$no_guru_mng+1;
                               }
                               
-                            } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
+                            } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')) {
+
+                              echo "<br>mohali";
 
                               if($department_name['id']=='1'){
                                 $no_moh_igam=$no_moh_igam+1;
