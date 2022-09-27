@@ -375,148 +375,6 @@
             <!-- Key Player graph, end here -->
 
 
-            <!-- Companywise graph, start here -->
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Company-wise Member</h5>
-                        <?php 
-
-                          $no_guru_bvc=0;
-                          $no_guru_vc=0;
-                          $no_guru_adwys=0;
-                          $no_guru_nutra=0;
-                          $no_guru_letx=0;
-                          $no_guru_vfull=0;
-
-
-                          $no_moh_bvc=0;
-                          $no_moh_vc=0;
-                          $no_moh_adwys=0;
-                          $no_moh_nutra=0;
-                          $no_moh_letx=0;
-                          $no_moh_vfull=0;
-
-                        foreach ($user_genders as $user_gender) {
-           
-                          foreach ($company_names as $company_name) {
-                            //echo " ".$company_name['name'];
-                            if(($company_name['id']==$user_gender['company_id']) && ($user_gender['company_location_id']=='1')){
-
-                              if($company_name['id']=='1') {
-                                $no_guru_bvc=$no_guru_bvc+1;
-
-                              } else if($company_name['id']=='2') {
-                                $no_guru_vc=$no_guru_vc+1;
-
-                              } else if($company_name['id']=='3') {
-                                $no_guru_adwys=$no_guru_adwys+1;
-
-                              } else if($company_name['id']=='4') {
-                                $no_guru_nutra=$no_guru_nutra+1;
-
-                              } else if($company_name['id']=='5') {
-                                $no_guru_letx=$no_guru_letx+1;
-
-                              } else if($company_name['id']=='6') {
-                                $no_guru_vfull=$no_guru_vfull+1;
-
-                              } 
-                              
-                            } else if(($company_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
-
-                              if($company_name['id']=='1') {
-                                $no_moh_bvc=$no_moh_bvc+1;
-
-                              } else if($company_name['id']=='2') {
-                                $no_moh_vc=$no_moh_vc+1;
-
-                              } else if($company_name['id']=='3') {
-                                $no_moh_adwys=$no_moh_adwys+1;
-
-                              } else if($company_name['id']=='4') {
-                                $no_moh_nutra=$no_moh_nutra+1;
-
-                              } else if($company_name['id']=='5') {
-                                $no_moh_letx=$no_moh_letx+1;
-
-                              } else if($company_name['id']=='6') {
-                                $no_moh_vfull=$no_moh_vfull+1;
-
-                              }
-
-                            }
-
-                          }
-                        }
-                        ?>
-                  <!-- Column Chart -->
-                  <div id="columnChart"></div>
-
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#columnChart"), {
-                        series: [
-                        {
-                          name: 'Gurugram - AIHP',
-                          data: [<?php echo $no_guru_adwys;?>,<?php echo $no_guru_bvc;?>,<?php echo $no_guru_letx;?>,<?php echo $no_guru_nutra;?>,<?php echo $no_guru_vc;?>,<?php echo $no_guru_vfull;?>]
-                        },
-                        {
-                          name: 'Mohali',
-                          data: [<?php echo $no_moh_adwys;?>,<?php echo $no_moh_bvc;?>,<?php echo $no_moh_letx;?>,<?php echo $no_moh_nutra;?>,<?php echo $no_moh_vc;?>,<?php echo $no_moh_vfull;?>]
-                        }
-                        ],
-                        chart: {
-                          type: 'bar',
-                          height: 350
-                        },
-                        plotOptions: {
-                          bar: {
-                            horizontal: false,
-                            columnWidth: '55%',
-                            endingShape: 'rounded',
-                            dataLabels: {
-                              position: 'top'
-                            }
-                          },
-                        },
-                        dataLabels: {
-                          enabled: true
-                        },
-                        stroke: {
-                          show: true,
-                          width: 2,
-                          colors: ['transparent']
-                        },
-                        xaxis: {
-                          categories: [<?php foreach ($company_names as $company_name) { ?>'<?php echo $company_name["name"]?>',<?php } ?>],
-                        },
-                        yaxis: {
-                          title: {
-                            text: ''
-                          }
-                        },
-                        fill: {
-                          opacity: 1
-                        },
-                        tooltip: {
-                          y: {
-                            formatter: function(val) {
-                              return "" + val + " Members"
-                            }
-                          }
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Column Chart -->
-
-                </div>
-              </div>
-            </div>
-            <!-- Company graph, end here -->
-
-
             <!-- Department graph, start here -->
             <div class="col-lg-12">
               <div class="card">
@@ -697,6 +555,148 @@
             </div>
             <!-- Department graph, end here -->
 
+            
+
+            <!-- Companywise graph, start here -->
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Company-wise Member</h5>
+                        <?php 
+
+                          $no_guru_bvc=0;
+                          $no_guru_vc=0;
+                          $no_guru_adwys=0;
+                          $no_guru_nutra=0;
+                          $no_guru_letx=0;
+                          $no_guru_vfull=0;
+
+
+                          $no_moh_bvc=0;
+                          $no_moh_vc=0;
+                          $no_moh_adwys=0;
+                          $no_moh_nutra=0;
+                          $no_moh_letx=0;
+                          $no_moh_vfull=0;
+
+                        foreach ($user_genders as $user_gender) {
+           
+                          foreach ($company_names as $company_name) {
+                            //echo " ".$company_name['name'];
+                            if(($company_name['id']==$user_gender['company_id']) && ($user_gender['company_location_id']=='1')){
+
+                              if($company_name['id']=='1') {
+                                $no_guru_bvc=$no_guru_bvc+1;
+
+                              } else if($company_name['id']=='2') {
+                                $no_guru_vc=$no_guru_vc+1;
+
+                              } else if($company_name['id']=='3') {
+                                $no_guru_adwys=$no_guru_adwys+1;
+
+                              } else if($company_name['id']=='4') {
+                                $no_guru_nutra=$no_guru_nutra+1;
+
+                              } else if($company_name['id']=='5') {
+                                $no_guru_letx=$no_guru_letx+1;
+
+                              } else if($company_name['id']=='6') {
+                                $no_guru_vfull=$no_guru_vfull+1;
+
+                              } 
+                              
+                            } else if(($company_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
+
+                              if($company_name['id']=='1') {
+                                $no_moh_bvc=$no_moh_bvc+1;
+
+                              } else if($company_name['id']=='2') {
+                                $no_moh_vc=$no_moh_vc+1;
+
+                              } else if($company_name['id']=='3') {
+                                $no_moh_adwys=$no_moh_adwys+1;
+
+                              } else if($company_name['id']=='4') {
+                                $no_moh_nutra=$no_moh_nutra+1;
+
+                              } else if($company_name['id']=='5') {
+                                $no_moh_letx=$no_moh_letx+1;
+
+                              } else if($company_name['id']=='6') {
+                                $no_moh_vfull=$no_moh_vfull+1;
+
+                              }
+
+                            }
+
+                          }
+                        }
+                        ?>
+                  <!-- Column Chart -->
+                  <div id="columnChart"></div>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      new ApexCharts(document.querySelector("#columnChart"), {
+                        series: [
+                        {
+                          name: 'Gurugram - AIHP',
+                          data: [<?php echo $no_guru_adwys;?>,<?php echo $no_guru_bvc;?>,<?php echo $no_guru_letx;?>,<?php echo $no_guru_nutra;?>,<?php echo $no_guru_vc;?>,<?php echo $no_guru_vfull;?>]
+                        },
+                        {
+                          name: 'Mohali',
+                          data: [<?php echo $no_moh_adwys;?>,<?php echo $no_moh_bvc;?>,<?php echo $no_moh_letx;?>,<?php echo $no_moh_nutra;?>,<?php echo $no_moh_vc;?>,<?php echo $no_moh_vfull;?>]
+                        }
+                        ],
+                        chart: {
+                          type: 'bar',
+                          height: 350
+                        },
+                        plotOptions: {
+                          bar: {
+                            horizontal: false,
+                            columnWidth: '55%',
+                            endingShape: 'rounded',
+                            dataLabels: {
+                              position: 'top'
+                            }
+                          },
+                        },
+                        dataLabels: {
+                          enabled: true
+                        },
+                        stroke: {
+                          show: true,
+                          width: 2,
+                          colors: ['transparent']
+                        },
+                        xaxis: {
+                          categories: [<?php foreach ($company_names as $company_name) { ?>'<?php echo $company_name["name"]?>',<?php } ?>],
+                        },
+                        yaxis: {
+                          title: {
+                            text: ''
+                          }
+                        },
+                        fill: {
+                          opacity: 1
+                        },
+                        tooltip: {
+                          y: {
+                            formatter: function(val) {
+                              return "" + val + " Members"
+                            }
+                          }
+                        }
+                      }).render();
+                    });
+                  </script>
+                  <!-- End Column Chart -->
+
+                </div>
+              </div>
+            </div>
+            <!-- Company graph, end here -->
 
 
             <?php 
