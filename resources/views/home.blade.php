@@ -103,9 +103,9 @@
 
                             if($company_location_name["id"]==$value_genders["company_location_id"]){
 
-                              if($value_genders["gender"]=='Male'){
+                              if($value_genders["gender"]=='Male') {
                                 $no_male=$no_male+1;
-                              } else if($value_genders["gender"]=='Female'){
+                              } else if($value_genders["gender"]=='Female') {
                                 $no_female=$no_female+1;
                               }
                             }
@@ -290,17 +290,17 @@
 
                               if($all_user_name["company_location_id"]==1){
 
-                                if($all_user_name["employee_type"]=='Confirmed'){
+                                if($all_user_name["employee_type"]=='Confirmed') {
                                   $no_guru_conf=$no_guru_conf+1;
-                                } else if($all_user_name["employee_type"]=='Probation'){
+                                } else if($all_user_name["employee_type"]=='Probation') {
                                   $no_guru_prob=$no_guru_prob+1;
                                 }
                                   
                               } else if($all_user_name["company_location_id"]==2){
 
-                                if($all_user_name["employee_type"]=='Confirmed'){
+                                if($all_user_name["employee_type"]=='Confirmed') {
                                   $no_moh_conf=$no_moh_conf+1;
-                                } else if($all_user_name["employee_type"]=='Probation'){
+                                } else if($all_user_name["employee_type"]=='Probation') {
                                   $no_moh_prob=$no_moh_prob+1;
                                 }
 
@@ -403,44 +403,44 @@
                             //echo " ".$company_name['name'];
                             if(($company_name['id']==$user_gender['company_id']) && ($user_gender['company_location_id']=='1')){
 
-                              if($company_name['id']=='1'){
+                              if($company_name['id']=='1') {
                                 $no_guru_bvc=$no_guru_bvc+1;
 
-                              } else if($company_name['id']=='2'){
+                              } else if($company_name['id']=='2') {
                                 $no_guru_vc=$no_guru_vc+1;
 
-                              } else if($company_name['id']=='3'){
+                              } else if($company_name['id']=='3') {
                                 $no_guru_adwys=$no_guru_adwys+1;
 
-                              } else if($company_name['id']=='4'){
+                              } else if($company_name['id']=='4') {
                                 $no_guru_nutra=$no_guru_nutra+1;
 
-                              } else if($company_name['id']=='5'){
+                              } else if($company_name['id']=='5') {
                                 $no_guru_letx=$no_guru_letx+1;
 
-                              } else if($company_name['id']=='6'){
+                              } else if($company_name['id']=='6') {
                                 $no_guru_vfull=$no_guru_vfull+1;
 
                               } 
                               
                             } else if(($company_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')){
 
-                              if($company_name['id']=='1'){
+                              if($company_name['id']=='1') {
                                 $no_moh_bvc=$no_moh_bvc+1;
 
-                              } else if($company_name['id']=='2'){
+                              } else if($company_name['id']=='2') {
                                 $no_moh_vc=$no_moh_vc+1;
 
-                              } else if($company_name['id']=='3'){
+                              } else if($company_name['id']=='3') {
                                 $no_moh_adwys=$no_moh_adwys+1;
 
-                              } else if($company_name['id']=='4'){
+                              } else if($company_name['id']=='4') {
                                 $no_moh_nutra=$no_moh_nutra+1;
 
-                              } else if($company_name['id']=='5'){
+                              } else if($company_name['id']=='5') {
                                 $no_moh_letx=$no_moh_letx+1;
 
-                              } else if($company_name['id']=='6'){
+                              } else if($company_name['id']=='6') {
                                 $no_moh_vfull=$no_moh_vfull+1;
 
                               }
@@ -555,76 +555,74 @@
                             $cnt++;                            
                             //echo "<br>".$department_name['id'];
                             if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='1')){
-echo "<br>".$cnt." Gurugram ";
-                              if($department_name['id']=='1'){
+
+                              if($department_name['id']=='1') {
                                 $no_guru_igam=$no_guru_igam+1;
 
-                              } else if($department_name['id']=='2'){
+                              } else if($department_name['id']=='2') {
                                 $no_guru_pub=$no_guru_pub+1;
 
-                              } else if($department_name['id']=='3'){
+                              } else if($department_name['id']=='3') {
                                 $no_guru_techOpe=$no_guru_techOpe+1;
 
-                              } else if($department_name['id']=='4'){
+                              } else if($department_name['id']=='4') {
                                 $no_guru_finAcc=$no_guru_finAcc+1;
 
-                              } else if($department_name['id']=='5'){
+                              } else if($department_name['id']=='5') {
                                 $no_guru_hr=$no_guru_hr+1;
 
-                              } else if($department_name['id']=='6'){
+                              } else if($department_name['id']=='6') {
                                 $no_guru_mobile=$no_guru_mobile+1;
 
-                              } else if($department_name['id']=='7'){
+                              } else if($department_name['id']=='7') {
                                 $no_guru_pm=$no_guru_pm+1;
 
-                              } else if($department_name['id']=='8'){
+                              } else if($department_name['id']=='8') {
                                 $no_guru_media=$no_guru_media+1;
 
-                              } else if($department_name['id']=='9'){
+                              } else if($department_name['id']=='9') {
                                 $no_guru_adope=$no_guru_adope+1;
 
-                              } else if($department_name['id']=='10'){
+                              } else if($department_name['id']=='10') {
                                 $no_guru_edu=$no_guru_edu+1;
 
-                              } else if($department_name['id']=='11'){
+                              } else if($department_name['id']=='11') {
                                 $no_guru_mng=$no_guru_mng+1;
                               }
                               
                             } else if(($department_name['id']==$user_gender['department']) && ($user_gender['company_location_id']=='2')) {
 
-                              echo "<br>".$cnt." mohali";
-
-                              if($department_name['id']=='1'){
+                              if($department_name['id']=='1') {
                                 $no_moh_igam=$no_moh_igam+1;
 
-                              } else if($department_name['id']=='2'){
+                              } else if($department_name['id']=='2') {
                                 $no_moh_pub=$no_moh_pub+1;
 
-                              } else if($department_name['id']=='3'){
+                              } else if($department_name['id']=='3') {
                                 $no_moh_techOpe=$no_moh_techOpe+1;
 
-                              } else if($department_name['id']=='4'){
+                              } else if($department_name['id']=='4') {
                                 $no_moh_finAcc=$no_moh_finAcc+1;
 
-                              } else if($department_name['id']=='5'){
+                              } else if($department_name['id']=='5') {
                                 $no_moh_hr=$no_moh_hr+1;
 
-                              } else if($department_name['id']=='6'){
+                              } else if($department_name['id']=='6') {
                                 $no_moh_mobile=$no_moh_mobile+1;
 
-                              } else if($department_name['id']=='7'){
+                              } else if($department_name['id']=='7') {
                                 $no_moh_pm=$no_moh_pm+1;
 
-                              } else if($department_name['id']=='8'){
+                              } else if($department_name['id']=='8') {
                                 $no_moh_media=$no_moh_media+1;
 
-                              } else if($department_name['id']=='9'){
+                              } else if($department_name['id']=='9') {
                                 $no_moh_adope=$no_moh_adope+1;
 
-                              } else if($department_name['id']=='10'){
+                              } else if($department_name['id']=='10') {
                                 $no_moh_edu=$no_moh_edu+1;
 
-                              } else if($department_name['id']=='11'){
+                              } else if($department_name['id']=='11') {
                                 $no_moh_mng=$no_moh_mng+1;
                               }
 
@@ -642,11 +640,11 @@ echo "<br>".$cnt." Gurugram ";
                         series: [
                         {
                           name: 'Gurugram - AIHP',
-                          data: ['<?php echo $no_guru_adope;?>','<?php echo $no_guru_edu;?>','<?php echo $no_guru_finAcc;?>','<?php echo $no_guru_hr;?>','<?php echo $no_guru_igam;?>','<?php echo $no_guru_mng;?>','<?php echo $no_guru_media;?>','<?php echo $no_guru_mobile;?>','<?php echo $no_guru_pm;?>','<?php echo $no_guru_pub;?>','<?php echo $no_guru_techOpe;?>']
+                          data: ['1','3','5','7','9','11','13','15','17','19','21']
                         },
                         {
                           name: 'Mohali',
-                          data: ['<?php echo $no_moh_adope;?>','<?php echo $no_moh_edu;?>','<?php echo $no_moh_finAcc;?>','<?php echo $no_moh_hr;?>','<?php echo $no_moh_igam;?>','<?php echo $no_moh_mng;?>','<?php echo $no_moh_media;?>','<?php echo $no_moh_mobile;?>','<?php echo $no_moh_pm;?>','<?php echo $no_moh_pub;?>','<?php echo $no_moh_techOpe;?>']
+                          data: ['2','4','6','8','10','12','14','16','18','20','22']
                         }
                         ],
                         chart: {
@@ -737,70 +735,70 @@ echo "<br>".$cnt." Gurugram ";
 
               $years = floor($date_diff / (365*60*60*24));
 
-              if($all_user['company_location_id']=='1'){
+              if($all_user['company_location_id']=='1') {
 
-                if($years=='1'){
+                if($years=='1') {
                   $no_guru_tenure1=$no_guru_tenure1+1;
 
-                } else if($years=='2'){
+                } else if($years=='2') {
                   $no_guru_tenure2=$no_guru_tenure2+1;
 
-                } else if($years=='3'){
+                } else if($years=='3') {
                   $no_guru_tenure3=$no_guru_tenure3+1;
 
-                } else if($years=='4'){
+                } else if($years=='4') {
                   $no_guru_tenure4=$no_guru_tenure4+1;
 
-                } else if($years=='5'){
+                } else if($years=='5') {
                   $no_guru_tenure5=$no_guru_tenure5+1;
 
-                } else if($years=='6'){
+                } else if($years=='6') {
                   $no_guru_tenure6=$no_guru_tenure6+1;
 
-                } else if($years=='7'){
+                } else if($years=='7') {
                   $no_guru_tenure7=$no_guru_tenure7+1;
 
-                } else if($years=='8'){
+                } else if($years=='8') {
                   $no_guru_tenure8=$no_guru_tenure8+1;
 
-                } else if($years=='9'){
+                } else if($years=='9') {
                   $no_guru_tenure9=$no_guru_tenure9+1;
 
-                } else if($years=='10'){
+                } else if($years=='10') {
                   $no_guru_tenure10=$no_guru_tenure10+1;
 
                 }
                 
-              } else if($all_user['company_location_id']=='2'){
+              } else if($all_user['company_location_id']=='2') {
 
-                if($years=='1'){
+                if($years=='1') {
                   $no_moh_tenure1=$no_moh_tenure1+1;
 
-                } else if($years=='2'){
+                } else if($years=='2') {
                   $no_moh_tenure2=$no_moh_tenure2+1;
 
-                } else if($years=='3'){
+                } else if($years=='3') {
                   $no_moh_tenure3=$no_moh_tenure3+1;
 
-                } else if($years=='4'){
+                } else if($years=='4') {
                   $no_moh_tenure4=$no_moh_tenure4+1;
 
-                } else if($years=='5'){
+                } else if($years=='5') {
                   $no_moh_tenure5=$no_moh_tenure5+1;
 
-                } else if($years=='6'){
+                } else if($years=='6') {
                   $no_moh_tenure6=$no_moh_tenure6+1;
 
-                } else if($years=='7'){
+                } else if($years=='7') {
                   $no_moh_tenure7=$no_moh_tenure7+1;
 
-                } else if($years=='8'){
+                } else if($years=='8') {
                   $no_moh_tenure8=$no_moh_tenure8+1;
 
-                } else if($years=='9'){
+                } else if($years=='9') {
                   $no_moh_tenure9=$no_moh_tenure9+1;
 
-                } else if($years=='10'){
+                } else if($years=='10') {
                   $no_moh_tenure10=$no_moh_tenure10+1;
 
                 }              
