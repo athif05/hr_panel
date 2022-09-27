@@ -27,6 +27,86 @@
 		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
 	];
 };*/
+			/*send mom-email-view from hr role, confirmation process(view) menu, start here*/
+			$('#send_generate_confirmation_email').on('click', function(){
+
+				var id=$('#id').val();
+				var user_id=$('#user_id').val();
+
+				console.log(id+' / '+user_id);
+
+				$('#send_generate_confirmation_email').html('Sending...');
+				$('#send_generate_confirmation_email').prop('disabled', true);
+
+				$.ajax({
+					url: "{{url('/send-generate-confirmation-email')}}", 
+					type: "POST",  
+					data:{
+						id:id,
+						user_id:user_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						swal("Poof! Mail sent!", {
+							icon: "success",
+						});	
+
+						$('#send_generate_confirmation_email').html('Sent');
+						$('#send_generate_confirmation_email').prop('disabled', true);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+				
+
+			});
+			/*send mom-email-view from hr role, confirmation process(view) menu, end here*/
+
+
+
+			/*send mom-email-view from hr role, confirmation process(view) menu, start here*/
+			$('#send_mail').on('click', function(){
+				var user_id=$('#user_id').val();
+				console.log(user_id);
+
+				$('#send_mail').html('Sending...');
+				$('#send_mail').prop('disabled', true);
+
+				$.ajax({
+					url: "{{url('send-confirmation-mom-email-view')}}", 
+					type: "POST",  
+					data:{
+						user_id:user_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						swal("Poof! Mail sent!", {
+							icon: "success",
+						});	
+
+						$('#send_mail').html('Sent');
+						$('#send_mail').prop('disabled', true);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+				
+
+			});
+			/*send mom-email-view from hr role, confirmation process(view) menu, end here*/
+
 
 
 

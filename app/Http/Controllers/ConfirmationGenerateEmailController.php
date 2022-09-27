@@ -296,8 +296,11 @@ class ConfirmationGenerateEmailController extends Controller
 
 
     /*send generated email, start here*/
-    public function sendGenerateConfirmationEmail($id, $user_id){
-        //echo $id.' / '.$user_id;
+    public function sendGenerateConfirmationEmail(Request $request){
+        $id = $request->id;
+        $user_id = $request->user_id;
+
+        //dd($id+' / '+$user_id);
 
         $user_details = User::where('users.id',$user_id)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
@@ -360,15 +363,62 @@ class ConfirmationGenerateEmailController extends Controller
         });
 
 
-        return back()->with('thank_you', 'Mail successfully sent.');
+        //return back()->with('thank_you', 'Mail successfully sent.');
+        return true;
 
     }
     /*send generated email, end here*/
-
-
 
     /*public function sendGenerateConfirmationEmailTest(){
 
         return view('mail-layout.generate-confirmation-email');
     }*/
+
+
+    /*send generate email mom from hr login, start here*/
+    public function sendGenerateMomEmailView(Request $request){
+        $id=$request->user_id;
+
+        $user_dtl = User::where('id',$id)
+        ->first();
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+        $review_meeting_date = ConfirmationMom::where('user_id',$id)
+        ->first();
+
+        
+
+
+        $data=array('user_dtl'=>$user_dtl, 'confirmation_mom_details'=>$confirmation_mom_details, 'review_meeting_date'=>$review_meeting_date);
+
+        $mail_from=\config('env_file_value.no_reply');
+        $hr_email= \config('env_file_value.hr_email');
+        $manager_email=$user_dtl['manager_email'];
+        $candidate_email=$user_dtl['email'];
+        $subject_name="MOM Feedbacks ".date('Y');
+
+        Mail::send('mail-layout.send-generate-mom-email-view',$data, function($message) use ($user_dtl, $confirmation_mom_details, $review_meeting_date, $mail_from, $hr_email, $manager_email, $candidate_email, $subject_name) {
+            $message->from($mail_from)
+            ->to($candidate_email)
+            ->cc($manager_email)
+            ->bcc($hr_email)
+            ->subject($subject_name);
+        });
+
+        return true;
+
+    }
+    /*send generate email mom from hr login, end here*/
+
+    public function sendGenerateMOMEmailTest(){
+
+        return view('mail-layout.send-generate-mom-email-view');
+    }
+
+
+    
 }

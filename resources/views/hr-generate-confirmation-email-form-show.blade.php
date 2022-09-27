@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Hiring Survey | {{ env('MY_SITE_NAME') }}</title>
+    <title>Confirmation Email | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
@@ -320,9 +320,14 @@
 		          </table>
 		        </center>
 
-              
+              	<input type="hidden" name="id" id="id" value="{{$generate_email_details['id'] }}">
+              	<input type="hidden" name="user_id" id="user_id" value="{{$generate_email_details['user_id']}}">
+
 		        <div style="display: flex;margin: auto;justify-content: center;margin-top: 2%;margin-bottom: 2%;">
-					<a href="{{ url('send-generate-confirmation-email/'.$generate_email_details['id'].'/'.$generate_email_details['user_id']) }}" class="btn-default" style="text-decoration: none">Send Email</a>
+					<!-- <a href="{{ url('send-generate-confirmation-email/'.$generate_email_details['id'].'/'.$generate_email_details['user_id']) }}" class="btn-default" style="text-decoration: none">Send Email</a> -->
+
+					<div class="col-lg-12 text-center"><button type="button" class="btn btn-success" id="send_generate_confirmation_email">Send Mail</button></div>
+
 				</div>
 
 

@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Score Card | {{ env('MY_SITE_NAME') }}</title>
+    <title>Thank You | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 

@@ -244,10 +244,15 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('/update-generate-email-form', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'update'])->name('update-generate-email-form');
 
-	Route::get('/send-generate-confirmation-email/{id}/{user_id}', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmail']);
+	Route::post('/send-generate-confirmation-email', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmail']);
+
+
+	Route::post('/send-confirmation-mom-email-view', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateMomEmailView']);
+
 
 	Route::get('/hr-generate-emails/filter',  [App\Http\Controllers\UserController::class, 'hrGenerateEmailsFilter'])->name('hr-generate-emails.filter')->middleware('isHRManagement');
 
+	Route::get('/send-generate-mom-email-view-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateMOMEmailTest']);
 	//Route::get('/send-generate-confirmation-email-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmailTest']);
 	/*hr generate email, end here*/
 

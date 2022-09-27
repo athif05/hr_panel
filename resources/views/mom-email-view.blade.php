@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Add Company Name | {{ env('MY_SITE_NAME') }}</title>
+    <title>MOM Feedback | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -25,6 +25,8 @@
                 
 
                 @if($review_meeting_date)
+
+                <input type="hidden" name="user_id" id="user_id" value="{{ $user_dtl['id'] }}">
 
                 <div class="col-lg-12" style="border:1px solid #e6abab;">
                   
@@ -149,6 +151,9 @@
                   </div>
 
                 </div>
+
+                <div class="clearBoth15"></div>
+                <div class="col-lg-12 text-center"><button type="button" class="btn btn-success" id="send_mail">Send Mail</button></div>
               
                 @else 
                 <h6>No data found.</h6>

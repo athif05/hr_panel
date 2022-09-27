@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Survey | {{ env('MY_SITE_NAME') }}</title>
+    <title>Member Check-In From | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
