@@ -670,7 +670,7 @@
                           colors: ['transparent']
                         },
                         xaxis: {
-                          categories: [<?php foreach ($department_names as $department_name2) { ?>'<?php echo $department_name2->name?>',<?php } ?>],
+                          categories: [<?php foreach ($department_names as $department_name2) { ?>'<?php echo $department_name2->name;?>',<?php } ?>]
                         },
                         yaxis: {
                           title: {
