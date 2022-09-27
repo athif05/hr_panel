@@ -82,9 +82,9 @@
 		                          @foreach($confirmation_mom_details as $confirmation_mom_detail)
 
 		                          	<?php 
-		                          		$score_card=($score_card+$confirmation_mom_detail['average_rating_entire_presentation']);
+		                          		$score_card=($score_card+(int)$confirmation_mom_detail['average_rating_entire_presentation']);
 
-		                          		$avg_score=$avg_score+($confirmation_mom_detail['content']+$confirmation_mom_detail['confidence']+$confirmation_mom_detail['communication']+$confirmation_mom_detail['data_relevance']+$confirmation_mom_detail['overall_growth_individual']);
+		                          		$avg_score=$avg_score+((int)$confirmation_mom_detail['content']+(int)$confirmation_mom_detail['confidence']+(int)$confirmation_mom_detail['communication']+(int)$confirmation_mom_detail['data_relevance']+(int)$confirmation_mom_detail['overall_growth_individual']);
 		                          		
 				                      $counter++;
 
