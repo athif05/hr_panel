@@ -555,8 +555,6 @@
             </div>
             <!-- Department graph, end here -->
 
-            
-
             <!-- Companywise graph, start here -->
             <div class="col-lg-12">
               <div class="card">
