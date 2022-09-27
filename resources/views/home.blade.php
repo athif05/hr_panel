@@ -390,11 +390,11 @@
                         series: [
                         {
                           name: 'Gurugram - AIHP',
-                          data: ['1','3']
+                          data: ['1','3','5','7','9','11','13','15','17','19','21']
                         },
                         {
                           name: 'Mohali',
-                          data: ['2','4']
+                          data: ['2','4','6','8','10','12','14','16','18','20','22']
                         }
                         ],
                         chart: {
@@ -420,7 +420,7 @@
                           colors: ['transparent']
                         },
                         xaxis: {
-                          categories: ['HR', 'Admin'],
+                          categories: [<?php foreach ($department_names as $department_name) { ?>'<?php echo $department_name["name"]?>'<?php } ?>],
                         },
                         yaxis: {
                           title: {
