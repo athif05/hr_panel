@@ -670,7 +670,8 @@
                           colors: ['transparent']
                         },
                         xaxis: {
-                          categories: ['a','b','c','d','e','f','g','h','i','j','k']
+                          /*categories: ['a','b','c','d','e','f','g','h','i','j','k']*/
+                          categories: [<?php for($i=0;$i<count($department_names); $i++){?>'a',<?php } ?>]
                         },
                         yaxis: {
                           title: {
