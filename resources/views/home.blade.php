@@ -673,7 +673,6 @@
                           colors: ['transparent']
                         },
                         xaxis: {
-                          /*categories: ['Admin Operations','Education','Finance & Accounts','HR','iGaming','Management','Media Buying','Mobile','Pocket Money','Publishers ','Tech Operations']*/
                           categories: [<?php foreach($department_names as $department_name){?>'<?php echo $department_name["name"]?>',<?php } ?>]
                         },
                         yaxis: {
