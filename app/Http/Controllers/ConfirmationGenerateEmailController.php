@@ -38,7 +38,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         $lettre_types = LetterType::where('status','1')
         ->where('is_deleted','0')
-        ->orderBy('name', 'ASC')
+        ->orderBy('id', 'ASC')
         ->get();
 
         /*fetch all hr data*/
@@ -111,6 +111,7 @@ class ConfirmationGenerateEmailController extends Controller
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
                 'appraisal_cycle' => 'required',
+                'appraisal_effect_date' => 'required',
                 'session_date' => 'required',
                 'session_time' => 'required',
                 'poc_name' => 'required',
@@ -119,6 +120,7 @@ class ConfirmationGenerateEmailController extends Controller
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
+                'appraisal_effect_date.required' => 'Appraisal effect date is required',
                 'session_date.required' => 'Session date is required',
                 'session_time.required' => 'Session time is required',
                 'poc_name.required' => 'POC name is required',
@@ -136,6 +138,8 @@ class ConfirmationGenerateEmailController extends Controller
         $current_time=$my_hour.':'.$my_minute.":00";
         //$current_time=$mytime->totimeString();
 
+        //dd($request->appraisal_effect_date);
+
         $input = ConfirmationGenerateEmail::insert([
             'user_id' => $user_id,
             'updated_by_id' => $updated_by_id,
@@ -144,6 +148,7 @@ class ConfirmationGenerateEmailController extends Controller
             'increment_amount' => $request->increment_amount,
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
+            'appraisal_effect_date' => (!is_null($request->appraisal_effect_date) ? $request->appraisal_effect_date : date('Y-01-01')),
             'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
             'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
@@ -230,6 +235,7 @@ class ConfirmationGenerateEmailController extends Controller
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
                 'appraisal_cycle' => 'required',
+                'appraisal_effect_date' => 'required',
                 'session_date' => 'required',
                 'session_time' => 'required',
                 'poc_name' => 'required',
@@ -238,6 +244,7 @@ class ConfirmationGenerateEmailController extends Controller
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
+                'appraisal_effect_date.required' => 'Appraisal effect date is required',
                 'session_date.required' => 'Session date is required',
                 'session_time.required' => 'Session time is required',
                 'poc_name.required' => 'POC name is required',
@@ -263,6 +270,7 @@ class ConfirmationGenerateEmailController extends Controller
             'increment_amount' => $request->increment_amount,
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
+            'appraisal_effect_date' => (!is_null($request->appraisal_effect_date) ? $request->appraisal_effect_date : date('Y-01-01')),
             'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
             'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
@@ -346,7 +354,11 @@ class ConfirmationGenerateEmailController extends Controller
         $hr_email= \config('env_file_value.hr_email');
         $manager_email=$user_details['manager_email'];
         $candidate_email=$user_details['email'];
-        $subject_name=$generate_email_details['letter_type_name'].' '.date('Y');
+
+        
+        $subject_name=$generate_email_details['letter_type_name'].' - '.date('M-Y',strtotime($user_details['appraisal_cycle'])).' | '.$user_details['full_name'].' (Member ID - '.$user_details['member_id'].')';
+    
+        
 
         //echo $mail_from."<br>".$manager_email."<br>".$hr_email."<br>".$candidate_email."<br>".$subject_name."<br>".$score_card."<br>".$avg_score;
         //dd();

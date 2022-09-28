@@ -101,7 +101,7 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">7. Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</label>
+                  <label class="form-label">7. Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

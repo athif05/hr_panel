@@ -117,7 +117,7 @@
 								<tbody>
 									<tr>
 										<td bgcolor="#fff" align="left" style="font-family: Calibri, sans-serif; font-size: 20px;color: #10131e;">
-											<strong>Hi {{ $user_details['full_name'] }},</strong>
+											<strong>Dear {{ $user_details['full_name'] }},</strong>
 										</td>
 									</tr>
 									<tr><td height="20"></td></tr>
@@ -127,29 +127,33 @@
 											@if($generate_email_details['letter_type']==1)
 
 
-												This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+												This is to bring to your notice that consequent to the review of your performance, we have the pleasure in informing you that your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from <strong>{{ date('d-M-Y', strtotime($generate_email_details['appraisal_effect_date'])) }}</strong>.
 
 												<br/><br/>
 
-												As discussed, your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+												Your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
 
 
 											@elseif($generate_email_details['letter_type']==2)
 
-												This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+												This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from <strong>{{ date('d-M-Y', strtotime($generate_email_details['appraisal_effect_date'])) }}</strong>.
 
 												<br/><br/>
 
-												Your total annual compensation stands revised to <strong> INR {{ number_format(($generate_email_details['increment_amount']*12),2,".",",") }}/-</strong>  ( Only) w.e.f. and you will now enjoy all benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+												Your total annual compensation package stands revised to <strong> INR {{ number_format(($generate_email_details['increment_amount']*12),2,".",",") }}/-</strong>  ( Only) per annum and you will now enjoy all the benefits of a confirmed employee of the company. All the terms & conditions as detailed in your appointment letter or employment agreement remain unchanged.
+
+												<br><br>
+
+												<span style="background-color: #FBDC12; padding: 2px 10px 2px 10px;">Please submit fresh Security cheques</span>
 
 											
 											@elseif($generate_email_details['letter_type']==3)
 
-												This is to bring to your notice that consequent to the review of your performance during your probation, we have the pleasure in informing you that, your services are being confirmed as <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> with effect from.
+												This is to bring to your notice that consequent to the review of your performance, we have the pleasure in informing you that your services are being confirmed & you are being promoted to <strong>{{ $generate_email_details['promotion'] }}, {{ $user_details['department_name'] }}</strong> with effect from <strong>{{ date('d-M-Y', strtotime($generate_email_details['appraisal_effect_date'])) }}</strong>.
 
 												<br/><br/>
 
-												As discussed, your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
+												Your total annual compensation package remains the same and you will now enjoy all the benefits of a confirmed member of the company. All the terms & conditions as detailed in your appointment letter or employment agreement remain unchanged.
 
 
 											@elseif($generate_email_details['letter_type']==4)
@@ -199,7 +203,7 @@
 											@if($generate_email_details['letter_type']!=4)
 												<br/><br/>
 
-												@if($generate_email_details['letter_type']!=5)
+												<!-- @if($generate_email_details['letter_type']!=5)
 													You may go through <a href="https://vcim.net/evaluation/assets/Confirmation Handbook_2020.pptx">confirmation handbook</a> for your information and also book your calendar for today for a quick session by me on the same. Please see the details below.
 
 													<br/><br/>
@@ -211,13 +215,13 @@
 												Location: {{ $generate_email_details['location'] }}<br/>
 												Duration: ½ an hour<br/>
 												Time: {{ date('h:iA',strtotime($generate_email_details['session_time'])) }}<br/>
-												<br/>
+												<br/> -->
 
-												We look forward to your valuable contributions and wish you all the very best for a rewarding career with the organization.
+												We look forward to your valuable contributions and wish you all the very best for a rewarding career with the organization. Please accept our congratulations on your confirmation
 
-												<br/><br/>
+												<!-- <br/><br/>
 
-												Please accept our congratulations on your confirmation.
+												Please accept our congratulations on your confirmation. -->
 
 											@endif
 
@@ -270,7 +274,7 @@
 								<tr><td height="10"></td></tr>
 								<tr>
 									<td  align="left" style="font-family: Calibri, sans-serif; font-size: 18px;color: #10131e; text-align: justify; line-height: 22px;">
-										I want to extend heartiest congratulations to you! Your performance, hard work & dedication has brought us to this decision & I’m sure you will continue to give your best. I hope company expectations & demands of your job role are clear, if not, please consult your manager or me. Keep up the good work!
+										I want to extend my heartiest congratulations to you! Your performance, hard work & dedication has brought us to this decision & I’m sure you will continue to give your best. I hope company expectations & demands of your job role are clear, if not, please consult your manager or me. Keep up the good work!
 
 									</td>
 								</tr>

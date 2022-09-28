@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('profile_image')->nullable();
             $table->text('confirmation_commitment_details')->nullable();
             $table->double('current_salary', 10,2);
+            $table->string('hod_name')->nullable();
+            $table->string('hod_email')->nullable();
             $table->foreign('company_id')->references('id')->on('company_names');
             $table->foreign('company_location_id')->references('id')->on('company_locations');
         });

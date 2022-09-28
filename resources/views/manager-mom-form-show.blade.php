@@ -68,22 +68,22 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Confirmation commitment details. </strong> {{ $user_details['confirmation_commitment_details'] }}</td>
+                    <td colspan="2"><strong>Confirmation commitment details </strong><br> {{ $user_details['confirmation_commitment_details'] }}</td>
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Minutes of Meeting : </strong> {!! $all_details['minutes_of_meeting'] !!}</td>
+                    <td colspan="2"><strong>Minutes of Meeting </strong> {!! $all_details['minutes_of_meeting'] !!}</td>
                   </tr>
 
                   @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
                   <tr>
-                    <td colspan="2"><strong>Hidden notes : </strong> {!! $all_details['hidden_notes'] !!}</td>
+                    <td colspan="2"><strong>Hidden notes </strong> {!! $all_details['hidden_notes'] !!}</td>
                   </tr>
                   @endif
 
 
                   <tr>
-                    <td colspan="2"><strong>Rate the presentation on the following parameters:</strong></td>
+                    <td colspan="2"><strong>Rate the presentation on the following parameters</strong></td>
                   </tr>
 
                   <tr>

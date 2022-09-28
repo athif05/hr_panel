@@ -119,6 +119,15 @@
 
 
                 <div class="col-md-6 position-relative">
+                  <label for="session_date" class="form-label">Appraisal Effect Date <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <input type="date" class="form-control" name="appraisal_effect_date" id="appraisal_effect_date" value="{{ old('appraisal_effect_date') }}">
+                  @if ($errors->has('appraisal_effect_date'))
+                    <span class="text-danger">{{ $errors->first('appraisal_effect_date') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-6 position-relative">
                   <label for="session_date" class="form-label">Session Date <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <input type="date" class="form-control" name="session_date" id="session_date" value="{{ old('session_date', date('Y-m-d')) }}">
                   @if ($errors->has('session_date'))

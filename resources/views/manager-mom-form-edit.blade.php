@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="confirmation_commitment_details" class="form-label">5. Confirmation commitment details.</label>
+                  <label for="confirmation_commitment_details" class="form-label">5. Confirmation commitment details</label>
                   <textarea class="form-control disable-text" name="confirmation_commitment_details" id="confirmation_commitment_details" style="height: 100px" readonly>{{ $member_details['confirmation_commitment_details'] }}</textarea>
                 </div>
 
@@ -139,11 +139,11 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">7. Rate the presentation on the following parameters:</label>
+                  <label class="form-label">7. Rate the presentation on the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="content" class="form-label rdioBtn">Content:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="content" class="form-label rdioBtn">Content  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="content" id="content" value="NA" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='NA') checked @endif>

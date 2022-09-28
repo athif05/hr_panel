@@ -102,11 +102,11 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">7. Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent.</label>
+                  <label class="form-label">7. Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="discipline" class="form-label rdioBtn">Discipline:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="discipline" class="form-label rdioBtn">Discipline  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                     <input class="form-check-input" type="radio" name="discipline" id="discipline" value="NA" @if(old('discipline',$feedback_form_details->discipline)=='NA') checked @endif>
