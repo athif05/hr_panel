@@ -127,7 +127,7 @@
 
                 <input type="hidden" name="company_name" id="company_name" value="{{ $hiring_survey_details->company_name}}" />
                 <div class="col-md-6 position-relative">
-                  <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="company_name" class="form-label">Please choose the name of your company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
@@ -147,7 +147,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="recruiter_name" class="form-label">Please choose name of the recruiter who worked on your position. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="recruiter_name" class="form-label">Please choose name of the recruiter who worked on your position <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select" name="recruiter_name" id="recruiter_name">
                     <option value="">Choose...</option>
                     @foreach($recruiter_details as $recruiter_detail)
@@ -180,7 +180,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="open_designation_name" class="form-label">Name the designation of the open position. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="open_designation_name" class="form-label">Name the designation of the open position <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
 
                   <select class="form-select" name="open_designation_name" id="open_designation_name">
                     <option value="">Choose...</option>
@@ -229,11 +229,11 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">Rate in the following parameters out of 5:</label>
+                  <label class="form-label">Rate in the following parameters out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="recruiter_helpful_recruitment_process" class="form-label rdioBtn">How much was the recruiter helpful throughout the recruitment process?:  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="recruiter_helpful_recruitment_process" class="form-label rdioBtn">How much was the recruiter helpful throughout the recruitment process?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                       <input class="form-check-input" type="radio" name="recruiter_helpful_recruitment_process" id="recruiter_helpful_recruitment_process" value="1" @if(old('recruiter_helpful_recruitment_process',$hiring_survey_details->recruiter_helpful_recruitment_process)=='1') checked @endif>

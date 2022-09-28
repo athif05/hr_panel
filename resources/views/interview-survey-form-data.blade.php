@@ -134,7 +134,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{$find['hr_name_ajax']}} on the following parameters, out of 5.</strong></td>
+                    <td colspan="2"><strong>Rate {{$find['hr_name_ajax']}} on the following parameters, out of 5</strong></td>
                   </tr>
 
                   <tr>
@@ -242,11 +242,11 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback for the recruiter?</strong> : {!! $find['additional_feedback_recruiter'] !!}</td>
+                    <td colspan="2"><strong>Any additional feedback for the recruiter?</strong>  {!! $find['additional_feedback_recruiter'] !!}</td>
                   </tr>
 
                   <tr>
-                    <td>How much will you rate ${Q-H}'s overall conduct? (out of 5)</td>
+                    <td>How much will you rate {{$find['hr_name_ajax']}} overall conduct? (out of 5)</td>
                     <td>
                       @if($find['rate_overall_conduct']!='NA')
                         @for($i=0; $i < $find['rate_overall_conduct']; $i++)
@@ -437,7 +437,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>How will you define the overall Interview Process?</strong> :
+                    <td colspan="2"><strong>How will you define the overall Interview Process?</strong><br>
                       @if($find['define_overall_interview_process']=='Others')
                         {{ $find['define_overall_interview_process_others'] }}
                       @else 
@@ -460,7 +460,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>If you have any comments, suggestions, or feedback, please enter it below:</strong> {!! $find['comments_suggestions_feedback'] !!}</td>
+                    <td colspan="2"><strong>If you have any comments, suggestions, or feedback, please enter it below</strong> {!! $find['comments_suggestions_feedback'] !!}</td>
                   </tr>
 
                 </tbody>

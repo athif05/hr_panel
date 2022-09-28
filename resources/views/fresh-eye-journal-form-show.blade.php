@@ -119,12 +119,12 @@
 
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>How has your journey been so far in {{ $fresh_eye_journal_details['company_name_ajax'] }}? Explain in detail.</strong> {!! $fresh_eye_journal_details['your_journey_so_far_in_company'] !!}</td>
+                    <td colspan="2"><strong>How has your journey been so far in {{ $fresh_eye_journal_details['company_name_ajax'] }}? Explain in detail</strong> {!! $fresh_eye_journal_details['your_journey_so_far_in_company'] !!}</td>
                   </tr>
 
                   
                   <tr>
-                    <td colspan="2"><strong>Top 3 things that you like about your job role.</strong></td>
+                    <td colspan="2"><strong>Top 3 things that you like about your job role</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -136,7 +136,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>Three things that you wish to chnage in your job role.</strong></td>
+                    <td colspan="2"><strong>Three things that you wish to chnage in your job role</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -147,7 +147,7 @@
                   </tr>                 
 
                   <tr>
-                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
+                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5</strong></td>
                   </tr>
 
                   <tr>
@@ -271,12 +271,12 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>How satisfied are you with employee benefits being offered by {{ $fresh_eye_journal_details['company_name_ajax'] }}? Please elaborate.</strong> {!! $fresh_eye_journal_details['satisfied_employee_benefits_offered_company'] !!}</td>
+                    <td colspan="2"><strong>How satisfied are you with employee benefits being offered by {{ $fresh_eye_journal_details['company_name_ajax'] }}? Please elaborate</strong> {!! $fresh_eye_journal_details['satisfied_employee_benefits_offered_company'] !!}</td>
                   </tr>
 
 
                   <tr>
-                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5.</strong></td>
+                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5</strong></td>
                   </tr>
 
                   <tr>
@@ -389,7 +389,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters out of 5.</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters out of 5</strong></td>
                   </tr>
 
                   <tr>
@@ -445,7 +445,7 @@
                   </tr>
 
                   <tr>
-                    <td>WPRs happen every week.</td>
+                    <td>WPRs happen every week</td>
                     <td>
                       @if($fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']!='NA')
                     	  @for($i=0; $i < $fresh_eye_journal_details['wprs_happen_every_week_reporting_manager']; $i++)
@@ -501,7 +501,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra'] !!}</td>
                   </tr>
 
 
@@ -601,7 +601,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Share top three strengths of {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}.</strong></td>
+                    <td colspan="2"><strong>Share top three strengths of {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -612,7 +612,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Share three areas of improvement for {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}.</strong></td>
+                    <td colspan="2"><strong>Share three areas of improvement for {{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -623,7 +623,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_reporting_manager_qi'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }}'s actions/way of work? Explain in detail</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_reporting_manager_qi'] !!}</td>
                   </tr>
 
 
@@ -723,7 +723,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Share top three strengths of {{ $fresh_eye_journal_details->head_of_department_name_ajax }}.</strong></td>
+                    <td colspan="2"><strong>Share top three strengths of {{ $fresh_eye_journal_details->head_of_department_name_ajax }}</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -734,7 +734,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Share three areas of improvement for {{ $fresh_eye_journal_details->head_of_department_name_ajax }}.</strong></td>
+                    <td colspan="2"><strong>Share three areas of improvement for {{ $fresh_eye_journal_details->head_of_department_name_ajax }}</strong></td>
                   </tr>
                   <tr class="txt_justify">
                     <td colspan="2">
@@ -745,7 +745,7 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}'s actions/way of work? Explain in detail.</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_hod_qj'] !!}</td>
+                    <td colspan="2"><strong>Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by {{ $fresh_eye_journal_details['head_of_department_name_ajax'] }}'s actions/way of work? Explain in detail</strong> {!! $fresh_eye_journal_details['our_organization_believes_mantra_hod_qj'] !!}</td>
                   </tr>
 
 

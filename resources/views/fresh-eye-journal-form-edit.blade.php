@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="your_journey_so_far_in_company" class="form-label">How has your journey been so far in <span id="any_additional_feedback_manager_company_name">{{ $fresh_eye_journal_details->company_name_ajax }}</span>? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="your_journey_so_far_in_company" class="form-label">How has your journey been so far in <span id="any_additional_feedback_manager_company_name">{{ $fresh_eye_journal_details->company_name_ajax }}</span>? Explain in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="your_journey_so_far_in_company" id="your_journey_so_far_in_company" style="height: 100px">{{ old('your_journey_so_far_in_company',$fresh_eye_journal_details->your_journey_so_far_in_company) }}</textarea>
 
                   @if ($errors->has('your_journey_so_far_in_company'))
@@ -219,7 +219,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="top_3_things_like_your_job" class="form-label">Top 3 things that you like about your job role. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="top_3_things_like_your_job" class="form-label">Top 3 things that you like about your job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -264,7 +264,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="three_things_wish_change_job_role" class="form-label">Three things that you wish to change in your job role. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="three_things_wish_change_job_role" class="form-label">Three things that you wish to change in your job role <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -308,7 +308,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5.</label>
+                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -605,7 +605,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="satisfied_employee_benefits_offered_company" class="form-label">How satisfied are you with employee benefits being offered by <span id="satisfied_employee_benefits_offered_company_name">{{ $fresh_eye_journal_details->company_name_ajax }}</span>? Please elaborate. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="satisfied_employee_benefits_offered_company" class="form-label">How satisfied are you with employee benefits being offered by <span id="satisfied_employee_benefits_offered_company_name">{{ $fresh_eye_journal_details->company_name_ajax }}</span>? Please elaborate <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="satisfied_employee_benefits_offered_company" id="satisfied_employee_benefits_offered_company" style="height: 100px">{{ old('satisfied_employee_benefits_offered_company',$fresh_eye_journal_details->satisfied_employee_benefits_offered_company) }}</textarea>
 
                   @if ($errors->has('satisfied_employee_benefits_offered_company'))
@@ -620,7 +620,7 @@
                 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5.</label>
+                  <label class="form-label">Please share your satisfaction on the parameters mentioned below, out of 5</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1119,7 +1119,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="our_organization_believes_mantra" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="our_organization_believes_mantra" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="our_organization_believes_mantra" id="our_organization_believes_mantra" style="height: 100px">{{ old('our_organization_believes_mantra',$fresh_eye_journal_details->our_organization_believes_mantra) }}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra'))
@@ -1347,7 +1347,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share top three strengths of Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share top three strengths of Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -1392,7 +1392,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share three areas of improvement for Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share three areas of improvement for Reporting Manager (<span class="rate_5_reporting_manager_name_ajax_class">{{ $fresh_eye_journal_details->reporting_manager_name_ajax }}</span>) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -1437,7 +1437,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="our_organization_believes_mantra_reporting_manager_qi" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="our_organization_believes_mantra_reporting_manager_qi" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="our_organization_believes_mantra_reporting_manager_qi" id="our_organization_believes_mantra_reporting_manager_qi" style="height: 100px">{{ old('our_organization_believes_mantra_reporting_manager_qi',$fresh_eye_journal_details->our_organization_believes_mantra_reporting_manager_qi) }}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra_reporting_manager_qi'))
@@ -1667,7 +1667,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share top three strengths HOD(<span class="rate_5_hod_name_ajax_class">{{ old('head_of_department_name_ajax',$head_of_department_name_ajax_default) }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share top three strengths HOD(<span class="rate_5_hod_name_ajax_class">{{ old('head_of_department_name_ajax',$head_of_department_name_ajax_default) }}</span>) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -1712,7 +1712,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Share three areas of improvement HOD(<span class="rate_5_hod_name_ajax_class">{{ old('head_of_department_name_ajax',$head_of_department_name_ajax_default) }}</span>). <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="company_hr_name" class="form-label">Share three areas of improvement HOD(<span class="rate_5_hod_name_ajax_class">{{ old('head_of_department_name_ajax',$head_of_department_name_ajax_default) }}</span>) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
@@ -1757,7 +1757,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="our_organization_believes_mantra_hod_qj" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="our_organization_believes_mantra_hod_qj" class="form-label">Our organization believes in the mantra of 'Lead by Example'. Do you feel motivated by actions/way of work? Explain in detail <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="our_organization_believes_mantra_hod_qj" id="our_organization_believes_mantra_hod_qj" style="height: 100px">{{ old('our_organization_believes_mantra_hod_qj',$fresh_eye_journal_details->our_organization_believes_mantra) }}</textarea>
 
                   @if ($errors->has('our_organization_believes_mantra_hod_qj'))

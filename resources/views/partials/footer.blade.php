@@ -270,6 +270,7 @@
 
 							$('#hr_name_ajax').val(result);
 							$('#hr_name_ajax_span').html(result);
+							$('.hr_name_ajax_span').html(result);
 
 							
 					   },

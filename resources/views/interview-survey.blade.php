@@ -189,7 +189,7 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">Rate <span id="hr_name_ajax_span"></span> on the following parameters, out of 5.</label>
+                  <label class="form-label">Rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> on the following parameters, out of 5.</label>
                 </div>
 
 
@@ -437,7 +437,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="validationTooltip02" class="form-label">How much will you rate overall conduct? (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label></label><br>
+                  <label for="validationTooltip02" class="form-label">How much will you rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> overall conduct? (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label></label><br>
 
                   <span id="radioBtn">
                   	<input class="form-check-input" type="radio" name="rate_overall_conduct" id="rate_overall_conduct" value="NA" @if(old('rate_overall_conduct')=='NA') checked @elseif(old('rate_overall_conduct')=='') checked @endif >
