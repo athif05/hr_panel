@@ -261,15 +261,15 @@ Route::group(['middleware' => ['auth']], function() {
 	/*hr generate email, end here*/
 
 	/*hr Initiating PIP mail, start here*/
-	Route::get('/initiating-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPIPFormController::class, 'index'])->middleware('isHRManagement');
+	Route::get('/initiating-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'index'])->middleware('isHRManagement');
 
-	Route::post('/save-initiating-pip-email-form', [App\Http\Controllers\InitiatingPIPFormController::class, 'store'])->name('save-initiating-pip-email-form');
+	Route::post('/save-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'store'])->name('save-initiating-pip-email-form');
 
-	Route::get('/initiating-pip-email-form-edit/{id}', [App\Http\Controllers\InitiatingPIPFormController::class, 'edit']);
+	Route::get('/initiating-pip-email-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'edit']);
 
-	Route::post('/update-initiating-pip-email-form', [App\Http\Controllers\InitiatingPIPFormController::class, 'update'])->name('update-initiating-pip-email-form');
+	Route::post('/update-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'update'])->name('update-initiating-pip-email-form');
 
-	Route::post('/send-initiating-pip-email-ajax', [App\Http\Controllers\InitiatingPIPFormController::class, 'sendInitiatingPIPEmail']);
+	Route::post('/send-initiating-pip-email-ajax', [App\Http\Controllers\InitiatingPipFormController::class, 'sendInitiatingPIPEmail']);
 	/*hr Initiating PIP mail, end here*/
 
 
