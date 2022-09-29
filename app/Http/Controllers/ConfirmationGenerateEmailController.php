@@ -26,6 +26,7 @@ class ConfirmationGenerateEmailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*generate confirmation mail form, start here*/
     public function index($id)
     {
 
@@ -87,6 +88,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         
     }
+    /*generate confirmation mail form, end here*/
 
 
     /**

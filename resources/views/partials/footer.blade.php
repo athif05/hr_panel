@@ -61,7 +61,50 @@
 		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] }
 	];
 };*/
-			/*send mom-email-view from hr role, confirmation process(view) menu, start here*/
+			/*send initiating pip email from hr role, generate emails(view) menu, start here*/
+			$('#send_initiating_pip_email').on('click', function(){
+
+				var id=$('#id').val();
+				var user_id=$('#user_id').val();
+
+				console.log(id+' / '+user_id);
+
+				$('#send_initiating_pip_email').html('Sending...');
+				$('#send_initiating_pip_email').prop('disabled', true);
+
+				$.ajax({
+					url: "{{url('/send-initiating-pip-email-ajax')}}", 
+					type: "POST",  
+					data:{
+						id:id,
+						user_id:user_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						swal("Poof! Mail sent!", {
+							icon: "success",
+						});	
+
+						$('#send_initiating_pip_email').html('Sent');
+						$('#send_initiating_pip_email').prop('disabled', true);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+				
+
+			});
+			/*send initiating pip email from hr role, generate emails(view) menu, end here*/
+
+
+
+			/*send mom-email-view from hr role, generate emails(view) menu, start here*/
 			$('#send_generate_confirmation_email').on('click', function(){
 
 				var id=$('#id').val();
@@ -100,7 +143,7 @@
 				
 
 			});
-			/*send mom-email-view from hr role, confirmation process(view) menu, end here*/
+			/*send mom-email-view from hr role, generate emails(view) menu, end here*/
 
 
 
