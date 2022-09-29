@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('increment_amount')->nullable();
             $table->string('promotion')->nullable();
             $table->string('appraisal_cycle')->nullable();
+            $table->date('appraisal_effect_date')->nullable();
+            $table->date('pip_month')->nullable();
+            $table->date('final_confirmation_date')->nullable();
+            $table->date('revised_appraisl_cycle')->nullable();
             $table->date('session_date')->nullable();
             $table->time('session_time')->nullable();
             $table->string('poc_name')->nullable();

@@ -17,7 +17,41 @@
 
 		jQuery(document).ready(function(){
 
+		/* confirmation email letter form, start here */
+		$('#letter_type').on('change', function(){
+			var letter_type_id=this.value;
+			console.log(letter_type_id);
 
+			$('#increment_amount_div').hide();
+			$('#promotion_div').hide();
+			$('#appraisal_effect_date_div').show();
+			$('#pip_month_div').hide();
+			$('#final_confirmation_date_div').hide();
+			$('#revised_appraisl_cycle_div').hide();
+
+			if(letter_type_id=='2') {
+
+				$('#increment_amount_div').show();
+
+			} else if(letter_type_id=='3') {
+
+				$('#promotion_div').show();
+
+			} else if(letter_type_id=='4') {
+
+				$('#appraisal_effect_date_div').hide();
+				$('#pip_month_div').show();
+				$('#final_confirmation_date_div').show()
+				$('#revised_appraisl_cycle_div').show();
+
+			} else if(letter_type_id=='5') {
+
+				$('#increment_amount_div').show();
+				$('#promotion_div').show();
+			}
+
+		});
+		/* confirmation email letter form, end here */
 
 /*			CKEDITOR.editorConfig = function( config ) {
 	config.toolbar = [

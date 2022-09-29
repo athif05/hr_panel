@@ -61,11 +61,13 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/*hiring-survey form, start here*/
-	Route::get('/hiring-survey', [App\Http\Controllers\HiringSurveyController::class, 'index']);
+	Route::get('/hiring-survey-list', [App\Http\Controllers\HiringSurveyController::class, 'showAll'])->middleware('isManager');
+
+	Route::get('/hiring-survey', [App\Http\Controllers\HiringSurveyController::class, 'index'])->middleware('isManager');
 
 	Route::post('/save-hiring-survey', [App\Http\Controllers\HiringSurveyController::class, 'store'])->name('save-hiring-survey');
 
-	Route::get('/hiring-survey-edit/{id}', [App\Http\Controllers\HiringSurveyController::class, 'edit']);
+	Route::get('/hiring-survey-edit/{id}', [App\Http\Controllers\HiringSurveyController::class, 'edit'])->middleware('isManager');
 
 	Route::post('/update-hiring-survey', [App\Http\Controllers\HiringSurveyController::class, 'update'])->name('update-hiring-survey');
 	/*hiring-survey form, end here*/

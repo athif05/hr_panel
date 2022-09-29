@@ -158,32 +158,15 @@
 
 											@elseif($generate_email_details['letter_type']==4)
 
-												This is to bring to your notice that consequent to the review of your performance during your probation, we would like to inform you that your confirmation is being delayed for now. This also means that your appraisal cycle is being shifted to the next one.
+												You were due for confirmation on <strong>{{ date('d-M-Y',strtotime($user_details['due_date_of_confirmation'])) }}</strong>, but based on your performance, your PIP was initiated in <strong>{{ date('M-Y',strtotime($generate_email_details['pip_month'])) }} Month</strong>, with the objective to help you work on your grey areas & to bring your performance at par with our expectations. This is to bring to your notice that consequent to the review of your performance post PIP, your services are being confirmed as <strong>{{ $user_details['designation_name'] }}, {{ $user_details['department_name'] }}</strong> with effect from <strong>{{ date('d-M-Y',strtotime($generate_email_details['final_confirmation_date'])) }}</strong>.
 
-												<br/><br/>
+					                		<br/><br/>
 
-												We would like to see more improvements in your work performance. We would like to see you working with great enthusiasm along with following your JD religiously.
+					                		Your total annual compensation package remains the same but your appraisal cycle changes to <strong>{{ date('M-Y',strtotime($generate_email_details['revised_appraisl_cycle'])) }}</strong>. You will now enjoy all the benefits of a confirmed employee of the company. All the other terms and conditions as detailed in your appointment letter or employment agreement remain unchanged.
 
-												<br/><br/>
+					                		<br/><br/>
 
-												To help you improve in your performance, HR team along with your manager, will devise a Performance Improvement Plan (PIP) for you for a tenure of starting from . It will have areas of improvement along with actions to be taken to overcome the shortfalls & steps to accomplish the goals to reach next level. We shall revisit the PIP program & evaluate your improvements & accomplishments and a final call on your confirmation will be taken on or before.
-
-												<br/><br/>
-
-												In case of no visible development, this one month of PIP will be considered as your notice period served to the organization and you will be relieved from the services on its completion.
-
-												<br/><br/>
-
-												However, we certainly hope that you shall overcome all the challenges & outshine as a performer & contributor in the team.
-
-												<br/><br/>
-
-												Wishing you all the luck! <br/>
-												Stay positive, stay active!
-
-												<br/><br/>
-
-												For further queries & clarifications, please feel free to contact the HR team.
+					                		We look forward to your valuable contributions and wish you all the very best for a rewarding career with the organization. Please accept our congratulations on your confirmation.
 
 											@elseif($generate_email_details['letter_type']==5)
 

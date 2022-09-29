@@ -21,6 +21,23 @@ class HiringSurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function showAll(){
+        $manager1=Auth::user()->member_id;
+
+        $manager_array= app('App\Http\Controllers\UserController')->multilevel_manager($manager1);
+        
+        //dd($manager_array);
+        
+        $all_members = User::where('users.employee_type','Probation')
+        ->whereIn('users.reporting_to_id',$manager_array)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        return view('hiring-survey-list', compact('all_members'));
+    }
+
     public function index()
     {
         $user_id = Auth::user()->id;

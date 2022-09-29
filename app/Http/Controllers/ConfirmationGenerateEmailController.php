@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\LetterType;
 use App\Models\ConfirmationGenerateEmail;
 use App\Models\ConfirmationMom;
+use App\Models\Designation;
 
 use Carbon\Carbon; //for get current time
 use Mail; //for send mail
@@ -50,6 +51,12 @@ class ConfirmationGenerateEmailController extends Controller
             ->select('id',DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
             ->get();
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        //$initial_confirmation_date
 
         /*check record is exist or not*/
         $generate_email_details = ConfirmationGenerateEmail::where('user_id', $id)
@@ -67,7 +74,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         if(($generate_email_details === null) or (($generate_email_details['status'] === '0') or ($generate_email_details['status'] === ''))){
 
-            return view('hr-generate-confirmation-email-form', compact('user_details','lettre_types','poc_details'));
+            return view('hr-generate-confirmation-email-form', compact('user_details','lettre_types','poc_details','designation_names'));
 
         } else if($generate_email_details['status'] === '1'){
 
@@ -75,7 +82,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         } else if($generate_email_details['status'] === '2'){
 
-            return view('hr-generate-confirmation-email-form-show', compact('user_details','lettre_types','poc_details','generate_email_details','confirmation_mom_details'));
+            return view('hr-generate-confirmation-email-form-show', compact('user_details','lettre_types','poc_details','generate_email_details','confirmation_mom_details','designation_names'));
         }
 
         
@@ -100,36 +107,85 @@ class ConfirmationGenerateEmailController extends Controller
      */
     public function store(Request $request)
     {
+    
         $user_id=$request->user_id;
         $updated_by_id=$request->updated_by_id;
 
         if($request['submit']=='Save in Draft'){
             $status='1';
         } else if($request['submit']=='Publish'){
-            
+
             $request->validate([
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
                 'appraisal_cycle' => 'required',
-                'appraisal_effect_date' => 'required',
-                'session_date' => 'required',
-                'session_time' => 'required',
                 'poc_name' => 'required',
                 'location' => 'required',
             ], [
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
-                'appraisal_effect_date.required' => 'Appraisal effect date is required',
-                'session_date.required' => 'Session date is required',
-                'session_time.required' => 'Session time is required',
                 'poc_name.required' => 'POC name is required',
                 'location.required' => 'Location is required',
             ]);
 
+            //dd($request->letter_type);
+
+            if($request->letter_type!='4'){
+
+                if($request->letter_type=='1') {
+                    $request->validate([
+                        'appraisal_effect_date' => 'required',
+                    ], [
+                        'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                    ]);
+                } else if($request->letter_type=='2'){
+                    $request->validate([
+                        'increment_amount' => 'required',
+                        'appraisal_effect_date' => 'required',
+                    ], [
+                        'increment_amount.required' => 'Increment amount is required',
+                        'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                    ]);
+                } else if($request->letter_type=='3'){
+                    $request->validate([
+                        'promotion' => 'required',
+                        'appraisal_effect_date' => 'required',
+                    ], [
+                        'promotion.required' => 'Promotion selection is required',
+                        'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                    ]);
+                } else if($request->letter_type=='5'){
+                    $request->validate([
+                        'increment_amount' => 'required',
+                        'promotion' => 'required',
+                        'appraisal_effect_date' => 'required',
+                    ], [
+                        'increment_amount.required' => 'Increment amount is required',
+                        'promotion.required' => 'Promotion selection is required',
+                        'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                    ]);
+                }
+
+                
+
+            } else if($request->letter_type=='4') {
+                //dd($request);
+                $request->validate([
+                    'pip_month' => 'required',
+                    'final_confirmation_date' => 'required',
+                    'revised_appraisl_cycle' => 'required',
+                ], [
+                    'pip_month.required' => 'PIP month is required',
+                    'final_confirmation_date.required' => 'Final confirmation date is required',
+                    'revised_appraisl_cycle.required' => 'Revised appraisl cycle is required',
+                ]);
+            }
+
             $status='2';
         }
 
+        
 
         /*current time*/
         $mytime = Carbon::now();
@@ -138,7 +194,40 @@ class ConfirmationGenerateEmailController extends Controller
         $current_time=$my_hour.':'.$my_minute.":00";
         //$current_time=$mytime->totimeString();
 
-        //dd($request->appraisal_effect_date);
+        if(($request->letter_type=='4') || $request->letter_type==''){
+            $appraisal_effect_date=null;
+        } else {
+            $appraisal_effect_date=$request->appraisal_effect_date;
+        }
+
+        if($request->letter_type=='4'){
+            $pip_month=$request->pip_month.'-01';
+        } else {
+            $pip_month=null;
+        }
+
+        //(!is_null($request->final_confirmation_date) ? $request->final_confirmation_date : date('Y-01-01'))
+        if($request->letter_type=='4'){
+            $final_confirmation_date=$request->final_confirmation_date.'-01';
+        } else {
+            $final_confirmation_date=null;
+        }
+
+        if($request->letter_type=='4'){
+            $revised_appraisl_cycle=$request->revised_appraisl_cycle.'-01';
+        } else {
+            $revised_appraisl_cycle=null;
+        }
+
+        if($request->session_date){
+            $session_date=$request->session_date;
+        } else {
+            $session_date=null;
+        }
+
+        //dd($pip_month);
+
+        //DB::enableQueryLog();
 
         $input = ConfirmationGenerateEmail::insert([
             'user_id' => $user_id,
@@ -148,13 +237,19 @@ class ConfirmationGenerateEmailController extends Controller
             'increment_amount' => $request->increment_amount,
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
-            'appraisal_effect_date' => (!is_null($request->appraisal_effect_date) ? $request->appraisal_effect_date : date('Y-01-01')),
-            'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
+            'appraisal_effect_date' => $appraisal_effect_date,
+            'pip_month' => $pip_month,
+            'final_confirmation_date' => $final_confirmation_date,
+            'revised_appraisl_cycle' => $revised_appraisl_cycle,
+            'session_date' => $session_date,
             'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
             'location' => (!is_null($request->location) ? $request->location : ""),
             'status' => $status,
         ]);
+
+        //$quries = DB::getQueryLog();
+        //dd($quries);
 
         if($input){
             
@@ -164,7 +259,7 @@ class ConfirmationGenerateEmailController extends Controller
 
             } else if($status==2){
 
-                return redirect('/generate-email-form-show')->with('thank_you', 'Thanks, for giving your valuable time for us.');
+                return redirect("/generate-email-form/$user_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
             }
         }
@@ -196,7 +291,7 @@ class ConfirmationGenerateEmailController extends Controller
 
         $lettre_types = LetterType::where('status','1')
         ->where('is_deleted','0')
-        ->orderBy('name', 'ASC')
+        ->orderBy('id', 'ASC')
         ->get();
 
         /*fetch all hr data*/
@@ -208,10 +303,15 @@ class ConfirmationGenerateEmailController extends Controller
             ->select('id',DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
             ->get();
 
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
 
         $confirmation_generate_email_details = ConfirmationGenerateEmail::where('user_id',$id)->first();
 
-        return view('hr-generate-confirmation-email-form-edit', compact('user_details','lettre_types','poc_details','confirmation_generate_email_details'));
+        return view('hr-generate-confirmation-email-form-edit', compact('user_details','lettre_types','poc_details','confirmation_generate_email_details','designation_names'));
     }
 
     /**
@@ -235,21 +335,62 @@ class ConfirmationGenerateEmailController extends Controller
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'letter_type' => 'required',
                 'appraisal_cycle' => 'required',
-                'appraisal_effect_date' => 'required',
-                'session_date' => 'required',
-                'session_time' => 'required',
                 'poc_name' => 'required',
                 'location' => 'required',
             ], [
                 'member_name.required' => 'Name is required',
                 'letter_type.required' => 'Letter type is required',
                 'appraisal_cycle.required' => 'Appraisal cycle is required',
-                'appraisal_effect_date.required' => 'Appraisal effect date is required',
-                'session_date.required' => 'Session date is required',
-                'session_time.required' => 'Session time is required',
                 'poc_name.required' => 'POC name is required',
                 'location.required' => 'Location is required',
             ]);
+
+            
+
+            if($request->letter_type=='1') {
+                $request->validate([
+                    'appraisal_effect_date' => 'required',
+                ], [
+                    'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                ]);
+            } else if($request->letter_type=='2'){
+                $request->validate([
+                    'increment_amount' => 'required',
+                    'appraisal_effect_date' => 'required',
+                ], [
+                    'increment_amount.required' => 'Increment amount is required',
+                    'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                ]);
+            } else if($request->letter_type=='3'){
+                $request->validate([
+                    'promotion' => 'required',
+                    'appraisal_effect_date' => 'required',
+                ], [
+                    'promotion.required' => 'Promotion selection is required',
+                    'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                ]);
+            } else if($request->letter_type=='4') {
+                //dd($request);
+                $request->validate([
+                    'pip_month' => 'required',
+                    'final_confirmation_date' => 'required',
+                    'revised_appraisl_cycle' => 'required',
+                ], [
+                    'pip_month.required' => 'PIP month is required',
+                    'final_confirmation_date.required' => 'Final confirmation date is required',
+                    'revised_appraisl_cycle.required' => 'Revised appraisl cycle is required',
+                ]);
+            } else if($request->letter_type=='5'){
+                $request->validate([
+                    'increment_amount' => 'required',
+                    'promotion' => 'required',
+                    'appraisal_effect_date' => 'required',
+                ], [
+                    'increment_amount.required' => 'Increment amount is required',
+                    'promotion.required' => 'Promotion selection is required',
+                    'appraisal_effect_date.required' => 'Appraisal effect date is required',
+                ]);
+            }
 
             $status='2';
         }
@@ -259,6 +400,37 @@ class ConfirmationGenerateEmailController extends Controller
         $my_hour=$mytime->hour;
         $my_minute=$mytime->minute;
         $current_time=$my_hour.':'.$my_minute.":00";
+
+        
+        if(($request->letter_type=='4') || $request->letter_type==''){
+            $appraisal_effect_date=null;
+        } else {
+            $appraisal_effect_date=$request->appraisal_effect_date;
+        }
+
+        if($request->letter_type=='4'){
+            $pip_month=$request->pip_month.'-01';
+        } else {
+            $pip_month=null;
+        }
+
+        if($request->letter_type=='4'){
+            $final_confirmation_date=$request->final_confirmation_date.'-01';
+        } else {
+            $final_confirmation_date=null;
+        }
+
+        if($request->letter_type=='4'){
+            $revised_appraisl_cycle=$request->revised_appraisl_cycle.'-01';
+        } else {
+            $revised_appraisl_cycle=null;
+        }
+
+        if($request->session_date){
+            $session_date=$request->session_date;
+        } else {
+            $session_date=null;
+        }
 
         ConfirmationGenerateEmail::where('id', $edit_id)
         ->where('user_id', $user_id)
@@ -270,8 +442,11 @@ class ConfirmationGenerateEmailController extends Controller
             'increment_amount' => $request->increment_amount,
             'promotion' => $request->promotion,
             'appraisal_cycle' => $request->appraisal_cycle,
-            'appraisal_effect_date' => (!is_null($request->appraisal_effect_date) ? $request->appraisal_effect_date : date('Y-01-01')),
-            'session_date' => (!is_null($request->session_date) ? $request->session_date : "null"),
+            'appraisal_effect_date' => $appraisal_effect_date,
+            'pip_month' => $pip_month,
+            'final_confirmation_date' => $final_confirmation_date,
+            'revised_appraisl_cycle' => $revised_appraisl_cycle,
+            'session_date' => $session_date,
             'session_time' => (!is_null($request->session_time) ? $request->session_time : $current_time),
             'poc_name' => (!is_null($request->poc_name) ? $request->poc_name : ""),
             'location' => (!is_null($request->location) ? $request->location : ""),
