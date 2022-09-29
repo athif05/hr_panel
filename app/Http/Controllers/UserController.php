@@ -21,6 +21,28 @@ use Auth;
 class UserController extends Controller
 {
 
+    /*confirmation review initiation email view, start here*/
+    public function confirmationReviewInitiationEmailView($id) {
+        
+        $user_dtl = User::where('id',$id)
+        ->first();
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+        $review_meeting_date = ConfirmationMom::where('user_id',$id)
+        ->first();
+
+        //dd($confirmation_mom_details);
+
+        return view('confirmation-review-initiation-email-view', compact('user_dtl','confirmation_mom_details','review_meeting_date'));
+    }
+    /*confirmation review initiation email view, end here*/
+
+
+
     /*mom email view, start here*/
     public function momEmailView($id) {
         

@@ -232,6 +232,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/mom-email-view/{id}',  [App\Http\Controllers\UserController::class, 'momEmailView'])->middleware('isHRManagement');
 
 	Route::get('/confirmation-process-mom-email/filter',  [App\Http\Controllers\UserController::class, 'confirmationProcessMomEmailFilter'])->name('confirmation-process-mom-email.filter')->middleware('isHRManagement');
+
+	Route::get('/confirmation-review-initiation-email-view/{id}',  [App\Http\Controllers\UserController::class, 'confirmationReviewInitiationEmailView'])->middleware('isHRManagement');
 	/*Confirmation Process & MOM Email, end here*/
 
 

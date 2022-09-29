@@ -100,6 +100,7 @@
                     <th scope="col">Member Name</th>
                     <th scope="col">Department</th>
                     <th scope="col">MOM Email</th>
+                    <!-- <th scope="col">Confirmation Email</th> -->
                     <th scope="col">Start Confirmation</th>
                   </tr>
                 </thead>
@@ -117,6 +118,11 @@
   							<button type="button" class="btn btn-primary btn-sm">View</button>
               </a>
 						</td>
+            <!-- <td>
+              <a href="{{ url('confirmation-review-initiation-email-view/'.$all_candidate['id'])}}">
+                <button type="button" class="btn btn-primary btn-sm">View</button>
+              </a>
+            </td> -->
 						<td>
 							<a href="{{ url('start-confirmation-process/'.$all_candidate['id'])}}">
 								<button type="button" class="btn btn-primary btn-sm">Start Confirmation</button>
