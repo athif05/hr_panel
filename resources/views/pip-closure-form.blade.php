@@ -288,7 +288,7 @@
                   @endif
 
                   <script>
-                    CKEDITOR.replace( 'plan_of_action_to_improve' );
+                    CKEDITOR.replace( 'seen_considerable_improvemnet_performance' );
                   </script>
                 </div>
 
