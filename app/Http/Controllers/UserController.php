@@ -100,7 +100,7 @@ class UserController extends Controller
             }
                
         }
-dd("1. ".$manager2." / 2. ".$manager2." / 3. ".$manager3);
+//dd("1. ".$manager2." / 2. ".$manager2." / 3. ".$manager3);
 
         if($manager3!=0){
 
