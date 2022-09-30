@@ -260,6 +260,8 @@ Route::group(['middleware' => ['auth']], function() {
 	//Route::get('/send-generate-confirmation-email-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmailTest']);
 	/*hr generate email, end here*/
 
+
+
 	/*hr Initiating PIP mail, start here*/
 	Route::get('/initiating-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'index'])->middleware('isHRManagement');
 
@@ -271,6 +273,15 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('/send-initiating-pip-email-ajax', [App\Http\Controllers\InitiatingPipFormController::class, 'sendInitiatingPIPEmail']);
 	/*hr Initiating PIP mail, end here*/
+
+
+	/*hr closure PIP mail, start here*/
+	Route::get('/closure-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'closurePIPIndex'])->middleware('isHRManagement');
+
+	Route::post('/update-closure-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'updateClosure'])->name('update-closure-pip-email-form');
+
+	Route::get('/pip-closure-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'editClosure']);
+	/*hr closure PIP mail, end here*/
 
 
 	/*hr mom, start here*/
@@ -338,6 +349,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/manager-mom-form-show/{user_id}/{id}', [App\Http\Controllers\ConfirmationMomController::class, 'index'])->middleware('isManagerHrandHrHead');
 	/*manager mom form, end here*/
+
+
+
 
 
 });

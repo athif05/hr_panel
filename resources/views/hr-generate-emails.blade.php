@@ -142,12 +142,16 @@
                            <?php $jk=1;?>
 
                             <a href="{{ url('generate-email-form/'.$all_member['id'])}}">
-                              <button type="button" class="btn btn-info btn-sm">Show Generated Email</button>
+                              <button type="button" class="btn btn-success btn-sm">Show Generated Email</button>
                             </a>
 
                             @if($generate_email_detail['letter_type']=='4')
                               <a href="{{ url('initiating-pip-email-form/'.$all_member['id'])}}">
-                                  <button type="button" class="btn btn-primary btn-sm" style="margin-top: 3px;">Initiating PIP</button>
+                                  <button type="button" class="btn btn-primary btn-sm" style="margin-top: 3px;">PIP Initiating Form</button>
+                              </a>
+
+                              <a href="{{ url('closure-pip-email-form/'.$all_member['id'])}}">
+                                  <button type="button" class="btn btn-info btn-sm" style="margin-top: 3px;">PIP Closure Form</button>
                               </a>
                             @endif
 

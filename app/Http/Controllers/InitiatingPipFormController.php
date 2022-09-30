@@ -22,13 +22,123 @@ class InitiatingPipFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-    {
+    public function closurePIPIndex($id){
+
+        $updated_by_id=Auth::user()->id;
+
         $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
         ->leftJoin('departments', 'departments.id', '=', 'users.department')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
-        ->select('users.*','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        ->first();
+
+
+
+        if(($initiating_pip_details === null) or (($initiating_pip_details['closure_status'] === '0') or ($initiating_pip_details['closure_status'] === ''))){
+
+            //return view('initiating-pip-email-form', compact('user_details'));
+
+            return view('pip-closure-form', compact('user_details','updated_by_id','initiating_pip_details'));
+
+        } else if($initiating_pip_details['closure_status'] === '1'){
+
+            return redirect("/pip-closure-form-edit/$id");
+
+        } else if($initiating_pip_details['closure_status'] === '2'){
+
+            return view('pip-closure-form-show', compact('user_details','initiating_pip_details'));
+        }
+    }
+
+
+    public function updateClosure(Request $request)
+    {
+        $edit_id=$request->edit_id;
+        $user_id=$request->user_id;
+        $updated_by_id=$request->updated_by_id;
+
+        if($request['submit']=='Save in Draft'){
+            $status='1';
+        } else if($request['submit']=='Publish'){
+
+            $request->validate([
+                'final_pip_review' => 'required',
+                'seen_considerable_improvemnet_performance' => 'required',
+            ], [
+                'final_pip_review.required' => 'Final PIP review is required',
+                'seen_considerable_improvemnet_performance.required' => 'Improvemnet performance is required',
+            ]);
+
+            $status='2';
+        }
+
+        
+        //DB::enableQueryLog();
+
+        InitiatingPipForm::where('id', $edit_id)
+        ->where('user_id', $user_id)
+        ->update([
+            'final_pip_review' => $request->final_pip_review,
+            'seen_considerable_improvemnet_performance' => $request->seen_considerable_improvemnet_performance,
+            'closure_status' => $status,
+        ]);
+
+        //$quries = DB::getQueryLog();
+        //dd($quries);
+
+        
+            
+        if($status==1){
+
+            return redirect("/pip-closure-form-edit/$user_id")->with('thank_you', 'Your form save in draft.');
+
+        } else if($status==2){
+
+            return redirect("/closure-pip-email-form/$user_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+
+        }
+        
+    }
+
+
+     public function editClosure($id)
+    {
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        ->first();
+
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+        //return view('initiating-pip-email-form-edit', compact('user_details','initiating_pip_details'));
+        return view('pip-closure-form-edit', compact('user_details','initiating_pip_details'));
+    }
+
+
+
+    public function index($id)
+    {
+        $updated_by_id=Auth::user()->id;
+
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
         ->first();
 
 
@@ -44,7 +154,9 @@ class InitiatingPipFormController extends Controller
 
         if(($initiating_pip_details === null) or (($initiating_pip_details['status'] === '0') or ($initiating_pip_details['status'] === ''))){
 
-            return view('initiating-pip-email-form', compact('user_details'));
+            //return view('initiating-pip-email-form', compact('user_details'));
+
+            return view('pip-initiation-form', compact('user_details','updated_by_id'));
 
         } else if($initiating_pip_details['status'] === '1'){
 
@@ -83,15 +195,19 @@ class InitiatingPipFormController extends Controller
         } else if($request['submit']=='Publish'){
 
             $request->validate([
-                'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-                'date_initiating_pip' => 'required',
                 'no_of_days' => 'required',
+                'date_initiating_pip' => 'required',
                 'closing_date_pip' => 'required',
+                'issue_description_performance_behaviour' => 'required',
+                'description_expected_performance' => 'required',
+                'plan_of_action_to_improve' => 'required',
             ], [
-                'member_name.required' => 'Member Name is required',
-                'date_initiating_pip.required' => 'Date of initiating PIP is required',
                 'no_of_days.required' => 'No. Of Days is required',
+                'date_initiating_pip.required' => 'Date of initiating PIP is required',
                 'closing_date_pip.required' => 'Closing Date of PIP is required',
+                'issue_description_performance_behaviour.required' => 'Description is required',
+                'description_expected_performance.required' => 'Expected performance is required',
+                'plan_of_action_to_improve.required' => 'Plan of action is required',
             ]);
 
             $status='2';
@@ -120,6 +236,9 @@ class InitiatingPipFormController extends Controller
             'date_initiating_pip' => $date_initiating_pip,
             'no_of_days' => $request->no_of_days,
             'closing_date_pip' => $closing_date_pip,
+            'issue_description_performance_behaviour' => $request->issue_description_performance_behaviour,
+            'description_expected_performance' => $request->description_expected_performance,
+            'plan_of_action_to_improve' => $request->plan_of_action_to_improve,
             'status' => $status,
         ]);
 
@@ -159,17 +278,31 @@ class InitiatingPipFormController extends Controller
      */
     public function edit($id)
     {
-        
-        $user_details = User::where('users.id',$id)
-        ->select('users.*', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
-        ->first();
-
 
         /*check record is exist or not*/
         $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
         ->first();
 
-        return view('initiating-pip-email-form-edit', compact('user_details','initiating_pip_details'));
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+
+   
+
+
+        //return view('initiating-pip-email-form-edit', compact('user_details','initiating_pip_details'));
+        return view('pip-initiation-form-edit', compact('user_details','initiating_pip_details'));
     }
 
     /**
@@ -190,15 +323,19 @@ class InitiatingPipFormController extends Controller
         } else if($request['submit']=='Publish'){
 
             $request->validate([
-                'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
-                'date_initiating_pip' => 'required',
                 'no_of_days' => 'required',
+                'date_initiating_pip' => 'required',
                 'closing_date_pip' => 'required',
+                'issue_description_performance_behaviour' => 'required',
+                'description_expected_performance' => 'required',
+                'plan_of_action_to_improve' => 'required',
             ], [
-                'member_name.required' => 'Member Name is required',
-                'date_initiating_pip.required' => 'Date of initiating PIP is required',
                 'no_of_days.required' => 'No. Of Days is required',
+                'date_initiating_pip.required' => 'Date of initiating PIP is required',
                 'closing_date_pip.required' => 'Closing Date of PIP is required',
+                'issue_description_performance_behaviour.required' => 'Description is required',
+                'description_expected_performance.required' => 'Expected performance is required',
+                'plan_of_action_to_improve.required' => 'Plan of action is required',
             ]);
 
             $status='2';
@@ -227,6 +364,9 @@ class InitiatingPipFormController extends Controller
             'date_initiating_pip' => $date_initiating_pip,
             'no_of_days' => $request->no_of_days,
             'closing_date_pip' => $closing_date_pip,
+            'issue_description_performance_behaviour' => $request->issue_description_performance_behaviour,
+            'description_expected_performance' => $request->description_expected_performance,
+            'plan_of_action_to_improve' => $request->plan_of_action_to_improve,
             'status' => $status,
         ]);
 
@@ -327,5 +467,6 @@ class InitiatingPipFormController extends Controller
 
     }
     /*send pip email, end here*/
+
 
 }
