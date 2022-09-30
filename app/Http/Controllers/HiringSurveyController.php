@@ -34,10 +34,11 @@ class HiringSurveyController extends Controller
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
         ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','hiring_surveys.id as surveys_form_id', 'hiring_surveys.status as hiring_surveys_status')
-        ->orderBy('users.first_name','asc')->get();
+        ->orderBy('users.first_name','asc')->groupBy('users.id')->get();
 
         return view('hiring-survey-list', compact('all_members'));
     }
+
 
     public function index($id)
     {
@@ -89,6 +90,7 @@ class HiringSurveyController extends Controller
         $hiring_survey_details = HiringSurvey::where('user_id', $user_id)
         ->where('manager_id', $manager_id)
         ->first();
+        $last_id=$hiring_survey_details['id'];
         
 
         if(($hiring_survey_details === null) or (($hiring_survey_details['status'] === '0') or ($hiring_survey_details['status'] === ''))){
@@ -97,7 +99,7 @@ class HiringSurveyController extends Controller
 
         } else if($hiring_survey_details['status'] === '1'){
 
-            return redirect("/hiring-survey-edit/$user_id");
+            return redirect("/hiring-survey-edit/$user_id/$last_id");
 
         } else if($hiring_survey_details['status'] === '2'){
 
@@ -225,7 +227,7 @@ class HiringSurveyController extends Controller
 
                 //return redirect('/thank-you')->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
-                return redirect('/hiring-survey')->with('thank_you', 'Thanks, for giving your valuable time for us.');
+                return redirect("/hiring-survey/$user_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
             }
             

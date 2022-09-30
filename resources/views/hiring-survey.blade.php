@@ -61,7 +61,7 @@
               <h5 class="card-title">Fill Hiring Survey</h5>
               
 
-              <div class="hiring_survey_heading"><strong>Your Details</strong></div>
+
 
               <!-- Custom Styled Validation with Tooltips -->
               <form method="post" action="{{ route('save-hiring-survey') }}" class="row g-3 needs-validation" novalidate>
@@ -70,6 +70,8 @@
                 <input type="hidden" name="user_id" id="user_id" value="{{ $member_details->id }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ Auth::user()->id }}">
                 
+                <div class="hiring_survey_heading"><strong>Your Details</strong></div>
+
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Your Name</label>
                   <input type="text" class="form-control disable-text" name="member_name" id="member_name" value="{{ $member_details->first_name }} {{ $member_details->last_name }}" readonly>

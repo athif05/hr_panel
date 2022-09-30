@@ -94,7 +94,7 @@
                   </tr>
 
                   <tr>
-                   <td>Please choose the name of your company.</td>
+                   <td>Please choose the name of your company</td>
                     <td>
                     	@foreach($company_names as $company_name)
 
@@ -111,7 +111,7 @@
                   </tr>
 
                   <tr>
-                    <td>Please choose name of the recruiter who worked on your position.</td>
+                    <td>Please choose name of the recruiter who worked on your position</td>
                     <td>
                       @foreach($recruiter_details as $recruiter_detail)
 
@@ -137,7 +137,7 @@
                   </tr>
 
                   <tr>
-                    <td>Name the designation of the open position.</td>
+                    <td>Name the designation of the open position</td>
                     <td>
                       @foreach($designation_names as $designation_name)
 
@@ -174,7 +174,7 @@
                       
                       @endforeach
 
-                     in the following parameters out of 5:</strong></td>
+                     in the following parameters out of 5</strong></td>
                   </tr>
 
                   <tr>
@@ -295,11 +295,11 @@
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any additional feedback you would like to give for the recruiter?</strong> : {!! $hiring_survey_details['additional_feedback_recruiter'] !!}</td>
+                    <td colspan="2"><strong>Any additional feedback you would like to give for the recruiter?</strong> {!! $hiring_survey_details['additional_feedback_recruiter'] !!}</td>
                   </tr>
 
                   <tr class="txt_justify">
-                    <td colspan="2"><strong>Any suggestions you would like to give that would help us to improve the hiring process?</strong> : {!! $hiring_survey_details['any_suggestions_improve_hiring_process'] !!}</td>
+                    <td colspan="2"><strong>Any suggestions you would like to give that would help us to improve the hiring process?</strong> {!! $hiring_survey_details['any_suggestions_improve_hiring_process'] !!}</td>
                   </tr>
 
                 </tbody>

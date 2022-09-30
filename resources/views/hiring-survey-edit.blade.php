@@ -52,7 +52,7 @@
               </div>
               @endif
 
-              <div class="hiring_survey_heading"><strong>Your Details</strong></div>
+              
 
               <!-- Custom Styled Validation with Tooltips -->
               <form method="post" action="{{ route('update-hiring-survey') }}" class="row g-3 needs-validation" novalidate>
@@ -61,6 +61,8 @@
                 <input type="hidden" name="edit_id" id="edit_id" value="{{ $hiring_survey_details->id }}">
                 <input type="hidden" name="user_id" id="user_id" value="{{ $hiring_survey_details->user_id }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ $hiring_survey_details->manager_id }}">
+                
+                <div class="hiring_survey_heading"><strong>Your Details</strong></div>
                 
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Your Name</label>

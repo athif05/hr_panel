@@ -78,11 +78,11 @@
 
                           @if($all_member['hiring_surveys_status']=='1')
 
-                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey-edit/".$all_member['id'])}}';">Edit Survey</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey-edit/".$all_member['id']."/".$all_member['surveys_form_id'])}}';">Edit Survey</button>
 
                           @elseif($all_member['hiring_surveys_status']=='2')
 
-                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id']."/".$all_member['surveys_form_id'])}}';">Show Survey</button>
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id'])}}';">Show Survey</button>
 
                           @endif
 
