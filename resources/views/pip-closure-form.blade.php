@@ -281,15 +281,15 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="seen_considerable_improvemnet_performance" class="form-label">Have you seen considerable improvemnet in the performance, during the PIP period? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="seen_considerable_improvemnet_performance" id="seen_considerable_improvemnet_performance" style="height: 100px">{{ old('seen_considerable_improvemnet_performance', $initiating_pip_details->seen_considerable_improvemnet_performance)}}</textarea>
-
-                  @if ($errors->has('seen_considerable_improvemnet_performance'))
-                    <span class="text-danger">{{ $errors->first('seen_considerable_improvemnet_performance') }}</span>
-                  @endif
-
-                  <script>
-                    CKEDITOR.replace( 'seen_considerable_improvemnet_performance' );
-                  </script>
+                  
+                  <select class="form-select" name="seen_considerable_improvemnet_performance" id="seen_considerable_improvemnet_performance">
+                    <option value="">-- Choose --</option>
+                    
+                    <option value="Yes" @if(old('seen_considerable_improvemnet_performance')=='Yes') selected @endif>Yes</option>
+                    <option value="No" @if(old('seen_considerable_improvemnet_performance')=='No') selected @endif>No</option>
+                    
+                    
+                  </select>
                 </div>
 
 
