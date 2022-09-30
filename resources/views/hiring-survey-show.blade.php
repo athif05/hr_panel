@@ -180,81 +180,117 @@
                   <tr>
                     <td>How much was the recruiter helpful throughout the recruitment process?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['recruiter_helpful_recruitment_process']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['recruiter_helpful_recruitment_process']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['recruiter_helpful_recruitment_process']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How prompt was the recruiter's response?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['recruiter_response']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['recruiter_response']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['recruiter_response']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the recruiter's understanding of job requirement and needs?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['recruiter_understanding_job_requirement']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['recruiter_understanding_job_requirement']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['recruiter_understanding_job_requirement']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the quality of candidates presented?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['quality_of_candidates_presented']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['quality_of_candidates_presented']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['quality_of_candidates_presented']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the number of candidates presented?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['number_of_candidates_presented']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['number_of_candidates_presented']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['number_of_candidates_presented']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How much you would rate the recruiter for providing the correct information to the candidate?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['rate_the_recruiter_correct_information']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['rate_the_recruiter_correct_information']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['rate_the_recruiter_correct_information']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How well did the assessment and screening of candidates go by the recruiter?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['assessment_screening_candidates']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['assessment_screening_candidates']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['assessment_screening_candidates']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>How much satisfied are you with the time taken to fill the open position?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['time_taken_fill_open_position']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['time_taken_fill_open_position']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['time_taken_fill_open_position']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 
                   <tr>
                     <td>Overall how satisfied are you with our hiring and recruiting process?</td>
                     <td>
-                      @for($i=0; $i < $hiring_survey_details['overall_satisfied_hiring_recruiting_process']; $i++)
-                      <i class="bi bi-star-fill rate-star-color"></i>
-                      @endfor
+                      @if($hiring_survey_details['overall_satisfied_hiring_recruiting_process']!='NA')
+                        @for($i=0; $i < $hiring_survey_details['overall_satisfied_hiring_recruiting_process']; $i++)
+                        <i class="bi bi-star-fill rate-star-color"></i>
+                        @endfor
+                      @else
+                        NA
+                      @endif
                     </td>
                   </tr>
 

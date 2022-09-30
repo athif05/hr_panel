@@ -74,9 +74,21 @@
           						<td>{{$all_member['location_name']}}</td>
           						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<a href="#">
-          								<button type="button" class="btn btn-primary btn-sm">Start Survey</button>
-          							</a>
+                        @if($all_member['surveys_form_id'])
+
+                          @if($all_member['hiring_surveys_status']=='1')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey-edit/".$all_member['id'])}}';">Edit Survey</button>
+
+                          @elseif($all_member['hiring_surveys_status']=='2')
+
+                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id']."/".$all_member['surveys_form_id'])}}';">Show Survey</button>
+
+                          @endif
+
+                        @else
+                          <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id'])}}';">Start Survey</button>
+                        @endif
           						</td>
           					</tr>
           				<?php $j++;?>

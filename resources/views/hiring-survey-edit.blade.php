@@ -60,6 +60,7 @@
 
                 <input type="hidden" name="edit_id" id="edit_id" value="{{ $hiring_survey_details->id }}">
                 <input type="hidden" name="user_id" id="user_id" value="{{ $hiring_survey_details->user_id }}">
+                <input type="hidden" name="manager_id" id="manager_id" value="{{ $hiring_survey_details->manager_id }}">
                 
                 <div class="col-md-6 position-relative">
                   <label for="member_name" class="form-label">Your Name</label>
@@ -236,7 +237,10 @@
                   <label for="recruiter_helpful_recruitment_process" class="form-label rdioBtn">How much was the recruiter helpful throughout the recruitment process?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="recruiter_helpful_recruitment_process" id="recruiter_helpful_recruitment_process" value="1" @if(old('recruiter_helpful_recruitment_process',$hiring_survey_details->recruiter_helpful_recruitment_process)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="recruiter_helpful_recruitment_process" id="recruiter_helpful_recruitment_process" value="NA" @if(old('recruiter_helpful_recruitment_process',$hiring_survey_details->recruiter_helpful_recruitment_process)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="recruiter_helpful_recruitment_process" id="recruiter_helpful_recruitment_process" value="1" @if(old('recruiter_helpful_recruitment_process',$hiring_survey_details->recruiter_helpful_recruitment_process)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="recruiter_helpful_recruitment_process" id="recruiter_helpful_recruitment_process" value="2" @if(old('recruiter_helpful_recruitment_process',$hiring_survey_details->recruiter_helpful_recruitment_process)=='2') checked @endif>
@@ -262,7 +266,10 @@
                   <label for="recruiter_response" class="form-label rdioBtn">How prompt was the recruiter's response? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="recruiter_response" id="recruiter_response" value="1" @if(old('recruiter_response',$hiring_survey_details->recruiter_response)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="recruiter_response" id="recruiter_response" value="NA" @if(old('recruiter_response',$hiring_survey_details->recruiter_response)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="recruiter_response" id="recruiter_response" value="1" @if(old('recruiter_response',$hiring_survey_details->recruiter_response)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="recruiter_response" id="recruiter_response" value="2" @if(old('recruiter_response',$hiring_survey_details->recruiter_response)=='2') checked @endif>
@@ -287,7 +294,10 @@
                   <label for="recruiter_understanding_job_requirement" class="form-label rdioBtn">How much satisfied are you with the recruiter's understanding of job requirement and needs? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="recruiter_understanding_job_requirement" id="recruiter_understanding_job_requirement" value="1" @if(old('recruiter_understanding_job_requirement',$hiring_survey_details->recruiter_understanding_job_requirement)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="recruiter_understanding_job_requirement" id="recruiter_understanding_job_requirement" value="NA" @if(old('recruiter_understanding_job_requirement',$hiring_survey_details->recruiter_understanding_job_requirement)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="recruiter_understanding_job_requirement" id="recruiter_understanding_job_requirement" value="1" @if(old('recruiter_understanding_job_requirement',$hiring_survey_details->recruiter_understanding_job_requirement)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="recruiter_understanding_job_requirement" id="recruiter_understanding_job_requirement" value="2" @if(old('recruiter_understanding_job_requirement',$hiring_survey_details->recruiter_understanding_job_requirement)=='2') checked @endif>
@@ -312,7 +322,10 @@
                   <label for="quality_of_candidates_presented" class="form-label rdioBtn">How much satisfied are you with the quality of candidates presented? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="quality_of_candidates_presented" id="quality_of_candidates_presented" value="1" @if(old('quality_of_candidates_presented',$hiring_survey_details->quality_of_candidates_presented)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_candidates_presented" id="quality_of_candidates_presented" value="NA" @if(old('quality_of_candidates_presented',$hiring_survey_details->quality_of_candidates_presented)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="quality_of_candidates_presented" id="quality_of_candidates_presented" value="1" @if(old('quality_of_candidates_presented',$hiring_survey_details->quality_of_candidates_presented)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="quality_of_candidates_presented" id="quality_of_candidates_presented" value="2" @if(old('quality_of_candidates_presented',$hiring_survey_details->quality_of_candidates_presented)=='2') checked @endif>
@@ -337,7 +350,10 @@
                   <label for="number_of_candidates_presented" class="form-label rdioBtn">How much satisfied are you with the number of candidates presented? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="number_of_candidates_presented" id="number_of_candidates_presented" value="1" @if(old('number_of_candidates_presented',$hiring_survey_details->number_of_candidates_presented)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="number_of_candidates_presented" id="number_of_candidates_presented" value="NA" @if(old('number_of_candidates_presented',$hiring_survey_details->number_of_candidates_presented)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="number_of_candidates_presented" id="number_of_candidates_presented" value="1" @if(old('number_of_candidates_presented',$hiring_survey_details->number_of_candidates_presented)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="number_of_candidates_presented" id="number_of_candidates_presented" value="2" @if(old('number_of_candidates_presented',$hiring_survey_details->number_of_candidates_presented)=='2') checked @endif>
@@ -362,7 +378,10 @@
                   <label for="rate_the_recruiter_correct_information" class="form-label rdioBtn">How much you would rate the recruiter for providing the correct information to the candidate? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="rate_the_recruiter_correct_information" id="rate_the_recruiter_correct_information" value="1" @if(old('rate_the_recruiter_correct_information',$hiring_survey_details->rate_the_recruiter_correct_information)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="rate_the_recruiter_correct_information" id="rate_the_recruiter_correct_information" value="NA" @if(old('rate_the_recruiter_correct_information',$hiring_survey_details->rate_the_recruiter_correct_information)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="rate_the_recruiter_correct_information" id="rate_the_recruiter_correct_information" value="1" @if(old('rate_the_recruiter_correct_information',$hiring_survey_details->rate_the_recruiter_correct_information)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="rate_the_recruiter_correct_information" id="rate_the_recruiter_correct_information" value="2" @if(old('rate_the_recruiter_correct_information',$hiring_survey_details->rate_the_recruiter_correct_information)=='2') checked @endif>
@@ -388,7 +407,10 @@
                   <label for="assessment_screening_candidates" class="form-label rdioBtn">How well did the assessment and screening of candidates go by the recruiter? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="assessment_screening_candidates" id="assessment_screening_candidates" value="1" @if(old('assessment_screening_candidates',$hiring_survey_details->assessment_screening_candidates)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="assessment_screening_candidates" id="assessment_screening_candidates" value="NA" @if(old('assessment_screening_candidates',$hiring_survey_details->assessment_screening_candidates)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="assessment_screening_candidates" id="assessment_screening_candidates" value="1" @if(old('assessment_screening_candidates',$hiring_survey_details->assessment_screening_candidates)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="assessment_screening_candidates" id="assessment_screening_candidates" value="2" @if(old('assessment_screening_candidates',$hiring_survey_details->assessment_screening_candidates)=='2') checked @endif>
@@ -414,7 +436,10 @@
                   <label for="time_taken_fill_open_position" class="form-label rdioBtn">How much satisfied are you with the time taken to fill the open position? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="time_taken_fill_open_position" id="time_taken_fill_open_position" value="1" @if(old('time_taken_fill_open_position',$hiring_survey_details->time_taken_fill_open_position)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="time_taken_fill_open_position" id="time_taken_fill_open_position" value="NA" @if(old('time_taken_fill_open_position',$hiring_survey_details->time_taken_fill_open_position)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+
+                    <input class="form-check-input" type="radio" name="time_taken_fill_open_position" id="time_taken_fill_open_position" value="1" @if(old('time_taken_fill_open_position',$hiring_survey_details->time_taken_fill_open_position)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="time_taken_fill_open_position" id="time_taken_fill_open_position" value="2" @if(old('time_taken_fill_open_position',$hiring_survey_details->time_taken_fill_open_position)=='2') checked @endif>
@@ -440,7 +465,10 @@
                   <label for="overall_satisfied_hiring_recruiting_process" class="form-label rdioBtn">Overall how satisfied are you with our hiring and recruiting process? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                      <input class="form-check-input" type="radio" name="overall_satisfied_hiring_recruiting_process" id="overall_satisfied_hiring_recruiting_process" value="1" @if(old('overall_satisfied_hiring_recruiting_process',$hiring_survey_details->overall_satisfied_hiring_recruiting_process)=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="overall_satisfied_hiring_recruiting_process" id="overall_satisfied_hiring_recruiting_process" value="NA" @if(old('overall_satisfied_hiring_recruiting_process',$hiring_survey_details->overall_satisfied_hiring_recruiting_process)=='NA') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    
+                    <input class="form-check-input" type="radio" name="overall_satisfied_hiring_recruiting_process" id="overall_satisfied_hiring_recruiting_process" value="1" @if(old('overall_satisfied_hiring_recruiting_process',$hiring_survey_details->overall_satisfied_hiring_recruiting_process)=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
                     <input class="form-check-input" type="radio" name="overall_satisfied_hiring_recruiting_process" id="overall_satisfied_hiring_recruiting_process" value="2" @if(old('overall_satisfied_hiring_recruiting_process',$hiring_survey_details->overall_satisfied_hiring_recruiting_process)=='2') checked @endif>
