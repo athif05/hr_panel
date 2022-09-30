@@ -34,11 +34,11 @@ class HiringSurveyController extends Controller
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
         ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','hiring_surveys.id as surveys_form_id', 'hiring_surveys.status as hiring_surveys_status')
-        ->orderBy('users.first_name','asc')->groupBy('users.id')->get();
+        ->orderBy('users.first_name','asc')->get();
 
         return view('hiring-survey-list', compact('all_members'));
     }
-
+    
 
     public function index($id)
     {
