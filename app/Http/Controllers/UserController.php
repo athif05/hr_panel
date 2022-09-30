@@ -76,7 +76,7 @@ class UserController extends Controller
 
         array_push($manager_array,$manager1);
 
-
+        //dd($manager1);
         $manager2_dtl = User::where('reporting_to_id',$manager1)
         ->where('role_id','3')
         ->first();
@@ -100,7 +100,7 @@ class UserController extends Controller
             }
                
         }
-
+dd($manager3);
 
         if($manager3!=0){
 

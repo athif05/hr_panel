@@ -26,7 +26,7 @@ class HiringSurveyController extends Controller
 
         $manager_array= app('App\Http\Controllers\UserController')->multilevel_manager($manager1);
         
-        dd($manager_array);
+        //dd($manager_array);
         
         $all_members = User::where('users.employee_type','Probation')
         ->whereIn('users.reporting_to_id',$manager_array)
