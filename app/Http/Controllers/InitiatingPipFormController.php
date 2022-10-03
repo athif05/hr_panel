@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\InitiatingPipForm;
 use App\Models\ConfirmationMom;
+use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes};
 
 use Carbon\Carbon; //for get current time
 use Mail; //for send mail
@@ -22,6 +23,133 @@ class InitiatingPipFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*show single member pip details to hr, start here*/
+    public function hrPipView($id){
+
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        ->first();
+
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+
+        return view('hr-pip-view', compact('user_details','initiating_pip_details','confirmation_mom_details'));
+
+    }
+    /*show single member pip details to hr, end here*/
+
+
+    /*show all pip member to hr, start here*/
+    public function hrPip(){
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $all_members = User::where('initiating_pip_forms.status','2')
+        ->leftJoin('initiating_pip_forms', 'initiating_pip_forms.user_id','=','users.id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','departments.name as department_name','company_names.name as company_name')
+        ->orderBy('users.first_name','asc')->get();
+        //dd($all_members);
+
+        return view('hr-pip', compact('all_members','company_names','company_locations','designation_names','department_names'));
+
+    }
+    /*show all pip member to hr, end here*/
+
+
+    /*filter all pip member to hr, start here*/
+    public function hrPipFilter(Request $request){
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $query = User::where('initiating_pip_forms.status','2')
+        ->leftJoin('initiating_pip_forms', 'initiating_pip_forms.user_id','=','users.id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','departments.name as department_name','company_names.name as company_name')
+        ->orderBy('users.first_name','asc');
+
+
+        if($request->company_id_filter){
+            $query->where('users.company_id', 'like', '%'.$request->company_id_filter.'%');
+        }
+
+        if($request->department_id_filter){
+            $query->where('users.department', '=', $request->department_id_filter);
+        }
+        if($request->designation_id_filter){
+            $query->where('users.designation', '=', $request->designation_id_filter);
+        }
+        if($request->location_id_filter){
+            $query->where('users.company_location_id', '=', $request->location_id_filter);
+        }
+
+        $all_members = $query->get();
+
+        return view('hr-pip', compact('all_members','company_names','company_locations','designation_names','department_names'));
+    }
+    /*filter all pip member to hr, end here*/
+
+
+    /*show all member come under pip to manager, start here*/
     public function showAllPipMember(){
         
         $manager1=Auth::user()->member_id;
@@ -44,8 +172,10 @@ class InitiatingPipFormController extends Controller
         return view('pip-member-list', compact('all_members'));
 
     }
+    /*show all member come under pip to manager, end here*/
 
 
+    /*manage closure pip form by manager, start here*/
     public function closurePIPIndex($id){
 
         $updated_by_id=Auth::user()->id;
@@ -86,8 +216,10 @@ class InitiatingPipFormController extends Controller
             return view('pip-closure-form-email-show', compact('user_details','initiating_pip_details','confirmation_mom_details'));
         }
     }
+    /*manage closure pip form by manager, end here*/
 
 
+    /*update closure pip form by manager, start here*/
     public function updateClosure(Request $request)
     {
         $edit_id=$request->edit_id;
@@ -136,9 +268,12 @@ class InitiatingPipFormController extends Controller
         }
         
     }
+    /*update closure pip form by manager, end here*/
 
 
-     public function editClosure($id)
+    
+    /*edit closure pip form by manager, start here*/
+    public function editClosure($id)
     {
 
         /*check record is exist or not*/
@@ -156,9 +291,11 @@ class InitiatingPipFormController extends Controller
         //return view('initiating-pip-email-form-edit', compact('user_details','initiating_pip_details'));
         return view('pip-closure-form-edit', compact('user_details','initiating_pip_details'));
     }
+    /*edit closure pip form by manager, end here*/
 
 
 
+    /*manage initiation pip form by manager, start here*/
     public function index($id)
     {
         $updated_by_id=Auth::user()->id;
@@ -198,6 +335,7 @@ class InitiatingPipFormController extends Controller
         }
 
     }
+    /*manage initiation pip form by manager, end here*/
 
     /**
      * Show the form for creating a new resource.

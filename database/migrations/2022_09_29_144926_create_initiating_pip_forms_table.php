@@ -31,6 +31,7 @@ return new class extends Migration
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');
             $table->enum('closure_status', ['0', '1','2'])->default('0');
+            $table->enum('is_approved_by_hr', ['0', '1'])->default('0');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('updated_by_id')->references('id')->on('users');

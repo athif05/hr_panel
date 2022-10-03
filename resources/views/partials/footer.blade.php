@@ -17,6 +17,12 @@
 
 		jQuery(document).ready(function(){
 
+		/* approved pip by hr, start here */
+		function approved_member_pip_by_hr(){
+			console.log('approved_member_pip_by_hr');
+		}
+		/* approved pip by hr, end here */
+
 		/* confirmation email letter form, start here */
 		$('#letter_type').on('change', function(){
 			var letter_type_id=this.value;

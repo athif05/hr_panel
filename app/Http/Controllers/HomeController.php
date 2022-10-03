@@ -50,7 +50,7 @@ class HomeController extends Controller
         /*check member is under in PIP or not, start here*/
         $is_under_pip_id=0;
         $pip_users = InitiatingPipForm::where('user_id', $user_id)
-        ->where('status','2')       
+        ->where('is_approved_by_hr','1')       
         ->first();
         //dd($pip_users);
 

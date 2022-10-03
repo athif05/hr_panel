@@ -232,6 +232,14 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </a>
           </li>
 
+
+          <li>
+            <a href="{{ url('/hr-pip') }}">
+              <i class="bi bi-journal-text"></i>
+              <span>PIP</span>
+            </a>
+          </li>
+
           @endif
 
         </ul>

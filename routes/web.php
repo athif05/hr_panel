@@ -299,6 +299,15 @@ Route::group(['middleware' => ['auth']], function() {
 	/*hr mom, end here*/
 
 
+	/*hr pip list, start here*/
+	Route::get('/hr-pip',  [App\Http\Controllers\InitiatingPipFormController::class, 'hrPip'])->middleware('isHRManagement');
+
+	Route::get('/hr-pip/filter',  [App\Http\Controllers\InitiatingPipFormController::class, 'hrPipFilter'])->name('hr-pip.filter')->middleware('isHRManagement');
+
+	Route::get('/hr-pip-view/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'hrPipView'])->middleware('isHRManagement');
+	/*hr pip list, end here*/
+
+
 	/* ppt upload, start here*/
 	Route::get('/ppt-upload', [App\Http\Controllers\UserController::class, 'pptUpload']);
 
