@@ -64,6 +64,11 @@ class InitiatingPipFormController extends Controller
         ->first();
 
 
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
 
         if(($initiating_pip_details === null) or (($initiating_pip_details['closure_status'] === '0') or ($initiating_pip_details['closure_status'] === ''))){
 
@@ -77,7 +82,8 @@ class InitiatingPipFormController extends Controller
 
         } else if($initiating_pip_details['closure_status'] === '2'){
 
-            return view('pip-closure-form-show', compact('user_details','initiating_pip_details'));
+            //return view('pip-closure-form-show', compact('user_details','initiating_pip_details'));
+            return view('pip-closure-form-email-show', compact('user_details','initiating_pip_details','confirmation_mom_details'));
         }
     }
 
@@ -454,7 +460,7 @@ class InitiatingPipFormController extends Controller
 
 
 
-    /*send pip email, start here*/
+    /*send Initiating pip email, start here*/
     public function sendInitiatingPIPEmail(Request $request){
 
         //dd($request);
@@ -521,7 +527,85 @@ class InitiatingPipFormController extends Controller
         return true;
 
     }
-    /*send pip email, end here*/
+    /*send Initiating pip email, end here*/
+
+
+
+
+    /*send Closure pip email, start here*/
+    public function sendClosurePIPEmail(Request $request){
+
+        //$id = $request->id;
+        $id = $request->user_id;
+
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        ->first();
+
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+  
+        $data=array('user_details'=>$user_details, 'initiating_pip_details'=>$initiating_pip_details);
+
+        $mail_from=\config('env_file_value.no_reply');
+        $hr_email= \config('env_file_value.hr_email');
+        $manager_email=$user_details['manager_email'];
+        $candidate_email=$user_details['email'];
+
+        
+        $subject_name='Closure PIP - '.$user_details['full_name'].' (Member ID - '.$user_details['member_id'].')';
+    
+        Mail::send('mail-layout.send-closure-pip-email',$data, function($message) use ($user_details, $initiating_pip_details, $confirmation_mom_details, $mail_from, $manager_email, $hr_email, $candidate_email, $subject_name) {
+            $message->from($mail_from)
+            ->to($hr_email)
+            ->cc($manager_email)
+            ->subject($subject_name);
+        });
+
+
+        //return back()->with('thank_you', 'Mail successfully sent.');
+        return true;
+
+    }
+    /*send Closure pip email, end here*/
+
+
+    public function sendClosurePIPEmailTest($id){
+
+        $user_details = User::where('users.id',$id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        ->first();
+
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+        return view('mail-layout.send-closure-pip-email', compact('user_details','initiating_pip_details'));
+    }
 
 
 }

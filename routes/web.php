@@ -96,6 +96,11 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/update-closure-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'updateClosure'])->name('update-closure-pip-email-form');
 
 	Route::get('/pip-closure-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'editClosure']);
+
+
+	Route::post('/send-closure-pip-email-ajax', [App\Http\Controllers\InitiatingPipFormController::class, 'sendClosurePIPEmail']);
+
+	//Route::get('/send-closure-pip-test-mail/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'sendClosurePIPEmailTest']);
 	/*hr closure PIP mail, end here*/
 
 
