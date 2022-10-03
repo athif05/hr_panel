@@ -22,6 +22,30 @@ class InitiatingPipFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function showAllPipMember(){
+        
+        $manager1=Auth::user()->member_id;
+
+        $manager_array= app('App\Http\Controllers\UserController')->multilevel_manager($manager1);
+        
+        //dd($manager_array);
+        
+        $all_members = User::where('users.employee_type','Probation')
+        ->whereIn('users.reporting_to_id',$manager_array)
+        ->where('confirmation_generate_emails.letter_type','4')
+        ->leftJoin('confirmation_generate_emails','confirmation_generate_emails.user_id','=','users.id')
+        ->leftJoin('initiating_pip_forms', 'initiating_pip_forms.user_id', '=', 'users.id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','initiating_pip_forms.id as initiating_pip_forms_id')
+        ->orderBy('users.first_name','asc')->get();
+        //dd($all_members);
+
+        return view('pip-member-list', compact('all_members'));
+
+    }
+
+
     public function closurePIPIndex($id){
 
         $updated_by_id=Auth::user()->id;
@@ -385,6 +409,38 @@ class InitiatingPipFormController extends Controller
 
     }
 
+
+
+    public function showPIPFormDataToMember(){
+
+        $user_id=Auth::user()->id;
+
+        $user_details = User::where('users.id',$user_id)
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id',$user_id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->select('confirmation_moms.*', 'users.first_name as f_name', 'users.last_name as l_name')
+        ->get();
+
+
+        /*check record is exist or not*/
+        $initiating_pip_details = InitiatingPipForm::where('user_id', $user_id)
+        ->first();
+
+        
+        return view('initiating-pip-data-show-to-member', compact('user_details','initiating_pip_details','confirmation_mom_details'));
+        
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -455,9 +511,8 @@ class InitiatingPipFormController extends Controller
     
         Mail::send('mail-layout.send-initiating-pip-email',$data, function($message) use ($user_details, $initiating_pip_details, $confirmation_mom_details, $mail_from, $manager_email, $hr_email, $candidate_email, $subject_name) {
             $message->from($mail_from)
-            ->to($candidate_email)
+            ->to($hr_email)
             ->cc($manager_email)
-            ->bcc($hr_email)
             ->subject($subject_name);
         });
 

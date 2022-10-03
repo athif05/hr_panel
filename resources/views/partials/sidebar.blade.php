@@ -136,7 +136,17 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
                 <i class="bi bi-circle"></i><span>Fresh Eye Journal</span>
               </a>
             </li>
-            @endif 
+            @endif
+
+
+            @if(session('is_under_pip_member'))
+            <li>
+              <a href="{{ url('/member-pip-show') }}">
+                <i class="bi bi-circle"></i><span>PIP Form</span>
+              </a>
+            </li>
+            @endif
+
 
             <li>
               <a href="{{ url('/ppt-upload') }}">
@@ -154,6 +164,12 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           <li>
             <a href="{{ url('/hiring-survey-list') }}">
               <i class="bi bi-circle"></i><span>Hiring Survey</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/pip-member-list') }}">
+              <i class="bi bi-circle"></i><span>PIP Member</span>
             </a>
           </li>
 

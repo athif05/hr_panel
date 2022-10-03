@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
+use App\Models\InitiatingPipForm;
 use App\Models\{CompanyName, CompanyLocation, Department};
 
 use Auth;
@@ -44,6 +45,21 @@ class HomeController extends Controller
         Session::put('company_logo', $currentLogo);
         Session::put('designation_name', $designation_name);
         /*query used for show logo and designations in dropdown menu, end here*/
+
+
+        /*check member is under in PIP or not, start here*/
+        $is_under_pip_id=0;
+        $pip_users = InitiatingPipForm::where('user_id', $user_id)
+        ->where('status','2')       
+        ->first();
+        //dd($pip_users);
+
+        if($pip_users!=null){
+            $is_under_pip_id=$pip_users->user_id;    
+        }
+        Session::put('is_under_pip_member', $is_under_pip_id);
+        /*check member is under in PIP or not, end here*/
+        
 
 
         /*these all quries used for show data in dashboard, start here*/

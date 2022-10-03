@@ -73,6 +73,32 @@ Route::group(['middleware' => ['auth']], function() {
 	/*hiring-survey form, end here*/
 
 
+	/* pip member list, start here */
+	Route::get('/pip-member-list', [App\Http\Controllers\InitiatingPipFormController::class, 'showAllPipMember'])->middleware('isManager');
+
+	Route::get('/initiating-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'index'])->middleware('isManager');
+
+	Route::post('/save-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'store'])->name('save-initiating-pip-email-form');
+
+	Route::get('/initiating-pip-email-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'edit']);
+
+	Route::post('/update-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'update'])->name('update-initiating-pip-email-form');
+
+	Route::post('/send-initiating-pip-email-ajax', [App\Http\Controllers\InitiatingPipFormController::class, 'sendInitiatingPIPEmail']);
+
+	Route::get('/member-pip-show',[App\Http\Controllers\InitiatingPipFormController::class, 'showPIPFormDataToMember']);
+	/* pip member list, end here */
+
+
+	/*hr closure PIP mail, start here*/
+	Route::get('/closure-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'closurePIPIndex'])->middleware('isManager');
+
+	Route::post('/update-closure-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'updateClosure'])->name('update-closure-pip-email-form');
+
+	Route::get('/pip-closure-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'editClosure']);
+	/*hr closure PIP mail, end here*/
+
+
 	/*hiring-survey form, start here*/
 	Route::get('/training-survey', [App\Http\Controllers\TrainingSurveyController::class, 'index']);
 
@@ -259,29 +285,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/send-generate-mom-email-view-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateMOMEmailTest']);
 	//Route::get('/send-generate-confirmation-email-test', [App\Http\Controllers\ConfirmationGenerateEmailController::class, 'sendGenerateConfirmationEmailTest']);
 	/*hr generate email, end here*/
-
-
-
-	/*hr Initiating PIP mail, start here*/
-	Route::get('/initiating-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'index'])->middleware('isHRManagement');
-
-	Route::post('/save-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'store'])->name('save-initiating-pip-email-form');
-
-	Route::get('/initiating-pip-email-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'edit']);
-
-	Route::post('/update-initiating-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'update'])->name('update-initiating-pip-email-form');
-
-	Route::post('/send-initiating-pip-email-ajax', [App\Http\Controllers\InitiatingPipFormController::class, 'sendInitiatingPIPEmail']);
-	/*hr Initiating PIP mail, end here*/
-
-
-	/*hr closure PIP mail, start here*/
-	Route::get('/closure-pip-email-form/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'closurePIPIndex'])->middleware('isHRManagement');
-
-	Route::post('/update-closure-pip-email-form', [App\Http\Controllers\InitiatingPipFormController::class, 'updateClosure'])->name('update-closure-pip-email-form');
-
-	Route::get('/pip-closure-form-edit/{id}', [App\Http\Controllers\InitiatingPipFormController::class, 'editClosure']);
-	/*hr closure PIP mail, end here*/
 
 
 	/*hr mom, start here*/
