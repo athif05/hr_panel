@@ -22,7 +22,7 @@ class SurveyNotificationCron extends Controller
 		$last30days=date('Y-m-d', strtotime('-30 day', strtotime($todat_date)));
 		$last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
 		$last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
-		//dd($last45days);
+		//dd($last70days);
 
 
     	$all_users = User::where('users.joining_date',$last2days)
@@ -73,7 +73,7 @@ class SurveyNotificationCron extends Controller
 				if($all_user['joining_date']==$last2days){
 					
 					//return view('mail-layout.cron-survey-mail-template');
-					//dd('aa');
+					//dd('2 aa');
 
 					Mail::send('mail-layout.cron-survey-mail-template',$data, function($message) use ($candidate_name, $candidate_email, $mail_from, $manager_email, $hr_email) {
 						$message->from($mail_from)
@@ -91,7 +91,7 @@ class SurveyNotificationCron extends Controller
 					
 					//return view('mail-layout.cron-training-survey-mail-template');
 					//return view('mail-layout.manager-feedback-form-30-days');
-					//dd();
+					//dd('30 days');
 
 					/*mail sent to member, start here*/
 					Mail::send('mail-layout.cron-training-survey-mail-template',$data, function($message) use ($candidate_name, $candidate_email, $candidate_designation_name, $mail_from, $manager_email, $hr_email) {
@@ -132,7 +132,7 @@ class SurveyNotificationCron extends Controller
 					
 					//echo "<br> 45 days ";
 					//return view('mail-layout.cron-check-in-form-member-template');
-
+					//dd('45 days');
 
 					/*mail send to member, start here*/
 					Mail::send('mail-layout.cron-45-days-check-in-form-member-template',$data, function($message) use ($candidate_name, $candidate_email, $mail_from, $manager_email, $hr_email) {
@@ -174,9 +174,19 @@ class SurveyNotificationCron extends Controller
 				if($all_user['joining_date']==$last70days){
 					
 					//echo "<br> 70 days ";
-					//return view('mail-layout.cron-confirmation-process-initation-member-template');
+					//return view('mail-layout.cron-confirmation-process-initation-70-days-automate-mail');
+					//dd('70 days');
 
-					Mail::send('mail-layout.cron-confirmation-process-initation-member-template',$data, function($message) use ($candidate_name, $candidate_email, $mail_from, $manager_email, $hr_email) {
+					Mail::send('mail-layout.cron-confirmation-process-initation-70-days-automate-mail',$data, function($message) use ($candidate_name, $candidate_email, $mail_from, $manager_email, $hr_email) {
+						$message->from($mail_from)
+						->to($candidate_email)
+						->cc($manager_email)
+						->bcc($hr_email)
+						->subject("Confirmation Review Initiation");
+					});
+
+
+					/*Mail::send('mail-layout.cron-confirmation-process-initation-member-template',$data, function($message) use ($candidate_name, $candidate_email, $mail_from, $manager_email, $hr_email) {
 						$message->from($mail_from)
 						->to($candidate_email)
 						->cc($manager_email)
@@ -192,7 +202,7 @@ class SurveyNotificationCron extends Controller
 						->to($manager_email)
 						->cc($hr_email)
 						->subject("Confirmation Process Manager");
-					});
+					});*/
 				}
 
 
