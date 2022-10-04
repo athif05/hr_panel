@@ -145,7 +145,7 @@
 
                       <label class="switch">
                       <input type="checkbox" id="id_{{ $all_member['id']}}" @if($all_member['is_approved_by_hr']=='1') checked @endif onclick="approved_member_pip_by_hr({{ $all_member['id']}})">
-							  <span class="slider round"></span>
+							         <span class="slider round"></span>
                       </label>
 
                     </td>

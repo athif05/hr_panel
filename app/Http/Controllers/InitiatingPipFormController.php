@@ -84,7 +84,7 @@ class InitiatingPipFormController extends Controller
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
         ->leftJoin('departments', 'departments.id', '=', 'users.department')
         ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
-        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','departments.name as department_name','company_names.name as company_name')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','departments.name as department_name','company_names.name as company_name','initiating_pip_forms.is_approved_by_hr as is_approved_by_hr')
         ->orderBy('users.first_name','asc')->get();
         //dd($all_members);
 
@@ -153,11 +153,16 @@ class InitiatingPipFormController extends Controller
     public function approvedPipByHr(Request $request){
         $user_id=$request->user_id;
         $status=$request->status;
-    
+        
+        DB::enableQueryLog();
+
         InitiatingPipForm::where('user_id', $user_id)
         ->update([
             'is_approved_by_hr' => $status,
         ]);
+
+        $quries = DB::getQueryLog();
+        //dd($quries);
 
         return $status;
     }
