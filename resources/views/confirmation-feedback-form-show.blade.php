@@ -170,6 +170,14 @@
                     </td>
                   </tr>
 
+                  <tr>
+                    <td colspan="2"><strong>Mention 3 areas of improvement?</strong> 
+                      <br>
+                      <strong>1. </strong>{{ $all_details['areas_of_improvement_1'] }} <br>
+                      <strong>2. </strong>{{ $all_details['areas_of_improvement_2'] }} <br>
+                      <strong>3. </strong>{{ $all_details['areas_of_improvement_3'] }} <br>
+                    </td>
+                  </tr>
 
                   <tr>
                     <td>Has {{ $user_details['full_name'] }} been able to add value in your team?</td>
@@ -181,15 +189,7 @@
                     <td colspan="2"><strong>If Yes, Please share an instance in details.</strong> {!! $all_details['add_value_in_team_share_instance'] !!}</td>
                   </tr>
                   @endif
-
-                  <tr>
-                    <td colspan="2"><strong>Mention 3 areas of improvement?</strong> 
-                    	<br>
-                    	<strong>1. </strong>{{ $all_details['areas_of_improvement_1'] }} <br>
-                    	<strong>2. </strong>{{ $all_details['areas_of_improvement_2'] }} <br>
-                    	<strong>3. </strong>{{ $all_details['areas_of_improvement_3'] }} <br>
-                    </td>
-                  </tr>
+                  
 
                   <tr>
                     <td>Has {{ $user_details['full_name'] }} met your expectations in the last 3 months?</td>
