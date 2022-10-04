@@ -19,7 +19,7 @@
 
         <div class="right_sec survey_tab">
             <div class="top_heading">
-                <h2>let’s talk about you! <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
+                <h2>Recruitment Survey <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
             <ul>
@@ -275,8 +275,8 @@
             
             
             <div class="btn-group">
-				        <a href="{{ url('/interview-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
-                <a href="{{ url('/member-check-in-from/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+				        <a href="{{ url('/start-confirmation-process/'.$employee_id) }}" class="btn btn-default">previous</a>
+                <a href="{{ url('/interview-survey/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             

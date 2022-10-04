@@ -244,9 +244,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/start-confirmation-process/{id}',  [App\Http\Controllers\UserController::class, 'startConfirmationEmployeeDetails'])->middleware('isHRManagement');
 
+	Route::get('/recruitment-survey/{id}',  [App\Http\Controllers\UserRecruitmentFormController::class, 'recruitmentSurvey'])->middleware('isHRManagement');
+
 	Route::get('/interview-survey/{id}',  [App\Http\Controllers\UserInterviewFormController::class, 'interviewSurvey'])->middleware('isHRManagement');
 
-	Route::get('/recruitment-survey/{id}',  [App\Http\Controllers\UserRecruitmentFormController::class, 'recruitmentSurvey'])->middleware('isHRManagement');
+	Route::get('/training-survey/{id}',  [App\Http\Controllers\TrainingSurveyController::class, 'trainingSurvey'])->middleware('isHRManagement');
 
 	Route::get('/member-check-in-from/{id}',  [App\Http\Controllers\Days45CheckInMemberController::class, 'memberCheckIn'])->middleware('isHRManagement');
 
@@ -257,6 +259,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/manager-check-in-from/{id}',  [App\Http\Controllers\FreshEyeJournalController::class, 'managerCheckInFrom'])->middleware('isHRManagement');
 
 	Route::get('/manager-confirmation-feedback-form/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
+
+	Route::get('/stakeholder-feedback/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
+
+	Route::get('/mom-form/{id}',  [App\Http\Controllers\ConfirmationMomController::class, 'confirmationMomShow'])->middleware('isHRManagement');
 
 	Route::get('/thankyou/{id}',  [App\Http\Controllers\UserController::class, 'thankyou'])->middleware('isHRManagement');
 
@@ -305,6 +311,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/hr-pip/filter',  [App\Http\Controllers\InitiatingPipFormController::class, 'hrPipFilter'])->name('hr-pip.filter')->middleware('isHRManagement');
 
 	Route::get('/hr-pip-view/{id}',  [App\Http\Controllers\InitiatingPipFormController::class, 'hrPipView'])->middleware('isHRManagement');
+
+	Route::post('/approved-pip-by-hr', [App\Http\Controllers\InitiatingPipFormController::class, 'approvedPipByHr']);
 	/*hr pip list, end here*/
 
 

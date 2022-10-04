@@ -17,11 +17,7 @@
 
 		jQuery(document).ready(function(){
 
-		/* approved pip by hr, start here */
-		function approved_member_pip_by_hr(){
-			console.log('approved_member_pip_by_hr');
-		}
-		/* approved pip by hr, end here */
+		
 
 		/* confirmation email letter form, start here */
 		$('#letter_type').on('change', function(){
@@ -718,5 +714,36 @@
 				
 		}
 		/*soft delete generic status in table, end here*/
+
+
+		/* approved pip by hr, start here */
+		function approved_member_pip_by_hr(user_id){
+						
+			var checkBox = document.getElementById('id_'+user_id);
+			
+			if (checkBox.checked == true){
+				var status=1;
+			} else {
+				var status=0;
+			}
+
+			$.ajax({
+				url: "{{url('approved-pip-by-hr')}}", 
+				type: "POST",  
+				data:{
+					user_id:user_id,
+					status:status,
+					_token: '{{csrf_token()}}'
+				},
+				success:function(result){
+					
+					swal("Poof! Successfully updated!", {
+						  icon: "success",
+					});		
+			   }  
+
+			});
+		}
+		/* approved pip by hr, end here */
 
   </script>

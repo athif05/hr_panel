@@ -122,7 +122,7 @@
 
                 <input type="hidden" name="company_name" id="company_name" value="{{ $member_details->company_id }}" />
                 <div class="col-md-6 position-relative">
-                  <label for="company_name" class="form-label">Please choose the name of your company. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="company_name" class="form-label">Please choose the name of your company <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select disable-text" name="company_name_dis" id="company_name_dis" disabled>
                     <option value="">Choose...</option>
                     @foreach($company_names as $company_name)
@@ -140,7 +140,7 @@
 
                 <input type="hidden" name="location_name" id="location_name" value="{{ $member_details->company_location_id }}" />
                 <div class="col-md-6 position-relative">
-                  <label for="location_name" class="form-label">Please choose your work-location. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="location_name" class="form-label">Please choose your work-location <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select disable-text" name="location_name_dis" id="location_name_dis" disabled>
                     <option  value="">Choose...</option>
                     @foreach($company_locations as $company_location)
@@ -157,7 +157,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="company_hr_name" class="form-label">Please list down the name of your trainers who took your on-job training.</label>
+                  <label for="company_hr_name" class="form-label">Please list down the name of your trainers who took your on-job training</label>
                 </div>
 
 
@@ -374,7 +374,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="interesting_part_elaborate" class="form-label">Which part of the training was the most interesting? Please elaborate. <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="interesting_part_elaborate" class="form-label">Which part of the training was the most interesting? Please elaborate <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <textarea class="form-control" name="interesting_part_elaborate" id="interesting_part_elaborate" style="height: 100px">{{ old('interesting_part_elaborate')}}</textarea>
                   <div class="invalid-feedback">
                     Please elaborate.

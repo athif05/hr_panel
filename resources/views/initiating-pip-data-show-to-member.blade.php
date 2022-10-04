@@ -42,6 +42,7 @@
               </div>
               @endif
               
+              @if($initiating_pip_details)
               <!-- Bordered Table -->
               <table class="table table-striped table-bordered">
                 
@@ -121,7 +122,9 @@
                 </tbody>
               </table>
               <!-- End Bordered Table -->
-
+              @else
+                No record found...
+              @endif
               
             </div>
           </div>

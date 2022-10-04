@@ -19,6 +19,24 @@ use Auth;
 
 class TrainingSurveyController extends Controller
 {
+    
+    /*this function is used for show interview survey details in confirmation process and mom email steps*/
+    public function trainingSurvey($id) {
+
+        $employee_id=$id;
+
+        $training_details = TrainingSurvey::where('training_surveys.user_id', $id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'training_surveys.location_name')
+        ->leftJoin('company_names', 'company_names.id', '=', 'training_surveys.company_name')
+        ->leftJoin('designations', 'designations.id', '=', 'training_surveys.designation')
+        ->leftJoin('departments', 'departments.id', '=', 'training_surveys.department')
+        ->select('training_surveys.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name','departments.name as department_name')
+        ->first();
+        return view('confirmation-process.training-survey', compact('employee_id','training_details'));
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

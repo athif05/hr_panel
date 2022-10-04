@@ -14,6 +14,27 @@ use App\Models\Designation;
 class ConfirmationMomController extends Controller
 {
 
+    /*show data in confirmation review panel in hr, start here*/
+    public function confirmationMomShow($id){
+        $employee_id=$id;
+
+        $user_details= User::where('users.id',$employee_id)
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->select('users.*', 'departments.name as department_name', 'designations.name as designation_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->first();
+
+        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id', $id)
+        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
+        ->leftJoin('designations','designations.id','=','confirmation_moms.recommend_for_promotion_id')
+        ->select('confirmation_moms.*','users.role_id as role_id', 'designations.name as designation_name_recommend', DB::raw("CONCAT(first_name, ' ', last_name) as manager_full_name"))
+        ->get();
+
+        return view('confirmation-process.mom-form', compact('employee_id','confirmation_mom_details','user_details'));
+    }
+    /*show data in confirmation review panel in hr, end here*/
+
+
     public function index($user_id, $id){
 
         $all_details= ConfirmationMom::where('id',$id)

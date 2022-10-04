@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Manager Confirmation Feedback Form | {{ env('MY_SITE_NAME') }}</title>
+    <title>Stakeholder’s Feedback | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -19,7 +19,7 @@
 
         <div class="right_sec survey_tab">
             <div class="top_heading">
-                <h2>Manager Feedback For Confirmation <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
+                <h2>let’s talk about you! <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
             <ul>
@@ -243,8 +243,8 @@
             
             
             <div class="btn-group">
-				        <a href="{{ url('/manager-check-in-from/'.$employee_id) }}" class="btn btn-default">previous</a>
-                <a href="{{ url('/stakeholder-feedback/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+				<a href="{{ url('/manager-confirmation-feedback-form/'.$employee_id) }}" class="btn btn-default">previous</a>
+                <a href="{{ url('/mom-form/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             

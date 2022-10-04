@@ -10,12 +10,16 @@
             <a href="{{ url('/start-confirmation-process/'.$employee_id) }}">Member DETAILS</a>
           </li>
 
+          <li class="{{ request()->is('recruitment-survey/*') ? 'active' : '' }}">
+            <a href="{{ url('/recruitment-survey/'.$employee_id) }}">Recruitment Survey</a>
+          </li>
+
           <li class="{{ request()->is('interview-survey/*') ? 'active' : '' }}">
             <a href="{{ url('/interview-survey/'.$employee_id) }}">Interview Survey</a>
           </li>
 
-          <li class="{{ request()->is('recruitment-survey/*') ? 'active' : '' }}">
-            <a href="{{ url('/recruitment-survey/'.$employee_id) }}">Recruitment Survey</a>
+          <li class="{{ request()->is('training-survey/*') ? 'active' : '' }}">
+            <a href="{{ url('/training-survey/'.$employee_id) }}">Training Survey</a>
           </li>
 
           <li class="{{ request()->is('member-check-in-from/*') ? 'active' : '' }}">
@@ -27,20 +31,28 @@
           </li>
 
           <li class="{{ request()->is('ppt/*') ? 'active' : '' }}">
-            <a href="{{ url('/ppt/'.$employee_id) }}">PPT</a>
+            <a href="{{ url('/ppt/'.$employee_id) }}">Member's PPT</a>
           </li>
 
           <li class="{{ request()->is('manager-check-in-from/*') ? 'active' : '' }}">
-            <a href="{{ url('/manager-check-in-from/'.$employee_id) }}">45 Days Manager Check-In Form</a>
+            <a href="{{ url('/manager-check-in-from/'.$employee_id) }}">45 Days Check-In Form (Manager's Feedback)</a>
           </li>
 
           <li class="{{ request()->is('manager-confirmation-feedback-form/*') ? 'active' : '' }}">
-            <a href="{{ url('/manager-confirmation-feedback-form/'.$employee_id) }}">Manager Confirmation Feedback Form</a>
+            <a href="{{ url('/manager-confirmation-feedback-form/'.$employee_id) }}">Manager Feedback For Confirmation</a>
           </li>
 
-          <li class="{{ request()->is('thankyou/*') ? 'active' : '' }}">
-            <a href="{{ url('/thankyou/'.$employee_id) }}">THANK YOU</a>
+          <li class="{{ request()->is('stakeholder-feedback/*') ? 'active' : '' }}">
+            <a href="{{ url('/stakeholder-feedback/'.$employee_id) }}">Stakeholder’s Feedback</a>
           </li>
+
+          <li class="{{ request()->is('mom-form/*') ? 'active' : '' }}">
+            <a href="{{ url('/mom-form/'.$employee_id) }}">MOM Form</a>
+          </li>
+
+          <!-- <li class="{{ request()->is('thankyou/*') ? 'active' : '' }}">
+            <a href="{{ url('/thankyou/'.$employee_id) }}">THANK YOU</a>
+          </li> -->
       </ul>  
       
 </div>

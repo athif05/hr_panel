@@ -19,7 +19,7 @@
 
         <div class="right_sec survey_tab">
             <div class="top_heading">
-                <h2>let’s talk about you! <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
+                <h2>45 Days Member Check-In Form <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
             <ul>
@@ -660,7 +660,7 @@
             
             
             <div class="btn-group">
-				        <a href="{{ url('/recruitment-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
+				        <a href="{{ url('/training-survey/'.$employee_id) }}" class="btn btn-default">previous</a>
                 <a href="{{ url('/fresh-eye-journal/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             

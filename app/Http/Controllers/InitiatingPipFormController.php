@@ -149,6 +149,20 @@ class InitiatingPipFormController extends Controller
     /*filter all pip member to hr, end here*/
 
 
+
+    public function approvedPipByHr(Request $request){
+        $user_id=$request->user_id;
+        $status=$request->status;
+    
+        InitiatingPipForm::where('user_id', $user_id)
+        ->update([
+            'is_approved_by_hr' => $status,
+        ]);
+
+        return $status;
+    }
+
+
     /*show all member come under pip to manager, start here*/
     public function showAllPipMember(){
         
@@ -576,6 +590,7 @@ class InitiatingPipFormController extends Controller
 
         /*check record is exist or not*/
         $initiating_pip_details = InitiatingPipForm::where('user_id', $user_id)
+        ->where('is_approved_by_hr','1')
         ->first();
 
         

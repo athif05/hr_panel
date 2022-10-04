@@ -104,31 +104,31 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           
-            <li>
-              <a href="{{ url('/interview-survey') }}">
-                <i class="bi bi-circle"></i><span>Interview Survey</span>
-              </a>
-            </li>
-
-            <li>
+             <li>
               <a href="{{ url('/recruitment-survey') }}">
                 <i class="bi bi-circle"></i><span>Recruitment Survey</span>
               </a>
             </li>
 
             <li>
-              <a href="{{ url('/training-survey') }}">
-                <i class="bi bi-circle"></i><span>Training Survey</span>
+              <a href="{{ url('/interview-survey') }}">
+                <i class="bi bi-circle"></i><span>Interview Survey</span>
               </a>
             </li>
 
             @if((Auth::user()->joining_date) <= $last45days)
             <li>
               <a href="{{ url('/member-check-in-form') }}">
-                <i class="bi bi-circle"></i><span>Member Check-In Form</span>
+                <i class="bi bi-circle"></i><span>45 Days Check-In Form</span>
               </a>
             </li>
             @endif
+
+           <li>
+              <a href="{{ url('/training-survey') }}">
+                <i class="bi bi-circle"></i><span>Training Survey</span>
+              </a>
+            </li>
 
             @if((Auth::user()->joining_date) <= $last70days)
             <li>
@@ -156,10 +156,6 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </li>
             
             
-          
-
-          
-          
           @if(Auth::user()->role_id=='3')
           <li>
             <a href="{{ url('/hiring-survey-list') }}">
@@ -168,20 +164,20 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           </li>
 
           <li>
-            <a href="{{ url('/pip-member-list') }}">
-              <i class="bi bi-circle"></i><span>PIP Member</span>
-            </a>
-          </li>
-
-          <li>
             <a href="{{ url('/manager-check-in-form') }}">
-              <i class="bi bi-circle"></i><span>Manager Check-In Form</span>
+              <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form</span>
             </a>
           </li>
 
           <li>
             <a href="{{ url('/confirmation-feedback-form') }}">
-              <i class="bi bi-circle"></i><span>Confirmation Feedback Form</span>
+              <i class="bi bi-circle"></i><span>Manager’s Feedback for Confirmation</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/pip-member-list') }}">
+              <i class="bi bi-circle"></i><span>PIP Member List</span>
             </a>
           </li>
 

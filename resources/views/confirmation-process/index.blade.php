@@ -89,7 +89,7 @@
             
             
             <div class="btn-group">
-                <a href="{{ url('/interview-survey/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
+                <a href="{{ url('/recruitment-survey/'.$employee_id) }}" class="btn btn-default btn-active">next</a>
            </div>
             
             
