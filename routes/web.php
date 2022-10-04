@@ -260,7 +260,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/manager-confirmation-feedback-form/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
 
-	Route::get('/stakeholder-feedback/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
+	Route::get('/stakeholder-feedback/{id}',  [App\Http\Controllers\ConfirmationMomController::class, 'stakeholderFeedback'])->middleware('isHRManagement');
 
 	Route::get('/mom-form/{id}',  [App\Http\Controllers\ConfirmationMomController::class, 'confirmationMomShow'])->middleware('isHRManagement');
 
