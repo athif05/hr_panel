@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('confirmation_ppt')->nullable();
             $table->string('profile_image')->nullable();
-            $table->text('confirmation_commitment_details')->nullable();
+            $table->longText('confirmation_commitment_details')->nullable();
             $table->double('current_salary', 10,2);
             $table->string('hod_name')->nullable();
             $table->string('hod_email')->nullable();

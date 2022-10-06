@@ -22,11 +22,11 @@ return new class extends Migration
             $table->string('no_of_days')->nullable();
             $table->string('day')->nullable();
             $table->date('closing_date_pip')->nullable();
-            $table->text('issue_description_performance_behaviour');
-            $table->text('description_expected_performance');
-            $table->text('plan_of_action_to_improve');
-            $table->text('final_pip_review');
-            $table->text('seen_considerable_improvemnet_performance');
+            $table->longText('issue_description_performance_behaviour');
+            $table->longText('description_expected_performance');
+            $table->longText('plan_of_action_to_improve');
+            $table->longText('final_pip_review');
+            $table->longText('seen_considerable_improvemnet_performance');
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');

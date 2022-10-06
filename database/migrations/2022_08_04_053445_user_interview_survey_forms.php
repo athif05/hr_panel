@@ -33,7 +33,7 @@ return new class extends Migration
             $table->enum('shared_proper_interview_information', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('discussed_my_profile', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('shared_interview_feedback_quickly', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('additional_feedback_recruiter');
+            $table->longText('additional_feedback_recruiter');
             $table->enum('rate_overall_conduct', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('professionalism', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('friendliness', ['NA','1','2','3','4','5'])->default('NA');
@@ -49,9 +49,9 @@ return new class extends Migration
             $table->enum('staff_helpful_supportive', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('received_interview_feedback', ['NA','1','2','3','4','5'])->default('NA');
             $table->string('define_overall_interview_process')->nullable();
-            $table->text('define_overall_interview_process_others')->nullable();
+            $table->longText('define_overall_interview_process_others')->nullable();
             $table->enum('rate_overall_interview_process', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('comments_suggestions_feedback')->nullable();
+            $table->longText('comments_suggestions_feedback')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');

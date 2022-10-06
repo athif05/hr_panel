@@ -17,8 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('manager_id');
-            $table->text('minutes_of_meeting')->nullable();
-            $table->text('hidden_notes')->nullable();
+            $table->longText('minutes_of_meeting')->nullable();
+            $table->longText('hidden_notes')->nullable();
             $table->enum('content', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('confidence', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('communication', ['NA','1','2','3','4','5'])->default('NA');

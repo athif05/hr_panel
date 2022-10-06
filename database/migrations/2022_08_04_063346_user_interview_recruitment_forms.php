@@ -37,13 +37,13 @@ return new class extends Migration
             $table->enum('manager_expectation_setting', ['','Yes','No'])->default('');
             $table->enum('job_duties_responsibilities', ['','Yes','No'])->default('');
             $table->enum('job_title_properly_named', ['','Yes','No'])->default('');
-            $table->text('mission_for_first_year')->nullable();
-            $table->text('aim_in_second_year')->nullable();
-            $table->text('aim_third_year_tenure')->nullable();
+            $table->longText('mission_for_first_year')->nullable();
+            $table->longText('aim_in_second_year')->nullable();
+            $table->longText('aim_third_year_tenure')->nullable();
             $table->enum('rate_overall_recruitment_process', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('additional_feedback_recruitment_process')->nullable();
+            $table->longText('additional_feedback_recruitment_process')->nullable();
             $table->enum('rate_hr_induction', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('additional_feedback_hr_induction')->nullable();
+            $table->longText('additional_feedback_hr_induction')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');

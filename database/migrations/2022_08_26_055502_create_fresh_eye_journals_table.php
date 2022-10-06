@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('reporting_manager_fresh')->nullable();
             $table->string('head_of_department_name_ajax')->nullable();
             $table->string('head_of_department')->nullable();
-            $table->text('your_journey_so_far_in_company')->nullable();
+            $table->longText('your_journey_so_far_in_company')->nullable();
             $table->string('top_3_things_like_your_job_1')->nullable();
             $table->string('top_3_things_like_your_job_2')->nullable();
             $table->string('top_3_things_like_your_job_3')->nullable();
@@ -43,11 +43,11 @@ return new class extends Migration
             $table->enum('share_good_bond_superiors', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('know_what_i_expected_to_do', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('i_feel_grow_in_organization', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('any_exemplary_work_achievement_showcase')->nullable();
-            $table->text('any_additional_trainings')->nullable();
-            $table->text('what_do_you_like_about_company')->nullable();
-            $table->text('what_do_you_dislike_about_company')->nullable();
-            $table->text('satisfied_employee_benefits_offered_company')->nullable();
+            $table->longText('any_exemplary_work_achievement_showcase')->nullable();
+            $table->longText('any_additional_trainings')->nullable();
+            $table->longText('what_do_you_like_about_company')->nullable();
+            $table->longText('what_do_you_dislike_about_company')->nullable();
+            $table->longText('satisfied_employee_benefits_offered_company')->nullable();
             $table->enum('work_culture', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('recruitment_process', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('induction_process', ['NA','1','2','3','4','5'])->default('NA');
@@ -56,7 +56,7 @@ return new class extends Migration
             $table->enum('feeling_belongingness_organization', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('having_best_friend_at_work', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('work_life_balance', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('any_detailed_feedback_support_your_response')->nullable();
+            $table->longText('any_detailed_feedback_support_your_response')->nullable();
             $table->enum('quickness_in_respond_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_well_received_guidance_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_clearly_your_goals_set_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
@@ -65,7 +65,7 @@ return new class extends Migration
             $table->enum('how_well_adjust_changing_priorities_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_comfortable_feel_sharing_feedback_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_well_able_learn_under_guidance_reporting_manager', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('our_organization_believes_mantra')->nullable();
+            $table->longText('our_organization_believes_mantra')->nullable();
             $table->enum('quickness_in_respond_reporting_manager_qi', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_well_received_guidance_reporting_manager_qi', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_clearly_your_goals_set_reporting_manager_qi', ['NA','1','2','3','4','5'])->default('NA');
@@ -79,7 +79,7 @@ return new class extends Migration
             $table->string('three_areas_improvement_reporting_manager_qi_1')->nullable();
             $table->string('three_areas_improvement_reporting_manager_qi_2')->nullable();
             $table->string('three_areas_improvement_reporting_manager_qi_3')->nullable();
-            $table->text('our_organization_believes_mantra_reporting_manager_qi')->nullable();
+            $table->longText('our_organization_believes_mantra_reporting_manager_qi')->nullable();
             $table->enum('quickness_in_respond_hod_qj', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_well_received_guidance_hod_qj', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('how_clearly_your_goals_set_hod_qj', ['NA','1','2','3','4','5'])->default('NA');
@@ -93,7 +93,7 @@ return new class extends Migration
             $table->string('three_areas_improvement_hod_qj_1')->nullable();
             $table->string('three_areas_improvement_hod_qj_2')->nullable();
             $table->string('three_areas_improvement_hod_qj_3')->nullable();
-            $table->text('our_organization_believes_mantra_hod_qj')->nullable();
+            $table->longText('our_organization_believes_mantra_hod_qj')->nullable();
             $table->enum('admin_operations', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('advertiser_sales', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('advertisers', ['NA','1','2','3','4','5'])->default('NA');
@@ -111,8 +111,8 @@ return new class extends Migration
             $table->enum('tech_operations_creative', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('mobile', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('vcommission_uk', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('any_additional_feedback_any_department')->nullable();
-            $table->text('any_issue_concern_management')->nullable();
+            $table->longText('any_additional_feedback_any_department')->nullable();
+            $table->longText('any_issue_concern_management')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('work_ethics', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('team_work', ['NA','1','2','3','4','5'])->default('NA');
             $table->enum('response_towards_feedback', ['NA','1','2','3','4','5'])->default('NA');
-            $table->text('elaborate_performance')->nullable();
+            $table->longText('elaborate_performance')->nullable();
             $table->string('top_3_highlights_1')->nullable();
             $table->string('top_3_highlights_2')->nullable();
             $table->string('top_3_highlights_3')->nullable();
@@ -30,12 +30,12 @@ return new class extends Migration
             $table->string('major_task_2')->nullable();
             $table->string('major_task_3')->nullable();
             $table->enum('add_value_in_team', ['Yes','No'])->default('Yes');
-            $table->text('add_value_in_team_share_instance')->nullable();
+            $table->longText('add_value_in_team_share_instance')->nullable();
             $table->string('areas_of_improvement_1')->nullable();
             $table->string('areas_of_improvement_2')->nullable();
             $table->string('areas_of_improvement_3')->nullable();
             $table->enum('met_your_expectations', ['Yes','No'])->default('Yes');
-            $table->text('met_your_expectations_other_specify')->nullable();
+            $table->longText('met_your_expectations_other_specify')->nullable();
             $table->string('are_you_sure_to_confirm')->nullable();
             $table->string('recommend_pip_detailed_plan')->nullable();
             $table->enum('increment_on_confirmation', ['Yes','No'])->default('Yes');
