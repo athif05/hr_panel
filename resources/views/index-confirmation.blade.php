@@ -1,4 +1,5 @@
-@extends('confirmation-process.layouts.master')
+@extends('layouts.master-confirmation')
+
 
 
 @section("title")
@@ -15,7 +16,7 @@
   <div class="survey_container">
     <div class="imployee_data">
   
-      @include('confirmation-process.partials.sidebar')
+      @include('partials.sidebar-confirmation')
 
         <div class="right_sec">
             <div class="top_heading">

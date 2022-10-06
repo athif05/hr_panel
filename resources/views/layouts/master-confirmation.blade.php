@@ -21,11 +21,11 @@
 
 <body background="{{ asset('assests/confirmation-process/img/bg.jpg') }}">
 
-  @include('confirmation-process.partials.header')
+  @include('partials.header-confirmation')
   
   @yield('content')
 
-  @include('confirmation-process.partials.footer')  
+  @include('partials.footer-confirmation')  
 
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
