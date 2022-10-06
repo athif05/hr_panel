@@ -32,7 +32,9 @@ class TrainingSurveyController extends Controller
         ->leftJoin('departments', 'departments.id', '=', 'training_surveys.department')
         ->select('training_surveys.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name','departments.name as department_name')
         ->first();
-        return view('confirmation-process.training-survey', compact('employee_id','training_details'));
+        
+        //return view('confirmation-process.training-survey', compact('employee_id','training_details'));
+        return view('training-survey-confirmation', compact('employee_id','training_details'));
     }
 
 

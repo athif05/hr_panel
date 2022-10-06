@@ -867,7 +867,8 @@ class FreshEyeJournalController extends Controller
         ->first();
         
 
-        return view('confirmation-process.fresh-eye-journal', compact('employee_id','fresh_eye_journal_details'));
+        //return view('confirmation-process.fresh-eye-journal', compact('employee_id','fresh_eye_journal_details'));
+        return view('fresh-eye-journal-confirmation', compact('employee_id','fresh_eye_journal_details'));
     }
     /*this is used in start confirmation process in hr login, end here*/
 
@@ -878,6 +879,7 @@ class FreshEyeJournalController extends Controller
         $employee_id=$user_id = $id;
         $check_in_member_details='data';
 
-        return view('confirmation-process.manager-check-in-form', compact('employee_id','check_in_member_details'));
+        //return view('confirmation-process.manager-check-in-form', compact('employee_id','check_in_member_details'));
+        return view('manager-check-in-form-confirmation', compact('employee_id','check_in_member_details'));
     }
 }

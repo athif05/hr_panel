@@ -382,7 +382,8 @@ class ConfirmationFeedbackFormController extends Controller
         }
         /*tenure calculte, end here*/
 
-        return view('confirmation-process.manager-confirmation-feedback-form', compact('employee_id','confirmation_feedback_details','user_details','total_tenure'));
+        //return view('confirmation-process.manager-confirmation-feedback-form', compact('employee_id','confirmation_feedback_details','user_details','total_tenure'));
+        return view('manager-confirmation-feedback-form-confirmation', compact('employee_id','confirmation_feedback_details','user_details','total_tenure'));
     }
     /*this is used in start confirmation process in hr login, end here*/
 

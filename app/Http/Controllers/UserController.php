@@ -650,7 +650,8 @@ class UserController extends Controller
         $employee_id=$employee_details['id'];
 
 
-        return view('confirmation-process.index',  compact('employee_details','total_tenure', 'employee_id'));
+        //return view('confirmation-process.index',  compact('employee_details','total_tenure', 'employee_id'));
+        return view('index-confirmation',  compact('employee_details','total_tenure', 'employee_id'));
     }
 
 
@@ -659,7 +660,8 @@ class UserController extends Controller
         $employee_details = User::where('id',$id)->first();
         $employee_id=$id;
 
-        return view('confirmation-process.ppt', compact('employee_details','employee_id'));
+        //return view('confirmation-process.ppt', compact('employee_details','employee_id'));
+        return view('ppt-confirmation', compact('employee_details','employee_id'));
     }
 
     public function thankyou($id) {

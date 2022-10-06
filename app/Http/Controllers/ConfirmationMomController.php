@@ -30,7 +30,8 @@ class ConfirmationMomController extends Controller
         ->get();
 
 
-        return view('confirmation-process.stakeholder-feedback', compact('employee_id','user_details','confirmation_mom_details'));
+        //return view('confirmation-process.stakeholder-feedback', compact('employee_id','user_details','confirmation_mom_details'));
+        return view('stakeholder-feedback-confirmation', compact('employee_id','user_details','confirmation_mom_details'));
     }
 
 
@@ -50,7 +51,8 @@ class ConfirmationMomController extends Controller
         ->select('confirmation_moms.*','users.role_id as role_id', 'designations.name as designation_name_recommend', DB::raw("CONCAT(first_name, ' ', last_name) as manager_full_name"))
         ->get();
 
-        return view('confirmation-process.mom-form', compact('employee_id','confirmation_mom_details','user_details'));
+        //return view('confirmation-process.mom-form', compact('employee_id','confirmation_mom_details','user_details'));
+        return view('mom-form-confirmation', compact('employee_id','confirmation_mom_details','user_details'));
     }
     /*show data in confirmation review panel in hr, end here*/
 

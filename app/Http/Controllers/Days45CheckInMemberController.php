@@ -731,7 +731,9 @@ class Days45CheckInMemberController extends Controller
         
 
         
-        return view('confirmation-process.member-check-in-from', compact('employee_id','hod_details','hr_details','yourself_category_details','check_in_member_details'));
+        //return view('confirmation-process.member-check-in-from', compact('employee_id','hod_details','hr_details','yourself_category_details','check_in_member_details'));
+
+        return view('member-check-in-from-confirmation', compact('employee_id','hod_details','hr_details','yourself_category_details','check_in_member_details'));
 
     }
     /*this is used in start confirmation process in hr login, end here*/

@@ -47,7 +47,9 @@ class UserRecruitmentFormController extends Controller
         ->select('user_recruitment_forms.*', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name','designations.name as designation_name','departments.name as department_name')
         ->first();
 
-        return view('confirmation-process.recruitment-survey', compact('employee_id', 'recruitment_details','designation_names','department_names','recruiter_details'));
+        //return view('confirmation-process.recruitment-survey', compact('employee_id', 'recruitment_details','designation_names','department_names','recruiter_details'));
+
+        return view('recruitment-survey-confirmation', compact('employee_id', 'recruitment_details','designation_names','department_names','recruiter_details'));
     }
 
 

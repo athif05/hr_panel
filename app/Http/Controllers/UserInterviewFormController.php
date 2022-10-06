@@ -28,7 +28,9 @@ class UserInterviewFormController extends Controller
         ->leftJoin('designations', 'designations.id', '=', 'user_interview_forms.job_position_name')
         ->select('user_interview_forms.*', 'company_locations.name as location_name', 'company_names.name as company_name', 'job_opening_types.name as job_opening_types_name','designations.name as designation_name')
         ->first();
-        return view('confirmation-process.interview-survey', compact('employee_id','inteview_details'));
+
+        //return view('confirmation-process.interview-survey', compact('employee_id','inteview_details'));
+        return view('interview-survey-confirmation', compact('employee_id','inteview_details'));
     }
 
 
