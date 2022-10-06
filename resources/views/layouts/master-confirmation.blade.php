@@ -10,6 +10,7 @@
 
   @yield('title')
   
+
 <!-- Bootstrap -->
 <link href="{{ asset('assests/confirmation-process/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assests/confirmation-process/css/font-awesome.min.css') }}" rel="stylesheet">
