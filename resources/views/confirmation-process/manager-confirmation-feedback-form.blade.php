@@ -19,7 +19,7 @@
 
         <div class="right_sec survey_tab">
             <div class="top_heading">
-                <h2>Manager Feedback For Confirmation <img src="{{ asset('resources/views/confirmation-process/img/emp-icon.png') }}" alt="icon" /></h2>
+                <h2>Manager Feedback For Confirmation <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/emp-icon.png')) }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
             <ul>
