@@ -19,7 +19,7 @@
 
         <div class="right_sec ppt_tab">
             <div class="top_heading">
-                <h2>Download Member PPT <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/download-icon.png')) }}" alt="icon" /></h2>
+                <h2>Download Member PPT <img src="{{ str_replace('public/', '', asset('assests/confirmation-process/img/download-icon.png')) }}" alt="icon" /></h2>
             </div>
       <div class="imployee_detail">
         <div class="download_ppt_col">

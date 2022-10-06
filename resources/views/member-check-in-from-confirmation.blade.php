@@ -19,7 +19,7 @@
 
         <div class="right_sec survey_tab">
             <div class="top_heading">
-                <h2>45 Days Member Check-In Form <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/emp-icon.png')) }}" alt="icon" /></h2>
+                <h2>45 Days Member Check-In Form <img src="{{ str_replace('public/', '', asset('assests/confirmation-process/img/emp-icon.png')) }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
             <ul>
