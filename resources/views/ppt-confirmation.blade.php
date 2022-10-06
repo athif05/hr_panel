@@ -26,7 +26,7 @@
 
           @if($employee_details['confirmation_ppt'])
           <a href="{{ str_replace('public/', '', asset('')).$employee_details['confirmation_ppt'] }}" download>
-            <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/ppt-btn.jpg')) }}" alt="img" />
+            <img src="{{ str_replace('public/', '', asset('assests/confirmation-process/img/ppt-btn.jpg')) }}" alt="img" />
           </a>
           @endif
 
