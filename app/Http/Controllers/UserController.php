@@ -617,6 +617,12 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','designations.name as designation_name','departments.name as department_name')
         ->first();
 
+
+        $member_profile_image = $employee_details->profile_image;
+        //dd($employee_details);
+        Session::put('member_profile_image', $member_profile_image);
+
+
         /*tenure calculte, start here*/
         $total_tenure='';
 

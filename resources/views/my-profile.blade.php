@@ -21,9 +21,9 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
 	            @if($user_details['profile_image'])
-	            	<img src="{{ asset('').$user_details['profile_image'] }}" alt="Profile" class="rounded-circle">
+	            	<img src="{{ str_replace('public/', '', asset('')).$user_details['profile_image'] }}" alt="Profile" class="rounded-circle">
 	            @else
-	            	<img src="{{ asset('public/assests/assets/img/no-user-profile.png') }}" alt="Profile" class="rounded-circle">
+	            	<img src="{{ asset('assests/assets/img/no-user-profile.png') }}" alt="Profile" class="rounded-circle">
 	            @endif
 
               

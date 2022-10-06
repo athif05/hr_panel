@@ -1,7 +1,13 @@
 <div class="sidebar">
     <div class="emp_profile">
       <div class="emp_img">
-        <img src="{{ asset('resources/views/confirmation-process/img/no-user-profile.png') }}" alt="img" class="mCS_img_loaded">
+
+        @if(session('member_profile_image'))
+          <img src="{{ str_replace('public/', '', asset('')).session('member_profile_image') }}" alt="VCOne">
+        @else
+          <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/no-user-profile.png')) }}" alt="img" class="mCS_img_loaded">
+        @endif
+        
       </div>
     </div>
 

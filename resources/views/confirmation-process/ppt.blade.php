@@ -19,14 +19,14 @@
 
         <div class="right_sec ppt_tab">
             <div class="top_heading">
-                <h2>Download Member PPT <img src="{{ asset('resources/views/confirmation-process/img/download-icon.png') }}" alt="icon" /></h2>
+                <h2>Download Member PPT <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/download-icon.png')) }}" alt="icon" /></h2>
             </div>
       <div class="imployee_detail">
         <div class="download_ppt_col">
 
           @if($employee_details['confirmation_ppt'])
-          <a href="{{ asset('').$employee_details['confirmation_ppt'] }}" download>
-            <img src="{{ asset('resources/views/confirmation-process/img/ppt-btn.jpg') }}" alt="img" />
+          <a href="{{ str_replace('public/', '', asset('')).$employee_details['confirmation_ppt'] }}" download>
+            <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/ppt-btn.jpg')) }}" alt="img" />
           </a>
           @endif
 

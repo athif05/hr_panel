@@ -45,7 +45,7 @@
                   <label for="name" class="form-label">Company Logo</label>
                   <input type="file" class="form-control" name="image" id="image" accept="image/png, image/jpeg, image/jpg">
                   @if($company_details['logo'])
-                    <img src="{{ asset('').$company_details['logo'] }}" alt="Profile" class="rounded-circle" style="width: 100px;">
+                    <img src="{{ str_replace('public/', '', asset('')).$company_details['logo'] }}" alt="Profile" class="rounded-circle" style="width: 100px;">
                   @endif
                   @if ($errors->has('image'))
                     <span class="text-danger">{{ $errors->first('image') }}</span>

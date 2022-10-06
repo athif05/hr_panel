@@ -59,9 +59,9 @@
                 @if($ppt_details['confirmation_ppt'])
                 <div class="col-md-6 position-relative" style="text-align: center!important; line-height: 24px;">
                   
-                  <a href="{{ asset('').$ppt_details['confirmation_ppt'] }}" download>Click here</a> for download PPT. <br>
+                  <a href="{{ str_replace('public/', '', asset('')).$ppt_details['confirmation_ppt'] }}" download>Click here</a> for download PPT. <br>
 
-                  <a href="{{ asset('').$ppt_details['confirmation_ppt'] }}" download> <i class="bi bi-filetype-pptx" style="font-size: 50px; color: #0d6efd;"></i> </a>
+                  <a href="{{ str_replace('public/', '', asset('')).$ppt_details['confirmation_ppt'] }}" download> <i class="bi bi-filetype-pptx" style="font-size: 50px; color: #0d6efd;"></i> </a>
 
                 </div>
                 @endif
