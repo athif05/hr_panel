@@ -87,6 +87,7 @@ class HiringSurveyController extends Controller
 
 
         /*check record is exist or not*/
+        $last_id=0;
         $hiring_survey_details = HiringSurvey::where('user_id', $user_id)
         ->where('manager_id', $manager_id)
         ->first();
