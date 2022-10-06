@@ -91,7 +91,7 @@ class HiringSurveyController extends Controller
         $hiring_survey_details = HiringSurvey::where('user_id', $user_id)
         ->where('manager_id', $manager_id)
         ->first();
-        $last_id=$hiring_survey_details['id'];
+        
         
 
         if(($hiring_survey_details === null) or (($hiring_survey_details['status'] === '0') or ($hiring_survey_details['status'] === ''))){
@@ -99,6 +99,8 @@ class HiringSurveyController extends Controller
             return view('hiring-survey', compact('member_details','company_names','company_locations','job_opening_types','designation_names','department_names','recruiter_details'));
 
         } else if($hiring_survey_details['status'] === '1'){
+
+            $last_id=$hiring_survey_details['id'];
 
             return redirect("/hiring-survey-edit/$user_id/$last_id");
 
