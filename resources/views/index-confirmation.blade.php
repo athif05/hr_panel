@@ -20,7 +20,7 @@
 
         <div class="right_sec">
             <div class="top_heading">
-                <h2>Member DETAILS <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/emp-icon.png')) }}" alt="icon" /></h2>
+                <h2>Member DETAILS <img src="{{ str_replace('public/', '', asset('assests/confirmation-process/img/emp-icon.png')) }}" alt="icon" /></h2>
             </div>
             <div class="imployee_detail mCustomScrollbar">
         <ul>
