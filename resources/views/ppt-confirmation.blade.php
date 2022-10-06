@@ -1,4 +1,4 @@
-@extends('confirmation-process.layouts.master')
+@extends('layouts.master-confirmation')
 
 
 @section("title")

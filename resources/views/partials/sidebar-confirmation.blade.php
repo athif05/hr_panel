@@ -5,7 +5,7 @@
         @if(session('member_profile_image'))
           <img src="{{ str_replace('public/', '', asset('')).session('member_profile_image') }}" alt="VCOne">
         @else
-          <img src="{{ str_replace('public/', '', asset('resources/views/confirmation-process/img/no-user-profile.png')) }}" alt="img" class="mCS_img_loaded">
+          <img src="{{ asset('assests/confirmation-process/img/no-user-profile.png') }}" alt="img" class="mCS_img_loaded">
         @endif
         
       </div>
