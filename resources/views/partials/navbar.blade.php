@@ -5,7 +5,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url('/home')}}" class="logo d-flex ">
         @if(session('company_logo'))
-          <img src="{{ asset('').session('company_logo') }}" alt="VCOne">
+          <img src="{{ asset( 'storage/' . session('company_logo') }}" alt="VCOne">
         @else
           <img src="{{ asset('assests/assets/img/logo.png') }}" alt="VCOne">
         @endif
