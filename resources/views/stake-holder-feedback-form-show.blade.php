@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Stackholder Feedback Form | {{ env('MY_SITE_NAME') }}</title>
+    <title>Stakeholder Feedback Form | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
     	.form-check-input[type=radio] {
@@ -33,7 +33,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Stackholder Feedback Form Details</h5>
+              <h5 class="card-title">Stakeholder Feedback Form Details</h5>
 
               @if(session()->has('thank_you'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">

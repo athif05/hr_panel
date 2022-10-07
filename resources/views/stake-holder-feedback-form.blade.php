@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Stackholder Feedback Form | {{ env('MY_SITE_NAME') }}</title>
+    <title>Stakeholder Feedback Form | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
       .form-check-input[type=radio] {
@@ -47,14 +47,13 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Update Stackholder Feedback Form</h5>
+              <h5 class="card-title">Fill Stakeholder Feedback Form</h5>
               
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('update-stack-holder-feedback-form') }}" class="row g-3 needs-validation" novalidate>
+              <form method="post" action="{{ route('save-stake-holder-feedback-form') }}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
-                <input type="hidden" name="edit_id" id="edit_id" value="{{ $stackholder_feedback_details['id'] }}">
                 <input type="hidden" name="member_id" id="member_id" value="{{ $member_details['id'] }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ $manager_details['id'] }}">
                 
@@ -165,19 +164,19 @@
                   <label for="quality_of_the_work" class="form-label rdioBtn">Quality of the work  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="2" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="2" @if(old('quality_of_the_work')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="3" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="3" @if(old('quality_of_the_work')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="4" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="4" @if(old('quality_of_the_work')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="5" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="5" @if(old('quality_of_the_work')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
 
@@ -191,19 +190,19 @@
                   <label for="tat_adherence" class="form-label rdioBtn">TAT Adherence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="2" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="2" @if(old('tat_adherence')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="3" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="3" @if(old('tat_adherence')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="4" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="4" @if(old('tat_adherence')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="5" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="5" @if(old('tat_adherence')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('tat_adherence'))
@@ -216,19 +215,19 @@
                   <label for="ability_to_understand_project_requirements" class="form-label rdioBtn">Ability to understand project requirements  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="2" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="2" @if(old('ability_to_understand_project_requirements')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="3" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="3" @if(old('ability_to_understand_project_requirements')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="4" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="4" @if(old('ability_to_understand_project_requirements')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="5" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="5" @if(old('ability_to_understand_project_requirements')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('ability_to_understand_project_requirements'))
@@ -241,19 +240,19 @@
                   <label for="ability_to_absorb_feedback" class="form-label rdioBtn">Ability to absorb feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="2" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="2" @if(old('ability_to_absorb_feedback')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="3" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="3" @if(old('ability_to_absorb_feedback')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="4" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="4" @if(old('ability_to_absorb_feedback')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="5" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="5" @if(old('ability_to_absorb_feedback')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('ability_to_absorb_feedback'))
@@ -266,19 +265,19 @@
                   <label for="responsiveness_on_all_platforms" class="form-label rdioBtn">Responsiveness on all platforms <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="2" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="2" @if(old('responsiveness_on_all_platforms')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="3" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="3" @if(old('responsiveness_on_all_platforms')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="4" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="4" @if(old('responsiveness_on_all_platforms')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="5" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="5" @if(old('responsiveness_on_all_platforms')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('responsiveness_on_all_platforms'))
@@ -291,19 +290,19 @@
                   <label for="how_happy_you_with_performance" class="form-label rdioBtn">How happy are you with {{ $member_details['full_name'] }} performance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='1') checked @endif>
+                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance')=='1') checked @endif>
                     <label class="form-check-label" for="gridRadios1">1</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="2" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='2') checked @endif>
+                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="2" @if(old('how_happy_you_with_performance')=='2') checked @endif>
                     <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="3" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='3') checked @endif>
+                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="3" @if(old('how_happy_you_with_performance')=='3') checked @endif>
                     <label class="form-check-label" for="gridRadios1">3</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="4" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='4') checked @endif>
+                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="4" @if(old('how_happy_you_with_performance')=='4') checked @endif>
                     <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="5" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='5') checked @endif>
+                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="5" @if(old('how_happy_you_with_performance')=='5') checked @endif>
                     <label class="form-check-label" for="gridRadios1">5</label>
                   </span>
                   @if ($errors->has('how_happy_you_with_performance'))
@@ -319,7 +318,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_qualities_1" id="three_qualities_1" value="{{ old('three_qualities_1',$stackholder_feedback_details['three_qualities_1']) }}">
+                      <input type="text" class="form-control" name="three_qualities_1" id="three_qualities_1" value="{{ old('three_qualities_1') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -332,7 +331,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_qualities_2" id="three_qualities_2" value="{{ old('three_qualities_2',$stackholder_feedback_details['three_qualities_2']) }}">
+                      <input type="text" class="form-control" name="three_qualities_2" id="three_qualities_2" value="{{ old('three_qualities_2') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -345,7 +344,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_qualities_3" id="three_qualities_3" value="{{ old('three_qualities_3',$stackholder_feedback_details['three_qualities_3']) }}">
+                      <input type="text" class="form-control" name="three_qualities_3" id="three_qualities_3" value="{{ old('three_qualities_3') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -365,7 +364,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">1. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_of_improvement_1" id="three_areas_of_improvement_1" value="{{ old('three_areas_of_improvement_1',$stackholder_feedback_details['three_areas_of_improvement_1']) }}">
+                      <input type="text" class="form-control" name="three_areas_of_improvement_1" id="three_areas_of_improvement_1" value="{{ old('three_areas_of_improvement_1') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -378,7 +377,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">2. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_of_improvement_2" id="three_areas_of_improvement_2" value="{{ old('three_areas_of_improvement_2',$stackholder_feedback_details['three_areas_of_improvement_2']) }}">
+                      <input type="text" class="form-control" name="three_areas_of_improvement_2" id="three_areas_of_improvement_2" value="{{ old('three_areas_of_improvement_2') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -391,7 +390,7 @@
                   <div class="div100 margin_bottom10">
                     <div class="div3">3. </div>
                     <div class="div97">
-                      <input type="text" class="form-control" name="three_areas_of_improvement_3" id="three_areas_of_improvement_3" value="{{ old('three_areas_of_improvement_3',$stackholder_feedback_details['three_areas_of_improvement_3']) }}">
+                      <input type="text" class="form-control" name="three_areas_of_improvement_3" id="three_areas_of_improvement_3" value="{{ old('three_areas_of_improvement_3') }}">
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
@@ -408,7 +407,7 @@
 
                 <div class="col-md-12 position-relative">
                   <label for="any_additional_feedback" class="form-label">Any additional feedback that you would like to share about {{ $member_details['full_name'] }}? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
-                  <textarea class="form-control" name="any_additional_feedback" id="any_additional_feedback" style="height: 100px">{{ old('any_additional_feedback',$stackholder_feedback_details['any_additional_feedback'])}}</textarea>
+                  <textarea class="form-control" name="any_additional_feedback" id="any_additional_feedback" style="height: 100px">{{ old('any_additional_feedback')}}</textarea>
 
                   @if ($errors->has('any_additional_feedback'))
                     <span class="text-danger">{{ $errors->first('any_additional_feedback') }}</span>

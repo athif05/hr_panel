@@ -70,16 +70,16 @@ class StackholderFeedbackFormController extends Controller
 
         if(($stackholder_feedback_details === null) or (($stackholder_feedback_details['status'] === '0') or ($stackholder_feedback_details['status'] === ''))) {
 
-            return view('stack-holder-feedback-form', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations'));
+            return view('stake-holder-feedback-form', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations'));
 
         } else if($stackholder_feedback_details['status'] === '1') {
 
             $edit_id=$stackholder_feedback_details['id'];
-            return redirect("/stack-holder-feedback-form-edit/$member_id/$edit_id");
+            return redirect("/stake-holder-feedback-form-edit/$member_id/$edit_id");
 
         } else if($stackholder_feedback_details['status'] === '2') {
 
-            return view('stack-holder-feedback-form-show', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
+            return view('stake-holder-feedback-form-show', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
         }
 
         
@@ -169,11 +169,11 @@ class StackholderFeedbackFormController extends Controller
             
             if($status==1){
                 
-                return redirect("/stack-holder-feedback-form-edit/$member_id/$last_id")->with('thank_you', 'Your form save in draft.');
+                return redirect("/stake-holder-feedback-form-edit/$member_id/$last_id")->with('thank_you', 'Your form save in draft.');
 
             } else if($status==2){
 
-                return redirect("/stack-holder-feedback-form/$member_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+                return redirect("/stake-holder-feedback-form/$member_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
             }
         }
@@ -248,11 +248,11 @@ class StackholderFeedbackFormController extends Controller
 
         if($stackholder_feedback_details['status'] == '1'){
 
-            return view("stack-holder-feedback-form-edit", compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
+            return view("stake-holder-feedback-form-edit", compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
 
         } else if($check_in_manager_details['status'] == '2'){
 
-            return redirect("/stack-holder-feedback-form/$member_id");
+            return redirect("/stake-holder-feedback-form/$member_id");
         }
 
     }
@@ -332,11 +332,11 @@ class StackholderFeedbackFormController extends Controller
 
         if($status=='1'){
                 
-            return redirect("/stack-holder-feedback-form-edit/$member_id/$edit_id")->with('thank_you', 'Your form save in draft.');
+            return redirect("/stake-holder-feedback-form-edit/$member_id/$edit_id")->with('thank_you', 'Your form save in draft.');
 
         } else if($status=='2'){
 
-            return redirect("/stack-holder-feedback-form/$member_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+            return redirect("/stake-holder-feedback-form/$member_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
         }
 

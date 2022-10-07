@@ -361,13 +361,13 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* stack holder feedback form, start here */
-	Route::get('/stack-holder-feedback-form/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'index'])->middleware('isManager');
+	Route::get('/stake-holder-feedback-form/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'index'])->middleware('isManager');
 
-	Route::post('/save-stack-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'store'])->name('save-stack-holder-feedback-form');
+	Route::post('/save-stake-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'store'])->name('save-stake-holder-feedback-form');
 
-	Route::get('/stack-holder-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'edit'])->middleware('isManager');
+	Route::get('/stake-holder-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'edit'])->middleware('isManager');
 
-	Route::post('/update-stack-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'update'])->name('update-stack-holder-feedback-form');
+	Route::post('/update-stake-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'update'])->name('update-stake-holder-feedback-form');
 	/* stack holder feedback form, end here */
 
 
