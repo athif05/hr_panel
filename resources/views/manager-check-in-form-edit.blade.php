@@ -61,7 +61,7 @@
               <form method="post" action="{{ route('update-manager-check-in-form') }}" class="row g-3 needs-validation" novalidate>
                 @csrf
 
-                <input type="text" name="edit_id" id="edit_id" value="{{ $check_in_manager_details->id }}">
+                <input type="hidden" name="edit_id" id="edit_id" value="{{ $check_in_manager_details->id }}">
                 <input type="hidden" name="member_id" id="member_id" value="{{ $member_details['id'] }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ $manager_details['id'] }}">
                 
