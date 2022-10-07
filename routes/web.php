@@ -346,10 +346,29 @@ Route::group(['middleware' => ['auth']], function() {
 	/*manager check-in form, manager confirmation feedback and mom, start here*/
 	Route::get('/manager-check-in-form', [App\Http\Controllers\UserController::class, 'showProbationMemberForManagerCheckIn'])->middleware('isManager');
 
-	Route::get('/manager-check-in-form/{id}', function () {
+	Route::get('/manager-check-in-form/{id}', [App\Http\Controllers\Days45CheckInManagerController::class, 'index'])->middleware('isManager');
+
+	Route::post('/save-manager-check-in-form', [App\Http\Controllers\Days45CheckInManagerController::class, 'store'])->name('save-manager-check-in-form');
+
+	Route::get('/manager-check-in-form-edit/{user_id}/{id}', [App\Http\Controllers\Days45CheckInManagerController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-manager-check-in-form', [App\Http\Controllers\Days45CheckInManagerController::class, 'update'])->name('update-manager-check-in-form');
+
+	/*Route::get('/manager-check-in-form/{id}', function () {
 	    return view('manager-check-in-form');
-	})->middleware('isManager');
+	})->middleware('isManager');*/
 	/*manager check-in form, manager confirmation feedback and mom, end here*/
+
+
+	/* stack holder feedback form, start here */
+	Route::get('/stack-holder-feedback-form/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'index'])->middleware('isManager');
+
+	Route::post('/save-stack-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'store'])->name('save-stack-holder-feedback-form');
+
+	Route::get('/stack-holder-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-stack-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'update'])->name('update-stack-holder-feedback-form');
+	/* stack holder feedback form, end here */
 
 
 	/*manager confirmation feedback form, start here*/

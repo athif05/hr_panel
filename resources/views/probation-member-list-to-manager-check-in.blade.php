@@ -54,9 +54,6 @@
                       <th scope="col">Member Name</th>
                       <th scope="col">Member Email</th>
                       <th scope="col">Designation</th>
-                      <!-- <th scope="col">Joining Date</th>
-                      <th scope="col">Company Location</th>
-                      <th scope="col">Gender</th> -->
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -70,13 +67,26 @@
           						</td>
           						<td>{{$all_member['email']}}</td>
           						<td>{{$all_member['designation_name']}}</td>
-          						<!-- <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
-          						<td>{{$all_member['location_name']}}</td>
-          						<td>{{$all_member['gender']}}</td> -->
           						<td>
-          							<a href="#">
-          								<button type="button" class="btn btn-primary btn-sm">Start Check-In</button>
-          							</a>
+          						  <!-- <?php $j=0;?>
+                        @foreach($check_in_manager_details as $check_in_manager_detail)
+
+                          @if($j==0)
+
+                            @if($check_in_manager_detail->member_id==$all_member['id'])
+
+                            <?php $j++;?>
+                              <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Show Check-In</button>
+                            @else
+                              <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Start Check-In</button>
+                            @endif
+                            
+                          @endif
+                        
+                        @endforeach -->
+
+          								<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Start Check-In</button>
+          							
           						</td>
           					</tr>
           				<?php $j++;?>

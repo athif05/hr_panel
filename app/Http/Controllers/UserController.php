@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserInterviewForm;
 use App\Models\ConfirmationFeedbackForm;
+use App\Models\Days45CheckInManager;
 use App\Models\ConfirmationMom;
 use App\Models\ConfirmationGenerateEmail;
 use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes};
@@ -500,7 +501,11 @@ class UserController extends Controller
         ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('probation-member-list-to-manager-check-in', compact('all_members'));
+
+        $check_in_manager_details = DB::table('days_45_checkin_managers')->get();
+
+
+        return view('probation-member-list-to-manager-check-in', compact('all_members','check_in_manager_details'));
     }
     /*show all probation member list which is report to manager Check In Form, end here*/
 
