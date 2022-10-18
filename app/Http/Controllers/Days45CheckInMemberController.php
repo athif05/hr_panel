@@ -722,6 +722,7 @@ class Days45CheckInMemberController extends Controller
         
         /*check record is exist or not*/
         $check_in_member_details = DB::table('days_45_checkin_members')->where('user_id', $user_id)
+        ->where('days_45_checkin_members.status','2')
         ->leftJoin('designations','designations.id','=','days_45_checkin_members.designation')
         ->leftJoin('departments','departments.id','=','days_45_checkin_members.department')
         ->leftJoin('company_names','company_names.id','=','days_45_checkin_members.company_name')

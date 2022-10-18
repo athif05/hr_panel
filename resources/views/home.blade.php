@@ -895,6 +895,40 @@
             <div class="col-lg-8">
               <div class="row">
 
+				  
+				  
+				  
+					  <div class="col-xl-12 col-lg-12 col-sm-12">
+						  <div class="bg-primary custom-card card-box card">
+							  <div class="p-4 card-body">
+								  <div class="align-items-center row">
+									  <div class="col-xl-8 col-sm-6 col-12 img-bg ">
+										  <h4 class="d-flex "><span class="font-weight-bold text-white ">General Report</span></h4> 
+										  <p class="tx-white-7 mb-1">You have two projects to finish, you had completed<b class="text-warning"> 57%</b> from your montly level, Keep going to your level</p>
+									  </div>
+									  <img src="assests/assets/img/intro-img.png" alt="work1">
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
                 <!-- Sales Card -->
                 <div class="col-xxl-4 col-md-6">
                   <div class="card info-card sales-card">

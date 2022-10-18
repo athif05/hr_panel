@@ -68,25 +68,34 @@
           						<td>{{$all_member['email']}}</td>
           						<td>{{$all_member['designation_name']}}</td>
           						<td>
-          						  <!-- <?php $j=0;?>
+          						 <?php $j=0;?>
                         @foreach($check_in_manager_details as $check_in_manager_detail)
 
-                          @if($j==0)
 
-                            @if($check_in_manager_detail->member_id==$all_member['id'])
+                            @if(($check_in_manager_detail->member_id == $all_member['id']) && ($check_in_manager_detail->manager_id == (Auth::user()->id)) )
 
-                            <?php $j++;?>
-                              <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Show Check-In</button>
-                            @else
-                              <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Start Check-In</button>
-                            @endif
                             
+                          <?php $j=1; ?>
+                          
+                            @if($check_in_manager_detail->status=='1')
+
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Edit MOM</button> <?php break; ?>
+
+                            @elseif($check_in_manager_detail->status=='2')
+
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Show Check-In</button> <?php break; ?>
+
+                            @endif
+
+                                                     
                           @endif
                         
-                        @endforeach -->
+                        @endforeach
 
+                        @if($j==0)
           								<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-check-in-form/".$all_member['id'])}}';">Start Check-In</button>
-          							
+                        @endif
+
           						</td>
           					</tr>
           				<?php $j++;?>

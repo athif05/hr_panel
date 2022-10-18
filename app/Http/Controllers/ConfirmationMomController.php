@@ -14,27 +14,6 @@ use App\Models\Designation;
 class ConfirmationMomController extends Controller
 {
 
-    public function stakeholderFeedback($id){
-        $employee_id=$id;
-
-        $user_details= User::where('users.id',$employee_id)
-        ->leftJoin('departments','departments.id','=','users.department')
-        ->leftJoin('designations','designations.id','=','users.designation')
-        ->select('users.*', 'departments.name as department_name', 'designations.name as designation_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
-        ->first();
-
-        $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id', $id)
-        ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
-        ->leftJoin('designations','designations.id','=','confirmation_moms.recommend_for_promotion_id')
-        ->select('confirmation_moms.*','users.role_id as role_id', 'designations.name as designation_name_recommend', DB::raw("CONCAT(first_name, ' ', last_name) as manager_full_name"))
-        ->get();
-
-
-        //return view('confirmation-process.stakeholder-feedback', compact('employee_id','user_details','confirmation_mom_details'));
-        return view('stakeholder-feedback-confirmation', compact('employee_id','user_details','confirmation_mom_details'));
-    }
-
-
     /*show data in confirmation review panel in hr, start here*/
     public function confirmationMomShow($id){
         $employee_id=$id;
@@ -46,6 +25,7 @@ class ConfirmationMomController extends Controller
         ->first();
 
         $confirmation_mom_details = ConfirmationMom::where('confirmation_moms.user_id', $id)
+        ->where('confirmation_moms.status', '2')
         ->leftJoin('users', 'users.id', '=', 'confirmation_moms.manager_id')
         ->leftJoin('designations','designations.id','=','confirmation_moms.recommend_for_promotion_id')
         ->select('confirmation_moms.*','users.role_id as role_id', 'designations.name as designation_name_recommend', DB::raw("CONCAT(first_name, ' ', last_name) as manager_full_name"))
@@ -133,6 +113,10 @@ class ConfirmationMomController extends Controller
             $status='2';
         }
 
+        $how_much_increment=0;
+        $how_much_increment_amount=0;
+        $how_much_increment_percentage=0;
+
         if($request->recommend_increment=='No'){
             $how_much_increment='';
             $how_much_increment_amount='';
@@ -142,8 +126,11 @@ class ConfirmationMomController extends Controller
             if($request->how_much_increment=='INR'){
                 $how_much_increment_amount=$request->how_much_increment_amount;
 
-                $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
-                $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+                if($request->salary_percentage_automate){
+                    $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
+                    $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+                }
+                
 
             } elseif($request->how_much_increment=='%') {
 
@@ -294,6 +281,10 @@ class ConfirmationMomController extends Controller
         }
 
 
+        $how_much_increment=0;
+        $how_much_increment_amount=0;
+        $how_much_increment_percentage=0;
+
         if($request->recommend_increment=='No'){
             $how_much_increment='';
             $how_much_increment_amount='';
@@ -303,8 +294,10 @@ class ConfirmationMomController extends Controller
             if($request->how_much_increment=='INR'){
                 $how_much_increment_amount=$request->how_much_increment_amount;
 
-                $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
-                $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+                if($request->salary_percentage_automate){
+                    $how_much_increment_percentage= (($request->how_much_increment_amount/$request->salary_percentage_automate) * 100);
+                    $how_much_increment_percentage=number_format((float)$how_much_increment_percentage, 2, '.', '');
+                }
 
             } elseif($request->how_much_increment=='%') {
 

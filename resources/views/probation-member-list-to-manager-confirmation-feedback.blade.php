@@ -54,9 +54,6 @@
                       <th scope="col">Member Name</th>
                       <th scope="col">Member Email</th>
                       <th scope="col">Designation</th>
-                      <!-- <th scope="col">Joining Date</th>
-                      <th scope="col">Company Location</th>
-                      <th scope="col">Gender</th> -->
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -72,11 +69,40 @@
           						</td>
           						<td>{{$all_member['email']}}</td>
           						<td>{{$all_member['designation_name']}}</td>
-          						<!-- <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
-          						<td>{{$all_member['location_name']}}</td>
-          						<td>{{$all_member['gender']}}</td> -->
           						<td>
-                        @if($all_member['feedback_id'])
+                        <?php $jk=0;?>
+
+                        @foreach($confirmation_feedback_form_details as $confirmation_feedback_form_detail)
+                        
+                          @if(($confirmation_feedback_form_detail['user_id']==$all_member['id']) && ($confirmation_feedback_form_detail['manager_id'] == (Auth::user()->id)) )
+
+                          <?php $jk=1;?>
+         
+                            @if($confirmation_feedback_form_detail['status']=='1')
+
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Edit Feedback</button> <?php break; ?>
+
+                            @elseif($confirmation_feedback_form_detail['status']=='2')
+
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form-show/".$all_member['id']."/".$confirmation_feedback_form_detail['id'])}}';">Show Feedback</button>
+
+                              <?php break; ?>
+
+                            @endif
+
+                          @else
+                            
+                          @endif
+
+                        @endforeach
+
+
+
+                        @if($jk==0)
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Feedback</button>
+                        @endif
+
+                        <!-- @if($all_member['feedback_id'])
 
                           @if($all_member['confirmation_feedback_forms_status']=='1')
 
@@ -90,7 +116,7 @@
 
                         @else
                           <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/confirmation-feedback-form/".$all_member['id'])}}';">Start Feedback</button>
-                        @endif
+                        @endif -->
           							
           						</td>
           					</tr>

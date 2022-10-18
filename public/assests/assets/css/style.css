@@ -42,7 +42,7 @@ h6 {
 --------------------------------------------------------------*/
 #main {
   margin-top: 60px;
-  padding: 20px 30px;
+  padding: 30px 30px 20px 35px;
   transition: all 0.3s;
 }
 
@@ -397,16 +397,19 @@ h6 {
 }
 
 .header {
-  transition: all 0.5s;
-  z-index: 997;
-  height: 60px;
-  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
-  padding-left: 20px;
-  /* Toggle Sidebar Button */
-  /* Search Bar */
+    transition: all 0.5s;
+    z-index: 997;
+    height: 60px;
+    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+    padding-left: 20px;
+    width: calc(100% - 260px);
+    right: 0;
+    left: auto;
 }
-
+.toggle-sidebar .header {
+    width: 100%;
+}
 .header .toggle-sidebar-btn {
   font-size: 32px;
   padding-left: 10px;
@@ -618,25 +621,29 @@ h6 {
 # Sidebar
 --------------------------------------------------------------*/
 .sidebar {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  z-index: 996;
-  transition: all 0.3s;
-  padding: 20px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
-  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 5px 0px 20px 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    background-color: #0e0e23;
 }
-
 @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
   }
+	
+.header {
+    width: 100%;
+}
+	
+	
 }
 
 .sidebar::-webkit-scrollbar {
@@ -651,9 +658,8 @@ h6 {
 
 @media (min-width: 1200px) {
 
-  #main,
-  #footer {
-    margin-left: 300px;
+  #main {
+    margin-left: 260px;
   }
 }
 
@@ -700,15 +706,20 @@ h6 {
 }
 
 .sidebar-nav .nav-link {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: #4154f1;
-  transition: 0.3;
-  background: #f6f9ff;
-  padding: 10px 15px;
-  border-radius: 4px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 15px;
+    background-color: #f1f5fc;
+    border: 0 solid transparent;
+    border-radius: 30px 0 0 30px;
+    border-right: 0;
+    margin: 10px auto 10px 0;
+    position: relative;
+    text-align: center;
+    width: inherit;
+    z-index: 1;
 }
 
 .sidebar-nav .nav-link i {
@@ -719,7 +730,7 @@ h6 {
 
 .sidebar-nav .nav-link.collapsed {
   color: #012970;
-  background: #fff;
+  background: #f4f7fe;
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -736,8 +747,9 @@ h6 {
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
-  transition: transform 0.2s ease-in-out;
+    margin-right: 0;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
 }
 
 .sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
@@ -745,20 +757,25 @@ h6 {
 }
 
 .sidebar-nav .nav-content {
-  padding: 5px 0 0 0;
-  margin: 0;
-  list-style: none;
+    padding: 5px 0 0 0;
+    margin: 15px auto 0;
+    list-style: none;
+    background: #292946;
+    max-width: 92%;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .sidebar-nav .nav-content a {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #012970;
-  transition: 0.3;
-  padding: 10px 0 10px 40px;
-  transition: 0.3s;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    transition: 0.3;
+    padding: 10px 0 10px 20px;
+    transition: 0.3s;
 }
 
 .sidebar-nav .nav-content a i {

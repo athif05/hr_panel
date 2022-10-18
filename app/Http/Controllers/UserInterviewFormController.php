@@ -22,6 +22,7 @@ class UserInterviewFormController extends Controller
         $employee_id=$id;
 
         $inteview_details = UserInterviewForm::where('user_interview_forms.user_id', $id)
+        ->where('user_interview_forms.status','2')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'user_interview_forms.location_name')
         ->leftJoin('company_names', 'company_names.id', '=', 'user_interview_forms.company_name')
         ->leftJoin('job_opening_types', 'job_opening_types.id', '=', 'user_interview_forms.learn_about_job_opening')

@@ -96,22 +96,6 @@
                         <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
                         @endif
 
-                        <!-- @if($all_member['mom_id'])
-
-                          @if($all_member['confirmation_mom_status']=='1')
-
-                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Edit MOM</button>
-
-                          @elseif($all_member['confirmation_mom_status']=='2')
-
-                            <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/manager-mom-form-show/".$all_member['id']."/".$all_member['mom_id'])}}';">Show MOM</button>
-
-                          @endif
-
-                          
-                        @else
-                          <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/manager-mom/".$all_member['id'])}}';">Start MOM</button>
-                        @endif -->
           						</td>
           					</tr>
           				<?php $j++;?>

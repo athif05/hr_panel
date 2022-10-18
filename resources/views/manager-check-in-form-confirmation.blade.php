@@ -24,179 +24,255 @@
             <div class="imployee_detail mCustomScrollbar">
             <ul>
   
-              @if($check_in_member_details!='data')
+              @if(count($check_in_manager_details)>0)
 
-              <h2>Q. 1 - Full Name</h2>
+              <h2><strong>Member Details</strong></h2>
+              
+              <h2>Q. 1 - Member Name</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">
+                {{ $user_details['full_name'] }}
+              </div>
               </li>
+              
 
               <h2>Q. 2 - Member Code</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">
+                {{ $user_details['member_id'] }}
+              </div>
               </li>
 
               <h2>Q. 3 - Designation</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">
+                {{ $user_details['designation_name'] }}
+              </div>
               </li>
 
               <h2>Q. 4 - Department</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">
+                {{ $user_details['department_name'] }}
+              </div>
               </li>
 
-              <h2>Q. 5 - Please choose the name of your company</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 6 - Date of Joining</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 7 - How did you come across this job opening?</h2>
+              <h2>Q. 5 - Email</h2>
               <li>
               <div class="col-left">
-                
+                {{ $user_details['email'] }}
               </div>
               </li>
 
-              
-              <li>
-              <div class="col-left"><strong>Internal Member Name</strong>
-                <span class="float_right_div"></span>  
-              </div>
-              </li>
-              <li>
-              <div class="col-left"><strong>Internal Member Designation</strong>
-                <span class="float_right_div">
-                  
-                </span>  
-              </div>
-              </li>
-              <li>
-              <div class="col-left"><strong>Internal Member Department</strong>
-                <span class="float_right_div">
-                 
-                </span>  
-              </div>
-              </li>
-              
+              @foreach($check_in_manager_details as $check_in_manager_detail)
+              <h2><strong>Manager Details</strong></h2>
 
-              <h2>Q. 8 - What's the name of your recruiter?</h2>
+              <h2>Q. Your Name</h2>
               <li>
-              <div class="col-left">
-                
-              </div>
+              <div class="col-left">{{ $check_in_manager_detail->full_manager_name }}</div>
               </li>
 
+              <h2>Q. Your Member Code</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_member_id }}</div>
+              </li>
 
-              <h2>Q. 9 - Rate your recruiter in the following parameters out of 5:</h2>
+              <h2>Q. Company</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_company_name }}</div>
+              </li>
+
+              <h2>Q. Designation</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_designations_name }}</div>
+              </li>
+
+              <h2>Q. Department</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_departments_name }}</div>
+              </li>
+
+              <h2>Q. Email</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_email }}</div>
+              </li>
+
+              <h2>Q. Location</h2>
+              <li>
+              <div class="col-left">{{ $check_in_manager_detail->manager_location_name }}</div>
+              </li>
+
+
+              <h2>Q. Rate {{ $user_details['full_name'] }}'s level of understanding on the following parameters</h2>
       
               <li>
-              <div class="col-left">Professionalism
-                
+              <div class="col-left">Departmental Processes
+                @if($check_in_manager_detail->departmental_processes!='NA')
+                  @for($i=0; $i < $check_in_manager_detail->departmental_processes; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
-              <div class="col-left">Friendliness 
-                
+              <div class="col-left">TOD/EOD Process 
+                @if($check_in_manager_detail->tod_eod_process!='NA')
+                  @for($i=0; $i < $check_in_manager_detail->tod_eod_process; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
             
               <li>
-              <div class="col-left">Length of the time spent talking to you
-                
+              <div class="col-left">Month Summary Process
+                @if($check_in_manager_detail->month_summary_process!='NA')
+                  @for($i=0; $i < $check_in_manager_detail->month_summary_process; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
-              <div class="col-left">Company knowledge 
-                
+              <div class="col-left">Relevant software/tools
+                @if($check_in_manager_detail->relevant_software_tools!='NA')
+                  @for($i=0; $i < $check_in_manager_detail->relevant_software_tools; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
               
               <li>
-              <div class="col-left">Specific knowledge about the job profile 
-                
+              <div class="col-left">Organization's Policies & Processes
+                @if($check_in_manager_detail->organization_policies_processes!='NA')
+                  @for($i=0; $i < $check_in_manager_detail->organization_policies_processes; $i++)
+                    <span class="float_right_div"> <i class="fa fa-star rating_star"></i></span>
+                  @endfor
+                @else 
+                  <span class="float_right_div"> NA</span>
+                @endif
               </div>
               </li>
 
-              
-              <li>
-              <div class="col-left">Timely response to your communications - email or phone 
-                
-              </div>
-              </li>
 
-
-              <h2>Q. 10 - Yes/No Questions</h2>
-              <li>
-              <div class="col-left">Do you completely understand our company policies and procedures as outlined in the handbook? <span class="float_right_div"></span></div>
-              </li>
-
-              <li>
-              <div class="col-left">Do you completely understand departmental processes as explained in 'Manager's Expectation Setting' session? <span class="float_right_div"></span></div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Do you completely understand your job duties and responsibilities? <span class="float_right_div"></span></div>
-              </li>
-
-              
-              <li>
-              <div class="col-left">Do you feel that your job title is properly named? <span class="float_right_div"></span></div>
-              </li>
-
-
-              <h2>Q. 11 - What will be your mission for the first year?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 12 - What do you aim in the second year?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-              <h2>Q. 13 - What will be your aim in the third year of your tenure with us?</h2>
-              <li>
-              <div class="col-left"></div>
-              </li>
-
-
-              <h2>Q. 14 - Rate the overall recruitment process of our company! (Rating out of 5)</h2>
+              <h2>Q. Which category would  you like to place {{ $user_details['full_name'] }} in?</h2>
               <li>
               <div class="col-left">
-                
+                {{ $check_in_manager_detail->which_category_like_place }}
               </div>
               </li>
 
 
-              <h2>Q. 15 - Any additional feedback for the recruitment process?</h2>
+              <h2>Q. Rate Organization's Policies & Processes on core values of the organization:</h2>
+      
               <li>
-              <div class="col-left"></div>
+              <div class="col-left">Integrity
+                <span class="float_right_div"> {{ $check_in_manager_detail->integrity }}</span>
+              </div>
               </li>
 
-              <h2>Q. 16 - Rate your HR induction session! (out of 5)</h2>
+              
+              <li>
+              <div class="col-left">Win-Win
+                <span class="float_right_div"> {{ $check_in_manager_detail->win_win }}</span>
+              </div>
+              </li>
+
+            
+              <li>
+              <div class="col-left">Synergise
+                <span class="float_right_div"> {{ $check_in_manager_detail->synergise }}</span>
+              </div>
+              </li>
+
+              
+              <li>
+              <div class="col-left">Closure
+                <span class="float_right_div"> {{ $check_in_manager_detail->closure }}</span>
+              </div>
+              </li>
+
+              
+              <li>
+              <div class="col-left">Knowledge
+                <span class="float_right_div"> {{ $check_in_manager_detail->knowledge }}</span>
+              </div>
+              </li>
+
+              <li>
+              <div class="col-left">KISS
+                <span class="float_right_div"> {{ $check_in_manager_detail->kiss }}</span>
+              </div>
+              </li>
+
+              <li>
+              <div class="col-left">Innovation
+                <span class="float_right_div"> {{ $check_in_manager_detail->innovation }}</span>
+              </div>
+              </li>
+
+              <li>
+              <div class="col-left">Celebration
+                <span class="float_right_div"> {{ $check_in_manager_detail->celebration }}</span>
+              </div>
+              </li>
+
+              <h2>Q. What have been {{ $user_details['full_name'] }}'s major achievements?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->major_achievements !!}</div>
+              </li>
+
+              <h2>Q. What have been {{ $user_details['full_name'] }}'s major fallbacks?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->major_fallbacks !!}</div>
+              </li>
+
+              <h2>Q. What would you recommend to change about {{ $user_details['full_name'] }}'s approach towards the work/otherwise?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->recommend_to_change_approach !!}</div>
+              </li>
+
+
+              <h2>Q. Do you see {{ $user_details['full_name'] }} adding value to your team & meeting your expectations?</h2>
               <li>
               <div class="col-left">
+                {{ $check_in_manager_detail->adding_value_your_team_expectations }}
               </div>
               </li>
 
 
-              <h2>Q. 17 - Any additional feedback for HR induction session?</h2>
+              <h2>Q. Pleasse justify above answer with examples.</h2>
               <li>
-              <div class="col-left"></div>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->justify_above_answer !!}</div>
               </li>
+
+              <h2>Q. What kind of long-term goal do you foresee for {{ $user_details['full_name'] }}?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->long_term_goal !!}</div>
+              </li>
+
+
+              <h2>Q. Any Additional feedback for {{ $user_details['full_name'] }}?</h2>
+              <li>
+              <div class="col-left text-justify">{!! $check_in_manager_detail->any_additional_feedback !!}</div>
+              </li>
+              @endforeach
+
 
               @else 
 

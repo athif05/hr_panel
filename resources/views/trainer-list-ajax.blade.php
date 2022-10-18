@@ -5,14 +5,70 @@
             <input type="hidden" name="trainer_{{$j}}_id" id='trainer_{{$j}}_id' value="{{ $trainer_detail->id}}">
             <div style="clear: both; height: 10px;"></div>
             <div class="col-md-12 position-relative" style="margin-bottom: -5px;">
-              <label class="form-label"><strong>Please rate {{ $trainer_detail->first_name}} {{ $trainer_detail->last_name}} on the following parameters</strong></label>
+              <label class="card-title"><strong>Please rate {{ $trainer_detail->first_name}} {{ $trainer_detail->last_name}} on the following parameters</strong></label>
             </div>
 
             <div class="col-md-12 position-relative">
               <label for="expertise_on_subject_matter_{{$j}}" class="form-label rdioBtn">Expertise on the subject-matter  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
               <span id="radioBtn">
-                <input class="form-check-input" type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="NA" @if(old('expertise_on_subject_matter_{{$j}}')=='NA') checked @elseif(old('expertise_on_subject_matter_{{$j}}')=='') checked @endif>
+
+                <div class="rating">
+                  <label class="form_row form_row_0">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="NA" @if(old('expertise_on_subject_matter_{{$j}}')=='NA') checked @elseif(old('expertise_on_subject_matter_{{$j}}')=='') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                      <p>NA</p>
+                    </div>
+                  </label>
+          
+
+                  <label class="form_row form_row_1">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="1" @if(old('expertise_on_subject_matter_{{$j}}')=='1') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                      <p>1 <span>Poor</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_2">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="2" @if(old('expertise_on_subject_matter_{{$j}}')=='2') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                      <p>2 <span>Fair</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_3">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="3" @if(old('expertise_on_subject_matter_{{$j}}')=='3') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                      <p>3 <span>Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_4">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="4" @if(old('expertise_on_subject_matter_{{$j}}')=='4') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                      <p>4 <span>Very Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_5">
+                    <input type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="5" @if(old('expertise_on_subject_matter_{{$j}}')=='5') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                      <p>5 <span>Outstanding</span></p>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- <input class="form-check-input" type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="NA" @if(old('expertise_on_subject_matter_{{$j}}')=='NA') checked @elseif(old('expertise_on_subject_matter_{{$j}}')=='') checked @endif>
                 <label class="form-check-label" for="gridRadios1">NA</label>
 
                 <input class="form-check-input" type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="1" @if(old('expertise_on_subject_matter_{{$j}}')=='1') checked @endif>
@@ -28,7 +84,7 @@
                 <label class="form-check-label" for="gridRadios1">4</label>
 
                 <input class="form-check-input" type="radio" name="expertise_on_subject_matter_{{$j}}" id="expertise_on_subject_matter_{{$j}}" value="5" @if(old('expertise_on_subject_matter_{{$j}}')=='5') checked @endif>
-                <label class="form-check-label" for="gridRadios1">5</label>
+                <label class="form-check-label" for="gridRadios1">5</label> -->
               </span>
 
               @if ($errors->has('expertise_on_subject_matter_$j'))
@@ -41,23 +97,60 @@
               <label for="clear_effective_communication_skills_{{ $j }}" class="form-label rdioBtn">Clear and effective communication skills <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
               <span id="radioBtn">
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="NA" @if(old('clear_effective_communication_skills_{{$j}}')=='NA') checked @elseif(old('clear_effective_communication_skills_{{$j}}')=='') checked @endif>
-                <label class="form-check-label" for="gridRadios1">NA</label>
+                <div class="rating">
+                  <label class="form_row form_row_0">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="NA" @if(old('clear_effective_communication_skills_{{$j}}')=='NA') checked @elseif(old('clear_effective_communication_skills_{{$j}}')=='') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                      <p>NA</p>
+                    </div>
+                  </label>
+          
 
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{ $j }}" id="clear_effective_communication_skills_{{ $j }}" value="1" @if(old('clear_effective_communication_skills_{{ $j }}')=='1') checked @endif>
-                <label class="form-check-label" for="gridRadios1">1</label>
+                  <label class="form_row form_row_1">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="1" @if(old('clear_effective_communication_skills_{{$j}}')=='1') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                      <p>1 <span>Poor</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{ $j }}" id="clear_effective_communication_skills_{{ $j }}" value="2" @if(old('clear_effective_communication_skills_{{ $j }}')=='2') checked @endif>
-                <label class="form-check-label" for="gridRadios1">2</label>
 
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{ $j }}" id="clear_effective_communication_skills_{{ $j }}" value="3" @if(old('clear_effective_communication_skills_{{ $j }}')=='3') checked @endif>
-                <label class="form-check-label" for="gridRadios1">3</label>
+                  <label class="form_row form_row_2">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="2" @if(old('clear_effective_communication_skills_{{$j}}')=='2') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                      <p>2 <span>Fair</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{ $j }}" id="clear_effective_communication_skills_{{ $j }}" value="4" @if(old('clear_effective_communication_skills_{{ $j }}')=='4') checked @endif>
-                <label class="form-check-label" for="gridRadios1">4</label>
 
-                <input class="form-check-input" type="radio" name="clear_effective_communication_skills_{{ $j }}" id="clear_effective_communication_skills_{{ $j }}" value="5" @if(old('clear_effective_communication_skills_{{ $j }}')=='5') checked @endif>
-                <label class="form-check-label" for="gridRadios1">5</label>
+                  <label class="form_row form_row_3">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="3" @if(old('clear_effective_communication_skills_{{$j}}')=='3') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                      <p>3 <span>Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_4">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="4" @if(old('clear_effective_communication_skills_{{$j}}')=='4') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                      <p>4 <span>Very Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_5">
+                    <input type="radio" name="clear_effective_communication_skills_{{$j}}" id="clear_effective_communication_skills_{{$j}}" value="5" @if(old('clear_effective_communication_skills_{{$j}}')=='5') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                      <p>5 <span>Outstanding</span></p>
+                    </div>
+                  </label>
+                </div>
               </span>
               @if ($errors->has('clear_effective_communication_skills_$j'))
                 <span class="text-danger">{{ $errors->first('clear_effective_communication_skills_$j') }}</span>
@@ -69,23 +162,60 @@
               <label for="effective_delivery_content_{{ $j }}" class="form-label rdioBtn">Effective delivery of content <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
               <span id="radioBtn">
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="NA" @if(old('effective_delivery_content_{{$j}}')=='NA') checked @elseif(old('effective_delivery_content_{{$j}}')=='') checked @endif>
-                <label class="form-check-label" for="gridRadios1">NA</label>
+                <div class="rating">
+                  <label class="form_row form_row_0">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="NA" @if(old('effective_delivery_content_{{$j}}')=='NA') checked @elseif(old('effective_delivery_content_{{$j}}')=='') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                      <p>NA</p>
+                    </div>
+                  </label>
+          
 
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{ $j }}" id="effective_delivery_content_{{ $j }}" value="1" @if(old('effective_delivery_content_{{ $j }}')=='1') checked @endif>
-                <label class="form-check-label" for="gridRadios1">1</label>
+                  <label class="form_row form_row_1">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="1" @if(old('effective_delivery_content_{{$j}}')=='1') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                      <p>1 <span>Poor</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{ $j }}" id="effective_delivery_content_{{ $j }}" value="2" @if(old('effective_delivery_content_{{ $j }}')=='2') checked @endif>
-                <label class="form-check-label" for="gridRadios1">2</label>
 
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{ $j }}" id="effective_delivery_content_{{ $j }}" value="3" @if(old('effective_delivery_content_{{ $j }}')=='3') checked @endif>
-                <label class="form-check-label" for="gridRadios1">3</label>
+                  <label class="form_row form_row_2">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="2" @if(old('effective_delivery_content_{{$j}}')=='2') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                      <p>2 <span>Fair</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{ $j }}" id="effective_delivery_content_{{ $j }}" value="4" @if(old('effective_delivery_content_{{ $j }}')=='4') checked @endif>
-                <label class="form-check-label" for="gridRadios1">4</label>
 
-                <input class="form-check-input" type="radio" name="effective_delivery_content_{{ $j }}" id="effective_delivery_content_{{ $j }}" value="5" @if(old('effective_delivery_content_{{ $j }}')=='5') checked @endif>
-                <label class="form-check-label" for="gridRadios1">5</label>
+                  <label class="form_row form_row_3">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="3" @if(old('effective_delivery_content_{{$j}}')=='3') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                      <p>3 <span>Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_4">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="4" @if(old('effective_delivery_content_{{$j}}')=='4') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                      <p>4 <span>Very Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_5">
+                    <input type="radio" name="effective_delivery_content_{{$j}}" id="effective_delivery_content_{{$j}}" value="5" @if(old('effective_delivery_content_{{$j}}')=='5') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                      <p>5 <span>Outstanding</span></p>
+                    </div>
+                  </label>
+                </div>
               </span>
               @if ($errors->has('effective_delivery_content_$j'))
                 <span class="text-danger">{{ $errors->first('effective_delivery_content_$j') }}</span>
@@ -97,23 +227,60 @@
               <label for="timely_response_queries_{{ $j }}" class="form-label rdioBtn">Timely response to your queries <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
               <span id="radioBtn">
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="NA" @if(old('timely_response_queries_{{$j}}')=='NA') checked @elseif(old('timely_response_queries_{{$j}}')=='') checked @endif>
-                <label class="form-check-label" for="gridRadios1">NA</label>
+                <div class="rating">
+                  <label class="form_row form_row_0">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="NA" @if(old('timely_response_queries_{{$j}}')=='NA') checked @elseif(old('timely_response_queries_{{$j}}')=='') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                      <p>NA</p>
+                    </div>
+                  </label>
+          
 
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{ $j }}" id="timely_response_queries_{{ $j }}" value="1" @if(old('timely_response_queries_{{ $j }}')=='1') checked @endif>
-                <label class="form-check-label" for="gridRadios1">1</label>
+                  <label class="form_row form_row_1">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="1" @if(old('timely_response_queries_{{$j}}')=='1') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                      <p>1 <span>Poor</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{ $j }}" id="timely_response_queries_{{ $j }}" value="2" @if(old('timely_response_queries_{{ $j }}')=='2') checked @endif>
-                <label class="form-check-label" for="gridRadios1">2</label>
 
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{ $j }}" id="timely_response_queries_{{ $j }}" value="3" @if(old('timely_response_queries_{{ $j }}')=='3') checked @endif>
-                <label class="form-check-label" for="gridRadios1">3</label>
+                  <label class="form_row form_row_2">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="2" @if(old('timely_response_queries_{{$j}}')=='2') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                      <p>2 <span>Fair</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{ $j }}" id="timely_response_queries_{{ $j }}" value="4" @if(old('timely_response_queries_{{ $j }}')=='4') checked @endif>
-                <label class="form-check-label" for="gridRadios1">4</label>
 
-                <input class="form-check-input" type="radio" name="timely_response_queries_{{ $j }}" id="timely_response_queries_{{ $j }}" value="5" @if(old('timely_response_queries_{{ $j }}')=='5') checked @endif>
-                <label class="form-check-label" for="gridRadios1">5</label>
+                  <label class="form_row form_row_3">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="3" @if(old('timely_response_queries_{{$j}}')=='3') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                      <p>3 <span>Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_4">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="4" @if(old('timely_response_queries_{{$j}}')=='4') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                      <p>4 <span>Very Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_5">
+                    <input type="radio" name="timely_response_queries_{{$j}}" id="timely_response_queries_{{$j}}" value="5" @if(old('timely_response_queries_{{$j}}')=='5') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                      <p>5 <span>Outstanding</span></p>
+                    </div>
+                  </label>
+                </div>
               </span>
               @if ($errors->has('timely_response_queries_$j'))
                 <span class="text-danger">{{ $errors->first('timely_response_queries_$j') }}</span>
@@ -125,23 +292,60 @@
               <label for="comfortability_sharing_concerns_doubts_{{ $j }}" class="form-label rdioBtn">Comfortability in sharing your concerns & doubts <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
               <span id="radioBtn">
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="NA" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='NA') checked @elseif(old('comfortability_sharing_concerns_doubts_{{$j}}')=='') checked @endif>
-                <label class="form-check-label" for="gridRadios1">NA</label>
+                <div class="rating">
+                  <label class="form_row form_row_0">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="NA" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='NA') checked @elseif(old('comfortability_sharing_concerns_doubts_{{$j}}')=='') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                      <p>NA</p>
+                    </div>
+                  </label>
+          
 
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{ $j }}" id="comfortability_sharing_concerns_doubts_{{ $j }}" value="1" @if(old('comfortability_sharing_concerns_doubts_{{ $j }}')=='1') checked @endif>
-                <label class="form-check-label" for="gridRadios1">1</label>
+                  <label class="form_row form_row_1">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="1" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='1') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                      <p>1 <span>Poor</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{ $j }}" id="comfortability_sharing_concerns_doubts_{{ $j }}" value="2" @if(old('comfortability_sharing_concerns_doubts_{{ $j }}')=='2') checked @endif>
-                <label class="form-check-label" for="gridRadios1">2</label>
 
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{ $j }}" id="comfortability_sharing_concerns_doubts_{{ $j }}" value="3" @if(old('comfortability_sharing_concerns_doubts_{{ $j }}')=='3') checked @endif>
-                <label class="form-check-label" for="gridRadios1">3</label>
+                  <label class="form_row form_row_2">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="2" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='2') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                      <p>2 <span>Fair</span></p>
+                    </div>
+                  </label>
 
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{ $j }}" id="comfortability_sharing_concerns_doubts_{{ $j }}" value="4" @if(old('comfortability_sharing_concerns_doubts_{{ $j }}')=='4') checked @endif>
-                <label class="form-check-label" for="gridRadios1">4</label>
 
-                <input class="form-check-input" type="radio" name="comfortability_sharing_concerns_doubts_{{ $j }}" id="comfortability_sharing_concerns_doubts_{{ $j }}" value="5" @if(old('comfortability_sharing_concerns_doubts_{{ $j }}')=='5') checked @endif>
-                <label class="form-check-label" for="gridRadios1">5</label>
+                  <label class="form_row form_row_3">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="3" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='3') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                      <p>3 <span>Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_4">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="4" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='4') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                      <p>4 <span>Very Good</span></p>
+                    </div>
+                  </label>
+
+
+                  <label class="form_row form_row_5">
+                    <input type="radio" name="comfortability_sharing_concerns_doubts_{{$j}}" id="comfortability_sharing_concerns_doubts_{{$j}}" value="5" @if(old('comfortability_sharing_concerns_doubts_{{$j}}')=='5') checked @endif>
+                    <div class="checkmark">
+                      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                      <p>5 <span>Outstanding</span></p>
+                    </div>
+                  </label>
+                </div>
               </span>
               @if ($errors->has('comfortability_sharing_concerns_doubts_$j"'))
                 <span class="text-danger">{{ $errors->first('comfortability_sharing_concerns_doubts_$j"') }}</span>

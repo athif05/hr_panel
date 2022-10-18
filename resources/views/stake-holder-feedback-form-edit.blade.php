@@ -58,7 +58,7 @@
                 <input type="hidden" name="member_id" id="member_id" value="{{ $member_details['id'] }}">
                 <input type="hidden" name="manager_id" id="manager_id" value="{{ $manager_details['id'] }}">
                 
-                <div class="hiring_survey_heading"><strong>Manager Details</strong></div>
+                <div class="hiring_survey_heading"><strong>Stakeholder Details</strong></div>
 
                 <div class="col-md-6 position-relative">
                   <label for="manager_name" class="form-label">Your Name</label>
@@ -158,27 +158,58 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>Rate {{ $member_details['full_name'] }} on the following parameters</strong></label>
+                  <label class="card-title"><strong>Rate {{ $member_details['full_name'] }} on the following parameters</strong></label>
                 </div>
 
                 <div class="col-md-12 position-relative">
                   <label for="quality_of_the_work" class="form-label rdioBtn">Quality of the work  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="2" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="3" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="2" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="4" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="quality_of_the_work" id="quality_of_the_work" value="5" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="3" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="4" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="5" @if(old('quality_of_the_work',$stackholder_feedback_details['quality_of_the_work'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
 
                   @if ($errors->has('quality_of_the_work'))
@@ -191,20 +222,51 @@
                   <label for="tat_adherence" class="form-label rdioBtn">TAT Adherence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="2" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="3" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="2" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="4" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="tat_adherence" id="tat_adherence" value="5" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="3" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="4" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="5" @if(old('tat_adherence',$stackholder_feedback_details['tat_adherence'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('tat_adherence'))
                     <span class="text-danger">{{ $errors->first('tat_adherence') }}</span>
@@ -216,20 +278,51 @@
                   <label for="ability_to_understand_project_requirements" class="form-label rdioBtn">Ability to understand project requirements  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="2" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="3" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="2" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="4" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="5" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="3" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="4" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="5" @if(old('ability_to_understand_project_requirements',$stackholder_feedback_details['ability_to_understand_project_requirements'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('ability_to_understand_project_requirements'))
                     <span class="text-danger">{{ $errors->first('ability_to_understand_project_requirements') }}</span>
@@ -241,20 +334,51 @@
                   <label for="ability_to_absorb_feedback" class="form-label rdioBtn">Ability to absorb feedback <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="2" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="3" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="2" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="4" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="5" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="3" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="4" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="5" @if(old('ability_to_absorb_feedback',$stackholder_feedback_details['ability_to_absorb_feedback'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('ability_to_absorb_feedback'))
                     <span class="text-danger">{{ $errors->first('ability_to_absorb_feedback') }}</span>
@@ -266,20 +390,51 @@
                   <label for="responsiveness_on_all_platforms" class="form-label rdioBtn">Responsiveness on all platforms <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="2" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="3" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="2" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="4" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="5" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="3" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="4" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="5" @if(old('responsiveness_on_all_platforms',$stackholder_feedback_details['responsiveness_on_all_platforms'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('responsiveness_on_all_platforms'))
                     <span class="text-danger">{{ $errors->first('responsiveness_on_all_platforms') }}</span>
@@ -291,20 +446,51 @@
                   <label for="how_happy_you_with_performance" class="form-label rdioBtn">How happy are you with {{ $member_details['full_name'] }} performance? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                    <div class="rating">
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="2" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="3" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="2" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="4" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="5" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="3" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="4" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="5" @if(old('how_happy_you_with_performance',$stackholder_feedback_details['how_happy_you_with_performance'])=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('how_happy_you_with_performance'))
                     <span class="text-danger">{{ $errors->first('how_happy_you_with_performance') }}</span>

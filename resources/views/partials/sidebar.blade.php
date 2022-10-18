@@ -1,17 +1,28 @@
 <?php
 $todat_date=date('Y-m-d');
+$last2days=date('Y-m-d', strtotime('-2 day', strtotime($todat_date)));
+$last30days=date('Y-m-d', strtotime('-30 day', strtotime($todat_date)));
 $last45days=date('Y-m-d', strtotime('-45 day', strtotime($todat_date)));
-
 $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 ?>
 <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
+    <div class="logo">
 
+      @if(session('company_logo'))
+          <img src="{{ asset(session('company_logo')) }}" alt="VCOne">
+      @else
+        <img src="{{ asset('assests/assets/img/logo.png') }}" alt="VCOne">
+      @endif
+
+      <!-- <img src="{{ asset('assests/assets/img/logo.png') }}" alt="VCOne"> -->
+    </div>
     <ul class="sidebar-nav" id="sidebar-nav">
 
       @if(Auth::user()->role_id!='1')
       <li class="nav-item">
         <a class="nav-link " href="{{ url('/home') }}">
+			
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -98,12 +109,14 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
       
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+			<span class="shape1"></span>
+<span class="shape2"></span>
           <i class="bi bi-journal-text"></i><span>Confirmation Panel </span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content  " data-bs-parent="#sidebar-nav">
           
-          
+            @if((Auth::user()->joining_date) <= $last2days)
              <li>
               <a href="{{ url('/recruitment-survey') }}">
                 <i class="bi bi-circle"></i><span>Recruitment Survey</span>
@@ -115,6 +128,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
                 <i class="bi bi-circle"></i><span>Interview Survey</span>
               </a>
             </li>
+            @endif
 
             @if((Auth::user()->joining_date) <= $last45days)
             <li>
@@ -154,7 +168,9 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
                 <span>Upload PPT</span>
               </a>
             </li>
+
             
+
             
           @if(Auth::user()->role_id=='3')
           <li>
@@ -238,10 +254,18 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
           @endif
 
+          <li>
+            <a href="{{ url('/stakeholder-form-list') }}">
+              <i class="bi bi-upload"></i>
+              <span>Stakeholder Form</span>
+            </a>
+          </li>
+
         </ul>
       </li><!-- End Forms Nav -->
 
 
+      
       
 
       <!-- @if(Auth::user()->role_id=='1')
@@ -406,5 +430,18 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       -->
 
     </ul>
+
+
+
+<!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>{{ env('MY_SITE_NAME') }}</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://vcommission.com/">VCOne</a>
+    </div>
+  </footer><!-- End Footer -->
+
 
   </aside><!-- End Sidebar-->

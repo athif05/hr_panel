@@ -54,9 +54,6 @@
                       <th scope="col">Member Name</th>
                       <th scope="col">Member Email</th>
                       <th scope="col">Designation</th>
-                      <!-- <th scope="col">Joining Date</th>
-                      <th scope="col">Company Location</th>
-                      <th scope="col">Gender</th> -->
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -70,11 +67,39 @@
           						</td>
           						<td>{{$all_member['email']}}</td>
           						<td>{{$all_member['designation_name']}}</td>
-          						<!-- <td>{{date('d-M-y',strtotime($all_member['joining_date']))}}</td>
-          						<td>{{$all_member['location_name']}}</td>
-          						<td>{{$all_member['gender']}}</td> -->
           						<td>
-                        @if($all_member['surveys_form_id'])
+                        <?php $jk=0;?>
+                        @foreach($hiring_survey_details as $hiring_survey_detail)
+
+                            @if(($hiring_survey_detail['user_id']==$all_member['id']) && ($hiring_survey_detail['manager_id'] == (Auth::user()->id)) )
+
+                                <?php $jk=1;?>
+
+                                @if($hiring_survey_detail['status']=='1')
+
+                                  <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey-edit/".$all_member['id']."/".$hiring_survey_detail['id'])}}';">Edit Survey</button>
+
+                                @elseif($hiring_survey_detail['status']=='2')
+
+                                  <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id'])}}';">Show Survey</button>
+
+                                  <?php break; ?>
+
+                                @endif
+
+
+                            @endif
+
+                        @endforeach
+
+
+                        @if($jk==0)
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id'])}}';">Start Survey</button>
+                        @endif
+
+
+
+                        <!-- @if($all_member['surveys_form_id'])
 
                           @if($all_member['hiring_surveys_status']=='1')
 
@@ -88,7 +113,7 @@
 
                         @else
                           <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/hiring-survey/".$all_member['id'])}}';">Start Survey</button>
-                        @endif
+                        @endif -->
           						</td>
           					</tr>
           				<?php $j++;?>

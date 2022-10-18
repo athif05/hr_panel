@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\FreshEyeJournal;
+use App\Models\FejDepartmentRate;
 use App\Models\CompanyName;
 use App\Models\CompanyLocation;
 use App\Models\Designation;
@@ -26,6 +27,7 @@ class FreshEyeJournalController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+        $department_id = Auth::user()->department;
 
         $reporting_manager_name_ajax_default = Auth::user()->manager_name;
 
@@ -86,19 +88,32 @@ class FreshEyeJournalController extends Controller
             ->orderBy('first_name','asc')
             ->get();
 
-        $hod_details = User::where('status', '1')
+        /*$hod_details = User::where('status', '1')
             ->where('is_deleted', '0')
             ->where('role_id', '4')
+            ->orderBy('first_name','asc')
+            ->get();*/
+
+        $hod_details = Department::where('departments.id', $department_id)
+            ->leftJoin('users','users.id','=','departments.hod_id')
+            ->select('departments.*',DB::raw('CONCAT(first_name, " ", last_name) AS hod_name'))
+            ->first();
+
+
+        $mentor_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->select('users.*',DB::raw('CONCAT(first_name, " ", last_name) AS mentor_name'))
             ->orderBy('first_name','asc')
             ->get();
 
         /*check record is exist or not*/
         $fresh_eye_journal_details = FreshEyeJournal::where('fresh_eye_journals.user_id', $user_id)->first();
         
+        
 
         if(($fresh_eye_journal_details === null) or (($fresh_eye_journal_details['status'] === '0') or ($fresh_eye_journal_details['status'] === ''))){
 
-            return view('fresh-eye-journal-form', compact('total_tenure','designation_details','department_details','company_names','company_locations','manager_details','hod_details','reporting_manager_name_ajax_default','company_name_ajax_default'));
+            return view('fresh-eye-journal-form', compact('total_tenure','designation_details','department_details','company_names','company_locations','manager_details','hod_details','reporting_manager_name_ajax_default','company_name_ajax_default','mentor_details'));
 
         } else if($fresh_eye_journal_details['status'] === '1'){
 
@@ -106,7 +121,12 @@ class FreshEyeJournalController extends Controller
 
         } else if($fresh_eye_journal_details['status'] === '2'){
 
-            return view('fresh-eye-journal-form-show', compact('fresh_eye_journal_details','designation_details','department_details','company_names','company_locations'));
+            /*check record is exist or not*/
+            $fej_department_rating_details = FejDepartmentRate::where('user_id', $user_id)
+            ->orderBy('id','asc')
+            ->get();
+
+            return view('fresh-eye-journal-form-show', compact('fresh_eye_journal_details','designation_details','department_details','company_names','company_locations','mentor_details','fej_department_rating_details'));
         }
     }
 
@@ -132,6 +152,7 @@ class FreshEyeJournalController extends Controller
 
         if($request['submit']=='Save in Draft'){
             $status='1';
+
         } else if($request['submit']=='Publish'){
             
             $request->validate([
@@ -143,7 +164,6 @@ class FreshEyeJournalController extends Controller
                 'location_name' => 'required',
                 'tenure_in_month' => 'required',
                 'reporting_manager_fresh' => 'required',
-                'head_of_department' => 'required',
                 'your_journey_so_far_in_company' => 'required',
                 'top_3_things_like_your_job_1' => 'required',
                 'top_3_things_like_your_job_2' => 'required',
@@ -151,6 +171,8 @@ class FreshEyeJournalController extends Controller
                 'three_things_wish_change_job_role_1' => 'required',
                 'three_things_wish_change_job_role_2' => 'required',
                 'three_things_wish_change_job_role_3' => 'required',
+                'understand_company_policies_basic_rules_regulations' => 'required',
+                'feel_belonged_forsee_growing' => 'required',
                 'satisfaction_job_role' => 'required',
                 'well_equipped_perform_job' => 'required',
                 'able_maintain_work_life_balance' => 'required',
@@ -178,41 +200,17 @@ class FreshEyeJournalController extends Controller
                 'how_clearly_your_goals_set_reporting_manager' => 'required',
                 'how_transparent_is_reporting_manager' => 'required',
                 'wprs_happen_every_week_reporting_manager' => 'required',
-                'how_well_adjust_changing_priorities_reporting_manager' => 'required',
                 'how_comfortable_feel_sharing_feedback_reporting_manager' => 'required',
                 'how_well_able_learn_under_guidance_reporting_manager' => 'required',
-                'our_organization_believes_mantra' => 'required',
-                'quickness_in_respond_reporting_manager_qi' => 'required',
-                'how_well_received_guidance_reporting_manager_qi' => 'required',
-                'how_clearly_your_goals_set_reporting_manager_qi' => 'required',
-                'how_transparent_is_reporting_manager_qi' => 'required',
-                'frequent_1_1_happen_reporting_manager_qi' => 'required',
-                'how_well_adjust_changing_priorities_reporting_manager_qi' => 'required',
-                'how_comfortable_feel_sharing_feedback_reporting_manager_qi' => 'required',
+                'frequent_1_1_happen_reporting_manager' => 'required',
+                'how_well_adjust_changing_priorities_reporting_manager' => 'required',
                 'top_3_strengths_reporting_manager_qi_1' => 'required',
                 'top_3_strengths_reporting_manager_qi_2' => 'required',
                 'top_3_strengths_reporting_manager_qi_3' => 'required',
                 'three_areas_improvement_reporting_manager_qi_1' => 'required',
                 'three_areas_improvement_reporting_manager_qi_2' => 'required',
                 'three_areas_improvement_reporting_manager_qi_3' => 'required',
-                'our_organization_believes_mantra_reporting_manager_qi' => 'required',
-                'quickness_in_respond_hod_qj' => 'required',
-                'how_well_received_guidance_hod_qj' => 'required',
-                'how_clearly_your_goals_set_hod_qj' => 'required',
-                'how_transparent_is_hod_qj' => 'required',
-                'frequent_1_1_happen_hod_qj' => 'required',
-                'how_well_adjust_changing_priorities_hod_qj' => 'required',
-                'how_comfortable_feel_sharing_feedback_hod_qj' => 'required',
-                'top_3_strengths_hod_qj_1' => 'required',
-                'top_3_strengths_hod_qj_2' => 'required',
-                'top_3_strengths_hod_qj_3' => 'required',
-                'three_areas_improvement_hod_qj_1' => 'required',
-                'three_areas_improvement_hod_qj_2' => 'required',
-                'three_areas_improvement_hod_qj_3' => 'required',
-                'our_organization_believes_mantra_hod_qj' => 'required',
-                'admin_operations' => 'required',
-                'human_resources' => 'required',
-                'management' => 'required',
+                'our_organization_believes_mantra' => 'required',
                 'any_additional_feedback_any_department' => 'required',
                 'any_issue_concern_management' => 'required',
             ], [
@@ -232,6 +230,8 @@ class FreshEyeJournalController extends Controller
                 'three_things_wish_change_job_role_1.required' => 'Required',
                 'three_things_wish_change_job_role_2.required' => 'Required',
                 'three_things_wish_change_job_role_3.required' => 'Required',
+                'understand_company_policies_basic_rules_regulations.required' => 'Required',
+                'feel_belonged_forsee_growing.required' => 'Required',
                 'satisfaction_job_role.required' => 'Please rate...',
                 'well_equipped_perform_job.required' => 'Please rate...',
                 'able_maintain_work_life_balance.required' => 'Please rate...',
@@ -262,45 +262,44 @@ class FreshEyeJournalController extends Controller
                 'how_well_adjust_changing_priorities_reporting_manager.required' => 'Please rate...',
                 'how_comfortable_feel_sharing_feedback_reporting_manager.required' => 'Please rate...',
                 'how_well_able_learn_under_guidance_reporting_manager.required' => 'Please rate...',
-                'our_organization_believes_mantra' => 'Required',
-                'quickness_in_respond_reporting_manager_qi.required' => 'Please rate...',
-                'how_well_received_guidance_reporting_manager_qi.required' => 'Please rate...',
-                'how_clearly_your_goals_set_reporting_manager_qi.required' => 'Please rate...',
-                'how_transparent_is_reporting_manager_qi.required' => 'Please rate...',
-                'frequent_1_1_happen_reporting_manager_qi.required' => 'Please rate...',
-                'how_well_adjust_changing_priorities_reporting_manager_qi.required' => 'Please rate...',
-                'how_comfortable_feel_sharing_feedback_reporting_manager_qi.required' => 'Please rate...',
+                'frequent_1_1_happen_reporting_manager.required' => 'Please rate...',
                 'top_3_strengths_reporting_manager_qi_1.required' => 'Required',
                 'top_3_strengths_reporting_manager_qi_2.required' => 'Required',
                 'top_3_strengths_reporting_manager_qi_3.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_1.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_2.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_3.required' => 'Required',
-                'our_organization_believes_mantra_reporting_manager_qi.required' => 'Required',
-                'quickness_in_respond_hod_qj.required' => 'Please rate...',
-                'how_well_received_guidance_hod_qj.required' => 'Please rate...',
-                'how_clearly_your_goals_set_hod_qj.required' => 'Please rate...',
-                'how_transparent_is_hod_qj.required' => 'Please rate...',
-                'frequent_1_1_happen_hod_qj.required' => 'Please rate...',
-                'how_well_adjust_changing_priorities_hod_qj.required' => 'Please rate...',
-                'how_comfortable_feel_sharing_feedback_hod_qj.required' => 'Please rate...',
-                'top_3_strengths_hod_qj_1.required' => 'Required',
-                'top_3_strengths_hod_qj_2.required' => 'Required',
-                'top_3_strengths_hod_qj_3.required' => 'Required',
-                'three_areas_improvement_hod_qj_1.required' => 'Required',
-                'three_areas_improvement_hod_qj_2.required' => 'Required',
-                'three_areas_improvement_hod_qj_3.required' => 'Required',
-                'our_organization_believes_mantra_hod_qj.required' => 'Required',
-                'admin_operations.required' => 'Please rate...',
-                'human_resources.required' => 'Please rate...',
-                'management.required' => 'Please rate...',
-                'frequent_1_1_happen_hod_qj.required' => 'Please rate...',
+                'our_organization_believes_mantra' => 'Required',
                 'any_additional_feedback_any_department.required' => 'Any additional feedback for any department that you would like to share?',
                 'any_issue_concern_management.required' => 'Any issue or concern that you would like to talk to management about?',
             ]);
 
+            if($request->reporting_manager_fresh!=$request->head_of_department){
+                $request->validate([
+                    'overall_feedback_for_hod' => 'required',
+                    'top_3_strengths_hod_qj_1' => 'required',
+                    'top_3_strengths_hod_qj_2' => 'required',
+                    'top_3_strengths_hod_qj_3' => 'required',
+                    'three_areas_improvement_hod_qj_1' => 'required',
+                    'three_areas_improvement_hod_qj_2' => 'required',
+                    'three_areas_improvement_hod_qj_3' => 'required',
+                    'our_organization_believes_mantra_hod_qj' => 'required',
+                ], [
+                    'overall_feedback_for_hod.required' => 'Please rate...',
+                    'top_3_strengths_hod_qj_1.required' => 'Required',
+                    'top_3_strengths_hod_qj_2.required' => 'Required',
+                    'top_3_strengths_hod_qj_3.required' => 'Required',
+                    'three_areas_improvement_hod_qj_1.required' => 'Required',
+                    'three_areas_improvement_hod_qj_2.required' => 'Required',
+                    'three_areas_improvement_hod_qj_3.required' => 'Required',
+                    'our_organization_believes_mantra_hod_qj.required' => 'Required',
+                ]);
+            }
+
             $status='2';
         }
+
+        //dd(count($request->all_departments_name));
 
         $input = FreshEyeJournal::insert([
             'user_id' => $user_id,
@@ -314,7 +313,7 @@ class FreshEyeJournalController extends Controller
             'tenure_in_month' => $request->tenure_in_month,
             'reporting_manager_name_ajax' => $request->reporting_manager_name_ajax,
             'reporting_manager_fresh' => $request->reporting_manager_fresh,
-            'head_of_department_name_ajax' => $request->head_of_department_name_ajax,
+            'head_of_department_name_ajax' => $request->head_of_department_id_ajax,
             'head_of_department' => $request->head_of_department,
             'your_journey_so_far_in_company' => $request->your_journey_so_far_in_company,
             'top_3_things_like_your_job_1' => $request->top_3_things_like_your_job_1,
@@ -323,6 +322,8 @@ class FreshEyeJournalController extends Controller
             'three_things_wish_change_job_role_1' => $request->three_things_wish_change_job_role_1,
             'three_things_wish_change_job_role_2' => $request->three_things_wish_change_job_role_2,
             'three_things_wish_change_job_role_3' => $request->three_things_wish_change_job_role_3,
+            'understand_company_policies_basic_rules_regulations' => $request->understand_company_policies_basic_rules_regulations,
+            'feel_belonged_forsee_growing' => $request->feel_belonged_forsee_growing,
             'satisfaction_job_role' => (!is_null($request->satisfaction_job_role) ? $request->satisfaction_job_role : ""),
             'well_equipped_perform_job' => (!is_null($request->well_equipped_perform_job) ? $request->well_equipped_perform_job : ""),
             'able_maintain_work_life_balance' => (!is_null($request->able_maintain_work_life_balance) ? $request->able_maintain_work_life_balance : ""),
@@ -345,37 +346,33 @@ class FreshEyeJournalController extends Controller
             'having_best_friend_at_work' => (!is_null($request->having_best_friend_at_work) ? $request->having_best_friend_at_work : ""),
             'work_life_balance' => (!is_null($request->work_life_balance) ? $request->work_life_balance : ""),
             'any_detailed_feedback_support_your_response' => $request->any_detailed_feedback_support_your_response,
+            'mentor_name_ajax' => $request->mentor_name_ajax,
+            'mentor_id' => $request->mentor_id,
+            'overall_feedback_for_mentor' => (!is_null($request->overall_feedback_for_mentor) ? $request->overall_feedback_for_mentor : ""),
+            'mentor_top_three_strengths_1' => $request->mentor_top_three_strengths_1,
+            'mentor_top_three_strengths_2' => $request->mentor_top_three_strengths_2,
+            'mentor_top_three_strengths_3' => $request->mentor_top_three_strengths_3,
+            'mentor_three_areas_improvement_1' => $request->mentor_three_areas_improvement_1,
+            'mentor_three_areas_improvement_2' => $request->mentor_three_areas_improvement_2,
+            'mentor_three_areas_improvement_3' => $request->mentor_three_areas_improvement_3,
+            'our_organization_believes_mantra_mentor' => $request->our_organization_believes_mantra_mentor,
             'quickness_in_respond_reporting_manager' => (!is_null($request->quickness_in_respond_reporting_manager) ? $request->quickness_in_respond_reporting_manager : ""),
             'how_well_received_guidance_reporting_manager' => (!is_null($request->how_well_received_guidance_reporting_manager) ? $request->how_well_received_guidance_reporting_manager : ""),
             'how_clearly_your_goals_set_reporting_manager' => (!is_null($request->how_clearly_your_goals_set_reporting_manager) ? $request->how_clearly_your_goals_set_reporting_manager : ""),
             'how_transparent_is_reporting_manager' => (!is_null($request->how_transparent_is_reporting_manager) ? $request->how_transparent_is_reporting_manager : ""),
             'wprs_happen_every_week_reporting_manager' => (!is_null($request->wprs_happen_every_week_reporting_manager) ? $request->wprs_happen_every_week_reporting_manager : ""),
-            'how_well_adjust_changing_priorities_reporting_manager' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager) ? $request->how_well_adjust_changing_priorities_reporting_manager : ""),
             'how_comfortable_feel_sharing_feedback_reporting_manager' => (!is_null($request->how_comfortable_feel_sharing_feedback_reporting_manager) ? $request->how_comfortable_feel_sharing_feedback_reporting_manager : ""),
             'how_well_able_learn_under_guidance_reporting_manager' => (!is_null($request->how_well_able_learn_under_guidance_reporting_manager) ? $request->how_well_able_learn_under_guidance_reporting_manager : ""),
-            'our_organization_believes_mantra' => $request->our_organization_believes_mantra,
-            'quickness_in_respond_reporting_manager_qi' => (!is_null($request->quickness_in_respond_reporting_manager_qi) ? $request->quickness_in_respond_reporting_manager_qi : ""),
-            'how_well_received_guidance_reporting_manager_qi' => (!is_null($request->how_well_received_guidance_reporting_manager_qi) ? $request->how_well_received_guidance_reporting_manager_qi : ""),
-            'how_clearly_your_goals_set_reporting_manager_qi' => (!is_null($request->how_clearly_your_goals_set_reporting_manager_qi) ? $request->how_clearly_your_goals_set_reporting_manager_qi : ""),
-            'how_transparent_is_reporting_manager_qi' => (!is_null($request->how_transparent_is_reporting_manager_qi) ? $request->how_transparent_is_reporting_manager_qi : ""),
-            'frequent_1_1_happen_reporting_manager_qi' => (!is_null($request->frequent_1_1_happen_reporting_manager_qi) ? $request->frequent_1_1_happen_reporting_manager_qi : ""),
-            'how_well_adjust_changing_priorities_reporting_manager_qi' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager_qi) ? $request->how_well_adjust_changing_priorities_reporting_manager_qi : ""),
-
-            'how_comfortable_feel_sharing_feedback_reporting_manager_qi' => (!is_null($request->how_comfortable_feel_sharing_feedback_reporting_manager_qi) ? $request->how_comfortable_feel_sharing_feedback_reporting_manager_qi : ""),
+            'frequent_1_1_happen_reporting_manager_qi' => (!is_null($request->frequent_1_1_happen_reporting_manager) ? $request->frequent_1_1_happen_reporting_manager : ""),
+            'how_well_adjust_changing_priorities_reporting_manager' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager) ? $request->how_well_adjust_changing_priorities_reporting_manager : ""),
             'top_3_strengths_reporting_manager_qi_1' => $request->top_3_strengths_reporting_manager_qi_1,
             'top_3_strengths_reporting_manager_qi_2' => $request->top_3_strengths_reporting_manager_qi_2,
             'top_3_strengths_reporting_manager_qi_3' => $request->top_3_strengths_reporting_manager_qi_3,
             'three_areas_improvement_reporting_manager_qi_1' => $request->three_areas_improvement_reporting_manager_qi_1,
             'three_areas_improvement_reporting_manager_qi_2' => $request->three_areas_improvement_reporting_manager_qi_2,
             'three_areas_improvement_reporting_manager_qi_3' => $request->three_areas_improvement_reporting_manager_qi_3,
-            'our_organization_believes_mantra_reporting_manager_qi' => $request->our_organization_believes_mantra_reporting_manager_qi,
-            'quickness_in_respond_hod_qj' => (!is_null($request->quickness_in_respond_hod_qj) ? $request->quickness_in_respond_hod_qj : ""),
-            'how_well_received_guidance_hod_qj' => (!is_null($request->how_well_received_guidance_hod_qj) ? $request->how_well_received_guidance_hod_qj : ""),
-            'how_clearly_your_goals_set_hod_qj' => (!is_null($request->how_clearly_your_goals_set_hod_qj) ? $request->how_clearly_your_goals_set_hod_qj : ""),
-            'how_transparent_is_hod_qj' => (!is_null($request->how_transparent_is_hod_qj) ? $request->how_transparent_is_hod_qj : ""),
-            'frequent_1_1_happen_hod_qj' => (!is_null($request->frequent_1_1_happen_hod_qj) ? $request->frequent_1_1_happen_hod_qj : ""),
-            'how_well_adjust_changing_priorities_hod_qj' => (!is_null($request->how_well_adjust_changing_priorities_hod_qj) ? $request->how_well_adjust_changing_priorities_hod_qj : ""),
-            'how_comfortable_feel_sharing_feedback_hod_qj' => (!is_null($request->how_comfortable_feel_sharing_feedback_hod_qj) ? $request->how_comfortable_feel_sharing_feedback_hod_qj : ""),
+            'our_organization_believes_mantra' => $request->our_organization_believes_mantra,
+            'overall_feedback_for_hod' => (!is_null($request->overall_feedback_for_hod) ? $request->overall_feedback_for_hod : "NA"),
             'top_3_strengths_hod_qj_1' => $request->top_3_strengths_hod_qj_1,
             'top_3_strengths_hod_qj_2' => $request->top_3_strengths_hod_qj_2,
             'top_3_strengths_hod_qj_3' => $request->top_3_strengths_hod_qj_3,
@@ -383,27 +380,28 @@ class FreshEyeJournalController extends Controller
             'three_areas_improvement_hod_qj_2' => $request->three_areas_improvement_hod_qj_2,
             'three_areas_improvement_hod_qj_3' => $request->three_areas_improvement_hod_qj_3,
             'our_organization_believes_mantra_hod_qj' => $request->our_organization_believes_mantra_hod_qj,
-            'admin_operations' => (!is_null($request->admin_operations) ? $request->admin_operations : ""),
-            'advertiser_sales' => (!is_null($request->advertiser_sales) ? $request->advertiser_sales : ""),
-            'advertisers' => (!is_null($request->advertisers) ? $request->advertisers : ""),
-            'finance_accounts' => (!is_null($request->finance_accounts) ? $request->finance_accounts : ""),
-            'human_resources' => (!is_null($request->human_resources) ? $request->human_resources : ""),
-            'management' => (!is_null($request->management) ? $request->management : ""),
-            'network_operations' => (!is_null($request->network_operations) ? $request->network_operations : ""),
-            'pocket_money' => (!is_null($request->pocket_money) ? $request->pocket_money : ""),
-            'publishers' => (!is_null($request->publishers) ? $request->publishers : ""),
-            'tech_operations_development' => (!is_null($request->tech_operations_development) ? $request->tech_operations_development : ""),
-            'support_ea_pa' => (!is_null($request->support_ea_pa) ? $request->support_ea_pa : ""),
-            'education' => (!is_null($request->education) ? $request->education : ""),
-            'igaming' => (!is_null($request->igaming) ? $request->igaming : ""),
-            'tech_operations_shopify' => (!is_null($request->tech_operations_shopify) ? $request->tech_operations_shopify : ""),
-            'tech_operations_creative' => (!is_null($request->tech_operations_creative) ? $request->tech_operations_creative : ""),
-            'mobile' => (!is_null($request->mobile) ? $request->mobile : ""),
-            'vcommission_uk' => (!is_null($request->vcommission_uk) ? $request->vcommission_uk : ""),
             'any_additional_feedback_any_department' => $request->any_additional_feedback_any_department,
             'any_issue_concern_management' => $request->any_issue_concern_management,
             'status' => $status,
         ]);
+
+        
+        /*save rating in other table, start here*/
+        $j=1;
+        foreach ($request->all_departments_name as $key => $value) {
+            $departments_name = "departments_name_".$j;
+            //echo $value.' / '.$request->$departments_name."<br>";
+
+            $input = FejDepartmentRate::insert([
+                'user_id' => $user_id,
+                'department_name' => $value,
+                'rating' => $request->$departments_name,
+                'status' => $status,
+            ]);
+
+            $j++;
+        }
+        /*save rating in other table, end here*/
 
 
         if($input){
@@ -441,6 +439,7 @@ class FreshEyeJournalController extends Controller
     public function edit($id)
     {
         $user_id = $id;
+        $department_id = Auth::user()->department;
 
         $reporting_manager_name_ajax_default = Auth::user()->manager_name;
 
@@ -473,9 +472,21 @@ class FreshEyeJournalController extends Controller
             ->orderBy('first_name','asc')
             ->get();
 
-        $hod_details = User::where('status', '1')
+        /*$hod_details = User::where('status', '1')
             ->where('is_deleted', '0')
             ->where('role_id', '4')
+            ->orderBy('first_name','asc')
+            ->get();*/
+
+        $hod_details = Department::where('departments.id', $department_id)
+            ->leftJoin('users','users.id','=','departments.hod_id')
+            ->select('departments.*',DB::raw('CONCAT(first_name, " ", last_name) AS hod_name'))
+            ->first();
+
+
+        $mentor_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->select('users.*',DB::raw('CONCAT(first_name, " ", last_name) AS mentor_name'))
             ->orderBy('first_name','asc')
             ->get();
 
@@ -483,7 +494,15 @@ class FreshEyeJournalController extends Controller
         /*check record is exist or not*/
         $fresh_eye_journal_details = FreshEyeJournal::where('user_id', $user_id)->first();
 
-        if($fresh_eye_journal_details) {
+
+        /*check record is exist or not*/
+        $fej_department_rating_details = FejDepartmentRate::where('user_id', $user_id)
+        ->orderBy('id','asc')
+        ->get();
+
+
+        $head_of_department_name_ajax_default='';
+        /*if($fresh_eye_journal_details) {
 
             if($fresh_eye_journal_details->head_of_department){
                 $hod_id_ajax_default = $fresh_eye_journal_details->head_of_department;
@@ -492,13 +511,11 @@ class FreshEyeJournalController extends Controller
             } else {
                 $head_of_department_name_ajax_default='';
             } 
-        }
+        }*/
         
-        
-
-        if($fresh_eye_journal_details['status']==1){
+        if($fresh_eye_journal_details['status']==1) {
             
-            return view('fresh-eye-journal-form-edit', compact('designation_details','department_details','company_names','company_locations','manager_details','hod_details','fresh_eye_journal_details','reporting_manager_name_ajax_default','head_of_department_name_ajax_default'));
+            return view('fresh-eye-journal-form-edit', compact('designation_details','department_details','company_names','company_locations','manager_details','hod_details','mentor_details','fresh_eye_journal_details','reporting_manager_name_ajax_default','head_of_department_name_ajax_default','fej_department_rating_details'));
 
         } else if($fresh_eye_journal_details['status']==2){
 
@@ -523,8 +540,9 @@ class FreshEyeJournalController extends Controller
 
         if($request['submit']=='Save in Draft'){
             $status='1';
+
         } else if($request['submit']=='Publish'){
-           
+            
             $request->validate([
                 'member_name' => 'required|max:100|regex:/^[\pL\s]+$/u',
                 'member_id' => 'required',
@@ -534,7 +552,6 @@ class FreshEyeJournalController extends Controller
                 'location_name' => 'required',
                 'tenure_in_month' => 'required',
                 'reporting_manager_fresh' => 'required',
-                'head_of_department' => 'required',
                 'your_journey_so_far_in_company' => 'required',
                 'top_3_things_like_your_job_1' => 'required',
                 'top_3_things_like_your_job_2' => 'required',
@@ -542,6 +559,8 @@ class FreshEyeJournalController extends Controller
                 'three_things_wish_change_job_role_1' => 'required',
                 'three_things_wish_change_job_role_2' => 'required',
                 'three_things_wish_change_job_role_3' => 'required',
+                'understand_company_policies_basic_rules_regulations' => 'required',
+                'feel_belonged_forsee_growing' => 'required',
                 'satisfaction_job_role' => 'required',
                 'well_equipped_perform_job' => 'required',
                 'able_maintain_work_life_balance' => 'required',
@@ -569,41 +588,17 @@ class FreshEyeJournalController extends Controller
                 'how_clearly_your_goals_set_reporting_manager' => 'required',
                 'how_transparent_is_reporting_manager' => 'required',
                 'wprs_happen_every_week_reporting_manager' => 'required',
-                'how_well_adjust_changing_priorities_reporting_manager' => 'required',
                 'how_comfortable_feel_sharing_feedback_reporting_manager' => 'required',
                 'how_well_able_learn_under_guidance_reporting_manager' => 'required',
-                'our_organization_believes_mantra' => 'required',
-                'quickness_in_respond_reporting_manager_qi' => 'required',
-                'how_well_received_guidance_reporting_manager_qi' => 'required',
-                'how_clearly_your_goals_set_reporting_manager_qi' => 'required',
-                'how_transparent_is_reporting_manager_qi' => 'required',
-                'frequent_1_1_happen_reporting_manager_qi' => 'required',
-                'how_well_adjust_changing_priorities_reporting_manager_qi' => 'required',
-                'how_comfortable_feel_sharing_feedback_reporting_manager_qi' => 'required',
+                'frequent_1_1_happen_reporting_manager' => 'required',
+                'how_well_adjust_changing_priorities_reporting_manager' => 'required',
                 'top_3_strengths_reporting_manager_qi_1' => 'required',
                 'top_3_strengths_reporting_manager_qi_2' => 'required',
                 'top_3_strengths_reporting_manager_qi_3' => 'required',
                 'three_areas_improvement_reporting_manager_qi_1' => 'required',
                 'three_areas_improvement_reporting_manager_qi_2' => 'required',
                 'three_areas_improvement_reporting_manager_qi_3' => 'required',
-                'our_organization_believes_mantra_reporting_manager_qi' => 'required',
-                'quickness_in_respond_hod_qj' => 'required',
-                'how_well_received_guidance_hod_qj' => 'required',
-                'how_clearly_your_goals_set_hod_qj' => 'required',
-                'how_transparent_is_hod_qj' => 'required',
-                'frequent_1_1_happen_hod_qj' => 'required',
-                'how_well_adjust_changing_priorities_hod_qj' => 'required',
-                'how_comfortable_feel_sharing_feedback_hod_qj' => 'required',
-                'top_3_strengths_hod_qj_1' => 'required',
-                'top_3_strengths_hod_qj_2' => 'required',
-                'top_3_strengths_hod_qj_3' => 'required',
-                'three_areas_improvement_hod_qj_1' => 'required',
-                'three_areas_improvement_hod_qj_2' => 'required',
-                'three_areas_improvement_hod_qj_3' => 'required',
-                'our_organization_believes_mantra_hod_qj' => 'required',
-                'admin_operations' => 'required',
-                'human_resources' => 'required',
-                'management' => 'required',
+                'our_organization_believes_mantra' => 'required',
                 'any_additional_feedback_any_department' => 'required',
                 'any_issue_concern_management' => 'required',
             ], [
@@ -623,6 +618,8 @@ class FreshEyeJournalController extends Controller
                 'three_things_wish_change_job_role_1.required' => 'Required',
                 'three_things_wish_change_job_role_2.required' => 'Required',
                 'three_things_wish_change_job_role_3.required' => 'Required',
+                'understand_company_policies_basic_rules_regulations.required' => 'Required',
+                'feel_belonged_forsee_growing.required' => 'Required',
                 'satisfaction_job_role.required' => 'Please rate...',
                 'well_equipped_perform_job.required' => 'Please rate...',
                 'able_maintain_work_life_balance.required' => 'Please rate...',
@@ -653,47 +650,46 @@ class FreshEyeJournalController extends Controller
                 'how_well_adjust_changing_priorities_reporting_manager.required' => 'Please rate...',
                 'how_comfortable_feel_sharing_feedback_reporting_manager.required' => 'Please rate...',
                 'how_well_able_learn_under_guidance_reporting_manager.required' => 'Please rate...',
-                'our_organization_believes_mantra' => 'Required',
-                'quickness_in_respond_reporting_manager_qi.required' => 'Please rate...',
-                'how_well_received_guidance_reporting_manager_qi.required' => 'Please rate...',
-                'how_clearly_your_goals_set_reporting_manager_qi.required' => 'Please rate...',
-                'how_transparent_is_reporting_manager_qi.required' => 'Please rate...',
-                'frequent_1_1_happen_reporting_manager_qi.required' => 'Please rate...',
-                'how_well_adjust_changing_priorities_reporting_manager_qi.required' => 'Please rate...',
-                'how_comfortable_feel_sharing_feedback_reporting_manager_qi.required' => 'Please rate...',
+                'frequent_1_1_happen_reporting_manager.required' => 'Please rate...',
                 'top_3_strengths_reporting_manager_qi_1.required' => 'Required',
                 'top_3_strengths_reporting_manager_qi_2.required' => 'Required',
                 'top_3_strengths_reporting_manager_qi_3.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_1.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_2.required' => 'Required',
                 'three_areas_improvement_reporting_manager_qi_3.required' => 'Required',
-                'our_organization_believes_mantra_reporting_manager_qi.required' => 'Required',
-                'quickness_in_respond_hod_qj.required' => 'Please rate...',
-                'how_well_received_guidance_hod_qj.required' => 'Please rate...',
-                'how_clearly_your_goals_set_hod_qj.required' => 'Please rate...',
-                'how_transparent_is_hod_qj.required' => 'Please rate...',
-                'frequent_1_1_happen_hod_qj.required' => 'Please rate...',
-                'how_well_adjust_changing_priorities_hod_qj.required' => 'Please rate...',
-                'how_comfortable_feel_sharing_feedback_hod_qj.required' => 'Please rate...',
-                'top_3_strengths_hod_qj_1.required' => 'Required',
-                'top_3_strengths_hod_qj_2.required' => 'Required',
-                'top_3_strengths_hod_qj_3.required' => 'Required',
-                'three_areas_improvement_hod_qj_1.required' => 'Required',
-                'three_areas_improvement_hod_qj_2.required' => 'Required',
-                'three_areas_improvement_hod_qj_3.required' => 'Required',
-                'our_organization_believes_mantra_hod_qj.required' => 'Required',
-                'admin_operations.required' => 'Please rate...',
-                'human_resources.required' => 'Please rate...',
-                'management.required' => 'Please rate...',
-                'frequent_1_1_happen_hod_qj.required' => 'Please rate...',
+                'our_organization_believes_mantra' => 'Required',
                 'any_additional_feedback_any_department.required' => 'Any additional feedback for any department that you would like to share?',
                 'any_issue_concern_management.required' => 'Any issue or concern that you would like to talk to management about?',
             ]);
-            
-             $status='2';
+
+            if($request->reporting_manager_fresh!=$request->head_of_department){
+                $request->validate([
+                    'overall_feedback_for_hod' => 'required',
+                    'top_3_strengths_hod_qj_1' => 'required',
+                    'top_3_strengths_hod_qj_2' => 'required',
+                    'top_3_strengths_hod_qj_3' => 'required',
+                    'three_areas_improvement_hod_qj_1' => 'required',
+                    'three_areas_improvement_hod_qj_2' => 'required',
+                    'three_areas_improvement_hod_qj_3' => 'required',
+                    'our_organization_believes_mantra_hod_qj' => 'required',
+                ], [
+                    'overall_feedback_for_hod.required' => 'Please rate...',
+                    'top_3_strengths_hod_qj_1.required' => 'Required',
+                    'top_3_strengths_hod_qj_2.required' => 'Required',
+                    'top_3_strengths_hod_qj_3.required' => 'Required',
+                    'three_areas_improvement_hod_qj_1.required' => 'Required',
+                    'three_areas_improvement_hod_qj_2.required' => 'Required',
+                    'three_areas_improvement_hod_qj_3.required' => 'Required',
+                    'our_organization_believes_mantra_hod_qj.required' => 'Required',
+                ]);
+            }
+
+            $status='2';
         }
 
-        
+
+//dd($request->frequent_1_1_happen_reporting_manager_qi);
+
         FreshEyeJournal::where('user_id', $user_id)
         ->update([
             'member_name' => $request->member_name,
@@ -706,7 +702,7 @@ class FreshEyeJournalController extends Controller
             'tenure_in_month' => $request->tenure_in_month,
             'reporting_manager_name_ajax' => $request->reporting_manager_name_ajax,
             'reporting_manager_fresh' => $request->reporting_manager_fresh,
-            'head_of_department_name_ajax' => $request->head_of_department_name_ajax,
+            'head_of_department_name_ajax' => $request->head_of_department_id_ajax,
             'head_of_department' => $request->head_of_department,
             'your_journey_so_far_in_company' => $request->your_journey_so_far_in_company,
             'top_3_things_like_your_job_1' => $request->top_3_things_like_your_job_1,
@@ -715,6 +711,8 @@ class FreshEyeJournalController extends Controller
             'three_things_wish_change_job_role_1' => $request->three_things_wish_change_job_role_1,
             'three_things_wish_change_job_role_2' => $request->three_things_wish_change_job_role_2,
             'three_things_wish_change_job_role_3' => $request->three_things_wish_change_job_role_3,
+            'understand_company_policies_basic_rules_regulations' => $request->understand_company_policies_basic_rules_regulations,
+            'feel_belonged_forsee_growing' => $request->feel_belonged_forsee_growing,
             'satisfaction_job_role' => (!is_null($request->satisfaction_job_role) ? $request->satisfaction_job_role : ""),
             'well_equipped_perform_job' => (!is_null($request->well_equipped_perform_job) ? $request->well_equipped_perform_job : ""),
             'able_maintain_work_life_balance' => (!is_null($request->able_maintain_work_life_balance) ? $request->able_maintain_work_life_balance : ""),
@@ -737,37 +735,33 @@ class FreshEyeJournalController extends Controller
             'having_best_friend_at_work' => (!is_null($request->having_best_friend_at_work) ? $request->having_best_friend_at_work : ""),
             'work_life_balance' => (!is_null($request->work_life_balance) ? $request->work_life_balance : ""),
             'any_detailed_feedback_support_your_response' => $request->any_detailed_feedback_support_your_response,
+            'mentor_name_ajax' => $request->mentor_name_ajax,
+            'mentor_id' => $request->mentor_id,
+            'overall_feedback_for_mentor' => (!is_null($request->overall_feedback_for_mentor) ? $request->overall_feedback_for_mentor : ""),
+            'mentor_top_three_strengths_1' => $request->mentor_top_three_strengths_1,
+            'mentor_top_three_strengths_2' => $request->mentor_top_three_strengths_2,
+            'mentor_top_three_strengths_3' => $request->mentor_top_three_strengths_3,
+            'mentor_three_areas_improvement_1' => $request->mentor_three_areas_improvement_1,
+            'mentor_three_areas_improvement_2' => $request->mentor_three_areas_improvement_2,
+            'mentor_three_areas_improvement_3' => $request->mentor_three_areas_improvement_3,
+            'our_organization_believes_mantra_mentor' => $request->our_organization_believes_mantra_mentor,
             'quickness_in_respond_reporting_manager' => (!is_null($request->quickness_in_respond_reporting_manager) ? $request->quickness_in_respond_reporting_manager : ""),
             'how_well_received_guidance_reporting_manager' => (!is_null($request->how_well_received_guidance_reporting_manager) ? $request->how_well_received_guidance_reporting_manager : ""),
             'how_clearly_your_goals_set_reporting_manager' => (!is_null($request->how_clearly_your_goals_set_reporting_manager) ? $request->how_clearly_your_goals_set_reporting_manager : ""),
             'how_transparent_is_reporting_manager' => (!is_null($request->how_transparent_is_reporting_manager) ? $request->how_transparent_is_reporting_manager : ""),
             'wprs_happen_every_week_reporting_manager' => (!is_null($request->wprs_happen_every_week_reporting_manager) ? $request->wprs_happen_every_week_reporting_manager : ""),
-            'how_well_adjust_changing_priorities_reporting_manager' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager) ? $request->how_well_adjust_changing_priorities_reporting_manager : ""),
             'how_comfortable_feel_sharing_feedback_reporting_manager' => (!is_null($request->how_comfortable_feel_sharing_feedback_reporting_manager) ? $request->how_comfortable_feel_sharing_feedback_reporting_manager : ""),
             'how_well_able_learn_under_guidance_reporting_manager' => (!is_null($request->how_well_able_learn_under_guidance_reporting_manager) ? $request->how_well_able_learn_under_guidance_reporting_manager : ""),
-            'our_organization_believes_mantra' => $request->our_organization_believes_mantra,
-            'quickness_in_respond_reporting_manager_qi' => (!is_null($request->quickness_in_respond_reporting_manager_qi) ? $request->quickness_in_respond_reporting_manager_qi : ""),
-            'how_well_received_guidance_reporting_manager_qi' => (!is_null($request->how_well_received_guidance_reporting_manager_qi) ? $request->how_well_received_guidance_reporting_manager_qi : ""),
-            'how_clearly_your_goals_set_reporting_manager_qi' => (!is_null($request->how_clearly_your_goals_set_reporting_manager_qi) ? $request->how_clearly_your_goals_set_reporting_manager_qi : ""),
-            'how_transparent_is_reporting_manager_qi' => (!is_null($request->how_transparent_is_reporting_manager_qi) ? $request->how_transparent_is_reporting_manager_qi : ""),
-            'frequent_1_1_happen_reporting_manager_qi' => (!is_null($request->frequent_1_1_happen_reporting_manager_qi) ? $request->frequent_1_1_happen_reporting_manager_qi : ""),
-            'how_well_adjust_changing_priorities_reporting_manager_qi' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager_qi) ? $request->how_well_adjust_changing_priorities_reporting_manager_qi : ""),
-
-            'how_comfortable_feel_sharing_feedback_reporting_manager_qi' => (!is_null($request->how_comfortable_feel_sharing_feedback_reporting_manager_qi) ? $request->how_comfortable_feel_sharing_feedback_reporting_manager_qi : ""),
+            'frequent_1_1_happen_reporting_manager_qi' => (!is_null($request->frequent_1_1_happen_reporting_manager) ? $request->frequent_1_1_happen_reporting_manager : "NA"),
+            'how_well_adjust_changing_priorities_reporting_manager' => (!is_null($request->how_well_adjust_changing_priorities_reporting_manager) ? $request->how_well_adjust_changing_priorities_reporting_manager : ""),
             'top_3_strengths_reporting_manager_qi_1' => $request->top_3_strengths_reporting_manager_qi_1,
             'top_3_strengths_reporting_manager_qi_2' => $request->top_3_strengths_reporting_manager_qi_2,
             'top_3_strengths_reporting_manager_qi_3' => $request->top_3_strengths_reporting_manager_qi_3,
             'three_areas_improvement_reporting_manager_qi_1' => $request->three_areas_improvement_reporting_manager_qi_1,
             'three_areas_improvement_reporting_manager_qi_2' => $request->three_areas_improvement_reporting_manager_qi_2,
             'three_areas_improvement_reporting_manager_qi_3' => $request->three_areas_improvement_reporting_manager_qi_3,
-            'our_organization_believes_mantra_reporting_manager_qi' => $request->our_organization_believes_mantra_reporting_manager_qi,
-            'quickness_in_respond_hod_qj' => (!is_null($request->quickness_in_respond_hod_qj) ? $request->quickness_in_respond_hod_qj : ""),
-            'how_well_received_guidance_hod_qj' => (!is_null($request->how_well_received_guidance_hod_qj) ? $request->how_well_received_guidance_hod_qj : ""),
-            'how_clearly_your_goals_set_hod_qj' => (!is_null($request->how_clearly_your_goals_set_hod_qj) ? $request->how_clearly_your_goals_set_hod_qj : ""),
-            'how_transparent_is_hod_qj' => (!is_null($request->how_transparent_is_hod_qj) ? $request->how_transparent_is_hod_qj : ""),
-            'frequent_1_1_happen_hod_qj' => (!is_null($request->frequent_1_1_happen_hod_qj) ? $request->frequent_1_1_happen_hod_qj : ""),
-            'how_well_adjust_changing_priorities_hod_qj' => (!is_null($request->how_well_adjust_changing_priorities_hod_qj) ? $request->how_well_adjust_changing_priorities_hod_qj : ""),
-            'how_comfortable_feel_sharing_feedback_hod_qj' => (!is_null($request->how_comfortable_feel_sharing_feedback_hod_qj) ? $request->how_comfortable_feel_sharing_feedback_hod_qj : ""),
+            'our_organization_believes_mantra' => $request->our_organization_believes_mantra,
+            'overall_feedback_for_hod' => (!is_null($request->overall_feedback_for_hod) ? $request->overall_feedback_for_hod : "NA"),
             'top_3_strengths_hod_qj_1' => $request->top_3_strengths_hod_qj_1,
             'top_3_strengths_hod_qj_2' => $request->top_3_strengths_hod_qj_2,
             'top_3_strengths_hod_qj_3' => $request->top_3_strengths_hod_qj_3,
@@ -775,27 +769,37 @@ class FreshEyeJournalController extends Controller
             'three_areas_improvement_hod_qj_2' => $request->three_areas_improvement_hod_qj_2,
             'three_areas_improvement_hod_qj_3' => $request->three_areas_improvement_hod_qj_3,
             'our_organization_believes_mantra_hod_qj' => $request->our_organization_believes_mantra_hod_qj,
-            'admin_operations' => (!is_null($request->admin_operations) ? $request->admin_operations : ""),
-            'advertiser_sales' => (!is_null($request->advertiser_sales) ? $request->advertiser_sales : ""),
-            'advertisers' => (!is_null($request->advertisers) ? $request->advertisers : ""),
-            'finance_accounts' => (!is_null($request->finance_accounts) ? $request->finance_accounts : ""),
-            'human_resources' => (!is_null($request->human_resources) ? $request->human_resources : ""),
-            'management' => (!is_null($request->management) ? $request->management : ""),
-            'network_operations' => (!is_null($request->network_operations) ? $request->network_operations : ""),
-            'pocket_money' => (!is_null($request->pocket_money) ? $request->pocket_money : ""),
-            'publishers' => (!is_null($request->publishers) ? $request->publishers : ""),
-            'tech_operations_development' => (!is_null($request->tech_operations_development) ? $request->tech_operations_development : ""),
-            'support_ea_pa' => (!is_null($request->support_ea_pa) ? $request->support_ea_pa : ""),
-            'education' => (!is_null($request->education) ? $request->education : ""),
-            'igaming' => (!is_null($request->igaming) ? $request->igaming : ""),
-            'tech_operations_shopify' => (!is_null($request->tech_operations_shopify) ? $request->tech_operations_shopify : ""),
-            'tech_operations_creative' => (!is_null($request->tech_operations_creative) ? $request->tech_operations_creative : ""),
-            'mobile' => (!is_null($request->mobile) ? $request->mobile : ""),
-            'vcommission_uk' => (!is_null($request->vcommission_uk) ? $request->vcommission_uk : ""),
             'any_additional_feedback_any_department' => $request->any_additional_feedback_any_department,
             'any_issue_concern_management' => $request->any_issue_concern_management,
             'status' => $status,
+
         ]);
+
+        
+        /*check rating already exist or not*/
+        $fej_dept_rating_checks = FejDepartmentRate::where('user_id', $user_id)->get();
+
+        if(count($fej_dept_rating_checks)>0){
+
+            FejDepartmentRate::where('user_id', $user_id)->delete();
+        }
+
+        /*save rating in other table, start here*/ 
+        $j=1;
+        foreach ($request->all_departments_name as $key => $value) {
+            $departments_name = "departments_name_".$j;
+            //echo $value.' / '.$request->$departments_name."<br>";
+
+            $input = FejDepartmentRate::insert([
+                'user_id' => $user_id,
+                'department_name' => $value,
+                'rating' => $request->$departments_name,
+                'status' => $status,
+            ]);
+
+            $j++;
+        }
+        /*save rating in other table, end here*/
 
 
         if($status=='1'){
@@ -852,6 +856,22 @@ class FreshEyeJournalController extends Controller
     }
 
 
+
+    public function getMentorNameAjax(Request $request){
+
+        $mentor_id=$request->mentor_id;
+
+        /*fetch all user as trainer*/
+        $mentor_details = User::where('id', $mentor_id)
+        ->first();
+
+        $mentor_name=$mentor_details['first_name'].' '.$mentor_details['last_name'];
+
+        return response()->json($mentor_name);
+
+    }
+
+
     /*this is used in start confirmation process in hr login, start here*/
     public function freshEyeJournal($id){
 
@@ -860,26 +880,23 @@ class FreshEyeJournalController extends Controller
         
         /*check record is exist or not*/
         $fresh_eye_journal_details = FreshEyeJournal::where('fresh_eye_journals.user_id', $user_id)
+        ->where('fresh_eye_journals.status', '2')
         ->leftJoin('designations','designations.id','=','fresh_eye_journals.designation')
         ->leftJoin('departments','departments.id','=','fresh_eye_journals.department')
         ->leftJoin('company_locations','company_locations.id','=','fresh_eye_journals.location_name')
         ->select('fresh_eye_journals.*','designations.name as designation_name','departments.name as department_name','company_locations.name as company_location')
         ->first();
+
+
+        /*check record is exist or not*/
+        $fej_department_rating_details = FejDepartmentRate::where('user_id', $user_id)
+        ->orderBy('id','asc')
+        ->get();
         
 
         //return view('confirmation-process.fresh-eye-journal', compact('employee_id','fresh_eye_journal_details'));
-        return view('fresh-eye-journal-confirmation', compact('employee_id','fresh_eye_journal_details'));
+        return view('fresh-eye-journal-confirmation', compact('employee_id','fresh_eye_journal_details','fej_department_rating_details'));
     }
     /*this is used in start confirmation process in hr login, end here*/
 
-
-
-    /*for testing*/
-    public function managerCheckInFrom($id){
-        $employee_id=$user_id = $id;
-        $check_in_member_details='data';
-
-        //return view('confirmation-process.manager-check-in-form', compact('employee_id','check_in_member_details'));
-        return view('manager-check-in-form-confirmation', compact('employee_id','check_in_member_details'));
-    }
 }

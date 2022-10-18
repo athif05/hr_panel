@@ -17,10 +17,12 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('hod_id');
             $table->enum('is_deleted', ['0','1'])->default('0');
             $table->enum('status', ['0','1'])->default('0');
             $table->timestamps();
             $table->foreign('company_id')->references('id')->on('company_names');
+            $table->foreign('hod_id')->references('id')->on('users');
         });
     }
 

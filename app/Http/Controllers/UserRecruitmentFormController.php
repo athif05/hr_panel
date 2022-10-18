@@ -40,6 +40,7 @@ class UserRecruitmentFormController extends Controller
 
 
         $recruitment_details = UserRecruitmentForm::where('user_recruitment_forms.user_id',$id)
+        ->where('user_recruitment_forms.status','2')
         ->leftJoin('company_names', 'company_names.id', '=', 'user_recruitment_forms.company_name')
         ->leftJoin('job_opening_types', 'job_opening_types.id', '=', 'user_recruitment_forms.how_come_for_job_opening')
         ->leftJoin('designations', 'designations.id', '=', 'user_recruitment_forms.designation')

@@ -23,64 +23,73 @@ class StackholderFeedbackFormController extends Controller
     {
         $member_id=$id;
         $manager_id=Auth::user()->id;
-        
-        $member_details= User::where('users.id',$member_id)
-        ->leftJoin('company_names','company_names.id','=','users.company_id')
-        ->leftJoin('departments','departments.id','=','users.department')
-        ->leftJoin('designations','designations.id','=','users.designation')
-        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
-        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
-        ->first();
 
 
-        $manager_details= User::where('users.id',$manager_id)
-        ->leftJoin('company_names','company_names.id','=','users.company_id')
-        ->leftJoin('departments','departments.id','=','users.department')
-        ->leftJoin('designations','designations.id','=','users.designation')
-        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
-        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
-        ->first();
+        if($member_id!=$manager_id) {
 
-        $company_names = CompanyName::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $designation_names = Designation::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $department_names = Department::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $company_locations = CompanyLocation::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
+            $member_details= User::where('users.id',$member_id)
+            ->leftJoin('company_names','company_names.id','=','users.company_id')
+            ->leftJoin('departments','departments.id','=','users.department')
+            ->leftJoin('designations','designations.id','=','users.designation')
+            ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+            ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+            ->first();
 
 
-        /*check record is exist or not*/
-        $stackholder_feedback_details = StackholderFeedbackForm::where('member_id', $member_id)
-        ->where('manager_id', $manager_id)
-        ->first();
-        
+            $manager_details= User::where('users.id',$manager_id)
+            ->leftJoin('company_names','company_names.id','=','users.company_id')
+            ->leftJoin('departments','departments.id','=','users.department')
+            ->leftJoin('designations','designations.id','=','users.designation')
+            ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+            ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+            ->first();
 
-        if(($stackholder_feedback_details === null) or (($stackholder_feedback_details['status'] === '0') or ($stackholder_feedback_details['status'] === ''))) {
+            $company_names = CompanyName::where('status', '1')
+                ->where('is_deleted', '0')
+                ->orderBy('name','asc')
+                ->get();
 
-            return view('stake-holder-feedback-form', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations'));
+            $designation_names = Designation::where('status', '1')
+                ->where('is_deleted', '0')
+                ->orderBy('name','asc')
+                ->get();
 
-        } else if($stackholder_feedback_details['status'] === '1') {
+            $department_names = Department::where('status', '1')
+                ->where('is_deleted', '0')
+                ->orderBy('name','asc')
+                ->get();
 
-            $edit_id=$stackholder_feedback_details['id'];
-            return redirect("/stake-holder-feedback-form-edit/$member_id/$edit_id");
+            $company_locations = CompanyLocation::where('status', '1')
+                ->where('is_deleted', '0')
+                ->orderBy('name','asc')
+                ->get();
 
-        } else if($stackholder_feedback_details['status'] === '2') {
 
-            return view('stake-holder-feedback-form-show', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
+            /*check record is exist or not*/
+            $stackholder_feedback_details = StackholderFeedbackForm::where('member_id', $member_id)
+            ->where('manager_id', $manager_id)
+            ->first();
+            
+
+            if(($stackholder_feedback_details === null) or (($stackholder_feedback_details['status'] === '0') or ($stackholder_feedback_details['status'] === ''))) {
+
+                return view('stake-holder-feedback-form', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations'));
+
+            } else if($stackholder_feedback_details['status'] === '1') {
+
+                $edit_id=$stackholder_feedback_details['id'];
+                return redirect("/stake-holder-feedback-form-edit/$member_id/$edit_id");
+
+            } else if($stackholder_feedback_details['status'] === '2') {
+
+                return view('stake-holder-feedback-form-show', compact('member_details','manager_details','company_names','designation_names','department_names','company_locations','stackholder_feedback_details'));
+            }
+
+        } else {
+            return view('no-access-page');
         }
+        
+        
 
         
     }
@@ -179,15 +188,95 @@ class StackholderFeedbackFormController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function stakeholderFormListFilter(Request $request) {
+
+        $own_id=Auth::user()->id;
+        
+        $query = User::where('users.id','!=',$own_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
+        ->orderBy('users.first_name','asc');
+
+        if($request->company_id_filter){
+            $query->where('users.company_id', '=', $request->company_id_filter);
+        }
+
+        if($request->department_id_filter){
+            $query->where('users.department', '=', $request->department_id_filter);
+        }
+        if($request->designation_id_filter){
+            $query->where('users.designation', '=', $request->designation_id_filter);
+        }
+        if($request->location_id_filter){
+            $query->where('users.company_location_id', '=', $request->location_id_filter);
+        }
+
+        $all_members = $query->get();
+
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        return view('stakeholder-form-list', compact('all_members','company_names','department_names','designation_names','company_locations'));
+
+    }
+
+    public function showAllMemberList()
     {
-        //
+        $own_id=Auth::user()->id;
+
+        $all_members = User::where('users.id','!=',$own_id)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('company_names', 'company_names.id', '=', 'users.company_id')
+        ->leftJoin('departments', 'departments.id', '=', 'users.department')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
+        ->orderBy('users.first_name','asc')->get();
+
+        $company_names = CompanyName::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $department_names = Department::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $designation_names = Designation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $company_locations = CompanyLocation::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+        $stackholder_feedback_details=StackholderFeedbackForm::get();
+
+        return view('stakeholder-form-list', compact('all_members','company_names','department_names','designation_names','company_locations','stackholder_feedback_details'));
     }
 
     /**
@@ -352,4 +441,32 @@ class StackholderFeedbackFormController extends Controller
     {
         //
     }
+
+
+    /* show stakeholder form in confirmation process in HR role, start here */
+    public function stakeholderFeedback($id){
+        $employee_id=$user_id=$id;
+
+        $user_details= User::where('users.id',$user_id)
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->first();
+
+        $stakeholder_feedback_form_details = StackholderFeedbackForm::where('stackholder_feedback_forms.member_id', $user_id)
+        ->where('stackholder_feedback_forms.status', '2')
+        ->leftJoin('users','users.id','=','stackholder_feedback_forms.manager_id')
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('stackholder_feedback_forms.*', 'users.member_id as manager_member_id', 'users.email as manager_email','company_names.name as manager_company_name', 'departments.name as manager_departments_name','designations.name as manager_designations_name','company_locations.name as manager_location_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_manager_name"))
+        ->get();
+
+        return view('stakeholder-feedback-confirmation', compact('employee_id','user_details','stakeholder_feedback_form_details'));
+    }
+    /* show stakeholder form in confirmation process in HR role, end here */
+
 }

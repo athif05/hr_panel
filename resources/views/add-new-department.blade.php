@@ -45,7 +45,7 @@
                 <div class="col-md-6 position-relative">
                   <label for="name" class="form-label">Department Name</label>
                   <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" required>
-                  <div class="valid-tooltip">
+                  <div class="valid-feedback">
                     Looks good!
                   </div>
                   @if ($errors->has('name'))
@@ -72,6 +72,34 @@
                 </div>
 
 
+                <div class="col-md-6 position-relative">
+                  <label for="name" class="form-label">HOD Name</label>
+                  <!-- <select class="form-select" name="company_id" id="company_id" required>
+                    <option value="">Choose...</option>
+                    @foreach($member_details as $member_detail)
+                    <option value="{{$member_detail['id']}}" @if(old('company_id')==$member_detail['id']) selected @endif>{{$member_detail['full_name']}}</option>
+                    @endforeach
+                  </select> -->
+                    <select class="form-select select2" name="hod_id" id="hod_id" required>
+                      <option value="">Choose...</option> 
+                      @foreach($member_details as $member_detail)
+                        <option value="{{$member_detail['id']}}" @if(old('company_id')==$member_detail['id']) selected @endif>
+                          {{$member_detail['full_name']}}
+                        </option>
+                      @endforeach
+                    </select>
+
+
+                  <div class="invalid-feedback">
+                    Please select HOD name.
+                  </div>
+                  @if ($errors->has('hod_id'))
+                    <span class="text-danger">{{ $errors->first('hod_id') }}</span>
+                  @endif
+                 
+                </div>
+
+
                 <div class="col-12">
                   <input type="submit" name="submit" value="Add" class="btn btn-primary">
                   
@@ -87,6 +115,11 @@
         </div>
       </div>
     </section>
-
+    
+    <!-- select box with search box, start here -->
+    <script>
+        $('.select2').select2();
+    </script>
+    <!-- select box with search box, end here -->
   </main>
 @endsection

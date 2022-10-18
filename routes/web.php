@@ -153,6 +153,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/fresh-eye-journal-form-edit/{id}', [App\Http\Controllers\FreshEyeJournalController::class, 'edit']);
 
 	Route::post('/update-fresh-eye-journal-form', [App\Http\Controllers\FreshEyeJournalController::class, 'update'])->name('update-fresh-eye-journal-form');
+
+	Route::post('/get-mentor-name-ajax', [App\Http\Controllers\FreshEyeJournalController::class, 'getMentorNameAjax']);
 	/*fresh eye journal form, start here*/
 
 	
@@ -262,11 +264,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/ppt/{id}',  [App\Http\Controllers\UserController::class, 'ppt'])->middleware('isHRManagement');
 
-	Route::get('/manager-check-in-from/{id}',  [App\Http\Controllers\FreshEyeJournalController::class, 'managerCheckInFrom'])->middleware('isHRManagement');
+	Route::get('/manager-check-in-from/{id}',  [App\Http\Controllers\Days45CheckInManagerController::class, 'managerCheckInFrom'])->middleware('isHRManagement');
 
 	Route::get('/manager-confirmation-feedback-form/{id}',  [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'managerConfirmationFeedbackForm'])->middleware('isHRManagement');
 
-	Route::get('/stakeholder-feedback/{id}',  [App\Http\Controllers\ConfirmationMomController::class, 'stakeholderFeedback'])->middleware('isHRManagement');
+	Route::get('/stakeholder-feedback/{id}',  [App\Http\Controllers\StackholderFeedbackFormController::class, 'stakeholderFeedback'])->middleware('isHRManagement');
 
 	Route::get('/mom-form/{id}',  [App\Http\Controllers\ConfirmationMomController::class, 'confirmationMomShow'])->middleware('isHRManagement');
 
@@ -360,12 +362,17 @@ Route::group(['middleware' => ['auth']], function() {
 	/*manager check-in form, manager confirmation feedback and mom, end here*/
 
 
+
 	/* stack holder feedback form, start here */
-	Route::get('/stake-holder-feedback-form/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'index'])->middleware('isManager');
+	Route::get('/stakeholder-form-list',  [App\Http\Controllers\StackholderFeedbackFormController::class, 'showAllMemberList']);
+
+	Route::get('/stakeholder-form-list/filter',  [App\Http\Controllers\StackholderFeedbackFormController::class, 'stakeholderFormListFilter'])->name('stakeholder-form-list.filter');
+
+	Route::get('/stake-holder-feedback-form/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'index']);
 
 	Route::post('/save-stake-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'store'])->name('save-stake-holder-feedback-form');
 
-	Route::get('/stake-holder-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'edit'])->middleware('isManager');
+	Route::get('/stake-holder-feedback-form-edit/{user_id}/{id}', [App\Http\Controllers\StackholderFeedbackFormController::class, 'edit']);
 
 	Route::post('/update-stake-holder-feedback-form', [App\Http\Controllers\StackholderFeedbackFormController::class, 'update'])->name('update-stake-holder-feedback-form');
 	/* stack holder feedback form, end here */

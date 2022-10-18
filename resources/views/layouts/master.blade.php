@@ -35,6 +35,15 @@
 
   <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 
+
+  <!-- select box with search box, start here -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <!-- select box with search box, start here -->
+
 </head>
 
 <body>

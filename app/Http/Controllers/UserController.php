@@ -448,15 +448,24 @@ class UserController extends Controller
         $manager_array= self::multilevel_manager($manager1);
 
 
-        $all_members = User::where('users.employee_type','Probation')
+        /*$all_members = User::where('users.employee_type','Probation')
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('confirmation_feedback_forms', 'confirmation_feedback_forms.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
         ->select('users.*', 'company_locations.name as location_name', 'confirmation_feedback_forms.id as feedback_id', 'confirmation_feedback_forms.status as confirmation_feedback_forms_status','designations.name as designation_name')
+        ->orderBy('users.first_name','asc')->get();*/
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->whereIn('users.reporting_to_id',$manager_array)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name', 'designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members'));
+        $confirmation_feedback_form_details=ConfirmationFeedbackForm::get();
+
+        return view('probation-member-list-to-manager-confirmation-feedback', compact('all_members','confirmation_feedback_form_details'));
     }
     /*show all probation member list which is report to manager Confirmation Feedback Form, end here*/
 
@@ -715,7 +724,7 @@ class UserController extends Controller
 
         $profile_filePath = $request->file('image')->store('all-ppt');
 
-        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+        $profile_pic_file_path = '/storage/' . $profile_filePath;
 
 
         if(User::where('id', $user_id)->update(['confirmation_ppt' => $profile_pic_file_path])){
@@ -774,7 +783,7 @@ class UserController extends Controller
 
         $profile_filePath = $request->file('image')->store('all-profile-images');
 
-        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+        $profile_pic_file_path = '/storage/' . $profile_filePath;
 
 
         if(User::where('id', $user_id)->update(['profile_image' => $profile_pic_file_path])){

@@ -91,7 +91,7 @@
 											</table>
 										</td>
 										<td align="center"   style="border-left: 1px solid #ae9322;">
-											<img src="{{ 'http://52.66.206.92'.$user_details['profile_image'] }}" alt="img" width="84" height="87" style="border: solid 4px #f9d94a" />
+											<img src="{{ asset($user_details['profile_image']) }}" alt="img" width="84" height="87" style="border: solid 4px #f9d94a" />
 										</td>
 									</tr>
 

@@ -26,6 +26,7 @@ class TrainingSurveyController extends Controller
         $employee_id=$id;
 
         $training_details = TrainingSurvey::where('training_surveys.user_id', $id)
+        ->where('training_surveys.status','2')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'training_surveys.location_name')
         ->leftJoin('company_names', 'company_names.id', '=', 'training_surveys.company_name')
         ->leftJoin('designations', 'designations.id', '=', 'training_surveys.designation')

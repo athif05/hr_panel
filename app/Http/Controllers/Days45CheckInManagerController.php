@@ -406,4 +406,37 @@ class Days45CheckInManagerController extends Controller
     {
         //
     }
+
+
+    /* show manager check in form in confirmation process in HR role, start here */
+    public function managerCheckInFrom($id) {
+
+        $employee_id=$user_id = $id;
+
+        $user_details= User::where('users.id',$user_id)
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->first();
+
+
+        /*check record is exist or not*/
+        $check_in_manager_details = DB::table('days_45_checkin_managers')
+        ->where('days_45_checkin_managers.member_id', $user_id)
+        ->where('days_45_checkin_managers.status', '2')
+        ->leftJoin('users','users.id','=','days_45_checkin_managers.manager_id')
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('days_45_checkin_managers.*', 'users.member_id as manager_member_id', 'users.email as manager_email','company_names.name as manager_company_name', 'departments.name as manager_departments_name','designations.name as manager_designations_name','company_locations.name as manager_location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_manager_name'))
+        ->get();
+
+        return view('manager-check-in-form-confirmation', compact('employee_id','check_in_manager_details','user_details'));
+    }
+    /* show manager check in form in confirmation process in HR role, end here */
+
+
 }

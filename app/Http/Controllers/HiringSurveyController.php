@@ -28,15 +28,24 @@ class HiringSurveyController extends Controller
         
         //dd($manager_array);
         
-        $all_members = User::where('users.employee_type','Probation')
+        /*$all_members = User::where('users.employee_type','Probation')
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('hiring_surveys', 'hiring_surveys.user_id', '=', 'users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
         ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name','hiring_surveys.id as surveys_form_id', 'hiring_surveys.status as hiring_surveys_status')
+        ->orderBy('users.first_name','asc')->get();*/
+
+        $all_members = User::where('users.employee_type','Probation')
+        ->whereIn('users.reporting_to_id',$manager_array)
+        ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
+        ->leftJoin('designations', 'designations.id', '=', 'users.designation')
+        ->select('users.*', 'company_locations.name as location_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        return view('hiring-survey-list', compact('all_members'));
+        $hiring_survey_details=HiringSurvey::get();
+
+        return view('hiring-survey-list', compact('all_members','hiring_survey_details'));
     }
 
 

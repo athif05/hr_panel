@@ -1,12 +1,4 @@
-<!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>{{ env('MY_SITE_NAME') }}</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      Designed by <a href="https://vcommission.com/">VCOne</a>
-    </div>
-  </footer><!-- End Footer -->
+
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -17,7 +9,38 @@
 
 		jQuery(document).ready(function(){
 
-		
+		/*fetch mentor name in fresh eye journal form, start here*/
+			$('#mentor_id').on('change', function(){
+
+				console.log('mentor');
+
+				var mentor_id=this.value;
+				console.log(mentor_id);
+
+				$.ajax({
+					url: "{{url('get-mentor-name-ajax')}}", 
+					type: "POST",  
+					data:{
+						mentor_id:mentor_id,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#mentor_name_ajax').val(result);
+						$('.mentor_name_ajax_class').html(result);
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+				
+
+			});
+			/*fetch mentor name in fresh eye journal form, end here*/
 
 		/* confirmation email letter form, start here */
 		$('#letter_type').on('change', function(){

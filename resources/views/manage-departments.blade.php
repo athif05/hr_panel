@@ -48,6 +48,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Department Name</th>
                     <th scope="col">Company Name</th>
+                    <th scope="col">HOD Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -63,6 +64,7 @@
 							</a>
 						</td>
 						<td>{{$all_department['company_name_show']}}</td>
+            <td>{{$all_department['full_hod_name']}}</td>
 						<td>
 							
 							<label class="switch">

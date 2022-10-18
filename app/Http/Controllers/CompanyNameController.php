@@ -48,7 +48,7 @@ class CompanyNameController extends Controller
 
         $profile_filePath = $request->file('image')->store('all-company-logos');
 
-        $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+        $profile_pic_file_path = '/storage/' . $profile_filePath;
 
 
         $input = CompanyName::insert([
@@ -130,7 +130,7 @@ class CompanyNameController extends Controller
 
             $profile_filePath = $request->file('image')->store('all-company-logos');
 
-            $profile_pic_file_path = '/storage/app/' . $profile_filePath;
+            $profile_pic_file_path = '/storage/' . $profile_filePath;
 
             CompanyName::where('id', $edit_id)
             ->update([

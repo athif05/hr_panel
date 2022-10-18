@@ -83,33 +83,33 @@
                 <input type="hidden" name="user_id" id="user_id" value="{{ $member_details['id'] }}">
                 
                 <div class="col-md-6 position-relative">
-                  <label for="member_name" class="form-label">1. Member name</label>
+                  <label for="member_name" class="form-label">Member name</label>
                   <input type="text" class="form-control disable-text" name="member_name" id="member_name" value="{{ $member_details['first_name'] }} {{ $member_details['last_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="official_email" class="form-label">2. Member Designation</label>
+                  <label for="official_email" class="form-label">Member Designation</label>
                   <input type="email" class="form-control disable-text" name="designation" id="designation" value="{{ $member_details['designation_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="official_email" class="form-label">3. Department</label>
+                  <label for="official_email" class="form-label">Department</label>
                   <input type="email" class="form-control disable-text" name="department" id="department" value="{{ $member_details['department_name'] }}" readonly>
                 </div>
 
                 <div class="col-md-6 position-relative">
-                  <label for="official_email" class="form-label">4. Current Salary</label>
+                  <label for="official_email" class="form-label">Current Salary</label>
                   <input type="email" class="form-control disable-text" name="current_salary" id="current_salary" value="{{ $member_details['current_salary'] }}" readonly>
                   <input type="hidden" name="salary_percentage_automate" id="salary_percentage_automate" value="{{ $member_details['current_salary'] }}" readonly>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="confirmation_commitment_details" class="form-label">5. Confirmation commitment details</label>
+                  <label for="confirmation_commitment_details" class="form-label">Confirmation commitment details</label>
                   <textarea class="form-control disable-text" name="confirmation_commitment_details" id="confirmation_commitment_details" style="height: 100px" readonly>{{ $member_details['confirmation_commitment_details'] }}</textarea>
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="minutes_of_meeting" class="form-label">6. Minutes of Meeting<br>
+                  <label for="minutes_of_meeting" class="form-label">Minutes of Meeting<br>
                     <span class="span_green">Please provide your Minutes Of Meeting in bullet points</span>
                   </label>
                   <textarea class="form-control" name="minutes_of_meeting" id="minutes_of_meeting" style="height: 100px" required>{{ old('minutes_of_meeting',$mom_form_details->minutes_of_meeting) }}</textarea>
@@ -125,7 +125,7 @@
 
                 @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7'))
                 <div class="col-md-12 position-relative">
-                  <label for="hidden_notes" class="form-label">N. Hidden notes</label>
+                  <label for="hidden_notes" class="form-label">Hidden notes</label>
                   <textarea class="form-control" name="hidden_notes" id="hidden_notes" style="height: 100px" required>{{ old('hidden_notes',$mom_form_details->hidden_notes) }}</textarea>
                   @if ($errors->has('hidden_notes'))
                     <span class="text-danger">{{ $errors->first('hidden_notes') }}</span>
@@ -139,30 +139,67 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label">7. Rate the presentation on the following parameters</label>
+                  <label class="card-title">Rate the presentation on the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
                   <label for="content" class="form-label rdioBtn">Content  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="content" id="content" value="NA" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="content" id="content" value="NA" @if(old('content', $mom_form_details->content)=='NA') checked @elseif(old('content')=='') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="content" id="content" value="1" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="content" id="content" value="1" @if(old('content',$mom_form_details->content)=='1') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="content" id="content" value="2" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="content" id="content" value="3" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="content" id="content" value="2" @if(old('content',$mom_form_details->content)=='2') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="content" id="content" value="4" onclick="agv_rat_fun()"@if(old('content',$mom_form_details->content)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="content" id="content" value="5" onclick="agv_rat_fun()" @if(old('content',$mom_form_details->content)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="content" id="content" value="3" @if(old('content',$mom_form_details->content)=='3') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="content" id="content" value="4" @if(old('content',$mom_form_details->content)=='4') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="content" id="content" value="5" @if(old('content',$mom_form_details->content)=='5') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
 
                   @if ($errors->has('content'))
@@ -175,23 +212,60 @@
                   <label for="confidence" class="form-label rdioBtn">Confidence <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="NA" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="confidence" id="confidence" value="NA" @if(old('confidence', $mom_form_details->confidence)=='NA') checked @elseif(old('confidence')=='') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="1" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="confidence" id="confidence" value="1" @if(old('confidence',$mom_form_details->confidence)=='1') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="2" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="3" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="confidence" id="confidence" value="2" @if(old('confidence',$mom_form_details->confidence)=='2') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="4" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="confidence" id="confidence" value="5" onclick="agv_rat_fun()" @if(old('confidence',$mom_form_details->confidence)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="confidence" id="confidence" value="3" @if(old('confidence',$mom_form_details->confidence)=='3') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="confidence" id="confidence" value="4" @if(old('confidence',$mom_form_details->confidence)=='4') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="confidence" id="confidence" value="5" @if(old('confidence',$mom_form_details->confidence)=='5') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('confidence'))
                     <span class="text-danger">{{ $errors->first('confidence') }}</span>
@@ -203,23 +277,60 @@
                   <label for="communication" class="form-label rdioBtn">Communication <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="NA" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="communication" id="communication" value="NA" @if(old('communication', $mom_form_details->communication)=='NA') checked @elseif(old('communication')=='') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="1" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="communication" id="communication" value="1" @if(old('communication',$mom_form_details->communication)=='1') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="2" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="3" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="communication" id="communication" value="2" @if(old('communication',$mom_form_details->communication)=='2') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="4" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="communication" id="communication" value="5" onclick="agv_rat_fun()" @if(old('communication',$mom_form_details->communication)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="communication" id="communication" value="3" @if(old('communication',$mom_form_details->communication)=='3') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="communication" id="communication" value="4" @if(old('communication',$mom_form_details->communication)=='4') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="communication" id="communication" value="5" @if(old('communication',$mom_form_details->communication)=='5') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('communication'))
                     <span class="text-danger">{{ $errors->first('communication') }}</span>
@@ -231,23 +342,60 @@
                   <label for="data_relevance" class="form-label rdioBtn">Data Relevance <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="NA" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="NA" @if(old('data_relevance', $mom_form_details->data_relevance)=='NA') checked @elseif(old('data_relevance')=='') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="1" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="1" @if(old('data_relevance',$mom_form_details->data_relevance)=='1') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="2" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="3" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="2" @if(old('data_relevance',$mom_form_details->data_relevance)=='2') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="4" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="data_relevance" id="data_relevance" value="5" onclick="agv_rat_fun()" @if(old('data_relevance',$mom_form_details->data_relevance)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="3" @if(old('data_relevance',$mom_form_details->data_relevance)=='3') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="4" @if(old('data_relevance',$mom_form_details->data_relevance)=='4') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="data_relevance" id="data_relevance" value="5" @if(old('data_relevance',$mom_form_details->data_relevance)=='5') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
                   </span>
                   @if ($errors->has('data_relevance'))
                     <span class="text-danger">{{ $errors->first('data_relevance') }}</span>
@@ -259,23 +407,61 @@
                   <label for="overall_growth_individual" class="form-label rdioBtn">Overall growth of the individual <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="NA" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='NA') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="NA" @if(old('overall_growth_individual', $mom_form_details->overall_growth_individual)=='NA') checked @elseif(old('overall_growth_individual')=='') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="1" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="1" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='1') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="2" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="3" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="2" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='2') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="4" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="overall_growth_individual" id="overall_growth_individual" value="5" onclick="agv_rat_fun()" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="3" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='3') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="4" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='4') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="overall_growth_individual" id="overall_growth_individual" value="5" @if(old('overall_growth_individual',$mom_form_details->overall_growth_individual)=='5') checked @endif onclick="agv_rat_fun()">
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
                   @if ($errors->has('overall_growth_individual'))
                     <span class="text-danger">{{ $errors->first('overall_growth_individual') }}</span>

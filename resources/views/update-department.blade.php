@@ -74,6 +74,28 @@
                 </div>
 
 
+                <div class="col-md-6 position-relative">
+                  <label for="name" class="form-label">HOD Name</label>
+                    <select class="form-select select2" name="hod_id" id="hod_id" required>
+                      <option value="">Choose...</option> 
+                      @foreach($member_details as $member_detail)
+                        <option value="{{$member_detail['id']}}" @if($department_details['hod_id']==$member_detail['id']) selected @endif>
+                          {{$member_detail['full_name']}}
+                        </option>
+                      @endforeach
+                    </select>
+
+
+                  <div class="invalid-feedback">
+                    Please select HOD name.
+                  </div>
+                  @if ($errors->has('hod_id'))
+                    <span class="text-danger">{{ $errors->first('hod_id') }}</span>
+                  @endif
+                 
+                </div>
+
+
                 <div class="col-12">
                   <input type="submit" name="submit" value="Update" class="btn btn-primary">
                   
@@ -90,5 +112,11 @@
       </div>
     </section>
 
+    <!-- select box with search box, start here -->
+    <script>
+        $('.select2').select2();
+    </script>
+    <!-- select box with search box, end here -->
+    
   </main>
 @endsection

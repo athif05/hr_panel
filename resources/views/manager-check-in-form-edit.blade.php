@@ -165,30 +165,68 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>Rate {{ $member_details['full_name'] }} level of understanding on the following parameters</strong></label>
+                  <label class="card-title">Rate {{ $member_details['full_name'] }} level of understanding on the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
                   <label for="departmental_processes" class="form-label rdioBtn">Departmental Processes  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="NA" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='NA') checked @endif >
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="NA" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='NA') checked @elseif(old('departmental_processes')=='') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="1" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="1" @if(old('departmental_processes',$check_in_manager_details->departmental_processes)=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="2" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="3" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="2" @if(old('departmental_processes',$check_in_manager_details->departmental_processes)=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="4" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="departmental_processes" id="departmental_processes" value="5" @if(old('departmental_processes', $check_in_manager_details->departmental_processes)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="3" @if(old('departmental_processes',$check_in_manager_details->departmental_processes)=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="4" @if(old('departmental_processes',$check_in_manager_details->departmental_processes)=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="departmental_processes" id="departmental_processes" value="5" @if(old('departmental_processes',$check_in_manager_details->departmental_processes)=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
 
                   @if ($errors->has('departmental_processes'))
@@ -201,23 +239,61 @@
                   <label for="tod_eod_process" class="form-label rdioBtn">TOD/EOD Process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="NA" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='NA')  checked @endif >
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="NA" @if(old('tod_eod_process', $check_in_manager_details->tod_eod_process)=='NA') checked @elseif(old('tod_eod_process')=='') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="1" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="1" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="2" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="3" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="2" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="4" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="tod_eod_process" id="tod_eod_process" value="5" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="3" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="4" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="tod_eod_process" id="tod_eod_process" value="5" @if(old('tod_eod_process',$check_in_manager_details->tod_eod_process)=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
                   @if ($errors->has('tod_eod_process'))
                     <span class="text-danger">{{ $errors->first('tod_eod_process') }}</span>
@@ -229,23 +305,61 @@
                   <label for="month_summary_process" class="form-label rdioBtn">Month Summary Process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="NA" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='NA') checked @endif >
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="NA" @if(old('month_summary_process', $check_in_manager_details->month_summary_process)=='NA') checked @elseif(old('month_summary_process')=='') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="1" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="1" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="2" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="3" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="2" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="4" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="month_summary_process" id="month_summary_process" value="5" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="3" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="4" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="month_summary_process" id="month_summary_process" value="5" @if(old('month_summary_process',$check_in_manager_details->month_summary_process)=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
                   @if ($errors->has('month_summary_process'))
                     <span class="text-danger">{{ $errors->first('month_summary_process') }}</span>
@@ -257,23 +371,61 @@
                   <label for="relevant_software_tools" class="form-label rdioBtn">Relevant software/tools <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="NA" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='NA') checked @endif >
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="NA" @if(old('relevant_software_tools', $check_in_manager_details->relevant_software_tools)=='NA') checked @elseif(old('relevant_software_tools')=='') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="1" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="1" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="2" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="3" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="2" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="4" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="relevant_software_tools" id="relevant_software_tools" value="5" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="3" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="4" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="relevant_software_tools" id="relevant_software_tools" value="5" @if(old('relevant_software_tools',$check_in_manager_details->relevant_software_tools)=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
                   @if ($errors->has('relevant_software_tools'))
                     <span class="text-danger">{{ $errors->first('relevant_software_tools') }}</span>
@@ -285,23 +437,61 @@
                   <label for="organization_policies_processes" class="form-label rdioBtn">Organization's Policies & Processes <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="NA" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='NA') checked @endif >
-                    <label class="form-check-label" for="gridRadios1">NA</label>
+                    <div class="rating">
+                      <label class="form_row form_row_0">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="NA" @if(old('organization_policies_processes', $check_in_manager_details->organization_policies_processes)=='NA') checked @elseif(old('organization_policies_processes')=='') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+                          <p>NA</p>
+                        </div>
+                      </label>
+              
 
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="1" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='1') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">1</label>
+                      <label class="form_row form_row_1">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="1" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='1') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+                          <p>1 <span>Poor</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="2" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='2') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">2</label>
 
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="3" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='3') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">3</label>
+                      <label class="form_row form_row_2">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="2" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='2') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+                          <p>2 <span>Fair</span></p>
+                        </div>
+                      </label>
 
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="4" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='4') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">4</label>
 
-                    <input class="form-check-input" type="radio" name="organization_policies_processes" id="organization_policies_processes" value="5" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='5') checked @endif>
-                    <label class="form-check-label" for="gridRadios1">5</label>
+                      <label class="form_row form_row_3">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="3" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='3') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+                          <p>3 <span>Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_4">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="4" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='4') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+                          <p>4 <span>Very Good</span></p>
+                        </div>
+                      </label>
+
+
+                      <label class="form_row form_row_5">
+                        <input type="radio" name="organization_policies_processes" id="organization_policies_processes" value="5" @if(old('organization_policies_processes',$check_in_manager_details->organization_policies_processes)=='5') checked @endif>
+                        <div class="checkmark">
+                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+                          <p>5 <span>Outstanding</span></p>
+                        </div>
+                      </label>
+                    </div>
+                    
                   </span>
                   @if ($errors->has('organization_policies_processes'))
                     <span class="text-danger">{{ $errors->first('organization_policies_processes') }}</span>
@@ -331,7 +521,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label class="form-label"><strong>Rate Organization's Policies & Processes on core values of the organization</strong></label>
+                  <label class="card-title">Rate Organization's Policies & Processes on core values of the organization</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
