@@ -19,7 +19,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
     </div>
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      @if(Auth::user()->role_id!='1')
+      
       <li class="nav-item">
         <a class="nav-link " href="{{ url('/home') }}">
 			
@@ -27,7 +27,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      @endif
+      
 
       <!--<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
