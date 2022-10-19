@@ -376,10 +376,11 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-  .logo {
+.logo {
     width: 215px;
     text-align: center;
-  }
+    padding-bottom: 14px;
+}
 }
 
 .logo img {

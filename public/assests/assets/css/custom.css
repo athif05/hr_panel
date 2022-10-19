@@ -201,7 +201,7 @@ input:checked + .slider:before {
 
 form .form-label {
     margin-bottom: 5px !important;
-    color: #999cbb !important;
+    color: #44497a !important;
     font-size: 14px !important;
     font-weight: 400 !important;
 }
@@ -222,7 +222,7 @@ form .form-label {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin: 0 0 30px;
+    margin: 0 0 3px;
     position: relative;
     padding-bottom: 0;
     width: 100%;
@@ -299,71 +299,110 @@ form .form-label {
 
 
 .rating .form_row_0 input:checked ~ .checkmark {
-background: -moz-linear-gradient(90deg, #FFFFFF 0, #737b8b 100%);/* FF3.6+ */
-background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 737b8b));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #737b8b 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #737b8b 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #737b8b 100%);/* IE10+ */
+background: -moz-linear-gradient(90deg, #FFFFFF 0, #737b8b40 100%);/* FF3.6+ */
+background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 737b8b40));/* Chrome,Safari4+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #737b8b40 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #737b8b40 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #737b8b40 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #737b8b 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #737b8b40 100%);/* W3C */
 }
 
 
 .rating .form_row_1 input:checked ~ .checkmark {
-background: -moz-linear-gradient(90deg, #FFFFFF 0, #f63131 100%);/* FF3.6+ */
+background: -moz-linear-gradient(90deg, #FFFFFF 0, #f6313140 100%);/* FF3.6+ */
 background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, f63131));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #f63131 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #f63131 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #f63131 100%);/* IE10+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #f6313140 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #f6313140 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #f6313140 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #f63131 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #f6313140 100%);/* W3C */
 }
 
 .rating .form_row_2 input:checked ~ .checkmark {
-    background: -moz-linear-gradient(90deg, #FFFFFF 0, #fa7209 100%);/* FF3.6+ */
-background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, fa7209));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #fa7209 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #fa7209 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #fa7209 100%);/* IE10+ */
+    background: -moz-linear-gradient(90deg, #FFFFFF 0, #fa720940 100%);/* FF3.6+ */
+background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, fa720940));/* Chrome,Safari4+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #fa720940 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #fa720940 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #fa720940 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #fa7209 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #fa720940 100%);/* W3C */
 }
 
 
 
 .rating .form_row_3 input:checked ~ .checkmark {
-background: -moz-linear-gradient(90deg, #FFFFFF 0, #ffb400 100%);/* FF3.6+ */
+background: -moz-linear-gradient(90deg, #FFFFFF 0, #ffb40040 100%);/* FF3.6+ */
 background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, ffb400));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #ffb400 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #ffb400 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #ffb400 100%);/* IE10+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #ffb40040 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #ffb40040 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #ffb40040 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #ffb400 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #ffb40040 100%);/* W3C */
 }
 
 .rating .form_row_4 input:checked ~ .checkmark {
-background: -moz-linear-gradient(90deg, #FFFFFF 0, #88c305 100%);/* FF3.6+ */
-background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 88c305));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #88c305 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #88c305 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #88c305 100%);/* IE10+ */
+background: -moz-linear-gradient(90deg, #FFFFFF 0, #88c30540 100%);/* FF3.6+ */
+background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 88c30540));/* Chrome,Safari4+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #88c30540 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #88c30540 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #88c30540 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #88c305 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #88c30540 100%);/* W3C */
 }
 
 .rating .form_row_5 input:checked ~ .checkmark {
-background: -moz-linear-gradient(90deg, #FFFFFF 0, #02c13a 100%);/* FF3.6+ */
-background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 02c13a));/* Chrome,Safari4+ */
-background: -webkit-linear-gradient(90deg, #FFFFFF 0, #02c13a 100%);/* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(90deg, #FFFFFF 0, #02c13a 100%);/* Opera 11.10+ */
-background: -ms-linear-gradient(90deg, #FFFFFF 0, #02c13a 100%);/* IE10+ */
+background: -moz-linear-gradient(90deg, #FFFFFF 0, #02c13a40 100%);/* FF3.6+ */
+background: -webkit-gradient(linear, 90deg, color-stop(0, FFFFFF), color-stop(100%, 02c13a40));/* Chrome,Safari4+ */
+background: -webkit-linear-gradient(90deg, #FFFFFF 0, #02c13a40 100%);/* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(90deg, #FFFFFF 0, #02c13a40 100%);/* Opera 11.10+ */
+background: -ms-linear-gradient(90deg, #FFFFFF 0, #02c13a40 100%);/* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1'); /* for IE */
-background: linear-gradient(90deg, #FFFFFF 0, #02c13a 100%);/* W3C */
+background: linear-gradient(90deg, #FFFFFF 0, #02c13a40 100%);/* W3C */
+}
+ 
+span#radioBtn {
+    display: flex;
+    align-items: center;
+    margin: 3px 0 3px;
+}
+span#radioBtn label {
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 30px 0 5px;
+    color: #193774e3;
+}
+.form-check-input:checked:before {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50px;
+}
+.form-check-input:checked {
+    border-color: #247c8f;
+    background: linear-gradient(90deg, #034452 0, #218b96 100%) !important;
+}
+.form-check-input[type=radio] {
+    margin: 0;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    position: relative;
 }
 
 
-.rating .form_row input:checked ~ .checkmark p, .rating .form_row input:checked ~ .checkmark span{
-	
-	color: #ffffff;
-	
-}
+
+
+
+
+
+
+
+
+
+
+
