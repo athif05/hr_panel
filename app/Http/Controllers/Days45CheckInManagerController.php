@@ -439,4 +439,36 @@ class Days45CheckInManagerController extends Controller
     /* show manager check in form in confirmation process in HR role, end here */
 
 
+
+    public function managerFeedbackShowMember(){
+        
+        $member_id=Auth::user()->id;
+
+        $member_details= User::where('users.id',$member_id)
+        ->where('users.employee_type','Confirmed')
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('users.*', 'company_names.name as company_name', 'departments.name as department_name', 'designations.name as designation_name', 'company_locations.name as location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->first();
+        //dd($member_details);
+
+        /*check record is exist or not*/
+        $check_in_manager_details = DB::table('days_45_checkin_managers')
+        ->where('days_45_checkin_managers.status', '2')
+        ->where('days_45_checkin_managers.member_id', $member_id)
+        ->leftJoin('users','users.id','=','days_45_checkin_managers.manager_id')
+        ->leftJoin('company_names','company_names.id','=','users.company_id')
+        ->leftJoin('designations','designations.id','=','users.designation')
+        ->leftJoin('departments','departments.id','=','users.department')
+        ->leftJoin('company_locations','company_locations.id','=','users.company_location_id')
+        ->select('days_45_checkin_managers.*', 'users.member_id as manager_member_code', 'company_names.name as manager_company_name', 'designations.name as manager_designation_name', 'departments.name as manager_department_name', 'users.email as manager_email', 'company_locations.name as manager_location_name', DB::raw('CONCAT(first_name, " ", last_name) AS full_manager_name'))
+        ->get();
+        
+
+        return view('manager-check-in-form-show-to-member', compact('member_details','check_in_manager_details'));
+        
+    }
+
 }

@@ -169,6 +169,19 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
               </a>
             </li>
 
+            @if(Auth::user()->employee_type=='Confirmed')
+            <li>
+              <a href="{{ url('/manager-check-in-form-feedback') }}">
+                <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form Feedback</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/confirmation-feedback-show-to-member') }}">
+                <i class="bi bi-circle"></i><span>Manager Confirmation Feedback</span>
+              </a>
+            </li>
+            @endif
             
 
             
@@ -181,13 +194,13 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
           <li>
             <a href="{{ url('/manager-check-in-form') }}">
-              <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form</span>
+              <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form List</span>
             </a>
           </li>
 
           <li>
             <a href="{{ url('/confirmation-feedback-form') }}">
-              <i class="bi bi-circle"></i><span>Manager’s Feedback for Confirmation</span>
+              <i class="bi bi-circle"></i><span>Manager’s Feedback for Confirmation List</span>
             </a>
           </li>
 

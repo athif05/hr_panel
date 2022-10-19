@@ -157,6 +157,16 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/get-mentor-name-ajax', [App\Http\Controllers\FreshEyeJournalController::class, 'getMentorNameAjax']);
 	/*fresh eye journal form, start here*/
 
+
+	/* 45 days manager-check-in-form-feedback show to member, start here */
+	Route::get('/manager-check-in-form-feedback', [App\Http\Controllers\Days45CheckInManagerController::class, 'managerFeedbackShowMember']);
+	/* 45 days manager-check-in-form-feedback show to member, end here */
+
+
+	/* manager-confirmation-feedback show to member, start here */
+	Route::get('/confirmation-feedback-show-to-member', [App\Http\Controllers\ConfirmationFeedbackFormController::class, 'confirmationFeedbackShowToMember']);
+	/* 45 days manager-check-in-form-feedback show to member, end here */
+
 	
 
 	/* manage departments, start here */
