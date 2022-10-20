@@ -29,6 +29,11 @@ return new class extends Migration
             $table->double('current_salary', 10,2);
             $table->string('hod_name')->nullable();
             $table->string('hod_email')->nullable();
+            $table->string('skills')->nullable();
+            $table->string('permanent_address')->nullable();
+            $table->string('current_address')->nullable();
+            $table->date('birthday_date')->nullable();
+            $table->string('energy')->nullable();
             $table->foreign('company_id')->references('id')->on('company_names');
             $table->foreign('company_location_id')->references('id')->on('company_locations');
         });
