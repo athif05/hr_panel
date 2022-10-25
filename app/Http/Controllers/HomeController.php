@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\InitiatingPipForm;
-use App\Models\{CompanyName, CompanyLocation, Department};
+use App\Models\{CompanyName, CompanyLocation, Department, Achievement};
 
 use Auth;
 
@@ -109,13 +110,26 @@ class HomeController extends Controller
             ->orderBy('name','asc')
             ->get();
 
+        //education details for logged in member
+        $logged_in_education_deatils = DB::table('member_educations')
+        ->where('user_id', $user_id)
+        ->get();
+        $edu_count=count($logged_in_education_deatils);
+        //dd($edu_count);
+
+        $achievement_category_lists = Achievement::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('name','asc')
+            ->get();
+
+
         //$no_of_members = Department::withCount('user')->get();
         //dd($no_of_members);
         //dd(date('m-d', strtotime($user_genders[0]['appraisal_cycle'])));
 
         /*these all quries used for show data in dashboard, end here*/
 
-        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names'));
+        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names','logged_in_education_deatils','edu_count','achievement_category_lists'));
     }
 
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\Achievement;
 
 class AchievementController extends Controller
 {
@@ -13,7 +16,9 @@ class AchievementController extends Controller
      */
     public function index()
     {
-        //
+        $all_achievements = Achievement::orderBy('name','asc')->get();
+
+        return view('manage-achievements', compact('all_achievements'));
     }
 
     /**
@@ -23,7 +28,7 @@ class AchievementController extends Controller
      */
     public function create()
     {
-        //
+        return view('add-new-achievement');
     }
 
     /**
@@ -34,7 +39,23 @@ class AchievementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        $input = Achievement::insert([
+            'name' => $request->name,
+            'status' => '1',
+        ]);
+
+
+        if($input){
+            return back()->with('success_msg', 'Achievement is added.');
+        } else {
+            return back()->with('error_msg', 'Something is wrong.');
+        }
     }
 
     /**
@@ -56,7 +77,9 @@ class AchievementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $achievement_details = Achievement::where('id', $id)->first();
+        
+        return view('update-achievement', compact('achievement_details'));
     }
 
     /**
@@ -66,9 +89,20 @@ class AchievementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Name is required',
+        ]);
+
+        Achievement::where('id', $request->achievement_id)
+            ->update([
+                'name' => $request->name,
+            ]);
+
+        return redirect('/manage-achievements')->with('success_msg', 'Achievement updated.');
     }
 
     /**

@@ -29,124 +29,48 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       </li><!-- End Dashboard Nav -->
       
 
-      <!--<li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-buttons.html">
-              <i class="bi bi-circle"></i><span>Buttons</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-cards.html">
-              <i class="bi bi-circle"></i><span>Cards</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-carousel.html">
-              <i class="bi bi-circle"></i><span>Carousel</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-list-group.html">
-              <i class="bi bi-circle"></i><span>List group</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-modal.html">
-              <i class="bi bi-circle"></i><span>Modal</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tabs.html">
-              <i class="bi bi-circle"></i><span>Tabs</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-pagination.html">
-              <i class="bi bi-circle"></i><span>Pagination</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-progress.html">
-              <i class="bi bi-circle"></i><span>Progress</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-spinners.html">
-              <i class="bi bi-circle"></i><span>Spinners</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-tooltips.html">
-              <i class="bi bi-circle"></i><span>Tooltips</span>
-            </a>
-          </li>
-        </ul>
-      </li>--><!-- End Components Nav -->
-
-      
+      <!-- individual panel sidebar, start here -->
       <li class="nav-item">
         <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-			<span class="shape1"></span>
-<span class="shape2"></span>
-          <i class="bi bi-journal-text"></i><span>Confirmation Panel </span><i class="bi bi-chevron-down ms-auto"></i>
+			   <span class="shape1"></span>
+          <span class="shape2"></span>
+          <i class="bi bi-journal-text"></i><span>Confirmation Panel (Individual) </span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content  " data-bs-parent="#sidebar-nav">
           
             @if((Auth::user()->joining_date) <= $last2days)
-             <li>
-              <a href="{{ url('/recruitment-survey') }}">
-                <i class="bi bi-circle"></i><span>Recruitment Survey</span>
-              </a>
-            </li>
+              <li>
+                <a href="{{ url('/interview-survey') }}" class="{{ request()->is('interview-survey','interview-survey-edit/*') ? 'active' : '' }}">
+                  <i class="bi bi-circle"></i><span>Interview Survey</span>
+                </a>
+              </li>
 
-            <li>
-              <a href="{{ url('/interview-survey') }}">
-                <i class="bi bi-circle"></i><span>Interview Survey</span>
-              </a>
-            </li>
+              <li>
+                <a href="{{ url('/recruitment-survey') }}" class="{{ request()->is('recruitment-survey','recruitment-survey-edit/*') ? 'active' : '' }}">
+                  <i class="bi bi-circle"></i><span>Recruitment Survey</span>
+                </a>
+              </li>
+
+            
             @endif
 
             @if((Auth::user()->joining_date) <= $last45days)
             <li>
-              <a href="{{ url('/member-check-in-form') }}">
+              <a href="{{ url('/member-check-in-form') }}" class="{{ request()->is('member-check-in-form','member-check-in-form-edit/*') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>45 Days Check-In Form</span>
               </a>
             </li>
             @endif
 
            <li>
-              <a href="{{ url('/training-survey') }}">
+              <a href="{{ url('/training-survey') }}" class="{{ request()->is('training-survey','training-survey-edit/*') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>Training Survey</span>
               </a>
             </li>
 
             @if((Auth::user()->joining_date) <= $last70days)
             <li>
-              <a href="{{ url('/fresh-eye-journal-form') }}">
+              <a href="{{ url('/fresh-eye-journal-form') }}" class="{{ request()->is('fresh-eye-journal-form','fresh-eye-journal-form-edit/*') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>Fresh Eye Journal</span>
               </a>
             </li>
@@ -155,7 +79,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
             @if(session('is_under_pip_member'))
             <li>
-              <a href="{{ url('/member-pip-show') }}">
+              <a href="{{ url('/member-pip-show') }}" class="{{ request()->is('member-pip-show') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>PIP Form</span>
               </a>
             </li>
@@ -163,112 +87,29 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
 
             <li>
-              <a href="{{ url('/ppt-upload') }}">
+              <a href="{{ url('/ppt-upload') }}" class="{{ request()->is('ppt-upload') ? 'active' : '' }}">
                 <i class="bi bi-upload"></i>
                 <span>Upload PPT</span>
               </a>
             </li>
 
+
             @if(Auth::user()->employee_type=='Confirmed')
             <li>
-              <a href="{{ url('/manager-check-in-form-feedback') }}">
+              <a href="{{ url('/manager-check-in-form-feedback') }}" class="{{ request()->is('manager-check-in-form-feedback') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form Feedback</span>
               </a>
             </li>
 
             <li>
-              <a href="{{ url('/confirmation-feedback-show-to-member') }}">
+              <a href="{{ url('/confirmation-feedback-show-to-member') }}" class="{{ request()->is('confirmation-feedback-show-to-member') ? 'active' : '' }}">
                 <i class="bi bi-circle"></i><span>Manager Confirmation Feedback</span>
               </a>
             </li>
-            @endif
-            
-
-            
-          @if(Auth::user()->role_id=='3')
-          <li>
-            <a href="{{ url('/hiring-survey-list') }}">
-              <i class="bi bi-circle"></i><span>Hiring Survey</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ url('/manager-check-in-form') }}">
-              <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form List</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ url('/confirmation-feedback-form') }}">
-              <i class="bi bi-circle"></i><span>Manager’s Feedback for Confirmation List</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ url('/pip-member-list') }}">
-              <i class="bi bi-circle"></i><span>PIP Member List</span>
-            </a>
-          </li>
-
+          @endif
           
           <li>
-            <a href="{{ url('/manager-mom') }}">
-              <i class="bi bi-journal-text"></i>
-              <span>MOM</span>
-            </a>
-          </li>
-
-          @endif
-
-
-          @if(Auth::user()->role_id=='5')
-          <li>
-            <a href="{{ url('/confirmation-process-initation-form') }}">
-              <i class="bi bi-circle"></i><span>Confirmation Process Initation Form</span>
-            </a>
-          </li>
-
-          <!-- <li>
-            <a href="{{ url('/fresh-eye-journal-form') }}">
-              <i class="bi bi-circle"></i><span>Fresh Eye Journal Form</span>
-            </a>
-          </li> -->
-          @endif
-
-          @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='8'))
-          <li>
-            <a href="{{ url('confirmation-process-mom-email') }}">
-              <i class="bi bi-hand-thumbs-up-fill"></i>
-              <span>Confirmation Process</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ url('/hr-generate-emails') }}">
-              <i class="bi bi-journal-text"></i>
-              <span>Generate Emails</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ url('/hr-mom') }}">
-              <i class="bi bi-journal-text"></i>
-              <span>MOM</span>
-            </a>
-          </li>
-
-
-          <li>
-            <a href="{{ url('/hr-pip') }}">
-              <i class="bi bi-journal-text"></i>
-              <span>PIP</span>
-            </a>
-          </li>
-
-          @endif
-
-          <li>
-            <a href="{{ url('/stakeholder-form-list') }}">
+            <a href="{{ url('/stakeholder-form-list') }}" class="{{ request()->is('stakeholder-form-list','stake-holder-feedback-form/*','stake-holder-feedback-form-edit/*/*') ? 'active' : '' }}">
               <i class="bi bi-upload"></i>
               <span>Stakeholder Form</span>
             </a>
@@ -276,7 +117,113 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
         </ul>
       </li><!-- End Forms Nav -->
+      <!-- individual panel sidebar, end here -->
 
+
+      
+      <!-- manager panel sidebar, start here -->
+      @if(Auth::user()->role_id=='3')
+        <li class="nav-item">
+          <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+           <span class="shape1"></span>
+            <span class="shape2"></span>
+            <i class="bi bi-journal-text"></i><span>Confirmation Panel (Manager) </span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content  " data-bs-parent="#sidebar-nav">
+          
+            <li>
+              <a href="{{ url('/hiring-survey-list') }}" class="{{ request()->is('hiring-survey-list','hiring-survey/*','hiring-survey-edit/*/*') ? 'active' : '' }}">
+                <i class="bi bi-circle"></i><span>Hiring Survey</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/manager-check-in-form') }}" class="{{ request()->is('manager-check-in-form','manager-check-in-form/*','manager-check-in-form-edit/*/*') ? 'active' : '' }}">
+                <i class="bi bi-circle"></i><span>45 Days Manager Check-In Form List</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/confirmation-feedback-form') }}" class="{{ request()->is('confirmation-feedback-form','confirmation-feedback-form/*','confirmation-feedback-form-edit/*/*','confirmation-feedback-form-show/*/*') ? 'active' : '' }}">
+                <i class="bi bi-circle"></i><span>Manager’s Feedback for Confirmation List</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/pip-member-list') }}" class="{{ request()->is('pip-member-list','initiating-pip-email-form/*','initiating-pip-email-form-edit/*','pip-closure-form-edit/*','closure-pip-email-form/*') ? 'active' : '' }}">
+                <i class="bi bi-circle"></i><span>PIP Member List</span>
+              </a>
+            </li>
+
+            
+            <li>
+              <a href="{{ url('/manager-mom') }}" class="{{ request()->is('manager-mom','manager-mom/*','manager-mom-form-edit/*/*','manager-mom-form-show/*/*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i>
+                <span>MOM</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+      @endif
+      <!-- manager panel sidebar, end here -->
+
+
+
+      <!-- hr panel sidebar, start here -->
+      @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='8'))
+        <li class="nav-item">
+          <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+           <span class="shape1"></span>
+            <span class="shape2"></span>
+            <i class="bi bi-journal-text"></i><span>Confirmation Panel (HR) </span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+        
+
+            @if(Auth::user()->role_id=='5')
+            <li>
+              <a href="{{ url('/confirmation-process-initation-form') }}">
+                <i class="bi bi-circle"></i><span>Confirmation Process Initation Form</span>
+              </a>
+            </li>
+            @endif
+
+            
+            <li>
+              <a href="{{ url('confirmation-process-mom-email') }}" class="{{ request()->is('confirmation-process-mom-email','mom-email-view/*') ? 'active' : '' }}">
+                <i class="bi bi-hand-thumbs-up-fill"></i>
+                <span>Confirmation Process</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/hr-generate-emails') }}" class="{{ request()->is('hr-generate-emails','generate-email-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i>
+                <span>Generate Emails</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/hr-mom') }}" class="{{ request()->is('hr-mom','manager-mom/*','manager-mom-form-edit/*/*','manager-mom-form-show/*/*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i>
+                <span>MOM</span>
+              </a>
+            </li>
+
+
+            <li>
+              <a href="{{ url('/hr-pip') }}" class="{{ request()->is('hr-pip','hr-pip-view/*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i>
+                <span>PIP</span>
+              </a>
+            </li>
+
+
+          </ul>
+        </li><!-- End Forms Nav -->
+      @endif
+      <!-- hr panel sidebar, end here -->
 
       
       
@@ -300,41 +247,47 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ url('/manage-roles') }}">
+            <a href="{{ url('/manage-roles') }}" class="{{ request()->is('manage-roles','add-new-role','edit-role/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Roles</span>
             </a>
           </li>
 
 
           <li>
-            <a href="{{ url('/manage-company-names') }}">
+            <a href="{{ url('/manage-company-names') }}" class="{{ request()->is('manage-company-names','add-new-company','edit-company-name/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Company Name</span>
             </a>
           </li>
 
 
           <li>
-            <a href="{{ url('/manage-company-locations') }}">
+            <a href="{{ url('/manage-company-locations') }}" class="{{ request()->is('manage-company-locations','add-new-location','edit-company-location/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Company Locations</span>
             </a>
           </li>
 
 
           <li>
-            <a href="{{ url('/manage-job-opening-types') }}">
+            <a href="{{ url('/manage-job-opening-types') }}" class="{{ request()->is('manage-job-opening-types','add-new-job-opening-type','edit-job-opening-type/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Job Opening Types</span>
             </a>
           </li>
 
           <li>
-            <a href="{{ url('/manage-departments') }}">
+            <a href="{{ url('/manage-departments') }}" class="{{ request()->is('manage-departments','add-new-department','edit-department/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Departments</span>
             </a>
           </li>
 
           <li>
-            <a href="{{ url('/manage-designations') }}">
+            <a href="{{ url('/manage-designations') }}" class="{{ request()->is('manage-designations','add-new-designation','edit-designation/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Designations</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="{{ url('/manage-achievements') }}" class="{{ request()->is('manage-achievements','add-new-achievement','edit-achievement/*') ? 'active' : '' }}">
+              <i class="bi bi-circle"></i><span>Manage Achievements</span>
             </a>
           </li>
 
@@ -343,105 +296,7 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       </li><!-- End Tables Nav -->
       @endif
 
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Chart.js</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-apexcharts.html">
-              <i class="bi bi-circle"></i><span>ApexCharts</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-echarts.html">
-              <i class="bi bi-circle"></i><span>ECharts</span>
-            </a>
-          </li>
-        </ul>
-      </li> --><!-- End Charts Nav -->
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li> --><!-- End Icons Nav -->
-
-      <!-- <li class="nav-heading">Pages</li> -->
-
-      <!--
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li>
-      -->
-
+      
     </ul>
 
 

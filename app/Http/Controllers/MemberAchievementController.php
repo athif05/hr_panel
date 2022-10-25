@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\MemberAchievement;
+
+use Auth;
 
 class MemberAchievementController extends Controller
 {
@@ -32,9 +38,19 @@ class MemberAchievementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveMemberAchievement(Request $request)
     {
-        //
+        
+        $user_id=Auth::user()->id;
+        //dd($user_id);
+
+        $input = MemberAchievement::insert([
+            'user_id' => $user_id,
+            'achievement_id' => $request->achievement_id,
+            'achievement_year_month' => $request->achievement_year_month,
+        ]);
+
+        return true;
     }
 
     /**

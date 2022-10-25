@@ -197,6 +197,35 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
+	/* manage achievements, start here */
+	Route::get('/manage-achievements',  [App\Http\Controllers\AchievementController::class, 'index'])->middleware('isManagement');
+
+	Route::get('/add-new-achievement',  [App\Http\Controllers\AchievementController::class, 'create'])->middleware('isManagement');
+
+	Route::post('/save-new-achievement', [App\Http\Controllers\AchievementController::class, 'store'])->name('save-new-achievement');
+
+	Route::get('/edit-achievement/{id}', [App\Http\Controllers\AchievementController::class, 'edit'])->middleware('isManagement');
+
+	Route::post('/update-achievement', [App\Http\Controllers\AchievementController::class, 'update'])->name('update-achievement');
+	/* manage achievements, end here */
+
+
+
+	/* save member info from dashboard, start here */
+	Route::post('/save-member-skills-ajax', [App\Http\Controllers\UserController::class, 'saveMemberSkills']);
+
+	Route::post('/save-member-address-ajax', [App\Http\Controllers\UserController::class, 'saveMemberAddress']);
+
+	Route::post('/save-member-birthday-ajax', [App\Http\Controllers\UserController::class, 'saveMemberBirthday']);
+
+	Route::post('/save-member-education-ajax', [App\Http\Controllers\MemberEducationController::class, 'saveMemberEducation']);
+
+	Route::post('/save-member-achievements-ajax', [App\Http\Controllers\MemberAchievementController::class, 'saveMemberAchievement']);
+	/* save member info from dashboard, end here */
+
+
+
+
 	/* manage roles, start here */
 	Route::get('/manage-roles',  [App\Http\Controllers\RoleController::class, 'index'])->middleware('isManagement');
 

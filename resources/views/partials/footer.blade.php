@@ -9,6 +9,224 @@
 
 		jQuery(document).ready(function(){
 
+		/* add more education div, start here */
+		// Add new element
+    $(".add").click(function(){
+
+        // Finding total number of elements added
+        var total_element = $(".element").length;
+                    
+        // last <div> with element class id
+        var lastid = $(".element:last").attr("id");
+        var split_id = lastid.split("_");
+        var nextindex = Number(split_id[1]) + 1;
+
+        var max = 5;
+        // Check total number elements
+        if(total_element < max ){
+            // Adding new div container after last occurance of element class
+            $(".element:last").after("<div class='element' id='div_"+ nextindex +"'></div>");
+                        
+            // Adding element to <div>
+            /*$("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill' id='txt_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove'>X</span>");*/
+            $("#div_" + nextindex).append("<div style='float: left; width: 100%; margin-top:5px;'><div style='float: left; width: 20%;'><input type='text' placeholder='Course' name='course_name[]' id='txt_1' class='form-control' style='width: 98%;'></div><div style='float: left; width: 34%;'><input type='text' placeholder='University' name='university_name[]' id='txt_2' class='form-control' style='width: 98%;'></div><div style='float: left; width: 25%;'><input type='text' placeholder='Year' name='passing_year[]' id='txt_3' class='form-control' style='width: 98%;'></div><div style='float: left; width: 15%;'><input type='text' placeholder='Marks' name='percentage[]' id='txt_4' class='form-control'></div><div style='float: left; width: 6%; font-size: 18px; color:red; cursor: pointer; text-align: center;line-height: 46px;'><span id='remove_" + nextindex + "' class='remove'>X</span></div></div>");
+                    
+        }
+                    
+    });
+
+    // Remove element
+    $('.container').on('click','.remove',function(){
+                
+        var id = this.id;
+        var split_id = id.split("_");
+        var deleteindex = split_id[1];
+
+        // Remove <div> with id
+        $("#div_" + deleteindex).remove();
+    }); 
+		/* add more education div, end here */
+
+
+
+		/* save member education, start heere */
+		$('#save_member_education').on('click', function(){
+			var ajax_user_id = $('#ajax_user_id').val();
+			//var course_name = $('#course_name').val();
+			var course_name = $("input[name='course_name[]']").map(function(){return $(this).val();}).get();
+			var university_name = $("input[name='university_name[]']").map(function(){return $(this).val();}).get();
+			var passing_year = $("input[name='passing_year[]']").map(function(){return $(this).val();}).get();
+			var percentage = $("input[name='percentage[]']").map(function(){return $(this).val();}).get();
+			console.log(course_name);
+
+			$.ajax({
+				url: "{{url('save-member-education-ajax')}}", 
+				type: "POST",  
+				data:{
+					ajax_user_id:ajax_user_id,
+					course_name:course_name,
+					university_name:university_name,
+					passing_year:passing_year,
+					percentage:percentage,
+					_token: '{{csrf_token()}}'
+				},  
+				dataType : 'json',
+				success:function(result) {
+
+					console.log(result);
+					$('#education_close_id').click();
+			   },
+                error: function (error) {
+                    console.log(error);
+                } 
+
+		   });
+
+		});
+		/* save member education, end heere */
+
+
+
+		/* save member achievements, start heere */
+		$('#save_member_achievements').on('click', function(){
+			var achievement_id = $('#achievement_id').val();
+			var achievement_year_month = $('#achievement_year_month').val();
+			console.log(achievement_id);
+
+			if(achievement_id == "" || achievement_id == null || achievement_year_month == "" || achievement_year_month == null) {
+		          
+		            if(achievement_id == "" || achievement_id == null) {
+				      $("#achievement_idError").html("Category name required.");
+				    }  else {
+				      $("#achievement_idError").html('');
+				    }
+
+				    if(achievement_year_month == "" || achievement_year_month == null) {
+				      $("#achievement_year_monthError").html("Date required.");
+				    }  else {
+				      $("#achievement_year_monthError").html('');
+				    }
+		    
+		    } else {
+
+		    	$.ajax({
+					url: "{{url('save-member-achievements-ajax')}}", 
+					type: "POST",  
+					data:{
+						achievement_id:achievement_id,
+						achievement_year_month:achievement_year_month,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#achievement_id').val('');
+						$('#achievement_year_month').val('');
+						
+						$('#achievements_close_id').click();
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+		    }
+
+
+		});
+		/* save member achievements, end heere */
+
+
+
+		/* save member birthday, start heere */
+		$('#save_member_birthday').on('click', function(){
+			var birthday_date = $('#birthday_date').val();
+			console.log(birthday_date);
+
+			$.ajax({
+				url: "{{url('save-member-birthday-ajax')}}", 
+				type: "POST",  
+				data:{
+					birthday_date:birthday_date,
+					_token: '{{csrf_token()}}'
+				},  
+				dataType : 'json',
+				success:function(result) {
+
+					console.log(result);
+					$('#birthday_close_id').click();
+			   },
+                error: function (error) {
+                    console.log(error);
+                } 
+
+		   });
+
+		});
+		/* save member birthday, end heere */
+
+
+		/* save member skills, start heere */
+		$('#save_member_skills').on('click', function(){
+			var member_skills = $('#member_skills').val();
+			console.log(member_skills);
+
+			$.ajax({
+				url: "{{url('save-member-skills-ajax')}}", 
+				type: "POST",  
+				data:{
+					member_skills:member_skills,
+					_token: '{{csrf_token()}}'
+				},  
+				dataType : 'json',
+				success:function(result) {
+
+					console.log(result);
+					$('#skills_close_id').click();
+			   },
+                error: function (error) {
+                    console.log(error);
+                } 
+
+		   });
+
+		});
+		/* save member skills, end heere */
+		
+
+
+		/* save member address, start heere */
+		$('#save_member_address').on('click', function(){
+			var permanent_address = $('#permanent_address').val();
+			var current_address = $('#current_address').val();
+
+			$.ajax({
+				url: "{{url('save-member-address-ajax')}}", 
+				type: "POST",  
+				data:{
+					permanent_address:permanent_address,
+					current_address:current_address,
+					_token: '{{csrf_token()}}'
+				},  
+				dataType : 'json',
+				success:function(result) {
+
+					console.log(result);
+					$('#address_close_id').click();
+			   },
+                error: function (error) {
+                    console.log(error);
+                } 
+
+		   });
+
+		});
+		/* save member address, end heere */
+
+
 		/*fetch mentor name in fresh eye journal form, start here*/
 			$('#mentor_id').on('change', function(){
 

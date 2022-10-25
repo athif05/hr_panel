@@ -788,9 +788,7 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  /*color: #4154f1;*/
-  color: #292946;
-  background-color: #d5d4d4;
+  color: #4154f1;
 }
 
 .sidebar-nav .nav-content a.active i {

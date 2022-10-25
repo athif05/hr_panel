@@ -18,7 +18,8 @@ class ConfirmationFeedbackFormController extends Controller
 
         $all_details= ConfirmationFeedbackForm::where('confirmation_feedback_forms.id',$id)
         ->where('confirmation_feedback_forms.user_id',$user_id)
-        ->get();
+        ->first();
+        //dd($all_details);
 
         $user_details= User::where('users.id',$user_id)
         ->leftJoin('company_names','company_names.id','=','users.company_id')

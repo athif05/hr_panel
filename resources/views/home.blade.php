@@ -6,6 +6,36 @@
 
     <title>Dashboard | {{ env('MY_SITE_NAME') }}</title>
 
+
+<!-- tags style and css and js, start here-->
+  <style type="text/css">
+        .bootstrap-tagsinput{
+            width: 100%;
+        }
+        .label-info{
+            background-color: #17a2b8;
+
+        }
+        .label {
+            display: inline-block;
+            padding: .25em .4em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,
+            border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+    </style>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
+  <!-- tags style and css and js, end here-->
+
 @endsection
 
 
@@ -134,6 +164,7 @@
               </div>
             </div>
             <!-- gender graph, end here -->
+
 
 
             <!-- Appraisal Cycle graph, start here -->
@@ -913,19 +944,289 @@
 					  </div>
 				  
 				  
+				      <!-- save member Achievements, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAchievements">Add Achievements</a>
+
+              <div class="modal fade" id="verticalycenteredAchievements" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Achievements</h5>
+                      <button type="button" class="btn-close" id="achievements_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Achievement Category</label>
+                          <select class="form-select" name="achievement_id" id="achievement_id" required>
+                            <option value="">Choose...</option>
+                            @foreach($achievement_category_lists as $achievement_category_list)
+                            <option value="{{$achievement_category_list['id']}}">{{$achievement_category_list['name']}}</option>
+                            @endforeach
+                          </select>
+                          
+                          <span class="text-danger" id="achievement_idError"></span>
+                         
+                        </div>
+
+
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Achievement Date</label>
+                          <input type="date" name="achievement_year_month" id="achievement_year_month" class="form-control" required>
+                          
+                          <span class="text-danger" id="achievement_year_monthError"></span>
+                          
+                        </div>
+
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_achievements">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member Achievements, start here  -->
+
+				  
+				      <!-- save member skills, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#largeModal">Edit Education</a>
+
+              <div class="modal fade" id="largeModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Education</h5>
+                      <button type="button" class="btn-close" id="education_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                        <input type="hidden" name="ajax_user_id" id="ajax_user_id" value="{{ Auth::user()->id }}">
+                        <div class="container">
+                          @if($edu_count>0)
+                              <?php $add=1;?>
+                              @foreach($logged_in_education_deatils as $logged_in_education_deatil)
+                              <div class='element' id="div_{{ $add }}">
+                                
+                                  <div style="float: left; width: 100%; margin-top:5px;">
+                                    <div style="float: left; width: 20%;">
+                                      <input type='text' placeholder='Course' name='course_name[]' id='txt_1' value="{{ $logged_in_education_deatil->course_name }}" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 34%;">
+                                      <input type='text' placeholder='University' name='university_name[]' id='txt_2' value="{{ $logged_in_education_deatil->university_name }}" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 25%;">
+                                      <input type='text' placeholder='Year' name='passing_year[]' id='txt_3' value="{{ $logged_in_education_deatil->passing_year }}" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 15%;">
+                                      <input type='text' placeholder='Marks' name='percentage[]' id='txt_4' value="{{ $logged_in_education_deatil->percentage }}" class="form-control">
+                                    </div>
+                                    @if($add==1)
+                                    <div style="float: left; width: 6%; font-size: 31px; color: green; cursor: pointer; text-align: center; ">
+                                      
+                                      <span class='add'>
+                                        <i class="bi bi-plus"></i>
+                                      </span>
+
+                                    </div>
+                                    @else
+                                    <div style="float: left; width: 6%; font-size: 18px; color: red; cursor: pointer; text-align: center;line-height: 46px;">
+                                      
+                                      <span id="remove_{{$add}}" class='remove'>X</span>
+                                      
+                                    </div>
+                                    @endif
+                                  </div>
+                                  
+                              </div>
+
+                              <?php $add++;?>
+                              @endforeach
+
+                          @else
+
+                              <div class='element' id="div_1">
+                                
+                                  <div style="float: left; width: 100%; margin-top:5px;">
+                                    <div style="float: left; width: 20%;">
+                                      <input type='text' placeholder='Course' name='course_name[]' id='txt_1' value="" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 34%;">
+                                      <input type='text' placeholder='University' name='university_name[]' id='txt_2' value="" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 25%;">
+                                      <input type='text' placeholder='Year' name='passing_year[]' id='txt_3' value="" class="form-control" style="width: 98%;">
+                                    </div>
+                                    <div style="float: left; width: 15%;">
+                                      <input type='text' placeholder='Marks' name='percentage[]' id='txt_4' value="" class="form-control">
+                                    </div>
+                                    
+                                    <div style="float: left; width: 6%; font-size: 31px; color: green; cursor: pointer; text-align: center; ">
+                                      <span class='add'>
+                                        <i class="bi bi-plus"></i>
+                                      </span>
+                                    </div>
+
+                                  </div>
+                                  
+                              </div>
+
+                          @endif
+
+                        </div>
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_education">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member skills, start here  -->
+				  
+				  
+				  <!-- Vertically centered Modal -->
+              <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                Edit Skilss
+              </button> -->
+
+              <!-- save member skills, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycentered">Edit Skills</a>
+
+              <div class="modal fade" id="verticalycentered" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Skills</h5>
+                      <button type="button" class="btn-close" id="skills_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Skills</label>
+                          <input type="text" class="form-control" id="member_skills" data-role="tagsinput" name="member_skills" value="{{ old('member_skills', $users['skills'] ) }}" required>
+                          <div class="valid-tooltip">
+                            Looks good!
+                          </div>
+                          @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                          @endif
+                        </div>
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_skills">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member skills, start here  -->
 				  
 				  
 				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
+				    <!-- save member address, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAddress">Edit Address</a>
+
+              <div class="modal fade" id="verticalycenteredAddress" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Update Address</h5>
+                      <button type="button" class="btn-close" id="address_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- <form method="post" class="row g-3 needs-validation" novalidate>
+                    @csrf -->
+
+                      <div class="modal-body">
+                        <!-- Custom Styled Validation with Tooltips -->
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Permanent Address</label>
+                          <textarea name="permanent_address" id="permanent_address" class="form-control">{{ old('permanent_address', $users['permanent_address'])}}</textarea>
+                          @if ($errors->has('permanent_address'))
+                            <span class="text-danger">{{ $errors->first('permanent_address') }}</span>
+                          @endif
+                        </div>
+
+
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Current Address</label>
+                          <textarea name="current_address" id="current_address" class="form-control">{{ old('current_address', $users['current_address'])}}</textarea>
+                          @if ($errors->has('current_address'))
+                            <span class="text-danger">{{ $errors->first('current_address') }}</span>
+                          @endif
+                        </div>
+
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_address">Save</button>
+                      </div>
+
+                   <!--  </form> -->
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member address, start here  -->
+
+
+              <!-- save member birthday, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredBirthday">Edit Birthday</a>
+
+              <div class="modal fade" id="verticalycenteredBirthday" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Update Birthday</h5>
+                      <button type="button" class="btn-close" id="birthday_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Birthday Date</label>
+                          <input type="date" name="birthday_date" id="birthday_date" value="{{ old('birthday_date', $users['birthday_date']) }}" class="form-control">
+                          @if ($errors->has('birthday_date'))
+                            <span class="text-danger">{{ $errors->first('birthday_date') }}</span>
+                          @endif
+                        </div>
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_birthday">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member birthday, start here  -->
 				  
 				  
 				  

@@ -905,4 +905,53 @@ class UserController extends Controller
     {
         //
     }
+
+
+    //save member skills
+    public function saveMemberSkills(Request $request){
+        $user_id=Auth::user()->id;
+        echo $user_id;
+
+        $users = User::where('id',$user_id)
+        ->update([
+            'skills' => $request->member_skills,
+        ]);
+
+        return true;
+
+    }
+
+
+
+    //save member address
+    public function saveMemberAddress(Request $request){
+        $user_id=Auth::user()->id;
+        echo $user_id;
+
+        $users = User::where('id',$user_id)
+        ->update([
+            'permanent_address' => $request->permanent_address,
+            'current_address' => $request->current_address,
+        ]);
+
+        return true;
+        
+    }
+
+
+    //save member birthday
+    public function saveMemberBirthday(Request $request){
+        $user_id=Auth::user()->id;
+        echo $user_id;
+
+        $users = User::where('id',$user_id)
+        ->update([
+            'birthday_date' => $request->birthday_date,
+        ]);
+
+        return true;
+        
+    }
+
+
 }

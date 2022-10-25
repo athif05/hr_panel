@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\MemberEducation;
+
+use Auth;
 
 class MemberEducationController extends Controller
 {
@@ -32,9 +38,35 @@ class MemberEducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveMemberEducation(Request $request)
     {
-        //
+        
+        $user_id=$request->ajax_user_id; 
+
+        $education_deatils_checks = DB::table('member_educations')
+        ->where('user_id', $user_id)
+        ->get();
+
+        if(count($education_deatils_checks)>0) {
+
+            DB::table('member_educations')->where('user_id', $user_id)->delete();
+        }
+
+
+        for($i=0;$i<count($request->course_name);$i++) {
+
+            DB::table('member_educations')->insert([
+                'user_id' => $user_id,
+                'course_name' => $request->course_name[$i],
+                'university_name' => $request->university_name[$i],
+                'passing_year' => $request->passing_year[$i],
+                'percentage' => $request->percentage[$i],
+            ]);
+        }   
+
+
+        return true;
+        
     }
 
     /**
