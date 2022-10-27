@@ -154,14 +154,13 @@
                   @endif
                 </div>
 
-                <input type="hidden" name="reporting_manager" id="reporting_manager" value="{{Auth::user()->manager_name}}" />
+                <input type="hidden" name="reporting_manager" id="reporting_manager" value="{{Auth::user()->reporting_to_id}}" />
                 <div class="col-md-6 position-relative">
                   <label for="reporting_manager" class="form-label">Your Reporting Manager <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <select class="form-select disable-text" name="reporting_manager_dis" id="reporting_manager_dis" disabled>
                     
                     @foreach($manager_details as $manager_detail)
-                    <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
-                      <option value="{{$manager_detail['id']}}" @if((Auth::user()->manager_name)==$reporting_manager_name) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                      <option value="{{$manager_detail['id']}}" @if((Auth::user()->reporting_to_id)==$manager_detail['member_id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">
@@ -2363,7 +2362,7 @@
                   <label for="receive_proper_job_kra" class="form-label rdioBtn">Did you receive a proper Job Description/KRA sheet from your manager at the time of joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="NA" @if(old('receive_proper_job_kra')=='NA') checked @elseif(old('receive_proper_job_kra')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="NA" @if(old('receive_proper_job_kra')=='NA') checked @elseif(old('receive_proper_job_kra')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="receive_proper_job_kra" id="receive_proper_job_kra" value="Yes" @if(old('receive_proper_job_kra')=='Yes') checked @endif>
@@ -2384,7 +2383,7 @@
                   <label for="proper_training_plan" class="form-label rdioBtn">Did you receive a proper training plan from your reporting manager at the time of our joining?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="NA" @if(old('proper_training_plan')=='NA') checked @elseif(old('proper_training_plan')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="NA" @if(old('proper_training_plan')=='NA') checked @elseif(old('proper_training_plan')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="proper_training_plan" id="proper_training_plan" value="Yes" @if(old('proper_training_plan')=='Yes') checked @endif>
@@ -2405,7 +2404,7 @@
                   <label for="training_executed_planned" class="form-label rdioBtn">Was the training executed as planned?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="NA" @if(old('training_executed_planned')=='NA') checked @elseif(old('training_executed_planned')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="NA" @if(old('training_executed_planned')=='NA') checked @elseif(old('training_executed_planned')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="training_executed_planned" id="training_executed_planned" value="Yes" @if(old('training_executed_planned')=='Yes') checked @endif>
@@ -2425,7 +2424,7 @@
                   <label for="marked_regularly_your_eod" class="form-label rdioBtn">Are you marked regularly on your EODs?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="NA" @if(old('marked_regularly_your_eod')=='NA') checked @elseif(old('marked_regularly_your_eod')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="NA" @if(old('marked_regularly_your_eod')=='NA') checked @elseif(old('marked_regularly_your_eod')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="marked_regularly_your_eod" id="marked_regularly_your_eod" value="Yes" @if(old('marked_regularly_your_eod')=='Yes') checked @endif>
@@ -2445,7 +2444,7 @@
                   <label for="wpr_happen_atleast_once_week" class="form-label rdioBtn">Do your WPRs happen atleast once a week?  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="NA" @if(old('wpr_happen_atleast_once_week')=='NA') checked @elseif(old('wpr_happen_atleast_once_week')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="NA" @if(old('wpr_happen_atleast_once_week')=='NA') checked @elseif(old('wpr_happen_atleast_once_week')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="wpr_happen_atleast_once_week" id="wpr_happen_atleast_once_week" value="Yes" @if(old('wpr_happen_atleast_once_week')=='Yes') checked @endif>
@@ -2465,7 +2464,7 @@
                   <label for="one_to_one_interaction" class="form-label rdioBtn">Has your 1:1 interaction happened with <span id="1_on_1_id">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default)}}</span> atleast twice? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
-                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="NA" @if(old('one_to_one_interaction')=='NA') checked @elseif(old('one_to_one_interaction')=='') checked @endif
+                    <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="NA" @if(old('one_to_one_interaction')=='NA') checked @elseif(old('one_to_one_interaction')=='') checked @endif>
                     <label class="form-check-label" for="gridRadios1">NA</label>
 
                     <input class="form-check-input" type="radio" name="one_to_one_interaction" id="one_to_one_interaction" value="Yes" @if(old('one_to_one_interaction')=='Yes') checked @endif>

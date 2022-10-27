@@ -936,7 +936,7 @@
                 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="card-title">Please share your satisfaction on the parameters mentioned below, out of 5</label>
+                  <label class="card-title">Please share your satisfaction on the parameters mentioned below</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1682,7 +1682,7 @@
 
 
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="card-title">Rate <span id="rate_5_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span> on the below-mentioned parameters out of 5</label>
+                  <label class="card-title">Rate <span id="rate_5_reporting_manager_name_ajax">{{ old('reporting_manager_name_ajax', $reporting_manager_name_ajax_default) }}</span> on the below-mentioned parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -2388,7 +2388,7 @@
 
                 <!-- Q-H -->
                 <div class="col-md-12 position-relative margin_top_bottom">
-                  <label class="card-title"><strong>Rate <span class="rate_5_hod_name_ajax_class">{{ $hod_details['hod_name'] }}</span> on the below mentioned parameters out of 5</strong></label>
+                  <label class="card-title"><strong>Rate <span class="rate_5_hod_name_ajax_class">{{ $hod_details['hod_name'] }}</span> on the below mentioned parameters</strong></label>
                 </div>
 
 

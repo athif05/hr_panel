@@ -15,7 +15,7 @@
   <div class="survey_container">
     <div class="imployee_data">
 
-      @include('confirmation-process.partials.sidebar')
+      @include('partials.sidebar-confirmation')
 
       <div class="right_sec ppt_tab thankyou_tab">
         <div class="top_heading">
@@ -33,8 +33,8 @@
 
 
         <div class="btn-group">
-          <a href="{{ url('/manager-confirmation-feedback-form/'.$employee_id) }}" class="btn btn-default">previous</a>
-          <a href="{{ url('/start-confirmation-process/'.$employee_id) }}" class="btn btn-default btn-active">FINISH</a>
+          <a href="{{ url('/stakeholder-feedback/'.$employee_id) }}" class="btn btn-default">previous</a>
+          <!-- <a href="{{ url('/start-confirmation-process/'.$employee_id) }}" class="btn btn-default btn-active">FINISH</a> -->
         </div>
 
 

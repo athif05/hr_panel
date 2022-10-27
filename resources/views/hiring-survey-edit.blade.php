@@ -232,7 +232,7 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="card-title">Rate in the following parameters out of 5</label>
+                  <label class="card-title">Rate in the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

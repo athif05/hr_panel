@@ -78,7 +78,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{ $user_details['full_name'] }} in the following out of 5 where "1" stands for Poor and "5" stands for excellent</strong></td>
+                    <td colspan="2"><strong>Rate {{ $user_details['full_name'] }} in the following</strong></td>
                   </tr>
 
                   <tr>

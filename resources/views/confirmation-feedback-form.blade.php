@@ -101,7 +101,7 @@
                 <div style="clear: both; height: 10px;"></div>
 
                 <div class="col-md-12 position-relative">
-                  <label class="card-title">Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following out of 5</label>
+                  <label class="card-title">Rate {{ $member_details['first_name'] }} {{ $member_details['last_name'] }} in the following</label>
                 </div>
 
                 <div class="col-md-12 position-relative">

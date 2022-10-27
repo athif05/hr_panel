@@ -168,8 +168,7 @@
                   <select class="form-select disable-text" name="reporting_manager_dis" id="reporting_manager_dis" disabled>
                     
                     @foreach($manager_details as $manager_detail)
-                    <?php  $reporting_manager_name=$manager_detail['first_name'].' '.$manager_detail['last_name']; ?>
-                      <option value="{{$manager_detail['id']}}" @if(($check_in_member_details->reporting_manager)==$reporting_manager_name) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
+                      <option value="{{$manager_detail['id']}}" @if(($check_in_member_details->reporting_manager)==$manager_detail['member_id']) selected @endif>{{$manager_detail['first_name']}} {{$manager_detail['last_name']}}</option>
                     @endforeach
                   </select>
                   <div class="invalid-feedback">

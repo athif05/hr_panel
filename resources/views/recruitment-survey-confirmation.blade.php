@@ -15,7 +15,7 @@
   <div class="survey_container">
     <div class="imployee_data">
       
-        @include('confirmation-process.partials.sidebar')
+        @include('partials.sidebar-confirmation')
 
         <div class="right_sec survey_tab">
             <div class="top_heading">

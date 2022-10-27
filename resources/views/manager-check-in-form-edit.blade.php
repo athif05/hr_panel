@@ -503,17 +503,19 @@
                 <div class="col-md-12 position-relative">
                   <label for="which_category_like_place" class="form-label">Which category would  you like to place {{ $member_details['full_name'] }} in? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
-                  <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="A" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='A') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">A</label>
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="A" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='A') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">A</label>
 
-                  <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="B" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='B') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">B</label>
+                    <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="B" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='B') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">B</label>
 
-                  <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="C" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='C') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">C</label>
+                    <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="C" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='C') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">C</label>
 
-                  <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="D" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='D') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">D</label>
+                    <input class="form-check-input" type="radio" name="which_category_like_place" id="which_category_like_place" value="D" @if(old('which_category_like_place',$check_in_manager_details->which_category_like_place)=='D') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">D</label>
+                  </span>
                   @if ($errors->has('which_category_like_place'))
                     <span class="text-danger">{{ $errors->first('which_category_like_place') }}</span>
                   @endif
@@ -730,11 +732,13 @@
                 <div class="col-md-12 position-relative">
                   <label for="adding_value_your_team_expectations" class="form-label">Do you see {{ $member_details['full_name'] }} adding value to your team & meeting your expectations? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
-                  <input class="form-check-input" type="radio" name="adding_value_your_team_expectations" id="adding_value_your_team_expectations" value="Yes" @if(old('adding_value_your_team_expectations',$check_in_manager_details->adding_value_your_team_expectations)=='Yes') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">Yes</label>
+                  <span id="radioBtn">
+                    <input class="form-check-input" type="radio" name="adding_value_your_team_expectations" id="adding_value_your_team_expectations" value="Yes" @if(old('adding_value_your_team_expectations',$check_in_manager_details->adding_value_your_team_expectations)=='Yes') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">Yes</label>
 
-                  <input class="form-check-input" type="radio" name="adding_value_your_team_expectations" id="adding_value_your_team_expectations" value="No" @if(old('adding_value_your_team_expectations',$check_in_manager_details->adding_value_your_team_expectations)=='No') checked @endif>
-                  <label class="form-check-label" for="gridRadios1">No</label>
+                    <input class="form-check-input" type="radio" name="adding_value_your_team_expectations" id="adding_value_your_team_expectations" value="No" @if(old('adding_value_your_team_expectations',$check_in_manager_details->adding_value_your_team_expectations)=='No') checked @endif>
+                    <label class="form-check-label" for="gridRadios1">No</label>
+                  </span>
                   @if ($errors->has('adding_value_your_team_expectations'))
                     <span class="text-danger">{{ $errors->first('adding_value_your_team_expectations') }}</span>
                   @endif

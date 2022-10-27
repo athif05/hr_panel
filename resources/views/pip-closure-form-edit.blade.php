@@ -287,8 +287,25 @@
                     <option value="Yes" @if(old('seen_considerable_improvemnet_performance',$initiating_pip_details->seen_considerable_improvemnet_performance)=='Yes') selected @endif>Yes</option>
                     <option value="No" @if(old('seen_considerable_improvemnet_performance',$initiating_pip_details->seen_considerable_improvemnet_performance)=='No') selected @endif>No</option>
                     
+                  </select>
+                  @if ($errors->has('seen_considerable_improvemnet_performance'))
+                    <span class="text-danger">{{ $errors->first('seen_considerable_improvemnet_performance') }}</span>
+                  @endif
+                </div>
+
+
+                <div class="col-md-12 position-relative">
+                  <label for="confirm_the_member_after_pip" class="form-label">Do you wish to confirm the member after PIP? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <select class="form-select" name="confirm_the_member_after_pip" id="confirm_the_member_after_pip">
+                    <option value="">-- Choose --</option>
+                    
+                    <option value="Yes" @if(old('confirm_the_member_after_pip',$initiating_pip_details->confirm_the_member_after_pip)=='Yes') selected @endif>Yes</option>
+                    <option value="No" @if(old('confirm_the_member_after_pip',$initiating_pip_details->confirm_the_member_after_pip)=='No') selected @endif>No</option>
                     
                   </select>
+                  @if ($errors->has('confirm_the_member_after_pip'))
+                    <span class="text-danger">{{ $errors->first('confirm_the_member_after_pip') }}</span>
+                  @endif
                 </div>
 
 

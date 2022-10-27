@@ -134,7 +134,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{$find['hr_name_ajax']}} on the following parameters, out of 5</strong></td>
+                    <td colspan="2"><strong>Rate {{$find['hr_name_ajax']}} on the following parameters</strong></td>
                   </tr>
 
                   <tr>
@@ -246,7 +246,7 @@
                   </tr>
 
                   <tr>
-                    <td>How much will you rate {{$find['hr_name_ajax']}} overall conduct? (out of 5)</td>
+                    <td>How much will you rate {{$find['hr_name_ajax']}} overall conduct?</td>
                     <td>
                       @if($find['rate_overall_conduct']!='NA')
                         @for($i=0; $i < $find['rate_overall_conduct']; $i++)
@@ -259,7 +259,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate the interviewers on the following parameters (Out of 5)</strong></td>
+                    <td colspan="2"><strong>Rate the interviewers on the following parameters</strong></td>
                   </tr>
 
                   <tr>
@@ -367,7 +367,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate the interview process on the following parameters (out of 5)</strong></td>
+                    <td colspan="2"><strong>Rate the interview process on the following parameters</strong></td>
                   </tr>
 
                   <tr>
@@ -447,7 +447,7 @@
                   </tr>
 
                   <tr>
-                    <td><strong>Rate the overall interview process. (out of 5)</strong></td>
+                    <td><strong>Rate the overall interview process</strong></td>
                     <td>
                       @if($find['rate_overall_interview_process']!='NA')
                         @for($i=0; $i < $find['rate_overall_interview_process']; $i++)

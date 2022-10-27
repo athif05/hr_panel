@@ -118,14 +118,20 @@
                     <td colspan="2"><strong>Plan of action to improve the performance </strong> {!! $initiating_pip_details['plan_of_action_to_improve'] !!}</td>
                   </tr>
 
-                  <!-- <tr class="txt_justify">
+                  <tr class="txt_justify">
                     <td colspan="2"><strong>Final PIP Review </strong> {!! $initiating_pip_details['final_pip_review'] !!}</td>
                   </tr>
 
                   <tr>
                     <td>Have you seen considerable improvemnet in the performance, during the PIP period?</td>
                     <td>{{ $initiating_pip_details['seen_considerable_improvemnet_performance'] }}</td>
-                  </tr> -->
+                  </tr>
+
+                  <tr>
+                    <td>Do you wish to confirm the member after PIP?</td>
+                    <td>{{ $initiating_pip_details['confirm_the_member_after_pip'] }}</td>
+                  </tr>
+                  
 
                 </tbody>
               </table>

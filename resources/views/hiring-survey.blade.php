@@ -219,7 +219,7 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <h5 class="card-title">Rate in the following parameters out of 5</h5>
+                  <h5 class="card-title">Rate in the following parameters</h5>
                 </div>
 
                 <div class="col-md-12 position-relative">

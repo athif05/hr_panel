@@ -1,7 +1,6 @@
 @extends('layouts.master-confirmation')
 
 
-
 @section("title")
     <meta content="" name="description">
     <meta content="" name="keywords">

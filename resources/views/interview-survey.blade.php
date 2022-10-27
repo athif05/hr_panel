@@ -189,7 +189,7 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="card-title">Rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> on the following parameters, out of 5</label>
+                  <label class="card-title">Rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> on the following parameters</label>
                 </div>
 
 
@@ -733,7 +733,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_conduct" class="form-label">How much will you rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> overall conduct? (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label></label><br>
+                  <label for="rate_overall_conduct" class="form-label">How much will you rate <span id="hr_name_ajax_span" class="hr_name_ajax_span"></span> overall conduct? <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label></label><br>
 
                   <span id="radioBtn">
                   	<div class="rating">
@@ -799,7 +799,7 @@
 
                 
                 <div class="col-md-12 position-relative">
-                  <label class="card-title">Rate the interviewers on the following parameters (Out of 5)</label>
+                  <label class="card-title">Rate the interviewers on the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1325,7 +1325,7 @@
 
                
                 <div class="col-md-12 position-relative">
-                  <label class="card-title">Rate the interview process on the following parameters (out of 5)</label>
+                  <label class="card-title">Rate the interview process on the following parameters</label>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -1689,7 +1689,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_interview_process" class="form-label rdioBtn">Rate the overall interview process. (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
+                  <label for="rate_overall_interview_process" class="form-label rdioBtn">Rate the overall interview process <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title=""><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
                   	<div class="rating">

@@ -178,7 +178,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative" id="internalEmployeeReferenceName" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)!='1') style="display: none;" @endif >
-                  <label for="internal_employee_name" class="form-label">Internal Employee Name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="internal_employee_name" class="form-label">Internal Member Name <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
                   <input type="text" class="form-control" name="internal_employee_name" id="internal_employee_name" value="{{ old('internal_employee_name',$form_details->internal_employee_name) }}">
                   <div class="valid-tooltip">
                     Looks good!
@@ -189,7 +189,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative" id="internalEmployeeReferenceDesignation" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)!='1') style="display: none;" @endif>
-                  <label for="internal_employee_designation" class="form-label">Internal Employee Designation <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="internal_employee_designation" class="form-label">Internal Member Designation <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
 
                   <select class="form-select" name="internal_employee_designation" id="internal_employee_designation">
                     <option value="">Choose...</option>
@@ -207,7 +207,7 @@
                 </div>
 
                 <div class="col-md-6 position-relative" id="internalEmployeeReferenceDepartment" @if(old('how_come_for_job_opening',$form_details->how_come_for_job_opening)!='1') style="display: none;" @endif>
-                  <label for="internal_employee_department" class="form-label">Internal Employee Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  <label for="internal_employee_department" class="form-label">Internal Member Department <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
 
                   <select class="form-select" name="internal_employee_department" id="internal_employee_department">
                     <option value="">Choose...</option>
@@ -245,7 +245,7 @@
 
                
                 <div class="col-md-12 position-relative">
-					       <h5 class="card-title">Rate your recruiter in the following parameters out of 5</h5>
+					       <h5 class="card-title">Rate your recruiter in the following parameters</h5>
                 </div>
 
                 <div class="col-md-12 position-relative">
@@ -846,7 +846,7 @@
                 </div>
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_overall_recruitment_process" class="form-label">Rate the overall recruitment process of our company! (Rating out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="rate_overall_recruitment_process" class="form-label">Rate the overall recruitment process of our company! <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
 
@@ -946,7 +946,7 @@
 
 
                 <div class="col-md-12 position-relative">
-                  <label for="rate_hr_induction" class="form-label">Rate your HR induction session! (out of 5) <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
+                  <label for="rate_hr_induction" class="form-label">Rate your HR induction session! <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
 
                   <span id="radioBtn">
 

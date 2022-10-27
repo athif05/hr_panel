@@ -174,7 +174,7 @@
                       
                       @endforeach
 
-                     in the following parameters out of 5</strong></td>
+                     in the following parameters</strong></td>
                   </tr>
 
                   <tr>

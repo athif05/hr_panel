@@ -52,13 +52,13 @@
             <a href="{{ url('/stakeholder-feedback/'.$employee_id) }}">Stakeholder’s Feedback</a>
           </li>
 
-          <li class="{{ request()->is('mom-form/*') ? 'active' : '' }}">
+          <!-- <li class="{{ request()->is('mom-form/*') ? 'active' : '' }}">
             <a href="{{ url('/mom-form/'.$employee_id) }}">MOM Form</a>
-          </li>
-
-          <!-- <li class="{{ request()->is('thankyou/*') ? 'active' : '' }}">
-            <a href="{{ url('/thankyou/'.$employee_id) }}">THANK YOU</a>
           </li> -->
+
+          <li class="{{ request()->is('thankyou/*') ? 'active' : '' }}">
+            <a href="{{ url('/thankyou/'.$employee_id) }}">THANK YOU</a>
+          </li>
       </ul>  
       
 </div>

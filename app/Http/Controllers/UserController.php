@@ -681,7 +681,8 @@ class UserController extends Controller
     public function thankyou($id) {
 
         $employee_id=$id;
-        return view('confirmation-process.thankyou', compact('employee_id'));
+        //return view('confirmation-process.thankyou', compact('employee_id'));
+        return view('thankyou-confirmation', compact('employee_id'));
     }
 
 

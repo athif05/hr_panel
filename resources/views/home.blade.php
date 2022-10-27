@@ -1142,7 +1142,7 @@
 				  
 				  
 				    <!-- save member address, start here  -->
-              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAddress">Edit Address</a>
+              <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAddress">Edit Address</a> -->
 
               <div class="modal fade" id="verticalycenteredAddress" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
@@ -1194,7 +1194,7 @@
 
 
               <!-- save member birthday, start here  -->
-              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredBirthday">Edit Birthday</a>
+              <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredBirthday">Edit Birthday</a> -->
 
               <div class="modal fade" id="verticalycenteredBirthday" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">

@@ -284,7 +284,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below, out of 5</strong></td>
+                    <td colspan="2"><strong>Please share your satisfaction on the parameters mentioned below</strong></td>
                   </tr>
 
                   <tr>
@@ -449,7 +449,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters out of 5</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['reporting_manager_name_ajax'] }} on the below-mentioned parameters</strong></td>
                   </tr>
 
                   <tr>
@@ -602,7 +602,7 @@
 
 
                   <tr>
-                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['head_of_department'] }} on the below mentioned parameters out of 5</strong></td>
+                    <td colspan="2"><strong>Rate {{ $fresh_eye_journal_details['head_of_department'] }} on the below mentioned parameters</strong></td>
                   </tr>
 
                   <tr>

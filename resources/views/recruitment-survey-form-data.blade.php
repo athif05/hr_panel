@@ -176,7 +176,7 @@
                   </tr>
 
                   <tr>
-                    <td colspan="2"><strong>Rate your recruiter in the following parameters out of 5 </strong></td>
+                    <td colspan="2"><strong>Rate your recruiter in the following parameters</strong></td>
                   </tr>
 
                   <tr>
@@ -294,7 +294,7 @@
                   </tr>
 
                   <tr>
-                    <td><strong>Rate the overall recruitment process of our company! (Rating out of 5)</strong></td>
+                    <td><strong>Rate the overall recruitment process of our company!</strong></td>
                     <td>
                       @if($find['rate_overall_recruitment_process']!='NA')
                         @for($i=0; $i < $find['rate_overall_recruitment_process']; $i++)
@@ -311,7 +311,7 @@
                   </tr>
 
                   <tr>
-                    <td><strong>Rate your HR induction session! (out of 5)</strong></td>
+                    <td><strong>Rate your HR induction session!</strong></td>
                     <td>
                       @if($find['rate_hr_induction']!='NA')
                         @for($i=0; $i < $find['rate_hr_induction']; $i++)

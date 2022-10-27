@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Check-In Form | {{ env('MY_SITE_NAME') }}</title>
+    <title>PIP Member List | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
       .dataTable-table {
@@ -34,7 +34,7 @@
             <div class="card-body">
 
             	<div class="col-lg-12">
-            		<h5 class="card-title">Probation Member List for Hiring Survey</h5>
+            		<h5 class="card-title">Probation Member List for PIP</h5>
             	</div>
 
             	<div style="clear: both;"></div>

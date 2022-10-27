@@ -79,6 +79,7 @@ class InitiatingPipFormController extends Controller
 
 
         $all_members = User::where('initiating_pip_forms.status','2')
+        ->where('initiating_pip_forms.closure_status','2')
         ->leftJoin('initiating_pip_forms', 'initiating_pip_forms.user_id','=','users.id')
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')
@@ -252,9 +253,11 @@ class InitiatingPipFormController extends Controller
             $request->validate([
                 'final_pip_review' => 'required',
                 'seen_considerable_improvemnet_performance' => 'required',
+                'confirm_the_member_after_pip' => 'required',
             ], [
                 'final_pip_review.required' => 'Final PIP review is required',
                 'seen_considerable_improvemnet_performance.required' => 'Improvemnet performance is required',
+                'confirm_the_member_after_pip.required' => 'Required',
             ]);
 
             $status='2';
@@ -268,6 +271,7 @@ class InitiatingPipFormController extends Controller
         ->update([
             'final_pip_review' => $request->final_pip_review,
             'seen_considerable_improvemnet_performance' => $request->seen_considerable_improvemnet_performance,
+            'confirm_the_member_after_pip' => $request->confirm_the_member_after_pip,
             'closure_status' => $status,
         ]);
 

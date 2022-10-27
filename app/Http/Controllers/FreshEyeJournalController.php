@@ -80,13 +80,19 @@ class FreshEyeJournalController extends Controller
             ->orderBy('name','asc')
             ->get();
 
-        $manager_details = User::where('status', '1')
+        /*$manager_details = User::where('status', '1')
             ->where('is_deleted', '0')
             ->where('role_id', '2')
             ->orWhere('role_id', '3')
             ->orWhere('role_id', '4')
             ->orderBy('first_name','asc')
+            ->get();*/
+
+        $manager_details = User::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('first_name','asc')
             ->get();
+            
 
         /*$hod_details = User::where('status', '1')
             ->where('is_deleted', '0')
