@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\InitiatingPipForm;
 use App\Models\ConfirmationMom;
+use App\Models\PipStatus;
 use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes};
 
 use Carbon\Carbon; //for get current time
@@ -37,7 +38,9 @@ class InitiatingPipFormController extends Controller
 
 
         /*check record is exist or not*/
-        $initiating_pip_details = InitiatingPipForm::where('user_id', $id)
+        $initiating_pip_details = InitiatingPipForm::where('initiating_pip_forms.user_id', $id)
+        ->leftJoin('pip_statuses', 'pip_statuses.id', '=', 'initiating_pip_forms.final_pip_status')
+        ->select('initiating_pip_forms.*','pip_statuses.name as final_pip_status_name')
         ->first();
 
 
@@ -220,11 +223,18 @@ class InitiatingPipFormController extends Controller
         ->get();
 
 
+        $pip_status = PipStatus::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('id','asc')
+            ->get();
+        
+
+
         if(($initiating_pip_details === null) or (($initiating_pip_details['closure_status'] === '0') or ($initiating_pip_details['closure_status'] === ''))){
 
             //return view('initiating-pip-email-form', compact('user_details'));
 
-            return view('pip-closure-form', compact('user_details','updated_by_id','initiating_pip_details'));
+            return view('pip-closure-form', compact('user_details','updated_by_id','initiating_pip_details','pip_status'));
 
         } else if($initiating_pip_details['closure_status'] === '1'){
 
@@ -233,7 +243,7 @@ class InitiatingPipFormController extends Controller
         } else if($initiating_pip_details['closure_status'] === '2'){
 
             //return view('pip-closure-form-show', compact('user_details','initiating_pip_details'));
-            return view('pip-closure-form-email-show', compact('user_details','initiating_pip_details','confirmation_mom_details'));
+            return view('pip-closure-form-email-show', compact('user_details','initiating_pip_details','confirmation_mom_details','pip_status'));
         }
     }
     /*manage closure pip form by manager, end here*/
@@ -254,10 +264,12 @@ class InitiatingPipFormController extends Controller
                 'final_pip_review' => 'required',
                 'seen_considerable_improvemnet_performance' => 'required',
                 'confirm_the_member_after_pip' => 'required',
+                'final_pip_status' => 'required',
             ], [
                 'final_pip_review.required' => 'Final PIP review is required',
                 'seen_considerable_improvemnet_performance.required' => 'Improvemnet performance is required',
                 'confirm_the_member_after_pip.required' => 'Required',
+                'final_pip_status.required' => 'Required',
             ]);
 
             $status='2';
@@ -272,6 +284,7 @@ class InitiatingPipFormController extends Controller
             'final_pip_review' => $request->final_pip_review,
             'seen_considerable_improvemnet_performance' => $request->seen_considerable_improvemnet_performance,
             'confirm_the_member_after_pip' => $request->confirm_the_member_after_pip,
+            'final_pip_status' => $request->final_pip_status,
             'closure_status' => $status,
         ]);
 
@@ -311,8 +324,13 @@ class InitiatingPipFormController extends Controller
         ->select('users.*','company_names.name as company_name','company_locations.name as location','departments.name as department_name','designations.name as designation_name', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
         ->first();
 
+        $pip_status = PipStatus::where('status', '1')
+            ->where('is_deleted', '0')
+            ->orderBy('id','asc')
+            ->get();
+
         //return view('initiating-pip-email-form-edit', compact('user_details','initiating_pip_details'));
-        return view('pip-closure-form-edit', compact('user_details','initiating_pip_details'));
+        return view('pip-closure-form-edit', compact('user_details','initiating_pip_details','pip_status'));
     }
     /*edit closure pip form by manager, end here*/
 

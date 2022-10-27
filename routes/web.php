@@ -221,6 +221,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/save-member-education-ajax', [App\Http\Controllers\MemberEducationController::class, 'saveMemberEducation']);
 
 	Route::post('/save-member-achievements-ajax', [App\Http\Controllers\MemberAchievementController::class, 'saveMemberAchievement']);
+
+	Route::post('/save-member-appreciation-ajax', [App\Http\Controllers\MemberAppreciationController::class, 'saveMemberAppreciation']);
 	/* save member info from dashboard, end here */
 
 

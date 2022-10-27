@@ -131,6 +131,11 @@
                     <td>Do you wish to confirm the member after PIP?</td>
                     <td>{{ $initiating_pip_details['confirm_the_member_after_pip'] }}</td>
                   </tr>
+
+                  <tr>
+                    <td>Final PIP Status</td>
+                    <td>{{ $initiating_pip_details['final_pip_status_name'] }}</td>
+                  </tr>
                   
 
                 </tbody>

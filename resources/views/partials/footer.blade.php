@@ -141,6 +141,62 @@
 
 
 
+
+		/* save member appreciation, start heere */
+		$('#save_member_appreciation').on('click', function(){
+			var appreciation_to = $('#appreciation_to').val();
+			var quill_editor_default = $('.quill-editor-default').html();
+			console.log(appreciation_to);
+
+			if(appreciation_to == "" || appreciation_to == null || quill_editor_default == "" || quill_editor_default == null) {
+		          
+		            if(appreciation_to == "" || appreciation_to == null) {
+				      $("#appreciation_toError").html("Name required.");
+				    }  else {
+				      $("#appreciation_toError").html('');
+				    }
+
+				    if(quill_editor_default == "" || quill_editor_default == null) {
+				      $("#commentError").html("Comment required.");
+				    }  else {
+				      $("#commentError").html('');
+				    }
+		    
+		    } else {
+
+		    	$.ajax({
+					url: "{{url('save-member-appreciation-ajax')}}", 
+					type: "POST",  
+					data:{
+						appreciation_to:appreciation_to,
+						quill_editor_default:quill_editor_default,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#appreciation_to').val('');
+						$('.quill-editor-default').val('');
+						
+						$('#appreciation_close_id').click();
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+		    }
+
+
+		});
+		/* save member appreciation, end heere */
+
+
+
+
 		/* save member birthday, start heere */
 		$('#save_member_birthday').on('click', function(){
 			var birthday_date = $('#birthday_date').val();

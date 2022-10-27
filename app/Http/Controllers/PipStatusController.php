@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
-use App\Models\MemberAppreciation;
-
-use Auth;
-
-class MemberAppreciationController extends Controller
+class PipStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,18 +32,9 @@ class MemberAppreciationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function saveMemberAppreciation(Request $request)
+    public function store(Request $request)
     {
-        $user_id=Auth::user()->id;
-        //dd($user_id);
-
-        $input = MemberAppreciation::insert([
-            'appreciation_by' => $user_id,
-            'appreciation_to' => $request->appreciation_to,
-            'comment_data' => $request->quill_editor_default,
-        ]);
-
-        return true;
+        //
     }
 
     /**

@@ -309,6 +309,23 @@
                 </div>
 
 
+                <div class="col-md-12 position-relative">
+                  <label for="final_pip_status" class="form-label">Final PIP Status <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label>
+                  
+                  <select class="form-select" name="final_pip_status" id="final_pip_status">
+                    <option value="">-- Choose --</option>
+                    
+                    @foreach($pip_status as $pip_list)
+                    <option value="{{ $pip_list['id'] }}" @if(old('final_pip_status',$initiating_pip_details->final_pip_status)==$pip_list['id']) selected @endif>{{ $pip_list['name'] }}</option>
+                    @endforeach
+                    
+                  </select>
+                  @if ($errors->has('final_pip_status'))
+                    <span class="text-danger">{{ $errors->first('final_pip_status') }}</span>
+                  @endif
+                </div>
+                
+
                 <div class="col-12">
                   <input type="submit" name="submit" value="Save in Draft" class="btn btn-info">
 

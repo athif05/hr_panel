@@ -944,7 +944,64 @@
 					  </div>
 				  
 				  
-				      <!-- save member Achievements, start here  -->
+				      <!-- save member Appreciations, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAppreciations">Add Appreciation</a>
+
+              <div class="modal fade" id="verticalycenteredAppreciations" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Appreciation</h5>
+                      <button type="button" class="btn-close" id="appreciation_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Appreciation To</label>
+                          <select class="form-select" name="appreciation_to" id="appreciation_to" required>
+                            <option value="">Choose...</option>
+                            @foreach($all_members as $all_member)
+                            <option value="{{$all_member['id']}}">{{$all_member['full_name']}}</option>
+                            @endforeach
+                          </select>
+                          
+                          <span class="text-danger" id="appreciation_toError"></span>
+                         
+                        </div>
+
+                        <br>
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Comment</label>
+                          
+                          <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px">{{ old('additional_feedback_recruiter')}}</textarea>
+
+                          <script>
+                            CKEDITOR.replace( 'additional_feedback_recruiter' );
+                          </script>
+                          
+                          <span class="text-danger" id="commentError"></span>
+                          
+                        </div>
+
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_appreciation">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member Appreciations, start here  -->
+
+
+
+              <!-- save member Achievements, start here  -->
               <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAchievements">Add Achievements</a>
 
               <div class="modal fade" id="verticalycenteredAchievements" tabindex="-1">
@@ -993,6 +1050,7 @@
                 </div>
               </div>
               <!-- save member Achievements, start here  -->
+
 
 				  
 				      <!-- save member skills, start here  -->

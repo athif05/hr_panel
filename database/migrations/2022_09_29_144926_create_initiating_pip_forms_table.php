@@ -28,6 +28,7 @@ return new class extends Migration
             $table->longText('final_pip_review');
             $table->longText('seen_considerable_improvemnet_performance');
             $table->enum('confirm_the_member_after_pip', ['','Yes','No'])->default('');
+            $table->string('final_pip_status')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->enum('status', ['0', '1','2'])->default('0');

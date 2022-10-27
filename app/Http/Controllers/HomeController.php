@@ -123,13 +123,19 @@ class HomeController extends Controller
             ->get();
 
 
+        $own_id=Auth::user()->id;
+
+        $all_members = User::where('users.id','!=',$own_id)
+        ->select('users.*', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
+        ->orderBy('users.first_name','asc')->get();
+
         //$no_of_members = Department::withCount('user')->get();
         //dd($no_of_members);
         //dd(date('m-d', strtotime($user_genders[0]['appraisal_cycle'])));
 
         /*these all quries used for show data in dashboard, end here*/
 
-        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names','logged_in_education_deatils','edu_count','achievement_category_lists'));
+        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names','logged_in_education_deatils','edu_count','achievement_category_lists','all_members'));
     }
 
 

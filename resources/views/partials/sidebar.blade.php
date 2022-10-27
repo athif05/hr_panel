@@ -124,12 +124,12 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       <!-- manager panel sidebar, start here -->
       @if(Auth::user()->role_id=='3')
         <li class="nav-item">
-          <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <a class="nav-link" data-bs-target="#forms-nav-manager" data-bs-toggle="collapse" href="#">
            <span class="shape1"></span>
             <span class="shape2"></span>
             <i class="bi bi-journal-text"></i><span>Confirmation Panel (Manager) </span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-          <ul id="forms-nav" class="nav-content  " data-bs-parent="#sidebar-nav">
+          <ul id="forms-nav-manager" class="nav-content " data-bs-parent="#sidebar-nav">
           
             <li>
               <a href="{{ url('/hiring-survey-list') }}" class="{{ request()->is('hiring-survey-list','hiring-survey/*','hiring-survey-edit/*/*') ? 'active' : '' }}">
@@ -173,12 +173,12 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       <!-- hr panel sidebar, start here -->
       @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='8'))
         <li class="nav-item">
-          <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <a class="nav-link" data-bs-target="#forms-nav-hr" data-bs-toggle="collapse" href="#">
            <span class="shape1"></span>
             <span class="shape2"></span>
             <i class="bi bi-journal-text"></i><span>Confirmation Panel (HR) </span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-          <ul id="forms-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+          <ul id="forms-nav-hr" class="nav-content" data-bs-parent="#sidebar-nav">
         
 
             @if(Auth::user()->role_id=='5')
@@ -242,10 +242,10 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
       @if(Auth::user()->role_id=='7')
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav-management" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gear-fill"></i><span>Manage Setting</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav-management" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ url('/manage-roles') }}" class="{{ request()->is('manage-roles','add-new-role','edit-role/*') ? 'active' : '' }}">
               <i class="bi bi-circle"></i><span>Manage Roles</span>

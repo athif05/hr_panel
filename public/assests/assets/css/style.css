@@ -797,6 +797,7 @@ h6 {
   /*color: #4154f1;*/
   color: #292946;
   background-color: #d5d4d4;
+  font-weight: 600;
 }
 
 .sidebar-nav .nav-content a.active i {
