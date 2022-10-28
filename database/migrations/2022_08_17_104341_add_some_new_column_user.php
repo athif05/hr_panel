@@ -35,6 +35,7 @@ return new class extends Migration
             $table->date('birthday_date')->nullable();
             $table->string('energy')->nullable();
             $table->string('home_town')->nullable();
+            $table->string('last_energy_update_quarter')->nullable();
             $table->foreign('company_id')->references('id')->on('company_names');
             $table->foreign('company_location_id')->references('id')->on('company_locations');
         });

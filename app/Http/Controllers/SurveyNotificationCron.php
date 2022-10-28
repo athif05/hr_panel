@@ -650,4 +650,155 @@ class SurveyNotificationCron extends Controller
     }
 
 
+
+    /* save energy points in member account , start here */
+    public function memberEnergyCron() {
+
+
+    	$all_users = User::all();
+
+    	$q1_1=date('Y-').'04-01';
+    	$q1_2=date('Y-').'06-30';
+
+    	$q2_1=date('Y-').'07-01';
+    	$q2_2=date('Y-').'09-30';
+
+    	$q3_1=date('Y-').'10-01';
+    	$q3_2=date('Y-').'12-31';
+
+    	$q4_1=date('Y-').'01-01';
+    	$q4_2=date('Y-').'03-31';
+
+
+    	$current_date=date('Y-m-d');
+
+    	/*$q1_1='04-01';
+    	$q1_2='06-30';
+
+    	$q2_1='07-01';
+    	$q2_2='09-30';
+
+    	$q3_1='10-01';
+    	$q3_2='12-31';
+
+    	$q4_1='01-01';
+    	$q4_2='03-31';*/
+
+
+
+    	//echo "Q1 ".$q1_1.' - '.$q1_2.'<br>Q2 '.$q2_1.' - '.$q2_2.'<br>Q3 '.$q3_1.' - '.$q3_2.'<br>Q4 '.$q4_1.' - '.$q4_2.'<br><br>';
+
+    	//echo "Q1 ".$q1_1.'<br>Q2 '.$q2_1.'<br>Q3 '.$q3_1.'<br>Q4 '.$q4_1.'<br><br>';
+
+    	//echo "<br>";
+    	foreach($all_users as $all_user) {
+    		//echo "<br>".date('m-d',strtotime($all_user['joining_date']));
+    		$cntr=0;
+    		//if($all_user['id']=='11') {
+
+    			//$all_user['joining_date']='2021-10-26';
+    			echo $joining_date=date('Y-m-d',strtotime($all_user['joining_date']));
+
+
+    			/*if(($joining_date<=$q1_2)) {
+    				echo "<br>Q1 ".$cntr=$cntr+5;
+
+    				User::where('id', $all_user['id'])->increment('energy', '5');
+    			}
+
+    			if(($joining_date<=$q2_2)) {
+    				echo "<br>Q2 ".$cntr=$cntr+5;
+
+    				User::where('id', $all_user['id'])->increment('energy', '5');
+    			}
+
+    			if(($joining_date<=$q3_2)) {
+    				echo "<br>Q3 ".$cntr=$cntr+5;
+
+    				User::where('id', $all_user['id'])->increment('energy', '5');
+    			}
+
+    			if(($joining_date<=$q4_2)) {
+    				echo "<br>Q4 ".$cntr=$cntr+5;
+
+    				User::where('id', $all_user['id'])->increment('energy', '5');
+    			}*/
+
+
+    			User::where('id', $all_user['id'])
+			            ->update([
+			            	'energy' => '5',
+			                'last_energy_update_quarter' => 'Q1',
+			            ]); 
+
+    			if(($current_date>=$q1_1) && ($current_date<=$q1_2) && ($all_user['last_energy_update_quarter']!='Q1')){
+    				if(($joining_date<=$q1_2)) {
+	    				echo "<br>Q1 ".$cntr=$cntr+5;
+
+	    				User::where('id', $all_user['id'])->increment('energy', '5');
+
+	    				User::where('id', $all_user['id'])
+			            ->update([
+			                'last_energy_update_quarter' => 'Q1',
+			            ]); 
+	    			}
+    			}
+	    			
+
+    			if(($current_date>=$q2_1) && ($current_date<=$q2_2) && ($all_user['last_energy_update_quarter']!='Q2')){
+    				if(($joining_date<=$q2_2)) {
+	    				echo "<br>Q2 ".$cntr=$cntr+5;
+
+	    				User::where('id', $all_user['id'])->increment('energy', '5');
+
+	    				User::where('id', $all_user['id'])
+			            ->update([
+			                'last_energy_update_quarter' => 'Q2',
+			            ]);
+	    			}
+    			}
+	    			
+
+    			if(($current_date>=$q3_1) && ($current_date<=$q3_2) && ($all_user['last_energy_update_quarter']!='Q3')){
+    				if(($joining_date<=$q3_2)) {
+	    				echo "<br>Q3 ".$cntr=$cntr+5;
+
+	    				User::where('id', $all_user['id'])->increment('energy', '5');
+
+	    				User::where('id', $all_user['id'])
+			            ->update([
+			                'last_energy_update_quarter' => 'Q3',
+			            ]);
+	    			}
+    			}
+	    			
+
+    			if(($current_date>=$q4_1) && ($current_date<=$q4_2) && ($all_user['last_energy_update_quarter']!='Q4')){
+
+    				if(($joining_date<=$q4_2)) {
+	    				echo "<br>Q4 ".$cntr=$cntr+5;
+
+	    				User::where('id', $all_user['id'])->increment('energy', '5');
+
+	    				User::where('id', $all_user['id'])
+			            ->update([
+			                'last_energy_update_quarter' => 'Q4',
+			            ]);
+	    			}
+    			}
+
+    			echo "<br>".$all_user['first_name'].' : '.$cntr."<br><br>";
+
+    			//User::where('id', $all_user['id'])->increment('energy', '5');
+    		//}
+
+
+    	}
+
+    }
+    /* save energy points in member account , end here */
+
+
+
+
 }

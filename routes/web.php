@@ -474,5 +474,8 @@ Route::get('/thank-you', function(){
 
 /*cron job url, start here*/
 Route::get('/candidate-survey-form-notification', [App\Http\Controllers\SurveyNotificationCron::class, 'sendCron']);
+
+
+Route::get('/member-energy-cron', [App\Http\Controllers\SurveyNotificationCron::class, 'memberEnergyCron']);
 /*cron job url, end here*/
 

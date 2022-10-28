@@ -54,8 +54,7 @@ class MemberAppreciationController extends Controller
             ]);
 
 
-            User::where('id', $user_id)
-            ->decrement('energy', '1');
+            User::where('id', $user_id)->decrement('energy', '1');
 
             return '1';
 
