@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\InitiatingPipForm;
-use App\Models\{CompanyName, CompanyLocation, Department, Achievement};
+use App\Models\{CompanyName, CompanyLocation, Department, Achievement, Designation};
 
 use Auth;
 
@@ -32,6 +32,8 @@ class HomeController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+
+        $member_company_id = Auth::user()->company_id;
 
         $role_id = Auth::user()->role_id;
 
@@ -129,13 +131,17 @@ class HomeController extends Controller
         ->select('users.*', DB::raw('CONCAT(first_name, " ", last_name) AS full_name'))
         ->orderBy('users.first_name','asc')->get();
 
+
+        $designation_details=Designation::where('company_id',$member_company_id)->get();
+
+
         //$no_of_members = Department::withCount('user')->get();
         //dd($no_of_members);
         //dd(date('m-d', strtotime($user_genders[0]['appraisal_cycle'])));
 
         /*these all quries used for show data in dashboard, end here*/
 
-        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names','logged_in_education_deatils','edu_count','achievement_category_lists','all_members'));
+        return view('home', compact('users','company_locations','user_genders','user_appraisal_cycle','all_users','department_names','company_names','logged_in_education_deatils','edu_count','achievement_category_lists','all_members','designation_details'));
     }
 
 

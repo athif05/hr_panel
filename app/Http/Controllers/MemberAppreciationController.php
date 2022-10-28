@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\User;
 use App\Models\MemberAppreciation;
 
 use Auth;
@@ -40,15 +41,31 @@ class MemberAppreciationController extends Controller
     public function saveMemberAppreciation(Request $request)
     {
         $user_id=Auth::user()->id;
-        //dd($user_id);
 
-        $input = MemberAppreciation::insert([
-            'appreciation_by' => $user_id,
-            'appreciation_to' => $request->appreciation_to,
-            'comment_data' => $request->quill_editor_default,
-        ]);
+        $users = User::where('id', $user_id)
+        ->first();
 
-        return true;
+        if($users['energy'] > 0) {
+
+            $input = MemberAppreciation::insert([
+                'appreciation_by' => $user_id,
+                'appreciation_to' => $request->appreciation_to,
+                'comment_data' => $request->appreciation_comment,
+            ]);
+
+
+            User::where('id', $user_id)
+            ->decrement('energy', '1');
+
+            return '1';
+
+        } else {
+
+            return '2';
+        }
+            
+
+        
     }
 
     /**

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->date('appraisal_date')->nullable();
+            $table->string('appraisal_type')->nullable();
             $table->string('appraisal_amount')->nullable();
             $table->string('appraisal_percentage')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));

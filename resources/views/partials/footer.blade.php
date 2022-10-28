@@ -86,6 +86,162 @@
 		/* save member education, end heere */
 
 
+		/*show and hide amount/percentage box in Appraisals in dashboard, start here*/
+		$('#appraisal_type').on('change', function(){
+			var val=$('#appraisal_type').val();
+			if(val=='INR') {
+	  			$('#appraisal_amount_div').show();
+	  			$('#appraisal_percentage_div').hide();
+	  			$('#appraisal_percentage').val('');
+	  		} else if(val=='%') {
+	  			$('#appraisal_percentage_div').show();
+	  			$('#appraisal_amount_div').hide();
+	  			$('#appraisal_amount').val('');
+	  		} else {
+	  			$('#appraisal_percentage_div').hide();
+	  			$('#appraisal_amount_div').hide();
+	  			$('#appraisal_percentage').val('');
+	  			$('#appraisal_amount').val('');
+	  		}
+		});
+		/*show and hide amount/percentage box in Appraisals in dashboard, end here*/
+
+
+		/* save member Promotions, start heere */
+		$('#save_member_promotions').on('click', function(){
+			
+			var old_designation_id = $('#old_designation_id').val();
+			var new_designation_id = $('#new_designation_id').val();
+			var promotion_date = $('#promotion_date').val();
+			console.log(old_designation_id);
+
+			if(old_designation_id == "" || old_designation_id == null || new_designation_id == "" || new_designation_id == null || promotion_date == "" || promotion_date == null) {
+		          
+		            if(old_designation_id == "" || old_designation_id == null) {
+				      $("#old_designation_idError").html("Required.");
+				    }  else {
+				      $("#old_designation_idError").html('');
+				    }
+
+				    if(new_designation_id == "" || new_designation_id == null) {
+				      $("#new_designation_idError").html("Required.");
+				    }  else {
+				      $("#new_designation_idError").html('');
+				    }
+
+				    if(promotion_date == "" || promotion_date == null) {
+				      $("#promotion_dateError").html("Date required.");
+				    }  else {
+				      $("#promotion_dateError").html('');
+				    }
+		    
+		    } else {
+
+		    	$.ajax({
+					url: "{{url('save-member-promotions-ajax')}}", 
+					type: "POST",  
+					data:{
+						old_designation_id:old_designation_id,
+						new_designation_id:new_designation_id,
+						promotion_date:promotion_date,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#new_designation_id').val('');
+						$('#promotion_date').val('');
+						
+						$('#promotions_close_id').click();
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+		    }
+
+
+		});
+		/* save member Promotions, end heere */
+
+
+
+		/* save member Appraisals, start heere */
+		$('#save_member_appraisals').on('click', function(){
+			
+			var appraisal_type = $('#appraisal_type').val();
+			var appraisal_date = $('#appraisal_date').val();
+			var appraisal_amount = $('#appraisal_amount').val();
+			var appraisal_percentage = $('#appraisal_percentage').val();
+			console.log(appraisal_type);
+
+			if(appraisal_type == "" || appraisal_type == null || appraisal_date == "" || appraisal_date == null) {
+		          
+		            if(appraisal_type == "" || appraisal_type == null) {
+				      $("#appraisal_typeError").html("Required.");
+				    }  else {
+				      $("#appraisal_typeError").html('');
+				    }
+
+				    if((appraisal_type == "INR") && (appraisal_amount == "" || appraisal_amount == null)) {
+				      $("#appraisal_amountError").html("Amount Required.");
+				    }  else {
+				      $("#appraisal_amountError").html('');
+				    }
+
+				    if((appraisal_type == "%") && (appraisal_percentage == "" || appraisal_percentage == null)) {
+				      $("#appraisal_percentageError").html("Percentage Required.");
+				    }  else {
+				      $("#appraisal_percentageError").html('');
+				    }
+
+				    if(appraisal_date == "" || appraisal_date == null) {
+				      $("#appraisal_dateError").html("Date required.");
+				    }  else {
+				      $("#appraisal_dateError").html('');
+				    }
+		    
+		    } else {
+
+		    	$.ajax({
+					url: "{{url('save-member-appraisals-ajax')}}", 
+					type: "POST",  
+					data:{
+						appraisal_type:appraisal_type,
+						appraisal_amount:appraisal_amount,
+						appraisal_percentage:appraisal_percentage,
+						appraisal_date:appraisal_date,
+						_token: '{{csrf_token()}}'
+					},  
+					dataType : 'json',
+					success:function(result) {
+
+						console.log(result);
+
+						$('#appraisal_type').val('');
+						$('#appraisal_amount').val('');
+						$('#appraisal_percentage').val('');
+						$('#appraisal_date').val('');
+						
+						$('#appraisals_close_id').click();
+				   },
+	                error: function (error) {
+	                    console.log(error);
+	                } 
+
+			   });
+
+		    }
+
+
+		});
+		/* save member Appraisals, end heere */
+
+
 
 		/* save member achievements, start heere */
 		$('#save_member_achievements').on('click', function(){
@@ -145,10 +301,11 @@
 		/* save member appreciation, start heere */
 		$('#save_member_appreciation').on('click', function(){
 			var appreciation_to = $('#appreciation_to').val();
-			var quill_editor_default = $('.quill-editor-default').html();
-			console.log(appreciation_to);
+			//var appreciation_comment = $('#appreciation_comment').val();
+			var appreciation_comment = CKEDITOR.instances.appreciation_comment.getData();
+			console.log(appreciation_to+' / '+appreciation_comment);
 
-			if(appreciation_to == "" || appreciation_to == null || quill_editor_default == "" || quill_editor_default == null) {
+			if(appreciation_to == "" || appreciation_to == null || appreciation_comment == "" || appreciation_comment == null) {
 		          
 		            if(appreciation_to == "" || appreciation_to == null) {
 				      $("#appreciation_toError").html("Name required.");
@@ -156,7 +313,7 @@
 				      $("#appreciation_toError").html('');
 				    }
 
-				    if(quill_editor_default == "" || quill_editor_default == null) {
+				    if(appreciation_comment == "" || appreciation_comment == null) {
 				      $("#commentError").html("Comment required.");
 				    }  else {
 				      $("#commentError").html('');
@@ -169,7 +326,7 @@
 					type: "POST",  
 					data:{
 						appreciation_to:appreciation_to,
-						quill_editor_default:quill_editor_default,
+						appreciation_comment:appreciation_comment,
 						_token: '{{csrf_token()}}'
 					},  
 					dataType : 'json',
@@ -177,10 +334,33 @@
 
 						console.log(result);
 
-						$('#appreciation_to').val('');
-						$('.quill-editor-default').val('');
+						if(result=='1') {
+
+							$('#appreciation_to').val('');
+							//$('#appreciation_comment').val('');
+							CKEDITOR.instances.appreciation_comment.setData('');
+							
+							$('#appreciation_close_id').click();
+
+							swal("Poof! Appreciation submitted!", {
+								icon: "success",
+							});	
+
+						} else if(result=='2') {
+
+							$('#appreciation_to').val('');
+							//$('#appreciation_comment').val('');
+							CKEDITOR.instances.appreciation_comment.setData('');
+
+							$('#appreciation_close_id').click();
+
+							swal("Oops..., You don't have enough energy for give appreciation!", {
+								icon: "error",
+							});
+
+						}
+
 						
-						$('#appreciation_close_id').click();
 				   },
 	                error: function (error) {
 	                    console.log(error);

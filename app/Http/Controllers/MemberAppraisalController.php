@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\MemberAppraisal;
+
+use Auth;
 
 class MemberAppraisalController extends Controller
 {
@@ -32,9 +38,19 @@ class MemberAppraisalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveMemberAppraisal(Request $request)
     {
-        //
+        $user_id=Auth::user()->id;
+
+        $input = MemberAppraisal::insert([
+            'user_id' => $user_id,
+            'appraisal_date' => $request->appraisal_date,
+            'appraisal_type' => $request->appraisal_type,
+            'appraisal_amount' => $request->appraisal_amount,
+            'appraisal_percentage' => $request->appraisal_percentage,
+        ]);
+
+        return true;
     }
 
     /**

@@ -29,6 +29,27 @@
             transition: color .15s ease-in-out,background-color .15s ease-in-out,
             border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
+
+
+        /*error sweetalert, start here*/
+        .swal-text {
+            font-size: 16px;
+            position: relative;
+            float: none;
+            line-height: normal;
+            vertical-align: top;
+            text-align: center;
+            display: inline-block;
+            margin: 0;
+            padding: 0 10px;
+            font-weight: 400;
+            color: rgba(0,0,0,.64);
+            max-width: calc(100% - 20px);
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+        }
+        /*error sweetalert, end here*/
+
     </style>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
@@ -943,7 +964,136 @@
 						  </div>
 					  </div>
 				  
+
+            <!-- save member Promotions, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredPromotions">Add Promotions</a>
+
+              <div class="modal fade" id="verticalycenteredPromotions" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Promotions</h5>
+                      <button type="button" class="btn-close" id="promotions_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Old Designation</label>
+                          <select class="form-select" name="old_designation_id" id="old_designation_id">
+                            <option value="">Choose...</option>
+                            @foreach($designation_details as $designation_detail)
+                            <option value="{{$designation_detail['id']}}" @if((Auth::user()->designation)==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
+                            @endforeach
+                          </select>
+                          <span class="text-danger" id="old_designation_idError"></span>
+                        </div>
+
+                        
+                        <div class="col-md-12 position-relative">
+                          <br>
+                          <label for="name" class="form-label">New Designation</label>
+                          <select class="form-select" name="new_designation_id" id="new_designation_id">
+                            <option value="">Choose...</option>
+                            @foreach($designation_details as $designation_detail)
+                            <option value="{{$designation_detail['id']}}" @if(old('new_designation_id')==$designation_detail['id']) selected @endif>{{$designation_detail['name']}}</option>
+                            @endforeach
+                          </select>
+                          <span class="text-danger" id="new_designation_idError"></span>
+                        </div>
+
+                        <br>
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Promotion Date</label>
+                          <input type="date" name="promotion_date" id="promotion_date" class="form-control" required>
+                          <span class="text-danger" id="promotion_dateError"></span>
+                        </div>
+
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_promotions">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member Promotions, start here  -->
+
+
+
+
+              <!-- save member Appraisals, start here  -->
+              <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAppraisals">Add Appraisals</a>
+
+              <div class="modal fade" id="verticalycenteredAppraisals" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Appraisals</h5>
+                      <button type="button" class="btn-close" id="appraisals_close_id" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                      <div class="modal-body">
+                
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Type</label>
+                          <select class="form-select" name="appraisal_type" id="appraisal_type" required>
+                            <option value="">Choose...</option>
+                            <option value="INR">INR</option>
+                            <option value="%">%</option>
+                          </select>
+                          
+                          <span class="text-danger" id="appraisal_typeError"></span>
+                         
+                        </div>
+
+                        
+                        <div class="col-md-12 position-relative" style="display: none;" id="appraisal_amount_div">
+                          <br>
+                          <label for="name" class="form-label">Amount</label>
+                          <input type="number" name="appraisal_amount" id="appraisal_amount" class="form-control">
+                          <span class="text-danger" id="appraisal_amountError"></span>
+                        </div>
+
+                        
+                        <div class="col-md-12 position-relative" style="display: none;" id="appraisal_percentage_div">
+                          <br>
+                          <label for="name" class="form-label">Percentage</label>
+                          <input type="number" name="appraisal_percentage" id="appraisal_percentage" class="form-control">
+                          <span class="text-danger" id="appraisal_percentageError"></span>
+                        </div>
+
+                        <br>
+                        <div class="col-md-12 position-relative">
+                          <label for="name" class="form-label">Appraisals Date</label>
+                          <input type="date" name="appraisal_date" id="appraisal_date" class="form-control" required>
+                          <span class="text-danger" id="appraisal_dateError"></span>
+                        </div>
+
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save_member_appraisals">Save</button>
+                      </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+              <!-- save member Appraisals, start here  -->
+
+
+
 				  
+            @if($users['energy']>0)
 				      <!-- save member Appreciations, start here  -->
               <a href="#" data-bs-toggle="modal" data-bs-target="#verticalycenteredAppreciations">Add Appreciation</a>
 
@@ -975,13 +1125,13 @@
                         <div class="col-md-12 position-relative">
                           <label for="name" class="form-label">Comment</label>
                           
-                          <textarea class="form-control" name="additional_feedback_recruiter" id="additional_feedback_recruiter" style="height: 100px">{{ old('additional_feedback_recruiter')}}</textarea>
+                          <textarea class="form-control" name="appreciation_comment" id="appreciation_comment" style="height: 100px;">{{ old('appreciation_comment')}}</textarea>
 
                           <script>
-                            CKEDITOR.replace( 'additional_feedback_recruiter' );
+                            CKEDITOR.replace('appreciation_comment');
                           </script>
                           
-                          <span class="text-danger" id="commentError"></span>
+                          <span class="text-danger" id="appreciation_commentError"></span>
                           
                         </div>
 
@@ -998,7 +1148,7 @@
                 </div>
               </div>
               <!-- save member Appreciations, start here  -->
-
+              @endif
 
 
               <!-- save member Achievements, start here  -->

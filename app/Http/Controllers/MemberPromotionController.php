@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\MemberPromotion;
+use App\Models\User;
+
+use Auth;
 
 class MemberPromotionController extends Controller
 {
@@ -32,9 +39,26 @@ class MemberPromotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveMemberPromotion(Request $request)
     {
-        //
+        $user_id=Auth::user()->id;
+
+        $input = MemberPromotion::insert([
+            'user_id' => $user_id,
+            'old_designation_id' => $request->old_designation_id,
+            'new_designation_id' => $request->new_designation_id,
+            'promotion_date' => $request->promotion_date,
+        ]);
+
+        if($input){
+            User::where('id', $user_id)
+            ->update([
+                'designation' => $request->new_designation_id,
+            ]);    
+        }
+        
+
+        return true;
     }
 
     /**
