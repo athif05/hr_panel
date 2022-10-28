@@ -725,22 +725,28 @@ class SurveyNotificationCron extends Controller
     			}*/
 
 
-    			User::where('id', $all_user['id'])
+    			/*User::where('id', $all_user['id'])
 			            ->update([
 			            	'energy' => '5',
 			                'last_energy_update_quarter' => 'Q1',
-			            ]); 
+			            ]); */
 
     			if(($current_date>=$q1_1) && ($current_date<=$q1_2) && ($all_user['last_energy_update_quarter']!='Q1')){
     				if(($joining_date<=$q1_2)) {
 	    				echo "<br>Q1 ".$cntr=$cntr+5;
 
-	    				User::where('id', $all_user['id'])->increment('energy', '5');
+	    				User::where('id', $all_user['id'])
+			            ->update([
+			            	'energy' => '5',
+			                'last_energy_update_quarter' => 'Q1',
+			            ]);
+
+	    				/*User::where('id', $all_user['id'])->increment('energy', '5');
 
 	    				User::where('id', $all_user['id'])
 			            ->update([
 			                'last_energy_update_quarter' => 'Q1',
-			            ]); 
+			            ]); */
 	    			}
     			}
 	    			
