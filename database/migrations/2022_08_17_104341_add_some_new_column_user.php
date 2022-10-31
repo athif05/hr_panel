@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('permanent_address')->nullable();
             $table->string('current_address')->nullable();
             $table->date('birthday_date')->nullable();
-            $table->string('energy')->nullable();
+            $table->string('energy')->default('0');
             $table->string('home_town')->nullable();
             $table->string('last_energy_update_quarter')->nullable();
             $table->foreign('company_id')->references('id')->on('company_names');

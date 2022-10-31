@@ -694,7 +694,7 @@ class SurveyNotificationCron extends Controller
     	foreach($all_users as $all_user) {
     		//echo "<br>".date('m-d',strtotime($all_user['joining_date']));
     		$cntr=0;
-    		//if($all_user['id']=='11') {
+    		if($all_user['id']=='11') {
 
     			//$all_user['joining_date']='2021-10-26';
     			echo $joining_date=date('Y-m-d',strtotime($all_user['joining_date']));
@@ -735,18 +735,18 @@ class SurveyNotificationCron extends Controller
     				if(($joining_date<=$q1_2)) {
 	    				echo "<br>Q1 ".$cntr=$cntr+5;
 
-	    				User::where('id', $all_user['id'])
+	    				/*User::where('id', $all_user['id'])
 			            ->update([
 			            	'energy' => '5',
 			                'last_energy_update_quarter' => 'Q1',
-			            ]);
+			            ]);*/
 
-	    				/*User::where('id', $all_user['id'])->increment('energy', '5');
+	    				User::where('id', $all_user['id'])->increment('energy', '5');
 
 	    				User::where('id', $all_user['id'])
 			            ->update([
 			                'last_energy_update_quarter' => 'Q1',
-			            ]); */
+			            ]);
 	    			}
     			}
 	    			
@@ -769,12 +769,39 @@ class SurveyNotificationCron extends Controller
     				if(($joining_date<=$q3_2)) {
 	    				echo "<br>Q3 ".$cntr=$cntr+5;
 
-	    				User::where('id', $all_user['id'])->increment('energy', '5');
+	    				DB::enableQueryLog(); //for print sql query
 
-	    				User::where('id', $all_user['id'])
+	    				
+	    				/*DB::table('users')
+						   ->where('id', $all_user['id'])
+						   ->update([
+						       'energy' => DB::raw('energy + 5'),
+						       'last_energy_update_quarter' => 'Q3',
+						   ]);*/
+
+						    
+
+	    				///User::where('id', $all_user['id'])->increment('energy', '5');
+
+	    				/*User::where('id', $all_user['id'])
 			            ->update([
 			                'last_energy_update_quarter' => 'Q3',
+			            ]);*/
+
+
+			            
+
+			            User::where('id', $all_user['id'])
+			            ->update([
+			                'last_energy_update_quarter' => 'Q3',
+			                'energy'=> DB::raw('energy+5'),
 			            ]);
+
+						/*for print sql query, start here */
+				        $quries = DB::getQueryLog();
+				        dd($quries);
+			            
+
 	    			}
     			}
 	    			
@@ -796,7 +823,7 @@ class SurveyNotificationCron extends Controller
     			echo "<br>".$all_user['first_name'].' : '.$cntr."<br><br>";
 
     			//User::where('id', $all_user['id'])->increment('energy', '5');
-    		//}
+    		}
 
 
     	}
