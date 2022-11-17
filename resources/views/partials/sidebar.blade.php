@@ -238,6 +238,14 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
       @endif -->
 
 
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('/road-fy') }}">
+      
+          <i class="bi bi-grid"></i>
+          <span>ROAD to FY(2022-2023)</span>
+        </a>
+      </li>
+
       
 
       @if(Auth::user()->role_id=='7')

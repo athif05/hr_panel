@@ -453,7 +453,11 @@ Route::group(['middleware' => ['auth']], function() {
 	/*manager mom form, end here*/
 
 
+	Route::get('/road-fy',[App\Http\Controllers\UserController::class,'road_fy']);
 
+	Route::get('/multistep-form',[App\Http\Controllers\UserController::class, 'multistep_form']);
+
+	Route::post('/save-multistep-form', [App\Http\Controllers\UserController::class, 'storeMultistepForm'])->name('save-multistep-form');
 
 
 });
