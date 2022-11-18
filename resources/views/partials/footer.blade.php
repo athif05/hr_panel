@@ -9,6 +9,47 @@
 
 		jQuery(document).ready(function(){
 
+		/* addmore road fy questions, start here */
+		$(".road_fy_add").click(function(){
+
+	        // Finding total number of elements added
+	        var total_element = $(".road_fy_element").length;
+	                    
+	        // last <div> with element class id
+	        var lastid = $(".road_fy_element:last").attr("id");
+	        var split_id = lastid.split("_");
+	        var nextindex = Number(split_id[1]) + 1;
+
+	        var max = 5;
+	        // Check total number elements
+	        if(total_element < max ){
+	            // Adding new div container after last occurance of element class
+	            $(".road_fy_element:last").after("<div class='road_fy_element' id='roadFyDiv_"+ nextindex +"'></div>");
+	                        
+	            // Adding element to <div>
+	            /*$("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill' id='txt_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove'>X</span>");*/
+	            $("#roadFyDiv_" + nextindex).append("<div style='float: left; width: 100%; margin-top:5px;'><div style='float: left; width: 45%;'><input type='text' placeholder='Question' name='question_title[]' id='txt_1' value='' class='form-control' style='width: 98%;'></div><div style='float: left; width: 24%;'><select class='form-select' name='question_type[]' id='txt_2' style='width: 98%;'><option value='textbox'>Text Box</option><option value='textarea'>Text Area</option><option value='radiobutton'>Radio Button</option><option value='checkbox'>Check Box</option><option value='dropdown'>Drop Down</option></select></div><div style='float: left; width: 25%;'><input type='text' name='question_value[]' id='txt_3' value='' class='form-control' style='width: 98%;'></div><div style='float: left; width: 6%; font-size: 18px; color:red; cursor: pointer; text-align: center;line-height: 46px;'><span id='roadFyRemove_" + nextindex + "' class='roadFyRemove'>X</span></div></div>");
+	                    
+	        }
+	                    
+	    });
+
+
+	    // Remove element
+	    $('.container').on('click','.roadFyRemove',function(){
+	                
+	        var id = this.id;
+	        var split_id = id.split("_");
+	        var deleteindex = split_id[1];
+
+	        // Remove <div> with id
+	        $("#roadFyDiv_" + deleteindex).remove();
+	    }); 
+		/* add more education div, end here */
+
+		/* addmore road fy questions, end here */
+
+
 		/* add more education div, start here */
 		// Add new element
     $(".add").click(function(){

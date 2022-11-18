@@ -6,57 +6,6 @@
 
     <title>Dashboard | {{ env('MY_SITE_NAME') }}</title>
 
-
-<!-- tags style and css and js, start here-->
-  <style type="text/css">
-        .bootstrap-tagsinput{
-            width: 100%;
-        }
-        .label-info{
-            background-color: #17a2b8;
-
-        }
-        .label {
-            display: inline-block;
-            padding: .25em .4em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: .25rem;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,
-            border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
-
-
-        /*error sweetalert, start here*/
-        .swal-text {
-            font-size: 16px;
-            position: relative;
-            float: none;
-            line-height: normal;
-            vertical-align: top;
-            text-align: center;
-            display: inline-block;
-            margin: 0;
-            padding: 0 10px;
-            font-weight: 400;
-            color: rgba(0,0,0,.64);
-            max-width: calc(100% - 20px);
-            overflow-wrap: break-word;
-            box-sizing: border-box;
-        }
-        /*error sweetalert, end here*/
-
-    </style>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
-  <!-- tags style and css and js, end here-->
-
 @endsection
 
 

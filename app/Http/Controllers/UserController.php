@@ -22,29 +22,6 @@ use Auth;
 class UserController extends Controller
 {
 
-    /* show road home page, start here */
-    public function road_fy(){
-        return view('road-fy');
-    }
-    /* show road home page, end here */
-
-
-    /* multiple step form view, start here */
-    public function multistep_form(){
-        return view('multistep-form');
-    }
-    /* multiple step form view, end here */
-
-
-    /* save multiple step form data, start here */
-    public function storeMultistepForm(Request $request){
-        echo "storeMultistepForm";
-
-        dd($request);
-    }
-    /* save multiple step form data, end here */
-
-
     /*confirmation review initiation email view, start here*/
     public function confirmationReviewInitiationEmailView($id) {
         

@@ -12,15 +12,17 @@
 @section('content')
     <main id="main" class="main">
 
-        <div class="pagetitle">
-          <h1>ROAD FY</h1>
-          <nav>
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active">ROAD FY</li>
-            </ol>
-          </nav>
-        </div><!-- End Page Title -->
+        <div class="col-lg-6" style="float: left;">
+    		<h5 class="card-title">ROAD FY</h5>
+    	</div>
+
+    	@if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6'))
+    	<div class="col-lg-6" style="float: right; text-align: right; padding-top: 12px;">
+    		<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("manage-road-fy-survey-form")}}';">Manage Survey Form</button>		
+    	</div>
+    	@endif
+
+    	<div style="clear: both;"></div>
 
 
         
