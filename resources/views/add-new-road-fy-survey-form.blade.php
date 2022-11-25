@@ -69,12 +69,12 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="no_of_section" class="form-label">No of Section</label>
-                  <input type="number" min="1" max="15" class="form-control" name="no_of_section" id="no_of_section" value="{{ old('no_of_section') }}" required>
+                  <input type="number" min="1" max="9"class="form-control" name="no_of_section" id="no_of_section" value="{{ old('no_of_section') }}" onKeyDown="if(this.value.length==2 && event.keyCode!=8) return false;" required>
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
-                  @if ($errors->has('name'))
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                  @if ($errors->has('no_of_section'))
+                    <span class="text-danger">{{ $errors->first('no_of_section') }}</span>
                   @endif
                 </div>
 
@@ -126,7 +126,7 @@
 
 									<!-- <input type='text' name='question_value[]' id='txt_3' value="" data-role="tagsinput" class="form-control" style="width: 98%;"> -->
 								</div>
-								<div style="float: left; width: 6%; font-size: 31px; color: green; cursor: pointer; text-align: center; ">
+								<div style="float: left; width: 6%; font-size: 31px; color: green; cursor: pointer; text-align: center; padding-top: 25px;">
 									<span class='road_fy_add'><i class="bi bi-plus"></i></span>
 								</div>
 							</div>

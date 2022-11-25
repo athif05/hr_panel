@@ -454,6 +454,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* road fy appraisal cycle and survey form, start here */
+	Route::get('/create-annual-review-form',[App\Http\Controllers\AnnualReviewFormController::class,'index']);
+
 	Route::get('/road-fy',[App\Http\Controllers\RoadFyController::class,'index']);
 
 	Route::get('/manage-road-fy-survey-form',[App\Http\Controllers\RoadFyController::class,'show_all_list']);

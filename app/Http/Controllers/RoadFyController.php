@@ -11,7 +11,7 @@ use App\Models\{RoadFy,RoadFyQuestion};
 
 class RoadFyController extends Controller
 {
-    
+
     /* show road home page, start here */
     public function index()
     {

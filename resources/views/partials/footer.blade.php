@@ -9,8 +9,16 @@
 
 		jQuery(document).ready(function(){
 
+		/*$('#no_of_section').on('keyup', function(){
+			
+			alert(nm);
+		});*/
+
 		/* addmore road fy questions, start here */
 		$(".road_fy_add").click(function(){
+
+	        var total_step = $("#no_of_section").val();
+	        //console.log('total_step: '+total_step);
 
 	        // Finding total number of elements added
 	        var total_element = $(".road_fy_element").length;

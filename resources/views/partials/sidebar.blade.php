@@ -239,12 +239,32 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
 
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/road-fy') }}">
-      
-          <i class="bi bi-grid"></i>
-          <span>ROAD to FY(2022-2023)</span>
-        </a>
-      </li>
+          <a class="nav-link" data-bs-target="#forms-nav-road-fy" data-bs-toggle="collapse" href="#">
+           <span class="shape1"></span>
+            <span class="shape2"></span>
+            <i class="bi bi-journal-text"></i><span>ROAD to FY </span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav-road-fy" class="nav-content" data-bs-parent="#sidebar-nav">
+        
+            <li>
+              <a href="{{ url('/create-annual-review-form') }}" class="{{ request()->is('confirmation-process-mom-email','mom-email-view/*') ? 'active' : '' }}">
+                <i class="bi bi-hand-thumbs-up-fill"></i>
+                <span>Create Review Form</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url('/road-fy') }}" class="{{ request()->is('hr-generate-emails','generate-email-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
+                <i class="bi bi-journal-text"></i>
+                <span>Show ROAD Review</span>
+              </a>
+            </li>
+
+            
+
+
+          </ul>
+        </li>
 
       
 
