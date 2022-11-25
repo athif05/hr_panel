@@ -454,7 +454,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 	/* road fy appraisal cycle and survey form, start here */
-	Route::get('/create-annual-review-form',[App\Http\Controllers\AnnualReviewFormController::class,'index']);
+	Route::get('/create-annual-review-form',[App\Http\Controllers\AnnualReviewFormController::class,'index'])->middleware('isManagerHrandHrHead');
+
+	Route::post('/save-annual-review-form',[App\Http\Controllers\AnnualReviewFormController::class,'store'])->name('save-annual-review-form')->middleware('isManagerHrandHrHead');
 
 	Route::get('/road-fy',[App\Http\Controllers\RoadFyController::class,'index']);
 

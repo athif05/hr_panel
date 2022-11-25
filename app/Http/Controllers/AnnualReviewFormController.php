@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
-use App\Model\AnnualReviewForm;
+use App\Models\AnnualReviewForm;
+
+use Auth;
 
 class AnnualReviewFormController extends Controller
 {
@@ -45,7 +47,50 @@ class AnnualReviewFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request['submit']=='Save in Draft') {
+            $status='1';
+        } else if($request['submit']=='Publish') {
+
+            $request->validate([
+                'form_name' => 'required',
+                'appraisal_month' => 'required',
+                'appraisal_year' => 'required',
+            ], [
+                'form_name.required' => 'Name is required',
+                'appraisal_month.required' => 'Month is required',
+                'appraisal_year.required' => 'Year is Required',
+            ]);
+
+            $status='2';
+        }
+
+
+        $input = AnnualReviewForm::insert([
+            'form_name' => $request->form_name,
+            'appraisal_month' => $request->appraisal_month,
+            'appraisal_year' => $request->appraisal_year,
+            'survey_form_label' => $request->survey_form_label,
+            'hr_1_1_label' => $request->hr_1_1_label,
+            'ppt_label' => $request->ppt_label,
+            'stakeholder_label' => $request->stakeholder_label,
+            'status' => $status,
+        ]);
+        $last_id = DB::getPdo()->lastInsertId();
+
+        if($input){
+            
+            if($status==1){
+
+                return redirect("/edit-annual-review-form/$last_id")->with('thank_you', 'Your form save in draft.');
+
+            } else if($status==2){
+
+                return redirect("/add-new-road-fy-survey-form/$last_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+
+            }
+        }
+
+
     }
 
     /**

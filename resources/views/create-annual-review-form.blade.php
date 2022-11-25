@@ -39,7 +39,7 @@
 
 
               <!-- Custom Styled Validation with Tooltips -->
-              <form method="post" action="{{ route('save-new-company')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+              <form method="post" action="{{ route('save-annual-review-form')}}" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
                 @csrf
 
                 <div class="col-md-6 position-relative">
@@ -90,7 +90,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="survey_form_label" class="form-label">Survey Form Label</label>
-                  <input type="text" class="form-control" name="survey_form_label" id="survey_form_label" value="{{ old('survey_form_label') }}" required>
+                  <input type="text" class="form-control" name="survey_form_label" id="survey_form_label" value="{{ old('survey_form_label') }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -101,7 +101,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="hr_1_1_label" class="form-label">HR 1:1 Label</label>
-                  <input type="text" class="form-control" name="hr_1_1_label" id="hr_1_1_label" value="{{ old('hr_1_1_label') }}" required>
+                  <input type="text" class="form-control" name="hr_1_1_label" id="hr_1_1_label" value="{{ old('hr_1_1_label') }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -112,7 +112,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="ppt_label" class="form-label">PPT Label</label>
-                  <input type="text" class="form-control" name="ppt_label" id="ppt_label" value="{{ old('ppt_label') }}" required>
+                  <input type="text" class="form-control" name="ppt_label" id="ppt_label" value="{{ old('ppt_label') }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -123,7 +123,7 @@
 
                 <div class="col-md-6 position-relative">
                   <label for="stakeholder_label" class="form-label">Stakeholder Label</label>
-                  <input type="text" class="form-control" name="stakeholder_label" id="stakeholder_label" value="{{ old('stakeholder_label') }}" required>
+                  <input type="text" class="form-control" name="stakeholder_label" id="stakeholder_label" value="{{ old('stakeholder_label') }}">
                   <div class="valid-tooltip">
                     Looks good!
                   </div>
@@ -135,7 +135,9 @@
                 
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Create Form" class="btn btn-primary">
+                  <input type="submit" name="submit" value="Save in Draft" class="btn btn-info">
+
+                  <input type="submit" name="submit" value="Publish" class="btn btn-primary">
                 </div>
 
               </form><!-- End Custom Styled Validation with Tooltips -->
