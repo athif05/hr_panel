@@ -474,7 +474,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/save-section-list-fy',[App\Http\Controllers\SectionFyListController::class,'store'])->name('save-section-list-fy')->middleware('isManagerHrandHrHead');
 
 
-
+	Route::get('/add-survey-question-section-wise/{form_id}/{section_id}',[App\Http\Controllers\RoadFyQuestionController::class,'index']);
 
 
 

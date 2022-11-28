@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\{RoadFy, SectionFyList, RoadFyQuestion};
+
+use Auth;
+
 class RoadFyQuestionController extends Controller
 {
     /**
@@ -11,9 +18,17 @@ class RoadFyQuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($form_id, $section_id)
     {
-        //
+        //echo "show form".$form_id.' / '.$section_id;
+
+        $appraisal_cycle_data = DB::table('road_fys')->where('road_fys.annual_review_form_id',$form_id)
+        ->first();
+
+        $section_name_data = SectionFyList::where('id', $section_id)->where('annual_review_form_id', $form_id)
+        ->first();
+
+        return view('add-survey-question-section-wise', compact('appraisal_cycle_data','section_name_data'));
     }
 
     /**

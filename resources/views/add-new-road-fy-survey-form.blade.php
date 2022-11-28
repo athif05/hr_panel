@@ -59,10 +59,6 @@
                 <div class="col-md-6 position-relative">
                   <label for="no_of_section" class="form-label">No of Section</label>
 
-                  <!-- <input type="number" min="1" max="9"class="form-control" name="no_of_section" id="no_of_section" value="{{ old('no_of_section') }}" onKeyDown="if(this.value.length==2 && event.keyCode!=8) return false;" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div> -->
                   <input type="hidden" name="ajax_url" id="ajax_url" value="{{  URL::to('/'); }}">
                   <select class="form-select" name="no_of_section" id="no_of_section">
                     <option value="">Choose...</option>
@@ -93,7 +89,7 @@
                         Section Name <input type="text" class="form-control" name="section_name[]" id="section_name_{{$n}}" value="{{ $section_fy_list['section_name'] }}" style="width: 95%;" required>
                       </div>
 
-                      <div style="float: left; width: 35%;">
+                      <div style="float: left; width: 20%;">
                         Visible For 
                         <select class="form-select" name="visible_for[]" id="visible_for" style="width: 95%;">
                           <option value="Member" @if($section_fy_list['visible_for']=='Member') selected @endif>Member</option>
@@ -101,6 +97,12 @@
                           <option value="HR" @if($section_fy_list['visible_for']=='HR') selected @endif>HR</option>
                           <option value="All" @if($section_fy_list['visible_for']=='All') selected @endif>All</option>
                         </select>
+                      </div>
+
+                      <div style="float: left; width: 15%;">
+                        <a href="{{ url('add-survey-question-section-wise/'.$review_form_name_data['id'].'/'.$section_fy_list['id'])}}" target="_blank">
+                          <input type="button" name="Add Question" value="Add Question" class="btn btn-info" style="font-size: 14px; padding: 6px; color: #fff; margin-top: 28px;">
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -111,8 +113,6 @@
 
                 <div class="col-12">
                   <input type="submit" name="submit" value="Add" class="btn btn-info">
-
-                  <!-- <input type="submit" name="submit" value="Add & Next" class="btn btn-primary"> -->
 
                 </div>
 

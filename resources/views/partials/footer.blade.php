@@ -54,7 +54,7 @@
 	        var split_id = lastid.split("_");
 	        var nextindex = Number(split_id[1]) + 1;
 
-	        var max = 5;
+	        var max = 30;
 	        // Check total number elements
 	        if(total_element < max ){
 	            // Adding new div container after last occurance of element class
