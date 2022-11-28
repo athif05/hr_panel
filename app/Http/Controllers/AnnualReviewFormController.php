@@ -19,6 +19,7 @@ class AnnualReviewFormController extends Controller
      */
     public function index()
     {
+        
         $appraisal_year_lists=array();
         $current_year=date('Y');
         $next_year=$current_year+1;
@@ -47,6 +48,8 @@ class AnnualReviewFormController extends Controller
      */
     public function store(Request $request)
     {
+        $updated_by = Auth::user()->id;
+
         if($request['submit']=='Save in Draft') {
             $status='1';
         } else if($request['submit']=='Publish') {
@@ -73,6 +76,7 @@ class AnnualReviewFormController extends Controller
             'hr_1_1_label' => $request->hr_1_1_label,
             'ppt_label' => $request->ppt_label,
             'stakeholder_label' => $request->stakeholder_label,
+            'updated_by' => $updated_by,
             'status' => $status,
         ]);
         $last_id = DB::getPdo()->lastInsertId();
@@ -112,7 +116,16 @@ class AnnualReviewFormController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appraisal_year_lists=array();
+        $current_year=date('Y');
+        $next_year=$current_year+1;
+
+        array_push($appraisal_year_lists,$current_year);
+        array_push($appraisal_year_lists,$next_year);
+
+        $review_data=AnnualReviewForm::where('id',$id)->first();
+
+        return view('edit-annual-review-form', compact('appraisal_year_lists','review_data'));
     }
 
     /**
@@ -122,9 +135,59 @@ class AnnualReviewFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $edit_id=$request->edit_id;
+        $updated_by = Auth::user()->id;
+
+        if($request['submit']=='Save in Draft') {
+            $status='1';
+        } else if($request['submit']=='Publish') {
+
+            $request->validate([
+                'form_name' => 'required',
+                'appraisal_month' => 'required',
+                'appraisal_year' => 'required',
+            ], [
+                'form_name.required' => 'Name is required',
+                'appraisal_month.required' => 'Month is required',
+                'appraisal_year.required' => 'Year is Required',
+            ]);
+
+            $status='2';
+        }
+
+        //echo $status; die;
+        
+        //DB::enableQueryLog(); //for print sql query
+
+        AnnualReviewForm::where('id', $edit_id)
+        ->update([
+            'form_name' => $request->form_name,
+            'appraisal_month' => $request->appraisal_month,
+            'appraisal_year' => $request->appraisal_year,
+            'survey_form_label' => $request->survey_form_label,
+            'hr_1_1_label' => $request->hr_1_1_label,
+            'ppt_label' => $request->ppt_label,
+            'stakeholder_label' => $request->stakeholder_label,
+            'updated_by' => $updated_by,
+            'status' => $status,
+        ]);
+
+        /*for print sql query, start here */
+        //$quries = DB::getQueryLog();
+        //dd($quries);
+            
+        if($status==1){
+
+            return redirect("/edit-annual-review-form/$edit_id")->with('thank_you', 'Your form save in draft.');
+
+        } else if($status==2){
+
+            return redirect("/add-new-road-fy-survey-form/$edit_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+
+        }
+        
     }
 
     /**

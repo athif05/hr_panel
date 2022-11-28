@@ -1,4 +1,4 @@
-jQuery(document).ready(function(){
+$(document).ready(function() {
 
 	/*show company name in fresh eye form, start here*
 	$('#company_name').on('change', function(){
@@ -28,5 +28,39 @@ jQuery(document).ready(function(){
 
 	});
 	*show company name in fresh eye form, end here*/
+
+
+
+	/*no of section from annual review form 2nd step ajax, start here*
+	$('#no_of_section').change(function(){
+		var no_of_section=$('#no_of_section').val();
+		var ajax_url=$('#ajax_url').val();
+		//console.log(no_of_section);
+
+
+		$.ajax({
+			
+			url: ajax_url+"/get-no-of-section-road-fy-ajax", 
+			type: "POST",  
+			data:{
+				no_of_section:no_of_section,
+				_token: '{{csrf_token()}}'
+			},  
+			dataType : 'json',
+			success:function(result) {
+
+				console.log(result);
+
+				//$('#reporting_manager_name_ajax').val(result);
+
+		   },
+            error: function (error) {
+                console.log(error);
+            } 
+
+	   });
+
+	});
+	*no of section from annual review form 2nd step ajax, end here*/
 
 });

@@ -9,15 +9,41 @@
 
 		jQuery(document).ready(function(){
 
-		/*$('#no_of_section').on('keyup', function(){
-			
-			alert(nm);
-		});*/
+		/*no of section from annual review form 2nd step ajax, start here*/
+		$('#no_of_section').change(function(){
+			var no_of_section=$('#no_of_section').val();
+			//var ajax_url=$('#ajax_url').val();
+			//console.log(no_of_section);
+
+			$.ajax({
+				url: "{{url('get-no-of-section-road-fy-ajax')}}", 
+				type: "POST",  
+				data:{
+					no_of_section:no_of_section,
+					_token: '{{csrf_token()}}'
+				},  
+				dataType : 'json',
+				success:function(result) {
+
+					console.log(result);
+
+					$('#section_display_div').html(result);
+
+			   },
+	            error: function (error) {
+	                console.log(error);
+	            } 
+
+		   });
+
+		});
+		/*no of section from annual review form 2nd step ajax, end here*/
+
 
 		/* addmore road fy questions, start here */
 		$(".road_fy_add").click(function(){
 
-	        var total_step = $("#no_of_section").val();
+	        //var total_step = $("#no_of_section").val();
 	        //console.log('total_step: '+total_step);
 
 	        // Finding total number of elements added

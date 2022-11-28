@@ -13,21 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('annual_review_forms', function (Blueprint $table) {
+        Schema::create('section_fy_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('form_name');
-            $table->string('appraisal_month');
-            $table->string('appraisal_year');
-            $table->string('survey_form_label')->nullable();
-            $table->string('hr_1_1_label')->nullable();
-            $table->string('ppt_label')->nullable();
-            $table->string('stakeholder_label')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('annual_review_form_id')->nullable();
+            $table->string('section_name')->nullable();
+            $table->string('visible_for')->nullable();            
             $table->enum('status', ['0','1','2'])->default('0');
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
-            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('annual_review_form_id')->references('id')->on('annual_review_forms');
         });
     }
 
@@ -38,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annual_review_forms');
+        Schema::dropIfExists('section_fy_lists');
     }
 };

@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Role;
-use App\Models\{RoadFy,RoadFyQuestion};
+use App\Models\{RoadFy,RoadFyQuestion, SectionFyList};
+use App\Models\AnnualReviewForm;
+
+use Auth;
 
 class RoadFyController extends Controller
 {
@@ -36,16 +39,25 @@ class RoadFyController extends Controller
     
 
     /* add road survey question form, start here */
-    public function create()
+    public function create($id)
     {
         $roles = Role::where('status', '1')
             ->where('is_deleted', '0')
             ->orderBy('name','asc')
             ->get();
 
-        $current_year=date('Y');
+        //$current_year=date('Y');
 
-        return view('add-new-road-fy-survey-form',compact('roles','current_year'));
+        $no_of_section=20;
+
+        $review_form_name_data=AnnualReviewForm::where('id',$id)->first();
+
+        $road_fy_data = DB::table('road_fys')->where('annual_review_form_id', $id)->first();
+
+        $section_fy_lists=SectionFyList::where('annual_review_form_id',$id)->get(); 
+
+
+        return view('add-new-road-fy-survey-form',compact('roles','no_of_section','review_form_name_data','section_fy_lists','road_fy_data'));
     }
     /* add road survey question form, end here */
 
@@ -113,4 +125,14 @@ class RoadFyController extends Controller
     {
         //
     }
+
+
+    public function getNoOfSectionAjax(Request $request){
+
+        $no_of_section=$request->no_of_section;
+        $returnHTML = view('annual-review-section-list-ajax', compact('no_of_section'))->render();
+
+        return response()->json($returnHTML);
+    }
+
 }

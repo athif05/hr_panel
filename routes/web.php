@@ -458,13 +458,31 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('/save-annual-review-form',[App\Http\Controllers\AnnualReviewFormController::class,'store'])->name('save-annual-review-form')->middleware('isManagerHrandHrHead');
 
+	Route::get('/edit-annual-review-form/{id}',[App\Http\Controllers\AnnualReviewFormController::class,'edit'])->middleware('isManagerHrandHrHead');
+
+	Route::post('/update-annual-review-form', [App\Http\Controllers\AnnualReviewFormController::class, 'update'])->name('update-annual-review-form');
+
+
+	Route::get('/add-new-road-fy-survey-form/{id}',[App\Http\Controllers\RoadFyController::class,'create'])->middleware('isHrandHrHead');
+
+	Route::get('/edit-road-fy-survey-form/{id}', [App\Http\Controllers\RoadFyController::class, 'edit'])->middleware('isHrandHrHead');
+
+
+	Route::post('/get-no-of-section-road-fy-ajax', [App\Http\Controllers\RoadFyController::class, 'getNoOfSectionAjax']);
+
+	
+	Route::post('/save-section-list-fy',[App\Http\Controllers\SectionFyListController::class,'store'])->name('save-section-list-fy')->middleware('isManagerHrandHrHead');
+
+
+
+
+
+
 	Route::get('/road-fy',[App\Http\Controllers\RoadFyController::class,'index']);
 
 	Route::get('/manage-road-fy-survey-form',[App\Http\Controllers\RoadFyController::class,'show_all_list']);
 
-	Route::get('/add-new-road-fy-survey-form',[App\Http\Controllers\RoadFyController::class,'create'])->middleware('isHrandHrHead');
-
-	Route::get('/edit-road-fy-survey-form/{id}', [App\Http\Controllers\RoadFyController::class, 'edit'])->middleware('isHrandHrHead');
+	
 
 	Route::get('/multistep-form',[App\Http\Controllers\RoadFyController::class, 'survey_multistep_form']);
 
