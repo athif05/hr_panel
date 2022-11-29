@@ -17,8 +17,10 @@ class RoadFyController extends Controller
 
     /* show road home page, start here */
     public function index()
-    {
-        return view('road-fy');
+    {   
+        $annual_review_form_data=AnnualReviewForm::where('status','1')->first();
+
+        return view('road-fy', compact('annual_review_form_data'));
     }
     /* show road home page, end here */
 
@@ -75,9 +77,16 @@ class RoadFyController extends Controller
 
 
     /* multiple step form view, start here */
-    public function survey_multistep_form()
+    public function survey_multistep_form($form_id)
     {
-        return view('multistep-form');
+        $annual_review_form_data=AnnualReviewForm::where('annual_review_forms.id',$form_id)->leftJoin('road_fys','annual_review_form_id','=','annual_review_forms.id')->select('annual_review_forms.*', 'road_fys.no_of_section as no_of_section')->first();
+
+
+        $section_lists=SectionFyList::where('annual_review_form_id',$annual_review_form_data['id'])->get();
+
+        $question_lists=RoadFyQuestion::where('annual_review_form_id',$annual_review_form_data['id'])->get();
+
+        return view('multistep-form',compact('annual_review_form_data','section_lists','question_lists'));
     }
     /* multiple step form view, end here */
 

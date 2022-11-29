@@ -262,12 +262,16 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </li>
             @endif
 
-            <li>
-              <a href="{{ url('/road-fy') }}" class="{{ request()->is('hr-generate-emails','generate-email-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
-                <i class="bi bi-journal-text"></i>
-                <span>Show ROAD Review</span>
-              </a>
-            </li>
+
+            @if(session('session_annual_review_form_data'))
+              <li>
+                <a href="{{ url('/road-fy') }}" class="{{ request()->is('hr-generate-emails','generate-email-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
+                  <i class="bi bi-journal-text"></i>
+                  <span>Fill {{ session('session_annual_review_form_data')['form_name'] }}</span>
+                </a>
+              </li>
+            @endif
+            
 
             
 

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\InitiatingPipForm;
 use App\Models\{CompanyName, CompanyLocation, Department, Achievement, Designation};
+use App\Models\AnnualReviewForm;
 
 use Auth;
 
@@ -133,6 +134,15 @@ class HomeController extends Controller
 
 
         $designation_details=Designation::where('company_id',$member_company_id)->get();
+
+
+        /* check any annual review form is active or not, start here*/
+        $annual_review_form_data=AnnualReviewForm::where('status','1')->first();
+        if($annual_review_form_data!=null){
+            Session::put('session_annual_review_form_name', $annual_review_form_data);
+        }
+        
+        /* check any annual review form is active or not, end here*/
 
 
         //$no_of_members = Department::withCount('user')->get();

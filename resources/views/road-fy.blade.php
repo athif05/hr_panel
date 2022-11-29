@@ -4,7 +4,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>ROAD FY | {{ env('MY_SITE_NAME') }}</title>
+    <title>{{ $annual_review_form_data['form_name'] }} | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -13,14 +13,14 @@
     <main id="main" class="main">
 
         <div class="col-lg-6" style="float: left;">
-    		<h5 class="card-title">ROAD FY</h5>
+    		<h5 class="card-title">{{ $annual_review_form_data['form_name'] }}</h5>
     	</div>
 
-    	@if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6'))
+    	<!-- @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6'))
     	<div class="col-lg-6" style="float: right; text-align: right; padding-top: 12px;">
     		<button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("manage-road-fy-survey-form")}}';">Manage Survey Form</button>		
     	</div>
-    	@endif
+    	@endif -->
 
     	<div style="clear: both;"></div>
 
@@ -53,7 +53,7 @@
                         <tbody>
                           <tr>
                             <td>
-                            	Quarterly Survey - Oct-22
+                            	{{ $annual_review_form_data['survey_form_label'] }}
                             </td>
                             <td>
                             	<span class="badge bg-success"> + Completed</span>
@@ -61,14 +61,14 @@
                             <td>
                             	<!-- <span class="badge bg-success"> + View Survey</span> -->
                             	
-                            	<span class="badge bg-warning" onclick="location.href = '{{ url("multistep-form")}}';" style="cursor: pointer;"> + Fill Survey</span>
+                            	<span class="badge bg-warning" onclick="location.href = '{{ url("multistep-form/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + Fill Survey</span>
                             	
                             </td>
                           </tr>
 
                           <tr>
                             <td>
-                            	Quarterly HR 1:1 - Oct-22
+                            	{{ $annual_review_form_data['hr_1_1_label'] }}
                             </td>
                             <td>
                             	&nbsp;
@@ -81,7 +81,7 @@
 
                           <tr>
                             <td>
-                            	Review Presentation
+                            	{{ $annual_review_form_data['ppt_label'] }}
                             </td>
                             <td>
                             	<span class="badge bg-success"> <i class="bi bi-download"></i> Download</span>
@@ -95,7 +95,7 @@
 
                           <tr>
                             <td>
-                            	Stakeholder Feedback Form
+                            	{{ $annual_review_form_data['stakeholder_label'] }}
                             </td>
                             <td>
                             	&nbsp;

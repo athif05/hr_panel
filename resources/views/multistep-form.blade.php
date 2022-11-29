@@ -100,7 +100,7 @@ button:hover {
           <div class="card">
             <div class="card-body">
               
-              <h5 class="card-title">Register</h5>
+              <h5 class="card-title">{{ strtoupper($annual_review_form_data['survey_form_label']) }}</h5>
               
               @if(session()->has('success_msg'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -123,14 +123,118 @@ button:hover {
 
                  
 				  <!-- One "tab" for each step in the form: -->
+				  @foreach($section_lists as $section_list)
 				  <div class="tab">
-				  	<h5>Basic Info</h5>
-				  	<label for="name" class="form-label">First Name:</label>
-				    <p>
-				    	<input placeholder="First name..." oninput="this.className = ''" name="fname" class="form-control">
-				    </p>
+					  	<h5>{{ $section_list['section_name'] }}</h5>
+					  	@foreach($question_lists as $question_list)
+					  		@if($section_list['section_name']==$question_list['section_name'])
+						  	<label for="name" class="form-label">{{ $question_list['question_title'] }}:</label>
+						    <p>
+						    	@if($question_list['question_type']=='textbox')
 
-				    <label for="name" class="form-label">Last Name:</label>
+						    		<input type="text" name="fname" class="form-control">
+
+						    	@elseif($question_list['question_type']=='textarea')
+
+						    		<textarea class="form-control" name="address" id="address" style="height: 100px">{{ old('address')}}</textarea>
+							    	<script>
+					                    CKEDITOR.replace( 'address' );
+					                </script>
+
+						    	@elseif($question_list['question_type']=='radiobutton')
+
+						    		<span id="radioBtn">
+				                    <div class="rating">
+				                      <label class="form_row form_row_0">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="NA" @if(old('satisfaction_job_role')=='NA') checked @elseif(old('satisfaction_job_role')=='') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+				                          <p>NA</p>
+				                        </div>
+				                      </label>
+				              
+
+				                      <label class="form_row form_row_1">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="1" @if(old('satisfaction_job_role')=='1') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+				                          <p>1 <span>Poor</span></p>
+				                        </div>
+				                      </label>
+
+
+				                      <label class="form_row form_row_2">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="2" @if(old('satisfaction_job_role')=='2') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+				                          <p>2 <span>Fair</span></p>
+				                        </div>
+				                      </label>
+
+
+				                      <label class="form_row form_row_3">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="3" @if(old('satisfaction_job_role')=='3') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+				                          <p>3 <span>Good</span></p>
+				                        </div>
+				                      </label>
+
+
+				                      <label class="form_row form_row_4">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="4" @if(old('satisfaction_job_role')=='4') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+				                          <p>4 <span>Very Good</span></p>
+				                        </div>
+				                      </label>
+
+
+				                      <label class="form_row form_row_5">
+				                        <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="5" @if(old('satisfaction_job_role')=='5') checked @endif>
+				                        <div class="checkmark">
+				                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+				                          <p>5 <span>Outstanding</span></p>
+				                        </div>
+				                      </label>
+				                    </div>
+
+				                </span>
+
+						    	@elseif($question_list['question_type']=='checkbox')
+
+						    		<div class="form-check">
+				                      <input class="form-check-input" type="checkbox" id="gridCheck1">
+				                      <label class="form-check-label" for="gridCheck1">
+				                        Example checkbox
+				                      </label>
+				                    </div>
+                    
+						    	@elseif($question_list['question_type']=='dropdown')
+
+						    		<select class="form-select" name="designation_id" id="designation_id" onselect="this.className = ''">
+					                    <option value="">Choose...</option>
+					                    
+					                    <option value="PHP Developer" @if(old('company_id')=='PHP Developer') selected @endif>PHP Developer</option>
+					                    <option value="Manager" @if(old('company_id')=='Manager') selected @endif>Manager</option>
+					                    <option value="UI Designer" @if(old('company_id')=='UI Designer') selected @endif>UI Designer</option>
+					                    
+					                </select>
+
+						    	@endif
+						    	
+						    </p>
+						    @endif
+					    @endforeach
+
+				  </div>
+				  @endforeach
+
+
+
+				  <!-- 
+
+<label for="name" class="form-label">Last Name:</label>
 				    <p>
 				    	<input placeholder="Last name..." oninput="this.className = ''" name="lname" class="form-control" value="">
 				    </p>
@@ -146,9 +250,7 @@ button:hover {
 		                    
 		                  </select>
 				    </p>
-				  </div>
-
-				  <!-- <div class="tab">
+				  <div class="tab">
 				  	<h5>HR Info</h5>
 				  	<label for="name" class="form-label">HR Name:</label>
 				    <p><input placeholder="HR name..." oninput="this.className = ''" name="hrname" class="form-control"></p>
@@ -157,10 +259,10 @@ button:hover {
 				    <p><input placeholder="HR email..." oninput="this.className = ''" name="hremail" class="form-control"></p>
 				  </div> -->
 
-				  <div class="tab">
+				  <!-- <div class="tab">
 				  	<h5>Company Info</h5>
 				  	<label for="name" class="form-label">Company Name:</label>
-				    <p><!-- <input placeholder="Company name..." oninput="this.className = ''" name="companyname" class="form-control"> -->
+				    <p>!-- <input placeholder="Company name..." oninput="this.className = ''" name="companyname" class="form-control"> --
 				    <select class="form-select" name="company_id" id="company_id" onselect="this.className = ''">
 	                    <option value="">Choose...</option>
 	                    
@@ -276,7 +378,7 @@ button:hover {
 				    <p>
 				    	<input placeholder="Password..." oninput="this.className = ''" name="pword" type="password" class="form-control">
 				    </p>
-				  </div>
+				  </div> -->
 
 				  <div style="overflow:auto;">
 				    <div style="float:right;">
@@ -286,12 +388,14 @@ button:hover {
 				  </div>
 
 				  <!-- Circles which indicates the steps of the form: -->
-				  <div style="text-align:center;margin-top:40px; display: none;">
+				  <div style="text-align:center;margin-top:40px; display: block;">
+				  	@for($f=1;$f<=$annual_review_form_data['no_of_section'];$f++)
+				    <span class="step"></span>
+				    @endfor
+				    <!-- <span class="step"></span>
 				    <span class="step"></span>
 				    <span class="step"></span>
-				    <span class="step"></span>
-				    <span class="step"></span>
-				    <span class="step"></span>
+				    <span class="step"></span> -->
 				  </div>
 
                 <!-- <div class="col-12">
