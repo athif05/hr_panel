@@ -22,11 +22,26 @@ class StatusUpdateDeleteController extends Controller
         $id=$request->id;
         
         //DB::enableQueryLog(); //for print sql query
+        if($table_name=='annual_review_forms'){
+            
+            $affected2 = DB::update(
+                "update $table_name set status = '0'"
+            );
 
-        $affected = DB::update(
-            "update $table_name set status = '$status' where id = ?",
-            [$id]
-        );
+            $affected = DB::update(
+                "update $table_name set status = '$status' where id = ?",
+                [$id]
+            );
+
+        } else {
+            
+            $affected = DB::update(
+                "update $table_name set status = '$status' where id = ?",
+                [$id]
+            );
+        }
+
+            
 
         /*for print sql query, start here */
         //$quries = DB::getQueryLog();

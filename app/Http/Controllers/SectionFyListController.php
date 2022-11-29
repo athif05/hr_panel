@@ -97,6 +97,7 @@ class SectionFyListController extends Controller
             DB::table('section_fy_lists')->insert([
                 'annual_review_form_id' => $annual_review_form_id,
                 'section_name' => $request->section_name[$i],
+                'section_description' => $request->section_description[$i],
                 'visible_for' => $request->visible_for[$i],
                 'status' => $status,
             ]);

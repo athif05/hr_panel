@@ -4,11 +4,13 @@
 	<div class='road_fy_element' id="roadFyDiv_{{ $n }}">
 		<div style="float: left; width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
 			<div class="section_div_padding13" style="float: left; width: 5%;">{{ $n }}.</div>
-			<div style="float: left; width: 60%;">
+			<div style="float: left; width: 30%;">
 				Section Name <input type="text" class="form-control" name="section_name[]" id="section_name_{{$n}}" value="" style="width: 95%;" required>
 			</div>
-
 			<div style="float: left; width: 35%;">
+	            Description <textarea name="section_description[]" id="section_description" class="form-control" style="width: 98%;"></textarea>
+	        </div>
+			<div style="float: left; width: 30%;">
 				Visible For 
 				<select class="form-select" name="visible_for[]" id="visible_for" style="width: 95%;">
                 	<option value="Member" @if(old('question_type')=='Member') selected @endif>Member</option>

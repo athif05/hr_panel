@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('road_fy_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('road_fy_id');
-            $table->string('question_title');
+            $table->unsignedBigInteger('annual_review_form_id');
+            $table->string('section_name');
+            $table->text('question_title');
+            $table->text('question_hint');
             $table->string('question_type');
-            $table->text('question_value');
+            $table->text('question_value')->nullable();
             $table->enum('status', ['0','1'])->default('0');
             $table->enum('is_deleted', ['0', '1'])->default('0');
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
-            $table->foreign('road_fy_id')->references('id')->on('road_fys');
+            $table->foreign('annual_review_form_id')->references('id')->on('annual_review_forms');
         });
     }
 

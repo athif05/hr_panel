@@ -129,9 +129,9 @@
                 
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Save in Draft" class="btn btn-info">
+                  <!-- <input type="submit" name="submit" value="Save in Draft" class="btn btn-info"> -->
 
-                  <input type="submit" name="submit" value="Publish" class="btn btn-primary">
+                  <input type="submit" name="submit" value="Add" class="btn btn-primary">
                 </div>
 
               </form><!-- End Custom Styled Validation with Tooltips -->

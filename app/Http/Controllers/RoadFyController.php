@@ -53,7 +53,8 @@ class RoadFyController extends Controller
         $review_form_name_data=AnnualReviewForm::where('id',$id)->first();
 
         $road_fy_data = DB::table('road_fys')->where('annual_review_form_id', $id)->first();
-
+        //dd($road_fy_data);
+        
         $section_fy_lists=SectionFyList::where('annual_review_form_id',$id)->get(); 
 
 

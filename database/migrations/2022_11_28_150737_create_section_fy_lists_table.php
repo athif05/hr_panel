@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('annual_review_form_id')->nullable();
             $table->string('section_name')->nullable();
+            $table->text('section_description')->nullable();
             $table->string('visible_for')->nullable();            
             $table->enum('status', ['0','1','2'])->default('0');
             $table->enum('is_deleted', ['0', '1'])->default('0');

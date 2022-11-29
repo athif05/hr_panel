@@ -49,10 +49,11 @@ class AnnualReviewFormController extends Controller
     public function store(Request $request)
     {
         $updated_by = Auth::user()->id;
+        $status='0';
 
-        if($request['submit']=='Save in Draft') {
+        /*if($request['submit']=='Save in Draft') {
             $status='1';
-        } else if($request['submit']=='Publish') {
+        } else if($request['submit']=='Publish') {*/
 
             $request->validate([
                 'form_name' => 'required',
@@ -64,8 +65,8 @@ class AnnualReviewFormController extends Controller
                 'appraisal_year.required' => 'Year is Required',
             ]);
 
-            $status='2';
-        }
+            /*$status='2';
+        }*/
 
 
         $input = AnnualReviewForm::insert([
@@ -83,15 +84,15 @@ class AnnualReviewFormController extends Controller
 
         if($input){
             
-            if($status==1){
+            /*if($status==1){
 
                 return redirect("/edit-annual-review-form/$last_id")->with('thank_you', 'Your form save in draft.');
 
-            } else if($status==2){
+            } else if($status==2){*/
 
                 return redirect("/add-new-road-fy-survey-form/$last_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
-            }
+            //}
         }
 
 
@@ -103,9 +104,10 @@ class AnnualReviewFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAllAnnualReviewForms()
     {
-        //
+        $all_lists=AnnualReviewForm::leftJoin('road_fys','road_fys.annual_review_form_id','=','annual_review_forms.id')->select('annual_review_forms.*','road_fys.no_of_section as no_of_section')->get();
+        return view('manage-annual-review-form', compact('all_lists'));
     }
 
     /**
@@ -139,23 +141,18 @@ class AnnualReviewFormController extends Controller
     {
         $edit_id=$request->edit_id;
         $updated_by = Auth::user()->id;
+        $status='0';
 
-        if($request['submit']=='Save in Draft') {
-            $status='1';
-        } else if($request['submit']=='Publish') {
+        $request->validate([
+            'form_name' => 'required',
+            'appraisal_month' => 'required',
+            'appraisal_year' => 'required',
+        ], [
+            'form_name.required' => 'Name is required',
+            'appraisal_month.required' => 'Month is required',
+            'appraisal_year.required' => 'Year is Required',
+        ]);
 
-            $request->validate([
-                'form_name' => 'required',
-                'appraisal_month' => 'required',
-                'appraisal_year' => 'required',
-            ], [
-                'form_name.required' => 'Name is required',
-                'appraisal_month.required' => 'Month is required',
-                'appraisal_year.required' => 'Year is Required',
-            ]);
-
-            $status='2';
-        }
 
         //echo $status; die;
         
@@ -177,16 +174,26 @@ class AnnualReviewFormController extends Controller
         /*for print sql query, start here */
         //$quries = DB::getQueryLog();
         //dd($quries);
-            
-        if($status==1){
+        
+        if($request['submit']=='Update') {
+
+            return redirect("/manage-annual-review-form")->with('success_msg', 'Annual review form updated successfully.');
+
+        } else if($request['submit']=='Update & Next') {
+
+            return redirect("/add-new-road-fy-survey-form/$edit_id")->with('thank_you', 'Annual review form updated successfully, add number of section in annual review form.');
+        }
+        
+
+        /*if($status==1){
 
             return redirect("/edit-annual-review-form/$edit_id")->with('thank_you', 'Your form save in draft.');
 
-        } else if($status==2){
+        } else if($status==2){*/
 
-            return redirect("/add-new-road-fy-survey-form/$edit_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
+            //return redirect("/add-new-road-fy-survey-form/$edit_id")->with('thank_you', 'Thanks, for giving your valuable time for us.');
 
-        }
+        //}
         
     }
 

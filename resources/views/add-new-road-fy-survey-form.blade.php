@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Add ROAD Survey Question | {{ env('MY_SITE_NAME') }}</title>
+    <title>Add Annual Review Question | {{ env('MY_SITE_NAME') }}</title>
 
 @endsection
 
@@ -21,7 +21,7 @@
           <div class="card">
             <div class="card-body">
               
-              	<h5 class="card-title">Add ROAD Survey Question</h5>
+              	<h5 class="card-title">Add Annual Review Question</h5>
               
               @if(session()->has('thank_you'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -64,7 +64,11 @@
                     <option value="">Choose...</option>
 
                     @for($i=1;$i<=$no_of_section;$i++)
-                    <option value="{{ $i }}" @if(old('role_id',$road_fy_data->no_of_section)==$i) selected @endif>{{ $i }}</option>
+                      @if($road_fy_data!=null)
+                        <option value="{{ $i }}" @if(old('role_id',$road_fy_data->no_of_section)==$i) selected @endif>{{ $i }}</option>
+                      @else
+                        <option value="{{ $i }}" @if(old('role_id')==$i) selected @endif>{{ $i }}</option>
+                      @endif
                     @endfor
 
                   </select>
@@ -85,11 +89,15 @@
                   <div class='road_fy_element'>
                     <div style="float: left; width: 100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 5px;">
                       <div class="section_div_padding13" style="float: left; width: 5%;">{{ $n }}.</div>
-                      <div style="float: left; width: 60%;">
+                      <div style="float: left; width: 30%;">
                         Section Name <input type="text" class="form-control" name="section_name[]" id="section_name_{{$n}}" value="{{ $section_fy_list['section_name'] }}" style="width: 95%;" required>
                       </div>
 
-                      <div style="float: left; width: 20%;">
+                      <div style="float: left; width: 35%;">
+                        Description <textarea name="section_description[]" id="section_description" class="form-control" style="width: 98%;">{{ $section_fy_list['section_description'] }}</textarea>
+                      </div>
+
+                      <div style="float: left; width: 15%;">
                         Visible For 
                         <select class="form-select" name="visible_for[]" id="visible_for" style="width: 95%;">
                           <option value="Member" @if($section_fy_list['visible_for']=='Member') selected @endif>Member</option>
@@ -101,7 +109,7 @@
 
                       <div style="float: left; width: 15%;">
                         <a href="{{ url('add-survey-question-section-wise/'.$review_form_name_data['id'].'/'.$section_fy_list['id'])}}" target="_blank">
-                          <input type="button" name="Add Question" value="Add Question" class="btn btn-info" style="font-size: 14px; padding: 6px; color: #fff; margin-top: 28px;">
+                          <input type="button" name="Add Question" value="Add/View Question" class="btn btn-info" style="font-size: 14px; padding: 6px; color: #fff; margin-top: 28px;">
                         </a>
                       </div>
                     </div>
@@ -112,7 +120,7 @@
 
 
                 <div class="col-12">
-                  <input type="submit" name="submit" value="Add" class="btn btn-info">
+                  <input type="submit" name="submit" value="Add" class="btn btn-primary">
 
                 </div>
 

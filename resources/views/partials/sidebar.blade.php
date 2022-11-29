@@ -247,10 +247,17 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
           <ul id="forms-nav-road-fy" class="nav-content" data-bs-parent="#sidebar-nav">
             
             @if((Auth::user()->role_id=='5') || (Auth::user()->role_id=='6') || (Auth::user()->role_id=='7') || (Auth::user()->role_id=='8'))
-            <li>
+            <!-- <li>
               <a href="{{ url('/create-annual-review-form') }}" class="{{ request()->is('confirmation-process-mom-email','mom-email-view/*') ? 'active' : '' }}">
                 <i class="bi bi-hand-thumbs-up-fill"></i>
                 <span>Create Review Form</span>
+              </a>
+            </li> -->
+
+            <li>
+              <a href="{{ url('/manage-annual-review-form') }}" class="{{ request()->is('confirmation-process-mom-email','mom-email-view/*') ? 'active' : '' }}">
+                <i class="bi bi-hand-thumbs-up-fill"></i>
+                <span>Manage Annual Review Form</span>
               </a>
             </li>
             @endif
