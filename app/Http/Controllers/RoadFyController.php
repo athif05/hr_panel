@@ -79,13 +79,17 @@ class RoadFyController extends Controller
     /* multiple step form view, start here */
     public function survey_multistep_form($form_id)
     {
-        $annual_review_form_data=AnnualReviewForm::where('annual_review_forms.id',$form_id)->leftJoin('road_fys','annual_review_form_id','=','annual_review_forms.id')->select('annual_review_forms.*', 'road_fys.no_of_section as no_of_section')->first();
+        $annual_review_form_data=AnnualReviewForm::where('annual_review_forms.id',$form_id)->where('annual_review_forms.status','1')->leftJoin('road_fys','annual_review_form_id','=','annual_review_forms.id')->select('annual_review_forms.*', 'road_fys.no_of_section as no_of_section')->first();
 
+        $section_lists='';
+        $question_lists='';
+        if($annual_review_form_data) {
 
-        $section_lists=SectionFyList::where('annual_review_form_id',$annual_review_form_data['id'])->get();
+            $section_lists=SectionFyList::where('annual_review_form_id',$annual_review_form_data['id'])->get();
 
-        $question_lists=RoadFyQuestion::where('annual_review_form_id',$annual_review_form_data['id'])->get();
-
+            $question_lists=RoadFyQuestion::where('annual_review_form_id',$annual_review_form_data['id'])->orderBy('id', 'ASC')->get();
+        }
+        
         return view('multistep-form',compact('annual_review_form_data','section_lists','question_lists'));
     }
     /* multiple step form view, end here */

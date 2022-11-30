@@ -255,19 +255,18 @@ $last70days=date('Y-m-d', strtotime('-70 day', strtotime($todat_date)));
             </li> -->
 
             <li>
-              <a href="{{ url('/manage-annual-review-form') }}" class="{{ request()->is('confirmation-process-mom-email','mom-email-view/*') ? 'active' : '' }}">
+              <a href="{{ url('/manage-annual-review-form') }}" class="{{ request()->is('manage-annual-review-form','create-annual-review-form','edit-annual-review-form/*','add-new-road-fy-survey-form/*','add-survey-question-section-wise/*/*') ? 'active' : '' }}">
                 <i class="bi bi-hand-thumbs-up-fill"></i>
                 <span>Manage Annual Review Form</span>
               </a>
             </li>
             @endif
 
-
-            @if(session('session_annual_review_form_data'))
+            @if(session('session_annual_review_form_name'))
               <li>
-                <a href="{{ url('/road-fy') }}" class="{{ request()->is('hr-generate-emails','generate-email-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
+                <a href="{{ url('/road-fy') }}" class="{{ request()->is('road-fy','multistep-form/*','generate-email-form-edit/*') ? 'active' : '' }}">
                   <i class="bi bi-journal-text"></i>
-                  <span>Fill {{ session('session_annual_review_form_data')['form_name'] }}</span>
+                  <span>Fill {{ session('session_annual_review_form_name')['form_name'] }}</span>
                 </a>
               </li>
             @endif

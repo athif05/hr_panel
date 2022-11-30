@@ -87,6 +87,7 @@
 							                	<option value="textbox" @if($question_list->question_type=='textbox') selected @endif>Text Box</option>
 							                	<option value="textarea" @if($question_list->question_type=='textarea') selected @endif>Text Area</option>
 							                	<option value="radiobutton" @if($question_list->question_type=='radiobutton') selected @endif>Radio Button</option>
+							                	<option value="rating" @if($question_list->question_type=='rating') selected @endif>Rating</option>
 							                	<option value="checkbox" @if($question_list->question_type=='checkbox') selected @endif>Check Box</option>
 							                	<option value="dropdown" @if($question_list->question_type=='dropdown') selected @endif>Drop Down</option>
 							                </select>
@@ -130,6 +131,7 @@
 						                	<option value="textbox" @if(old('question_type')=='textbox') selected @endif>Text Box</option>
 						                	<option value="textarea" @if(old('question_type')=='textarea') selected @endif>Text Area</option>
 						                	<option value="radiobutton" @if(old('question_type')=='radiobutton') selected @endif>Radio Button</option>
+						                	<option value="rating" @if(old('question_type')=='rating') selected @endif>Rating</option>
 						                	<option value="checkbox" @if(old('question_type')=='checkbox') selected @endif>Check Box</option>
 						                	<option value="dropdown" @if(old('question_type')=='dropdown') selected @endif>Drop Down</option>
 						                </select>
