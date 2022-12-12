@@ -74,15 +74,21 @@
 								<div class='road_fy_element' id="roadFyDiv_{{$cnt}}">
 									<div style="float: left; width: 100%; margin-top:5px;">
 										<div style="float: left; width: 28%;">
+											@if($cnt==1)
 											<label for="question_title" class="form-label">Question Title</label>
+											@endif
 											<input type='text' placeholder='Question' name='question_title[]' id='txt_1' value="{{ $question_list->question_title }}" class="form-control" style="width: 98%;">
 										</div>
 										<div style="float: left; width: 26%;">
+											@if($cnt==1)
 											<label for="question_title" class="form-label">Question Hint</label>
+											@endif
 											<input type='text' placeholder='Question Hint' name='question_hint[]' id='txt_1' value="{{ $question_list->question_hint }}" class="form-control" style="width: 98%;">
 										</div>
 										<div style="float: left; width: 17%;">
+											@if($cnt==1)
 											<label for="question_type" class="form-label">Question Type</label>
+											@endif
 											<select class="form-select" name="question_type[]" id="txt_2" style="width: 98%;">
 							                	<option value="textbox" @if($question_list->question_type=='textbox') selected @endif>Text Box</option>
 							                	<option value="textarea" @if($question_list->question_type=='textarea') selected @endif>Text Area</option>
@@ -94,7 +100,9 @@
 
 										</div>
 										<div style="float: left; width: 25%;">
+											@if($cnt==1)
 											<label for="question_value" class="form-label">Question Value <span style="font-size: 10px;">(Comma seprated value)</span></label>
+											@endif
 											<input type='text' name='question_value[]' id='txt_3' value="{{ $question_list->question_value }}" class="form-control" style="width: 98%;">
 										</div>
 										
@@ -103,7 +111,7 @@
 											<span class='road_fy_add'><i class="bi bi-plus"></i></span>
 										</div>
 										@else
-										<div style="float: left; width: 4%; font-size: 18px; color: red; cursor: pointer; text-align: center; padding-top: 37px;">
+										<div style="float: left; width: 4%; font-size: 18px; color: red; cursor: pointer; text-align: center; padding-top: 10px;">
 	                                  
 	                                      <span id="roadFyRemove_{{$cnt}}" class='roadFyRemove'>X</span>
 	                                      

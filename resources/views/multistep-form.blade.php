@@ -140,327 +140,192 @@ button:hover {
 	              </div>
 	              @endif
 
-
 	              <!-- Custom Styled Validation with Tooltips -->
 	              <form method="post" action="{{ route('save-multistep-form')}}" class="row g-3 needs-validation" novalidate id="multiStepForm">
 	                @csrf
 
 	                <input type="hidden" name="member_id" id="member_id" value="{{ Auth::user()->id }}">
+	                <input type="hidden" name="annual_review_form_id" id="annual_review_form_id" value="{{ $annual_review_form_data['id'] }}">
+
 	                 
 					  <!-- One "tab" for each step in the form: -->
 					  @foreach($section_lists as $section_list)
 
-					  <div class="tab">
+						  @if(($section_list['visible_for']==$section_visible) || ($section_list['visible_for']=='All'))
+							  <div class="tab">
 
-						  	<h5>{{ $section_list['section_name'] }}</h5>
+								  	<h5>{{ $section_list['section_name'] }}</h5>
 
-						  	@foreach($question_lists as $question_list)
+								  	<!-- <input type="hidden" name="section_name" id="section_name" value="{{ $section_list['section_name'] }}">
+			                		<input type="hidden" name="section_id" id="section_id" value="{{ $section_list['id'] }}"> -->
 
-						  		@if($section_list['section_name']==$question_list['section_name'])
+								  	@foreach($question_lists as $question_list)
 
-							  	<label for="name" class="form-label">{{ $question_list['question_title'] }}</label>
-							    <p>
-							    	@if($question_list['question_type']=='textbox')
+								  		@if($section_list['section_name']==$question_list['section_name'])
 
-							    		<input type="text" name="fname" class="form-control">
+									  	<label for="name" class="form-label">{{ $question_list['question_title'] }} 
 
-							    	@elseif($question_list['question_type']=='textarea')
+										<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $question_list['question_hint'] }}" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+							                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+							            </button>
 
-							    		<textarea class="form-control" name="address" id="address" style="height: 100px">{{ old('address')}}</textarea>
-								    	<script>
-						                    CKEDITOR.replace( 'address' );
-						                </script>
+									  		
+									  	</label>
+									    <p>
 
-							    	@elseif($question_list['question_type']=='radiobutton')
+									    <input type="hidden" name="question_id[]" id="question_id" value="{{ $question_list['id'] }}">
 
-							    		<span id="radioBtn">
-							    			<?php 
-							    			$radiobuttonValue=explode(',',$question_list['question_value']);
-							    			$radiobuttonCount=count($radiobuttonValue);
-							    			?>
+									    	@if($question_list['question_type']=='textbox')
 
-							    			@for($rb=0;$rb<$radiobuttonCount;$rb++)
-						                  		<input class="form-check-input" type="radio" name="company_policies_procedures" id="company_policies_procedures" value="{{ ucwords($radiobuttonValue[$rb]) }}" @if(old('company_policies_procedures')=='{{ ucwords($radiobuttonValue[$rb]) }}') checked @endif>
-							                	<label class="form-check-label" for="gridRadios1">{{ ucwords($radiobuttonValue[$rb]) }}</label>
-							                @endfor
-						                </span>
+									    		<input type="text" name="answer_{{ $question_list['id'] }}" class="form-control">
 
-							    	@elseif($question_list['question_type']=='rating')
+									    	@elseif($question_list['question_type']=='textarea')
 
-										<span id="radioBtn">
+									    		<textarea class="form-control" name="answer_{{ $question_list['id'] }}" id="answer_{{ $question_list['id']}}" style="height: 100px">{{ old('address')}}</textarea>
+										    	<script>
+								                    CKEDITOR.replace( 'answer_'+<?= $question_list['id']?> );
+								                </script>
 
-											<?php 
-							    			$ratingValue=explode(',',$question_list['question_value']);
-							    			$ratingCount=count($ratingValue);
-							    			?>
+									    	@elseif($question_list['question_type']=='radiobutton')
 
-											<div class="rating">
+									    		<span id="radioBtn">
+									    			<?php 
+									    			$radiobuttonValue=explode(',',$question_list['question_value']);
+									    			$radiobuttonCount=count($radiobuttonValue);
+									    			?>
 
-											@if(in_array('NA',$ratingValue))
-											  <label class="form_row form_row_0">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="NA" @if(old('satisfaction_job_role')=='NA') checked @elseif(old('satisfaction_job_role')=='') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
-											      <p>NA</p>
-											    </div>
-											  </label>
-											@endif
+									    			@for($rb=0;$rb<$radiobuttonCount;$rb++)
+								                  		<input class="form-check-input" type="radio" name="answer_{{ $question_list['id'] }}[]" id="question_answer" value="{{ ucwords($radiobuttonValue[$rb]) }}" @if(old('company_policies_procedures')=='{{ ucwords($radiobuttonValue[$rb]) }}') checked @endif>
+									                	<label class="form-check-label" for="gridRadios1">{{ ucwords($radiobuttonValue[$rb]) }}</label>
+									                @endfor
+								                </span>
 
+									    	@elseif($question_list['question_type']=='rating')
 
-											@if(in_array('1',$ratingValue))
-											  <label class="form_row form_row_1">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="1" @if(old('satisfaction_job_role')=='1') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
-											      <p>1 <span>Poor</span></p>
-											    </div>
-											  </label>
-											@endif
+												<span id="radioBtn">
 
+													<?php 
+									    			$ratingValue=explode(',',$question_list['question_value']);
+									    			$ratingCount=count($ratingValue);
+									    			?>
 
-											@if(in_array('2',$ratingValue))
+													<div class="rating">
 
-											  <label class="form_row form_row_2">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="2" @if(old('satisfaction_job_role')=='2') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
-											      <p>2 <span>Fair</span></p>
-											    </div>
-											  </label>
-											@endif
+													@if(in_array('NA',$ratingValue))
+													  <label class="form_row form_row_0">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="NA" @if(old('satisfaction_job_role')=='NA') checked @elseif(old('satisfaction_job_role')=='') checked @endif>
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
+													      <p>NA</p>
+													    </div>
+													  </label>
+													@endif
 
 
-											@if(in_array('3',$ratingValue))
-
-											  <label class="form_row form_row_3">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="3" @if(old('satisfaction_job_role')=='3') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
-											      <p>3 <span>Good</span></p>
-											    </div>
-											  </label>
-											@endif
-
-
-											@if(in_array('4',$ratingValue))
-
-											  <label class="form_row form_row_4">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="4" @if(old('satisfaction_job_role')=='4') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
-											      <p>4 <span>Very Good</span></p>
-											    </div>
-											  </label>
-											@endif
+													@if(in_array('1',$ratingValue))
+													  <label class="form_row form_row_1">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="1">
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
+													      <p>1 <span>Poor</span></p>
+													    </div>
+													  </label>
+													@endif
 
 
-											@if(in_array('5',$ratingValue))
+													@if(in_array('2',$ratingValue))
 
-											  <label class="form_row form_row_5">
-											    <input type="radio" name="satisfaction_job_role" id="satisfaction_job_role" value="5" @if(old('satisfaction_job_role')=='5') checked @endif>
-											    <div class="checkmark">
-											      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
-											      <p>5 <span>Outstanding</span></p>
-											    </div>
-											  </label>
-											@endif
+													  <label class="form_row form_row_2">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="2">
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
+													      <p>2 <span>Fair</span></p>
+													    </div>
+													  </label>
+													@endif
 
-											</div>
 
-										</span>
+													@if(in_array('3',$ratingValue))
 
-							    	@elseif($question_list['question_type']=='checkbox')
+													  <label class="form_row form_row_3">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="3">
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
+													      <p>3 <span>Good</span></p>
+													    </div>
+													  </label>
+													@endif
 
-							    		<?php 
-						    			$chckValue=explode(',',$question_list['question_value']);
-						    			$chckCount=count($chckValue);
-						    			?>
 
-						    			@for($ch=0;$ch<$chckCount;$ch++)
-							    		<div class="form-check">
-					                      <input class="form-check-input" type="checkbox" id="gridCheck1">
-					                      <label class="form-check-label" for="gridCheck1">
-					                        {{ $chckValue[$ch] }}
-					                      </label>
-					                    </div>
-					                    @endfor
-	                    
-							    	@elseif($question_list['question_type']=='dropdown')
+													@if(in_array('4',$ratingValue))
 
-							    		<?php 
-						    			$dpdwValue=explode(',',$question_list['question_value']);
-						    			$dpdwCount=count($dpdwValue);
-						    			?>
+													  <label class="form_row form_row_4">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="4">
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
+													      <p>4 <span>Very Good</span></p>
+													    </div>
+													  </label>
+													@endif
 
-							    		<select class="form-select" name="designation_id" id="designation_id" onselect="this.className = ''">
-						                    <option value="">Choose...</option>
-						                    
-						                    @for($dp=0;$dp<$dpdwCount;$dp++)
-						                    <option value="{{ $dpdwValue[$dp] }}" @if(old('company_id')==$dpdwValue[$dp]) selected @endif>
-						                    	{{ $dpdwValue[$dp] }}
-						                    </option>
-						                    @endfor
 
-						                </select>
+													@if(in_array('5',$ratingValue))
 
-							    	@endif
-							    	
-							    </p>
-							    @endif
-						    @endforeach
+													  <label class="form_row form_row_5">
+													    <input type="radio" name="answer_{{ $question_list['id'] }}[]" id="answer_{{ $question_list['id'] }}" value="5">
+													    <div class="checkmark">
+													      <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
+													      <p>5 <span>Outstanding</span></p>
+													    </div>
+													  </label>
+													@endif
 
-					  </div>
+													</div>
+
+												</span>
+
+									    	@elseif($question_list['question_type']=='checkbox')
+
+									    		<?php 
+								    			$chckValue=explode(',',$question_list['question_value']);
+								    			$chckCount=count($chckValue);
+								    			?>
+
+								    			@for($ch=0;$ch<$chckCount;$ch++)
+									    		<div class="form-check">
+							                      <input class="form-check-input" type="checkbox" id="gridCheck1" name="answer_{{ $question_list['id'] }}[]" value="{{ $chckValue[$ch] }}">
+							                      <label class="form-check-label" for="gridCheck1">
+							                        {{ $chckValue[$ch] }}
+							                      </label>
+							                    </div>
+							                    @endfor
+			                    
+									    	@elseif($question_list['question_type']=='dropdown')
+
+									    		<?php 
+								    			$dpdwValue=explode(',',$question_list['question_value']);
+								    			$dpdwCount=count($dpdwValue);
+								    			?>
+
+									    		<select class="form-select" name="answer_{{ $question_list['id'] }}[]" >
+								                    								                    
+								                    @for($dp=0;$dp<$dpdwCount;$dp++)
+								                    <option value="{{ $dpdwValue[$dp] }}" @if(old('company_id')==$dpdwValue[$dp]) selected @endif>
+								                    	{{ $dpdwValue[$dp] }}
+								                    </option>
+								                    @endfor
+
+								                </select>
+
+									    	@endif
+									    	
+									    </p>
+									    @endif
+								    @endforeach
+
+							  </div>
+						  @endif
 					  @endforeach
-
-
-
-					  <!-- 
-
-	<label for="name" class="form-label">Last Name:</label>
-					    <p>
-					    	<input placeholder="Last name..." oninput="this.className = ''" name="lname" class="form-control" value="">
-					    </p>
-
-					    <label for="name" class="form-label">Designation:</label>
-					    <p>
-					    	<select class="form-select" name="designation_id" id="designation_id" onselect="this.className = ''">
-			                    <option value="">Choose...</option>
-			                    
-			                    <option value="PHP Developer" @if(old('company_id')=='PHP Developer') selected @endif>PHP Developer</option>
-			                    <option value="Manager" @if(old('company_id')=='Manager') selected @endif>Manager</option>
-			                    <option value="UI Designer" @if(old('company_id')=='UI Designer') selected @endif>UI Designer</option>
-			                    
-			                  </select>
-					    </p>
-					  <div class="tab">
-					  	<h5>HR Info</h5>
-					  	<label for="name" class="form-label">HR Name:</label>
-					    <p><input placeholder="HR name..." oninput="this.className = ''" name="hrname" class="form-control"></p>
-
-					    <label for="name" class="form-label">HR Email:</label>
-					    <p><input placeholder="HR email..." oninput="this.className = ''" name="hremail" class="form-control"></p>
-					  </div> -->
-
-					  <!-- <div class="tab">
-					  	<h5>Company Info</h5>
-					  	<label for="name" class="form-label">Company Name:</label>
-					    <p>!-- <input placeholder="Company name..." oninput="this.className = ''" name="companyname" class="form-control"> --
-					    <select class="form-select" name="company_id" id="company_id" onselect="this.className = ''">
-		                    <option value="">Choose...</option>
-		                    
-		                    <option value="BVC" @if(old('company_id')=='BVC') selected @endif>BVC</option>
-		                    <option value="vCommission" @if(old('company_id')=='vCommission') selected @endif>vCommission</option>
-		                    <option value="Nutrafy" @if(old('company_id')=='Nutrafy') selected @endif>Nutrafy</option>
-		                    
-		                  </select>
-					    </p>
-
-					    <label for="name" class="form-label">Company Location:</label>
-					    <p>
-					    	
-					    	<select class="form-select" name="companylocation" id="companylocation" onselect="this.className = ''">
-			                    <option value="">Choose...</option>
-			                    
-			                    <option value="Gurgram" @if(old('company_id')=='Gurgram') selected @endif>Gurgram</option>
-			                    <option value="Mohali" @if(old('company_id')=='Mohali') selected @endif>Mohali</option>
-			                    
-			                  </select>
-					    </p>
-
-					    <label for="discipline" class="form-label rdioBtn">Company Policy  <span class="text-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Required"><strong>*</strong></span></label><br>
-					    <p>
-					    	
-					    	<span id="radioBtn">
-	                    <div class="rating">
-	                      <label class="form_row form_row_0">
-	                        <input type="radio" name="discipline" id="discipline" value="NA" @if(old('discipline')=='NA') checked @elseif(old('discipline')=='') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating0.png') }}" alt="img">
-	                          <p>NA</p>
-	                        </div>
-	                      </label>
-	              
-
-	                      <label class="form_row form_row_1">
-	                        <input type="radio" name="discipline" id="discipline" value="1" @if(old('discipline')=='1') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
-	                          <p>1 <span>Poor</span></p>
-	                        </div>
-	                      </label>
-
-
-	                      <label class="form_row form_row_2">
-	                        <input type="radio" name="discipline" id="discipline" value="2" @if(old('discipline')=='2') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating4.png') }}" alt="img">
-	                          <p>2 <span>Fair</span></p>
-	                        </div>
-	                      </label>
-
-
-	                      <label class="form_row form_row_3">
-	                        <input type="radio" name="discipline" id="discipline" value="3" @if(old('discipline')=='3') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating3.png') }}" alt="img">
-	                          <p>3 <span>Good</span></p>
-	                        </div>
-	                      </label>
-
-
-	                      <label class="form_row form_row_4">
-	                        <input type="radio" name="discipline" id="discipline" value="4" @if(old('discipline')=='4') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating2.png') }}" alt="img">
-	                          <p>4 <span>Very Good</span></p>
-	                        </div>
-	                      </label>
-
-
-	                      <label class="form_row form_row_5">
-	                        <input type="radio" name="discipline" id="discipline" value="5" @if(old('discipline')=='5') checked @endif>
-	                        <div class="checkmark">
-	                          <img src="{{ asset('assests/assets/img/rating1.png') }}" alt="img">
-	                          <p>5 <span>Outstanding</span></p>
-	                        </div>
-	                      </label>
-	                    </div>
-	                    
-	                  </span>
-					    </p>
-					  </div>
-
-					  <div class="tab">
-					  	<h5>Contact Info</h5>
-					  	<label for="name" class="form-label">Email:</label>
-					    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email" class="form-control"></p>
-
-					    <label for="name" class="form-label">Mobile No.:</label>
-					    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone" class="form-control"></p>
-
-
-					    <label for="name" class="form-label">Address:</label>
-					    <p>
-					    	<textarea class="form-control" name="address" id="address" style="height: 100px">{{ old('address')}}</textarea>
-					    	<script>
-			                    CKEDITOR.replace( 'address' );
-			                </script>
-					    </p>
-
-					  </div>
-					  
-					  <div class="tab">
-					  	<h5>Login Info</h5>
-					  	<label for="name" class="form-label">Username:</label>
-					    <p>
-					    	<input placeholder="Username..." oninput="this.className = ''" name="uname" class="form-control">
-					    </p>
-
-					    <label for="name" class="form-label">Password:</label>
-					    <p>
-					    	<input placeholder="Password..." oninput="this.className = ''" name="pword" type="password" class="form-control">
-					    </p>
-					  </div> -->
 
 					  <div style="overflow:auto;">
 					    <div style="float:right;">
@@ -471,9 +336,11 @@ button:hover {
 
 					  <!-- Circles which indicates the steps of the form: -->
 					  <div style="text-align:center;margin-top:40px; display: block;">
-					  	@for($f=1;$f<=$annual_review_form_data['no_of_section'];$f++)
-					    <span class="step"></span>
-					    @endfor
+					  	@foreach($section_lists as $section_list)
+					  		@if(($section_list['visible_for']==$section_visible) || ($section_list['visible_for']=='All'))
+					    		<span class="step"></span>
+					    	@endif
+					    @endforeach
 					    
 					  </div>
 

@@ -89,8 +89,17 @@ class RoadFyController extends Controller
 
             $question_lists=RoadFyQuestion::where('annual_review_form_id',$annual_review_form_data['id'])->orderBy('id', 'ASC')->get();
         }
-        
-        return view('multistep-form',compact('annual_review_form_data','section_lists','question_lists'));
+
+        $member_role=Auth::user()->role_id;
+        if($member_role==1){
+            $section_visible='Member';
+        } else if($member_role==3) {
+            $section_visible='Manager';
+        } else if(($member_role==5) || ($member_role==6)) {
+            $section_visible='HR';
+        }
+
+        return view('multistep-form',compact('annual_review_form_data','section_lists','question_lists','section_visible'));
     }
     /* multiple step form view, end here */
 
