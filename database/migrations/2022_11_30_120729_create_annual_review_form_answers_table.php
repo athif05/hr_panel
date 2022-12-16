@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('section_name')->nullable();
             $table->text('question')->nullable();
             $table->text('answer')->nullable();
+            $table->string('question_type')->nullable();
             $table->dateTime('submitted_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
             $table->foreign('member_id')->references('id')->on('users');

@@ -147,6 +147,121 @@ button:hover {
 	                <input type="hidden" name="member_id" id="member_id" value="{{ Auth::user()->id }}">
 	                <input type="hidden" name="annual_review_form_id" id="annual_review_form_id" value="{{ $annual_review_form_data['id'] }}">
 
+	                	<div class="tab">
+
+					  		<h5>General Information</h5>
+
+					  		<input type="hidden" name="sec1_question[]" id="question_id" value="Full Name">
+						  	<label for="full_name " class="form-label">Full Name 
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="पूरा नाम" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+						 		<input type="text" class="form-control disable-text" name="sec1_answer[]" id="full_name" value="{{ $member_detail['first_name'] }} {{ $member_detail['last_name'] }}" readonly>
+						 	</p>
+
+
+						 	<input type="hidden" name="sec1_question[]" id="question_id" value="Member Code">
+						    <label for="member_code" class="form-label">Member Code
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="सदस्य कोड" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="member_code" value="{{ $member_detail['member_id'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Gender">
+						    <label for="gender" class="form-label">Gender
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="लिंग" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="gender" value="{{ $member_detail['gender'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Designation">
+						    <label for="designation" class="form-label">Designation
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="पद" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="designation" value="{{ $member_detail['designation_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Department">
+						    <label for="department" class="form-label">Department
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="विभाग" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="department" value="{{ $member_detail['department_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Company">
+						    <label for="company" class="form-label">Company
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="कंपनी" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="company" value="{{ $member_detail['company_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Tenure served in the company">
+						    <label for="tenure" class="form-label">Tenure served in the company
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="कार्यकाल कंपनी में सेवा की" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="tenure" value="{{ $total_tenure }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Name of Reporting Manager">
+						    <label for="reporting_manager" class="form-label">Name of Reporting Manager
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="रिपोर्टिंग प्रबंधक का नाम" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="reporting_manager" value="{{ $member_detail['manager_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Name of Team Manager">
+						    <label for="team_manager" class="form-label">Name of Team Manager
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="टीम मैनेजर का नाम" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="team_manager" value="{{ $member_detail['manager_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+
+
+						    <input type="hidden" name="sec1_question[]" id="question_id" value="Name of Department Head">
+						    <label for="department_head" class="form-label">Name of Department Head
+							<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="विभाग प्रमुख का नाम" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
+				                <i class="bi bi-patch-question-fill" style="color: #333;"></i>
+				            </button>
+						  	</label>
+						    <p>
+								<input type="text" name="sec1_answer[]" id="department_head" value="{{ $member_detail['hod_name'] }}" class="form-control disable-text" readonly>
+						    </p>
+									    
+
+						</div>
 	                 
 					  <!-- One "tab" for each step in the form: -->
 					  @foreach($section_lists as $section_list)
@@ -156,13 +271,22 @@ button:hover {
 
 								  	<h5>{{ $section_list['section_name'] }}</h5>
 
-								  	<!-- <input type="hidden" name="section_name" id="section_name" value="{{ $section_list['section_name'] }}">
-			                		<input type="hidden" name="section_id" id="section_id" value="{{ $section_list['id'] }}"> -->
+								  	
 
 								  	@foreach($question_lists as $question_list)
 
 								  		@if($section_list['section_name']==$question_list['section_name'])
 
+
+								  		<input type="hidden" name="section_name[]" id="section_name" value="{{ $section_list['section_name'] }}">
+			                			<input type="hidden" name="section_id[]" id="section_id" value="{{ $section_list['id'] }}">
+			                			<input type="hidden" name="question_type[]" value="{{ $question_list['question_type'] }}">
+
+
+								  		<input type="hidden" name="questions_id[]" id="questions_id" value="{{ $question_list['id'] }}">
+
+
+								  		<input type="hidden" name="question_{{ $question_list['id'] }}" value="{{ $question_list['question_title'] }}">
 									  	<label for="name" class="form-label">{{ $question_list['question_title'] }} 
 
 										<button  class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $question_list['question_hint'] }}" style="padding: 0px; background-color: #fff; border: 1px solid #fff;">
@@ -173,7 +297,7 @@ button:hover {
 									  	</label>
 									    <p>
 
-									    <input type="hidden" name="question_id[]" id="question_id" value="{{ $question_list['id'] }}">
+									    
 
 									    	@if($question_list['question_type']=='textbox')
 
@@ -336,6 +460,7 @@ button:hover {
 
 					  <!-- Circles which indicates the steps of the form: -->
 					  <div style="text-align:center;margin-top:40px; display: block;">
+					  			<span class="step"></span>
 					  	@foreach($section_lists as $section_list)
 					  		@if(($section_list['visible_for']==$section_visible) || ($section_list['visible_for']=='All'))
 					    		<span class="step"></span>

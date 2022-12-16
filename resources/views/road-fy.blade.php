@@ -41,6 +41,13 @@
                     <div class="card-body">
                       <h5 class="card-title">For Individual</h5>
 
+                      @if(session()->has('thank_you'))
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session()->get('thank_you') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      @endif
+
                       <table class="table table-border">
                         <thead>
                           <tr>
@@ -56,12 +63,17 @@
                             	{{ $annual_review_form_data['survey_form_label'] }}
                             </td>
                             <td>
-                            	<span class="badge bg-success"> + Completed</span>
+                              <?php if($check_exist_or_not) { ?>
+                              	<span class="badge bg-success"> + Completed</span>
+                              <?php } ?>
                             </td>
                             <td>
-                            	<!-- <span class="badge bg-success"> + View Survey</span> -->
-                            	
-                            	<span class="badge bg-warning" onclick="location.href = '{{ url("multistep-form/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + Fill Survey</span>
+                            
+                              <?php if($check_exist_or_not) { ?>
+                                <span class="badge bg-success" onclick="location.href = '{{ url("survey-form-view/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + View Survey</span>
+                              <?php } else {?>
+                                <span class="badge bg-warning" onclick="location.href = '{{ url("multistep-form/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + Fill Survey</span>
+                              <?php } ?>
                             	
                             </td>
                           </tr>

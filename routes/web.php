@@ -491,6 +491,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/multistep-form/{form_id}',[App\Http\Controllers\RoadFyController::class, 'survey_multistep_form']);
 
 	Route::post('/save-multistep-form', [App\Http\Controllers\RoadFyController::class, 'store'])->name('save-multistep-form');
+
+	Route::get('/survey-form-view/{form_id}',[App\Http\Controllers\RoadFyController::class,'surveyFormView']);
 	/* road fy appraisal cycle and survey form, end here */
 
 
