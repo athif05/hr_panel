@@ -63,13 +63,13 @@
                             	{{ $annual_review_form_data['survey_form_label'] }}
                             </td>
                             <td>
-                              <?php if($check_exist_or_not) { ?>
+                              <?php if($check_exist_or_not!=null) { ?>
                               	<span class="badge bg-success"> + Completed</span>
                               <?php } ?>
                             </td>
                             <td>
                             
-                              <?php if($check_exist_or_not) { ?>
+                              <?php if($check_exist_or_not!=null) { ?>
                                 <span class="badge bg-success" onclick="location.href = '{{ url("survey-form-view/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + View Survey</span>
                               <?php } else {?>
                                 <span class="badge bg-warning" onclick="location.href = '{{ url("multistep-form/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> + Fill Survey</span>
@@ -99,7 +99,7 @@
                             	<span class="badge bg-success"> <i class="bi bi-download"></i> Download</span>
                             </td>
                             <td>
-                            	<span class="badge bg-warning"> <i class="bi bi-upload"></i> Upload</span>
+                            	<span class="badge bg-warning" onclick="location.href = '{{ url("annual-upload-review-ppt/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> <i class="bi bi-upload"></i> Upload</span>
                             </td>
                           </tr>
 

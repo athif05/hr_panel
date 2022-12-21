@@ -496,6 +496,13 @@ Route::group(['middleware' => ['auth']], function() {
 	/* road fy appraisal cycle and survey form, end here */
 
 
+	/*upload review ppt, start here*/
+	Route::get('/annual-upload-review-ppt/{form_id}',[App\Http\Controllers\AnnualReviewPptUploadController::class, 'index']);
+
+	Route::post('/save-annual-review-ppt', [App\Http\Controllers\AnnualReviewPptUploadController::class, 'store'])->name('save-annual-review-ppt');
+	/*upload review ppt, end here*/
+
+
 });
 /*pages are access only when user is loggedin first option, end here*/
 

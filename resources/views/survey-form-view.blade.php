@@ -33,7 +33,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Survey Form</h5>
+              <h5 class="card-title text-center">Survey Form</h5>
               
               @if(session()->has('thank_you'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,11 +51,12 @@
                 	<table class="table table-striped table-bordered">
                 
                 		<tbody>
+                      <?php $qn=1;?>
 							@foreach($survey_form_details as $survey_form_detail)
 							
 								@if($survey_form_section_name_detail['section_name'] == $survey_form_detail['section_name'])
 								<tr>
-									<td><strong>Q : </strong>{{ $survey_form_detail['question'] }}</td>
+									<td><strong>Q {{ $qn}} : </strong>{{ $survey_form_detail['question'] }}</td>
 								</tr>
 
 								<tr class="txt_justify">
@@ -79,7 +80,7 @@
 									</td>
 								</tr>
 								@endif
-
+<?php $qn++;?>
 		              		@endforeach
 						</tbody>
 					</table>
