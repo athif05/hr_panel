@@ -96,7 +96,11 @@
                             	{{ $annual_review_form_data['ppt_label'] }}
                             </td>
                             <td>
-                            	<span class="badge bg-success"> <i class="bi bi-download"></i> Download</span>
+                              @if($annual_review_ppt_details)
+                            	<a href="{{ asset($annual_review_ppt_details) }}" download>
+                                <span class="badge bg-success"> <i class="bi bi-download"></i> Download</span>
+                              </a>
+                              @endif
                             </td>
                             <td>
                             	<span class="badge bg-warning" onclick="location.href = '{{ url("annual-upload-review-ppt/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> <i class="bi bi-upload"></i> Upload</span>

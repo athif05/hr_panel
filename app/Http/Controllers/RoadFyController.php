@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Role;
 use App\Models\{RoadFy,RoadFyQuestion, SectionFyList};
 use App\Models\{AnnualReviewForm, AnnualReviewFormAnswer};
-use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes};
+use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes, AnnualReviewPptUpload};
 use App\Models\User;
 
 use Auth;
@@ -58,7 +58,17 @@ class RoadFyController extends Controller
         //$quries = DB::getQueryLog();
         //dd($quries);
 
-        return view('road-fy', compact('annual_review_form_data','check_exist_or_not'));
+
+        $annual_review_ppt_details='';
+
+        $check=AnnualReviewPptUpload::where('member_id',$member_id)
+            ->where('annual_review_form_id',$annual_review_form_id)->first();
+
+        if($check){
+            $annual_review_ppt_details=$check['ppt_name'];
+        }
+
+        return view('road-fy', compact('annual_review_form_data','check_exist_or_not','annual_review_ppt_details'));
     }
     /* show road home page, end here */
 
