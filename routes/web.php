@@ -503,6 +503,21 @@ Route::group(['middleware' => ['auth']], function() {
 	/*upload review ppt, end here*/
 
 
+	/* annual review stakeholder, start here*/
+	Route::get('/annual-review-stakeholder-list/{form_id}',[App\Http\Controllers\AnnualReviewStakeholderController::class, 'index']);
+
+	Route::get('/annual-review-stakeholder-feedback-form/{form_id}/{member_id}', [App\Http\Controllers\AnnualReviewStakeholderController::class, 'openForm']);
+
+	Route::post('/save-annual-review-stakeholder-feedback-form', [App\Http\Controllers\AnnualReviewStakeholderController::class, 'store'])->name('save-annual-review-stakeholder-feedback-form');
+
+	Route::get('/annual-review-stakeholder-feedback-form-edit/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewStakeholderController::class, 'edit']);
+
+	Route::post('/update-annual-review-stakeholder-feedback-form', [App\Http\Controllers\AnnualReviewStakeholderController::class, 'update'])->name('update-annual-review-stakeholder-feedback-form');
+
+	Route::get('/annual-review-stakeholder-feedback-show/{form_id}/{member_id}', [App\Http\Controllers\AnnualReviewStakeholderController::class, 'show']);
+	/* annual review stakeholder, end here*/
+
+
 });
 /*pages are access only when user is loggedin first option, end here*/
 

@@ -117,7 +117,7 @@
                             	&nbsp;
                             </td>
                             <td>
-                            	<span class="badge bg-success"> Fill Feedback + </span>
+                            	<span class="badge bg-success" onclick="location.href = '{{ url("annual-review-stakeholder-list/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> Fill Feedback + </span>
                             </td>
                           </tr>
                         </tbody>
