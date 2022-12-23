@@ -518,6 +518,21 @@ Route::group(['middleware' => ['auth']], function() {
 	/* annual review stakeholder, end here*/
 
 
+	/* annual review manager feedback, start here*/
+	Route::get('/annual-review-manager-feedback-list/{form_id}',[App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'index'])->middleware('isManager');
+
+	Route::get('annual-review-manager-feedback-form/{form_id}/{member_id}',[App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'show'])->middleware('isManager');
+
+	Route::post('/save-annual-review-manager-feedback-form', [App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'store'])->name('save-annual-review-manager-feedback-form');
+
+	Route::get('/annual-review-manager-feedback-form-edit/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-annual-review-manager-feedback-form', [App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'update'])->name('update-annual-review-manager-feedback-form');
+
+	Route::get('/annual-review-manager-feedback-form-show/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewManagerFeedbackController::class, 'showDetails'])->middleware('isManager');
+	/* annual review manager feedback, end here*/
+
+
 });
 /*pages are access only when user is loggedin first option, end here*/
 

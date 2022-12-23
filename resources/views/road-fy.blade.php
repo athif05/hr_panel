@@ -158,7 +158,7 @@
                             </td>
                             <td>
                             	<!-- <span class="badge bg-success"> + View Survey</span> -->
-                            	<span class="badge bg-warning"> Fill Feedbacks +</span>
+                            	<span class="badge bg-warning" onclick="location.href = '{{ url("annual-review-manager-feedback-list/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> Fill Feedbacks +</span>
                             </td>
                           </tr>
 

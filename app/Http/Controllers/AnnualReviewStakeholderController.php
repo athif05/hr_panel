@@ -30,31 +30,11 @@ class AnnualReviewStakeholderController extends Controller
         ->select('users.*', 'company_locations.name as location_name', 'company_names.name as company_name','departments.name as department_name','designations.name as designation_name')
         ->orderBy('users.first_name','asc')->get();
 
-        $company_names = CompanyName::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $department_names = Department::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $designation_names = Designation::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
-        $company_locations = CompanyLocation::where('status', '1')
-            ->where('is_deleted', '0')
-            ->orderBy('name','asc')
-            ->get();
-
         $stackholder_feedback_details=AnnualReviewStakeholder::get();
 
         //dd($stackholder_feedback_details); die;
 
-        return view('annual-review-stakeholder-list', compact('annual_review_form_id','all_members','company_names','department_names','designation_names','company_locations','stackholder_feedback_details'));
+        return view('annual-review-stakeholder-list', compact('annual_review_form_id','all_members','stackholder_feedback_details'));
 
     }
 

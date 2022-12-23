@@ -167,7 +167,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work')=='1') checked @endif>
+                        <input type="radio" name="quality_of_the_work" id="quality_of_the_work" value="1" @if(old('quality_of_the_work')=='1') checked @elseif(old('quality_of_the_work')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
@@ -224,7 +224,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence')=='1') checked @endif>
+                        <input type="radio" name="tat_adherence" id="tat_adherence" value="1" @if(old('tat_adherence')=='1') checked @elseif(old('tat_adherence')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
@@ -280,7 +280,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements')=='1') checked @endif>
+                        <input type="radio" name="ability_to_understand_project_requirements" id="ability_to_understand_project_requirements" value="1" @if(old('ability_to_understand_project_requirements')=='1') checked @elseif(old('ability_to_understand_project_requirements')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
@@ -336,7 +336,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback')=='1') checked @endif>
+                        <input type="radio" name="ability_to_absorb_feedback" id="ability_to_absorb_feedback" value="1" @if(old('ability_to_absorb_feedback')=='1') checked @elseif(old('ability_to_absorb_feedback')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
@@ -392,7 +392,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms')=='1') checked @endif>
+                        <input type="radio" name="responsiveness_on_all_platforms" id="responsiveness_on_all_platforms" value="1" @if(old('responsiveness_on_all_platforms')=='1') checked @elseif(old('responsiveness_on_all_platforms')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
@@ -448,7 +448,7 @@
                   <span id="radioBtn">
                     <div class="rating">
                       <label class="form_row form_row_1">
-                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance')=='1') checked @endif>
+                        <input type="radio" name="how_happy_you_with_performance" id="how_happy_you_with_performance" value="1" @if(old('how_happy_you_with_performance')=='1') checked @elseif(old('how_happy_you_with_performance')=='') checked @endif>
                         <div class="checkmark">
                           <img src="{{ asset('assests/assets/img/rating5.png') }}" alt="img">
                           <p>1 <span>Poor</span></p>
