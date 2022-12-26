@@ -5,7 +5,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Annual Review Manager Feedback | {{ env('MY_SITE_NAME') }}</title>
+    <title>Annual Review MOM | {{ env('MY_SITE_NAME') }}</title>
 
     <style type="text/css">
       .dataTable-table {
@@ -34,7 +34,7 @@
             <div class="card-body">
 
             	<div class="col-lg-12">
-            		<h5 class="card-title">Annual Review Manager Feedback</h5>
+            		<h5 class="card-title">Annual Review MOM List</h5>
             	</div>
 
             	<div style="clear: both;"></div>
@@ -50,12 +50,12 @@
                 <table class="table datatable table-striped display nowrap" id="datatable-id" style="width:100%">
                   <thead>
                     <tr>
-                      <th scope="col">&nbsp;</th>
-                      <th scope="col">Member ID</th>
-                      <th scope="col">Member Name</th>
-                      <th scope="col">Member Email</th>
-                      <th scope="col">Designation</th>
-                      <th scope="col">Action</th>
+                    	<th scope="col">&nbsp;</th>
+                    	<th scope="col">Member ID</th>
+                    	<th scope="col">Member Name</th>
+                    	<th scope="col">Member Email</th>
+                    	<th scope="col">Department</th>
+                    	<th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -64,35 +64,35 @@
 
                   
           					<tr>
-                      <td>
-                        @if($all_member['profile_image'])
-                          <img src="{{ str_replace('public/', '', asset('')).$all_member['profile_image'] }}" alt="VCOne" class="annualStakeHolderImage">
-                        @else
-                          <img src="{{ asset('assests/confirmation-process/img/no-user-profile.png') }}" alt="img" class="annualStakeHolderImage">
-                        @endif
-                      </td>
+          						<td>
+			                        @if($all_member['profile_image'])
+			                          <img src="{{ str_replace('public/', '', asset('')).$all_member['profile_image'] }}" alt="VCOne" class="annualStakeHolderImage">
+			                        @else
+			                          <img src="{{ asset('assests/confirmation-process/img/no-user-profile.png') }}" alt="img" class="annualStakeHolderImage">
+			                        @endif
+			                    </td>
           						<td>{{$all_member['member_id']}}</td>
           						<td>
           							{{$all_member['first_name']}} {{$all_member['last_name']}}
           						</td>
           						<td>{{$all_member['email']}}</td>
-          						<td>{{$all_member['designation_name']}}</td>
+          						<td>{{$all_member['department_name']}}</td>
           						<td>
                         <?php $jk=0;?>
 
-                        @foreach($confirmation_feedback_form_details as $confirmation_feedback_form_detail)
+                        @foreach($mom_details as $mom_detail)
                         
-                          @if(($confirmation_feedback_form_detail->filled_for==$all_member['id']) && ($confirmation_feedback_form_detail->filled_by == (Auth::user()->id)) )
+                          @if(($mom_detail->filled_for==$all_member['id']) && ($mom_detail->filled_by == (Auth::user()->id)) )
 
                           <?php $jk=1;?>
          
-                            @if($confirmation_feedback_form_detail->status=='1')
+                            @if($mom_detail->status=='1')
 
-                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/annual-review-manager-feedback-form-edit/".$survey_form_id."/".$all_member['id']."/".$confirmation_feedback_form_detail->id)}}';">Edit Feedback</button> <?php break; ?>
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/annual-review-mom-form-edit/".$survey_form_id."/".$all_member['id']."/".$mom_detail->id)}}';">Edit Feedback</button> <?php break; ?>
 
-                            @elseif($confirmation_feedback_form_detail->status=='2')
+                            @elseif($mom_detail->status=='2')
 
-                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/annual-review-manager-feedback-form/".$survey_form_id."/".$all_member['id'])}}';">Show Feedback</button>
+                              <button type="button" class="btn btn-info btn-sm" onclick="location.href = '{{ url("/annual-review-mom-form-show/".$survey_form_id."/".$all_member['id'])."/".$mom_detail->id}}';">Show Feedback</button>
 
                               <?php break; ?>
 
@@ -107,7 +107,7 @@
 
 
                         @if($jk==0)
-                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/annual-review-manager-feedback-form/".$survey_form_id."/".$all_member['id'])}}';">Start Feedback</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url("/annual-review-mom-form/".$survey_form_id."/".$all_member['id'])}}';">Start Feedback</button>
                         @endif
 
                         

@@ -25,7 +25,7 @@ class AnnualReviewManagerFeedbackController extends Controller
         //dd($manager1);
         $manager_array= (new UserController)->multilevel_manager($manager1);
 
-        $all_members = User::where('users.employee_type','Probation')
+        $all_members = User::where('users.employee_type','Confirmed')
         ->whereIn('users.reporting_to_id',$manager_array)
         ->leftJoin('company_locations', 'company_locations.id', '=', 'users.company_location_id')
         ->leftJoin('designations', 'designations.id', '=', 'users.designation')

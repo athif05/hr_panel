@@ -170,7 +170,7 @@
                             	&nbsp;
                             </td>
                             <td>
-                            	<span class="badge bg-warning"> Fill MOM +</span>
+                            	<span class="badge bg-warning" onclick="location.href = '{{ url("annual-review-mom-list/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> Fill MOM +</span>
                             </td>
                           </tr>
 

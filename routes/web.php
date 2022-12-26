@@ -533,6 +533,22 @@ Route::group(['middleware' => ['auth']], function() {
 	/* annual review manager feedback, end here*/
 
 
+	/* annual review mom, start here*/
+	Route::get('/annual-review-mom-list/{form_id}',[App\Http\Controllers\AnnualReviewMomController::class, 'index'])->middleware('isManager');
+
+	Route::get('/annual-review-mom-form/{form_id}/{member_id}',[App\Http\Controllers\AnnualReviewMomController::class, 'showForm'])->middleware('isManager');
+
+
+	Route::post('/save-annual-review-mom-form', [App\Http\Controllers\AnnualReviewMomController::class, 'store'])->name('save-annual-review-mom-form');
+
+	Route::get('/annual-review-mom-form-edit/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewMomController::class, 'edit'])->middleware('isManager');
+
+	Route::post('/update-annual-review-mom-form', [App\Http\Controllers\AnnualReviewMomController::class, 'update'])->name('update-annual-review-mom-form');
+
+	Route::get('/annual-review-mom-form-show/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewMomController::class, 'showDetails'])->middleware('isManager');
+	/* annual review mom, end here*/
+
+
 });
 /*pages are access only when user is loggedin first option, end here*/
 
