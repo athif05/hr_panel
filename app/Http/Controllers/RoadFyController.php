@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Role;
 use App\Models\{RoadFy,RoadFyQuestion, SectionFyList};
 use App\Models\{AnnualReviewForm, AnnualReviewFormAnswer};
-use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes, AnnualReviewPptUpload};
+use App\Models\{CompanyName, Designation, Department, CompanyLocation, JobOpeningTypes, AnnualReviewPptUpload, AnnualReviewHrOneOnOne};
 use App\Models\User;
 
 use Auth;
@@ -50,6 +50,7 @@ class RoadFyController extends Controller
         
         DB::enableQueryLog(); //for print sql query
 
+        //check annual review form is filled or not
         $check_exist_or_not = AnnualReviewFormAnswer::where('member_id', $member_id)
         ->where('annual_review_form_id', $annual_review_form_id)
         ->first();
@@ -59,8 +60,8 @@ class RoadFyController extends Controller
         //dd($quries);
 
 
+        //check ppt uploaded or not
         $annual_review_ppt_details='';
-
         $check=AnnualReviewPptUpload::where('member_id',$member_id)
             ->where('annual_review_form_id',$annual_review_form_id)->first();
 
@@ -68,7 +69,13 @@ class RoadFyController extends Controller
             $annual_review_ppt_details=$check['ppt_name'];
         }
 
-        return view('road-fy', compact('annual_review_form_data','check_exist_or_not','annual_review_ppt_details'));
+
+        //check HR1:1 is filled by HR or not
+        $check_hr_one_on_one=AnnualReviewHrOneOnOne::where('filled_for',$member_id)
+            ->where('annual_review_form_id',$annual_review_form_id)
+            ->where('status','2')->first();
+
+        return view('road-fy', compact('annual_review_form_data','check_exist_or_not','annual_review_ppt_details','check_hr_one_on_one'));
     }
     /* show road home page, end here */
 

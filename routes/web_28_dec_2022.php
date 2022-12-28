@@ -549,22 +549,6 @@ Route::group(['middleware' => ['auth']], function() {
 	/* annual review mom, end here*/
 
 
-
-	/* HR annual review 1:1, start here */
-	Route::get('/annual-review-hr-one-on-one/{form_id}',[App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'index'])->middleware('isHRManagement');
-
-	Route::get('/annual-review-hr-one-on-one-form/{form_id}/{member_id}',[App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'showForm'])->middleware('isHRManagement');
-
-	Route::post('/save-annual-review-hr-one-on-one-form', [App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'store'])->name('save-annual-review-hr-one-on-one-form');
-
-	Route::get('/annual-review-hr-one-on-one-form-edit/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'edit'])->middleware('isHRManagement');
-
-	Route::post('/update-annual-review-hr-one-on-one-form', [App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'update'])->name('update-annual-review-hr-one-on-one-form');
-
-	Route::get('/annual-review-hr-one-on-one-form-show/{form_id}/{member_id}/{edit_id}', [App\Http\Controllers\AnnualReviewHROneOnOneController::class, 'showDetails']);
-	/* HR annual review 1:1, end here */
-
-
 });
 /*pages are access only when user is loggedin first option, end here*/
 

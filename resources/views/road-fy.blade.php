@@ -83,10 +83,14 @@
                             	{{ $annual_review_form_data['hr_1_1_label'] }}
                             </td>
                             <td>
-                            	&nbsp;
+                            	@if($check_hr_one_on_one==null)
+                              <span class="badge bg-warning"> + Pending</span>
+                              @endif
                             </td>
                             <td>
-                            	<span class="badge bg-success"> + View HR 1:1</span>
+                              @if($check_hr_one_on_one!=null)
+                            	<span class="badge bg-success" onclick="location.href = '{{ url("annual-review-hr-one-on-one-form-show/".$check_hr_one_on_one['annual_review_form_id']."/".$check_hr_one_on_one['filled_for']."/".$check_hr_one_on_one['id'])}}';" style="cursor: pointer;"> + View HR 1:1</span>
+                              @endif
                             </td>
                           </tr>
 
@@ -212,7 +216,7 @@
                             </td>
                             <td>
                             	<!-- <span class="badge bg-success"> + View Survey</span> -->
-                            	<span class="badge bg-warning"> Fill Feedbacks +</span>
+                            	<span class="badge bg-warning" onclick="location.href = '{{ url("annual-review-hr-one-on-one/".$annual_review_form_data['id'])}}';" style="cursor: pointer;"> Fill Feedbacks +</span>
                             </td>
                           </tr>
 

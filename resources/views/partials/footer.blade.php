@@ -9,6 +9,48 @@
 
 		jQuery(document).ready(function(){
 
+			/* Annual review HR 1:1 pip div open/close, start here */
+			$('#promotion_in_designation').on('change', function(){
+				var val_promotion=$('#promotion_in_designation').val();
+
+				$('#designation_id_promotion_div').hide();
+
+				if(val_promotion=='Yes') {
+					$('#designation_id_promotion_div').show();
+				}
+			});
+			/* Annual review HR 1:1 pip div open/close, end here */
+
+
+			/* Annual review hr 1:1 total_expected_increment_monthly_salary, start here */
+			$('#total_expected_increment_monthly_salary').on('change', function(){
+				var expected_salary=$('#total_expected_increment_monthly_salary').val();
+
+				var current_salary=$('#current_monthly_salary').val();
+
+				var per;
+				per = (expected_salary - current_salary) / current_salary * 100;
+				$("#total_expected_increment_monthly_salary_percentage").val(Math.round(per));
+
+			});
+			/* Annual review hr 1:1 total_expected_increment_monthly_salary, end here */
+
+
+			/* Annual review HR 1:1 pip div open/close, start here */
+			$('#put_ever_pip').on('change', function(){
+				var val=$('#put_ever_pip').val();
+
+				$('#pipStartDate_Div').hide();
+				$('#pipEndDate_Div').hide();
+
+				if(val=='Yes') {
+					$('#pipStartDate_Div').show();
+					$('#pipEndDate_Div').show();
+				}
+			});
+			/* Annual review HR 1:1 pip div open/close, end here */
+
+
 		/*no of section from annual review form 2nd step ajax, start here*/
 		$('#no_of_section').change(function(){
 			var no_of_section=$('#no_of_section').val();
