@@ -72,12 +72,20 @@
                         </a>
                       </td>
                       <td>
-                        
-                        <label class="switch">
-                          <input type="checkbox" id="id_{{ $all_list['id'] }}" @if($all_list['status']=='1') checked @endif onclick="status_update_funtion({{ $all_list['id'] }}, 'annual_review_forms')">
-                          <span class="slider round"></span>
-                        </label>
+                        <?php
+                        $last_month = date('m',strtotime($all_list['appraisal_month']));
+                        $last_year = $all_list['appraisal_year'];
 
+                        $appraisal_form_date=strtotime('1-'.$last_month.'-'.$last_year);
+                        
+                        ?>
+                        
+                        @if($appraisal_form_date>=$hide_old_survey_form)
+                          <label class="switch">
+                            <input type="checkbox" id="id_{{ $all_list['id'] }}" @if($all_list['status']=='1') checked @endif onclick="status_update_funtion({{ $all_list['id'] }}, 'annual_review_forms')">
+                            <span class="slider round"></span>
+                          </label>
+                        @endif
                         
                       </td>
                       <!-- <td>

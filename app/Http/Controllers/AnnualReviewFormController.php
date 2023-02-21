@@ -107,7 +107,10 @@ class AnnualReviewFormController extends Controller
     public function showAllAnnualReviewForms()
     {
         $all_lists=AnnualReviewForm::leftJoin('road_fys','road_fys.annual_review_form_id','=','annual_review_forms.id')->select('annual_review_forms.*','road_fys.no_of_section as no_of_section')->get();
-        return view('manage-annual-review-form', compact('all_lists'));
+
+        $hide_old_survey_form=strtotime(date("1-m-Y", strtotime("-7 months")));
+
+        return view('manage-annual-review-form', compact('all_lists','hide_old_survey_form'));
     }
 
     /**
