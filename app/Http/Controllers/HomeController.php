@@ -138,8 +138,12 @@ class HomeController extends Controller
 
         /* check any annual review form is active or not, start here*/
         $annual_review_form_data=AnnualReviewForm::where('status','1')->first();
+        
         if($annual_review_form_data!=null){
+            
             Session::put('session_annual_review_form_name', $annual_review_form_data);
+        } else {
+            Session::put('session_annual_review_form_name', '');
         }
         /* check any annual review form is active or not, end here*/
 
